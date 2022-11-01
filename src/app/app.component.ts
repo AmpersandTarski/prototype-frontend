@@ -7,4 +7,17 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'prototype2.0';
+  
+  testData = [
+    { firstName: 'patrick', lastName: 'ramge' },
+    { firstName: 'mark', lastName: 'corazon' },
+    { firstName: 'michiel', lastName: 'stornebrink' },
+    { firstName: 'wilco', lastName: 'morren' },
+    { firstName: 'li-wei', lastName: 'yeh' },
+  ];
+
+  capitalizeFirstLetter(string: string) : string {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+  }
+  
 }

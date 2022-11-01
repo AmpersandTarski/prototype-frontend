@@ -12,6 +12,7 @@ import { InputNumberModule } from 'primeng/inputnumber'
 import { SkeletonModule } from 'primeng/skeleton';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import { CalendarModule } from 'primeng/calendar'
+import { TableModule } from 'primeng/table';
 
 import { AtomicALPHANUMERICComponent } from './atomic-alphanumeric/atomic-alphanumeric.component';
 import { AtomicBIGALPHANUMERICComponent } from './atomic-bigalphanumeric/atomic-bigalphanumeric.component';
@@ -21,6 +22,7 @@ import { AtomicHUGEALPHANUMERICComponent } from './atomic-hugealphanumeric/atomi
 import { AtomicFLOATComponent } from './atomic-float/atomic-float.component';
 import { AtomicDATEComponent } from './atomic-date/atomic-date.component';
 import { AtomicDATETIMEComponent } from './atomic-datetime/atomic-datetime.component';
+import { BoxTABLEComponent } from './box-table/box-table.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +34,8 @@ import { AtomicDATETIMEComponent } from './atomic-datetime/atomic-datetime.compo
     AtomicHUGEALPHANUMERICComponent,
     AtomicFLOATComponent,
     AtomicDATEComponent,
-    AtomicDATETIMEComponent
+    AtomicDATETIMEComponent,
+    BoxTABLEComponent
   ],
   imports: [
     BrowserModule,
@@ -44,7 +47,8 @@ import { AtomicDATETIMEComponent } from './atomic-datetime/atomic-datetime.compo
     FormsModule,
     SkeletonModule,
     InputTextareaModule,
-    CalendarModule
+    CalendarModule,
+    TableModule
   ],
   providers: [],
   bootstrap: [AppComponent]
