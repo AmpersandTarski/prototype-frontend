@@ -23,6 +23,7 @@ import { AtomicFLOATComponent } from './atomic-float/atomic-float.component';
 import { AtomicDATEComponent } from './atomic-date/atomic-date.component';
 import { AtomicDATETIMEComponent } from './atomic-datetime/atomic-datetime.component';
 import { BoxTABLEComponent } from './box-table/box-table.component';
+import { ActiveProjectsComponent } from './project-administration/active-projects/active-projects.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { BoxTABLEComponent } from './box-table/box-table.component';
     AtomicFLOATComponent,
     AtomicDATEComponent,
     AtomicDATETIMEComponent,
-    BoxTABLEComponent
+    BoxTABLEComponent,
+    ActiveProjectsComponent
   ],
   imports: [
     BrowserModule,
