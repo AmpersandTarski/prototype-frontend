@@ -6,8 +6,8 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'prototype2.0';
-  
+  title = 'prototype-frontend';
+
   testData = [
     { firstName: 'patrick', lastName: 'ramge' },
     { firstName: 'mark', lastName: 'corazon' },
