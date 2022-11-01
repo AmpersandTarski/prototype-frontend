@@ -1,3 +1,4 @@
+import { Input } from '@angular/core';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -12,6 +13,8 @@ export class AtomicALPHANUMERICComponent implements OnInit {
   public crudD: boolean;
   public exprIsUni: boolean;
   public exprIsTot: boolean;
+
+  @Input() property!: string | Array<string>;
 
   constructor() {
     this.crudC = false;

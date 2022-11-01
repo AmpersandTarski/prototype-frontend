@@ -7,7 +7,7 @@
     </ng-template>
     <ng-template #rows let-row>
         <!-- <td><app-atomic-object obj="row['Projects']" label="Projects" isUni isTot crud="cRUd"></app-atomic-object></td> -->
-        <td><app-atomic-alphanumeric value="row['Name']" label="Name" isUni isTot crud="CRUD"></app-atomic-alphanumeric></td>
+        <td><app-atomic-alphanumeric [property]="row['Name']" label="Name" isUni isTot crud="CRUD"></app-atomic-alphanumeric></td>
         <td><app-atomic-bigalphanumeric value="row['Description']" label="Description" isUni crud="CRUD"></app-atomic-bigalphanumeric></td>
     </ng-template>
 </app-box-table>
