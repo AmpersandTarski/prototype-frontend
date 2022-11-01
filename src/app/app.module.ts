@@ -8,10 +8,10 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { InputTextModule } from 'primeng/inputtext';
 import { InputSwitchModule } from 'primeng/inputswitch';
-import { InputNumberModule } from 'primeng/inputnumber'
+import { InputNumberModule } from 'primeng/inputnumber';
 import { SkeletonModule } from 'primeng/skeleton';
 import { InputTextareaModule } from 'primeng/inputtextarea';
-import { CalendarModule } from 'primeng/calendar'
+import { CalendarModule } from 'primeng/calendar';
 import { TableModule } from 'primeng/table';
 
 import { AtomicALPHANUMERICComponent } from './atomic-alphanumeric/atomic-alphanumeric.component';
@@ -37,7 +37,7 @@ import { ActiveProjectsComponent } from './project-administration/active-project
     AtomicDATEComponent,
     AtomicDATETIMEComponent,
     BoxTABLEComponent,
-    ActiveProjectsComponent
+    ActiveProjectsComponent,
   ],
   imports: [
     BrowserModule,
@@ -50,9 +50,9 @@ import { ActiveProjectsComponent } from './project-administration/active-project
     SkeletonModule,
     InputTextareaModule,
     CalendarModule,
-    TableModule
+    TableModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
