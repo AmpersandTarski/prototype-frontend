@@ -18,6 +18,7 @@ import { InputTextModule } from 'primeng/inputtext';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import { SkeletonModule } from 'primeng/skeleton';
 import { TableModule } from 'primeng/table';
+import { SplitButtonModule } from 'primeng/splitbutton';
 
 @NgModule({
   declarations: [
@@ -42,6 +43,7 @@ import { TableModule } from 'primeng/table';
     InputTextareaModule,
     CalendarModule,
     TableModule,
+    SplitButtonModule,
   ],
   exports: [
     AtomicAlphanumericComponent,
