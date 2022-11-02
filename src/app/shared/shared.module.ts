@@ -8,6 +8,7 @@ import { AtomicDatetimeComponent } from './atomic-components/atomic-datetime/ato
 import { AtomicFloatComponent } from './atomic-components/atomic-float/atomic-float.component';
 import { AtomicHugealphanumericComponent } from './atomic-components/atomic-hugealphanumeric/atomic-hugealphanumeric.component';
 import { AtomicIntegerComponent } from './atomic-components/atomic-integer/atomic-integer.component';
+import { AtomicObjectComponent } from './atomic-components/atomic-object/atomic-object.component';
 import { BoxTableComponent } from './box-components/box-table/box-table.component';
 import { FormsModule } from '@angular/forms';
 import { CalendarModule } from 'primeng/calendar';
@@ -28,6 +29,7 @@ import { TableModule } from 'primeng/table';
     AtomicDatetimeComponent,
     AtomicFloatComponent,
     AtomicIntegerComponent,
+    AtomicObjectComponent,
     BoxTableComponent,
   ],
   imports: [
@@ -50,6 +52,7 @@ import { TableModule } from 'primeng/table';
     AtomicDatetimeComponent,
     AtomicFloatComponent,
     AtomicIntegerComponent,
+    AtomicObjectComponent,
     BoxTableComponent,
   ],
 })
