@@ -24,6 +24,7 @@ import { AtomicDATEComponent } from './atomic-date/atomic-date.component';
 import { AtomicDATETIMEComponent } from './atomic-datetime/atomic-datetime.component';
 import { BoxTABLEComponent } from './box-table/box-table.component';
 import { ActiveProjectsComponent } from './project-administration/active-projects/active-projects.component';
+import { AppLayoutModule } from './layout/app.layout.module';
 
 @NgModule({
   declarations: [
@@ -43,6 +44,7 @@ import { ActiveProjectsComponent } from './project-administration/active-project
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
+    AppLayoutModule,
     InputTextModule,
     InputSwitchModule,
     InputNumberModule,
