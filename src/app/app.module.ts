@@ -12,6 +12,7 @@ import { InputNumberModule } from 'primeng/inputnumber'
 import { SkeletonModule } from 'primeng/skeleton';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import { CalendarModule } from 'primeng/calendar'
+import { PasswordModule } from 'primeng/password'
 
 import { AtomicALPHANUMERICComponent } from './atomic-alphanumeric/atomic-alphanumeric.component';
 import { AtomicBIGALPHANUMERICComponent } from './atomic-bigalphanumeric/atomic-bigalphanumeric.component';
@@ -21,6 +22,8 @@ import { AtomicHUGEALPHANUMERICComponent } from './atomic-hugealphanumeric/atomi
 import { AtomicFLOATComponent } from './atomic-float/atomic-float.component';
 import { AtomicDATEComponent } from './atomic-date/atomic-date.component';
 import { AtomicDATETIMEComponent } from './atomic-datetime/atomic-datetime.component';
+import { AtomicPASSWORDComponent } from './atomic-password/atomic-password.component';
+import { AtomicOBJECTComponent } from './atomic-object/atomic-object.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +35,9 @@ import { AtomicDATETIMEComponent } from './atomic-datetime/atomic-datetime.compo
     AtomicHUGEALPHANUMERICComponent,
     AtomicFLOATComponent,
     AtomicDATEComponent,
-    AtomicDATETIMEComponent
+    AtomicDATETIMEComponent,
+    AtomicPASSWORDComponent,
+    AtomicOBJECTComponent
   ],
   imports: [
     BrowserModule,
@@ -44,7 +49,8 @@ import { AtomicDATETIMEComponent } from './atomic-datetime/atomic-datetime.compo
     FormsModule,
     SkeletonModule,
     InputTextareaModule,
-    CalendarModule
+    CalendarModule,
+    PasswordModule
   ],
   providers: [],
   bootstrap: [AppComponent]
