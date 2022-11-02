@@ -1,12 +1,15 @@
 import { Component, OnInit } from '@angular/core';
+import { AtomicComponent } from '../AtomicComponent.class';
 
 @Component({
   selector: 'app-atomic-date',
   templateUrl: './atomic-date.component.html',
   styleUrls: ['./atomic-date.component.css'],
 })
-export class AtomicDateComponent implements OnInit {
-  constructor() {}
+export class AtomicDateComponent extends AtomicComponent implements OnInit {
+  constructor() {
+    super();
+  }
 
   ngOnInit(): void {}
 }
