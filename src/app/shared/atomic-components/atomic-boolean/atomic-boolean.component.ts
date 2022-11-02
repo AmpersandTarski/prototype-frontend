@@ -3,13 +3,10 @@ import { Component, OnInit } from '@angular/core';
 @Component({
   selector: 'app-atomic-boolean',
   templateUrl: './atomic-boolean.component.html',
-  styleUrls: ['./atomic-boolean.component.css']
+  styleUrls: ['./atomic-boolean.component.css'],
 })
-export class AtomicBOOLEANComponent implements OnInit {
+export class AtomicBooleanComponent implements OnInit {
+  constructor() {}
 
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-
+  ngOnInit(): void {}
 }

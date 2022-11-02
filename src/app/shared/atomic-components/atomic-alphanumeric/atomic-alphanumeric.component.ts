@@ -7,7 +7,7 @@ import { AtomicComponent } from '../AtomicComponent.class';
   templateUrl: './atomic-alphanumeric.component.html',
   styleUrls: ['./atomic-alphanumeric.component.css'],
 })
-export class AtomicALPHANUMERICComponent
+export class AtomicAlphanumericComponent
   extends AtomicComponent
   implements OnInit
 {

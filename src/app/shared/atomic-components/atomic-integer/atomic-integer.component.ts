@@ -3,13 +3,10 @@ import { Component, OnInit } from '@angular/core';
 @Component({
   selector: 'app-atomic-integer',
   templateUrl: './atomic-integer.component.html',
-  styleUrls: ['./atomic-integer.component.css']
+  styleUrls: ['./atomic-integer.component.css'],
 })
-export class AtomicINTEGERComponent implements OnInit {
+export class AtomicIntegerComponent implements OnInit {
+  constructor() {}
 
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-
+  ngOnInit(): void {}
 }

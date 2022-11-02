@@ -3,13 +3,10 @@ import { Component, OnInit } from '@angular/core';
 @Component({
   selector: 'app-atomic-float',
   templateUrl: './atomic-float.component.html',
-  styleUrls: ['./atomic-float.component.css']
+  styleUrls: ['./atomic-float.component.css'],
 })
-export class AtomicFLOATComponent implements OnInit {
+export class AtomicFloatComponent implements OnInit {
+  constructor() {}
 
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-
+  ngOnInit(): void {}
 }

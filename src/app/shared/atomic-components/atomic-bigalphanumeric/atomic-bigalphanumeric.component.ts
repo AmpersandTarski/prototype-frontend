@@ -4,14 +4,12 @@ import { Component, OnInit } from '@angular/core';
 @Component({
   selector: 'app-atomic-bigalphanumeric',
   templateUrl: './atomic-bigalphanumeric.component.html',
-  styleUrls: ['./atomic-bigalphanumeric.component.css']
+  styleUrls: ['./atomic-bigalphanumeric.component.css'],
 })
-export class AtomicBIGALPHANUMERICComponent implements OnInit {
+export class AtomicBigalphanumericComponent implements OnInit {
   @Input() property!: string | Array<string>;
 
-  constructor() { }
+  constructor() {}
 
-  ngOnInit(): void {
-  }
-
+  ngOnInit(): void {}
 }
