@@ -4,8 +4,11 @@ import { AppLayoutComponent } from './layout/app.layout.component';
 import { ActiveProjectsComponent } from './project-administration/active-projects/active-projects.component';
 
 const routes: Routes = [
-  { path: '', component: AppLayoutComponent },
-  { path: 'active-projects', component: ActiveProjectsComponent },
+  {
+    path: '',
+    component: AppLayoutComponent,
+    children: [{ path: 'active-projects', component: ActiveProjectsComponent }],
+  },
 ];
 
 @NgModule({
