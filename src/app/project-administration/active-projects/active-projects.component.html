@@ -1,12 +1,12 @@
 
 <app-box-table [data]="activeProjects" sortable sortBy="Name" order="desc">
     <ng-template #headers>
-        <!-- <th>Projects</th> -->
+        <th>Projects</th>
         <th>Name</th>
         <th>Description</th>
     </ng-template>
     <ng-template #rows let-row>
-        <!-- <td><app-atomic-object obj="row['Projects']" label="Projects" isUni isTot crud="cRUd"></app-atomic-object></td> -->
+        <td><app-atomic-object [property]="row['Projects']" label="Projects" isUni isTot crud="cRUd"></app-atomic-object></td>
         <td><app-atomic-alphanumeric [property]="row['Name']" label="Name" isUni isTot crud="CRUD"></app-atomic-alphanumeric></td>
         <td><app-atomic-bigalphanumeric [property]="row['Description']" label="Description" isUni crud="CRUD"></app-atomic-bigalphanumeric></td>
     </ng-template>
