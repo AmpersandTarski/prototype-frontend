@@ -1,3 +1,6 @@
+<router-outlet></router-outlet>
+
+<!--
 <app-atomic-alphanumeric></app-atomic-alphanumeric>
 <app-atomic-bigalphanumeric></app-atomic-bigalphanumeric>
 <app-atomic-boolean></app-atomic-boolean>
@@ -8,3 +11,26 @@
 <app-atomic-datetime></app-atomic-datetime>
 <app-atomic-password></app-atomic-password>
 <app-atomic-object></app-atomic-object>
+
+<app-box-table [data]="testData"></app-box-table>
+
+<app-box-table [data]="testData">
+    <ng-template #headers>
+        <th>First name</th>
+        <th>Last name</th>
+    </ng-template>
+</app-box-table>
+
+<app-box-table [data]="testData">
+    <ng-template #headers>
+        <th>First name</th>
+        <th>Last name</th>
+        <th>Additional header</th>
+    </ng-template>
+    <ng-template #rows let-row>
+        <td>{{ capitalizeFirstLetter(row.firstName) }}</td>
+        <td>{{ capitalizeFirstLetter(row.lastName) }}</td>
+        <td><button>Hi</button></td>
+    </ng-template>
+</app-box-table>
+-->

@@ -1,10 +1,22 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AppLayoutComponent } from './layout/app.layout.component';
+import { ActiveProjectsComponent } from './project-administration/active-projects/active-projects.component';
+import { ProjectComponent } from './project-administration/project/project.component';
 
-const routes: Routes = [];
+const routes: Routes = [
+  {
+    path: '',
+    component: AppLayoutComponent,
+    children: [
+      { path: 'active-projects', component: ActiveProjectsComponent },
+      { path: 'project/:id', component: ProjectComponent },
+    ],
+  },
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}
