@@ -1,13 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { AtomicComponent } from '../AtomicComponent.class';
+import { BaseComponent } from '../../BaseComponent.class';
 
 @Component({
   selector: 'app-atomic-date',
   templateUrl: './atomic-date.component.html',
   styleUrls: ['./atomic-date.component.css'],
 })
-export class AtomicDateComponent extends AtomicComponent {
-  constructor() {
-    super();
-  }
-}
+export class AtomicDateComponent extends BaseComponent {}

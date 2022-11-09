@@ -1,13 +1,13 @@
 import { Component, Input } from '@angular/core';
 import { MenuItem } from 'primeng/api';
-import { AtomicComponent } from '../AtomicComponent.class';
+import { BaseComponent } from '../../BaseComponent.class';
 
 @Component({
   selector: 'app-atomic-object',
   templateUrl: './atomic-object.component.html',
   styleUrls: ['./atomic-object.component.scss'],
 })
-export class AtomicObjectComponent extends AtomicComponent {
+export class AtomicObjectComponent extends BaseComponent {
   @Input() property!: any | Array<any>;
 
   menu: Array<MenuItem> = [
@@ -19,10 +19,6 @@ export class AtomicObjectComponent extends AtomicComponent {
       },
     },
   ];
-
-  constructor() {
-    super();
-  }
 
   getRouterLink(ifc: any): string {
     return `/${ifc.id.toLowerCase()}`;

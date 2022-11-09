@@ -1,13 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { AtomicComponent } from '../AtomicComponent.class';
+import { BaseComponent } from '../../BaseComponent.class';
 
 @Component({
   selector: 'app-atomic-float',
   templateUrl: './atomic-float.component.html',
   styleUrls: ['./atomic-float.component.css'],
 })
-export class AtomicFloatComponent extends AtomicComponent {
-  constructor() {
-    super();
-  }
-}
+export class AtomicFloatComponent extends BaseComponent {}

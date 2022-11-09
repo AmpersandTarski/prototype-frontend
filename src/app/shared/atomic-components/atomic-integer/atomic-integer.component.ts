@@ -1,13 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { AtomicComponent } from '../AtomicComponent.class';
+import { BaseComponent } from '../../BaseComponent.class';
 
 @Component({
   selector: 'app-atomic-integer',
   templateUrl: './atomic-integer.component.html',
   styleUrls: ['./atomic-integer.component.css'],
 })
-export class AtomicIntegerComponent extends AtomicComponent {
-  constructor() {
-    super();
-  }
+export class AtomicIntegerComponent extends BaseComponent {
 }
