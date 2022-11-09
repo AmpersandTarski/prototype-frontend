@@ -1,3 +1,4 @@
+import { Attribute, Input, Optional } from '@angular/core';
 import { Component, OnInit } from '@angular/core';
 import { AtomicComponent } from '../AtomicComponent.class';
 
@@ -6,12 +7,10 @@ import { AtomicComponent } from '../AtomicComponent.class';
   templateUrl: './atomic-password.component.html',
   styleUrls: ['./atomic-password.component.css']
 })
-export class AtomicPasswordComponent extends AtomicComponent implements OnInit {
+export class AtomicPasswordComponent extends AtomicComponent {
+  @Input() property!: string;
+
   constructor() { 
-    super();
+    super();        
   }
-
-  ngOnInit(): void {
-  }
-
 }

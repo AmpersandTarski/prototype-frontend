@@ -9,13 +9,10 @@ import { AtomicComponent } from '../AtomicComponent.class';
 })
 export class AtomicAlphanumericComponent
   extends AtomicComponent
-  implements OnInit
 {
   @Input() property!: string | Array<string>;
 
   constructor() {
     super();
   }
-
-  ngOnInit(): void {}
 }

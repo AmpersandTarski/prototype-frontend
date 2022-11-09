@@ -59,6 +59,7 @@ import { PasswordModule } from 'primeng/password';
     AtomicFloatComponent,
     AtomicIntegerComponent,
     AtomicObjectComponent,
+    AtomicPasswordComponent,
     BoxTableComponent,
   ],
 })

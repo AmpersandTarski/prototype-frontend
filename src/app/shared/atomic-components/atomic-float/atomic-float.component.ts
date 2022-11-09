@@ -6,10 +6,8 @@ import { AtomicComponent } from '../AtomicComponent.class';
   templateUrl: './atomic-float.component.html',
   styleUrls: ['./atomic-float.component.css'],
 })
-export class AtomicFloatComponent extends AtomicComponent implements OnInit {
+export class AtomicFloatComponent extends AtomicComponent {
   constructor() {
     super();
   }
-
-  ngOnInit(): void {}
 }

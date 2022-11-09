@@ -4,11 +4,13 @@
         <th>Projects</th>
         <th>Name</th>
         <th>Description</th>
+        <th>Etc</th>
     </ng-template>
     <ng-template #rows let-row>
         <td><app-atomic-object [property]="row['Projects']" label="Projects" isUni isTot crud="cRUd"></app-atomic-object></td>
         <td><app-atomic-alphanumeric [property]="row['Name']" label="Name" isUni isTot crud="CRUD"></app-atomic-alphanumeric></td>
         <td><app-atomic-bigalphanumeric [property]="row['Description']" label="Description" isUni crud="CRUD"></app-atomic-bigalphanumeric></td>
+        <td><app-atomic-password [property]="row['Name']" label="Test" isUni crud="CRUD"></app-atomic-password></td>
     </ng-template>
 </app-box-table>
 

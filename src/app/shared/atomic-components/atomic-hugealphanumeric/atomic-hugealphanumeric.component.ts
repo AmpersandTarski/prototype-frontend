@@ -8,11 +8,8 @@ import { AtomicComponent } from '../AtomicComponent.class';
 })
 export class AtomicHugealphanumericComponent
   extends AtomicComponent
-  implements OnInit
 {
   constructor() {
     super();
   }
-
-  ngOnInit(): void {}
 }

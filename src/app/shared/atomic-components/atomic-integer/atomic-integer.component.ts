@@ -6,10 +6,8 @@ import { AtomicComponent } from '../AtomicComponent.class';
   templateUrl: './atomic-integer.component.html',
   styleUrls: ['./atomic-integer.component.css'],
 })
-export class AtomicIntegerComponent extends AtomicComponent implements OnInit {
+export class AtomicIntegerComponent extends AtomicComponent {
   constructor() {
     super();
   }
-
-  ngOnInit(): void {}
 }

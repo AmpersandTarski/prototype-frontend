@@ -6,10 +6,8 @@ import { AtomicComponent } from '../AtomicComponent.class';
   templateUrl: './atomic-boolean.component.html',
   styleUrls: ['./atomic-boolean.component.css'],
 })
-export class AtomicBooleanComponent extends AtomicComponent implements OnInit {
+export class AtomicBooleanComponent extends AtomicComponent {
   constructor() {
     super();
   }
-
-  ngOnInit(): void {}
 }

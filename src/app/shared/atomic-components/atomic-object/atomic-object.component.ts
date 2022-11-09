@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { MenuItem } from 'primeng/api';
 import { AtomicComponent } from '../AtomicComponent.class';
 
@@ -7,7 +7,7 @@ import { AtomicComponent } from '../AtomicComponent.class';
   templateUrl: './atomic-object.component.html',
   styleUrls: ['./atomic-object.component.scss'],
 })
-export class AtomicObjectComponent extends AtomicComponent implements OnInit {
+export class AtomicObjectComponent extends AtomicComponent {
   @Input() property!: any | Array<any>;
 
   menu: Array<MenuItem> = [
@@ -23,8 +23,6 @@ export class AtomicObjectComponent extends AtomicComponent implements OnInit {
   constructor() {
     super();
   }
-
-  ngOnInit(): void {}
 
   getRouterLink(ifc: any): string {
     return `/${ifc.id.toLowerCase()}`;

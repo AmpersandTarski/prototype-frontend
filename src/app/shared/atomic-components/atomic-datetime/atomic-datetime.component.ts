@@ -6,10 +6,8 @@ import { AtomicComponent } from '../AtomicComponent.class';
   templateUrl: './atomic-datetime.component.html',
   styleUrls: ['./atomic-datetime.component.css'],
 })
-export class AtomicDatetimeComponent extends AtomicComponent implements OnInit {
+export class AtomicDatetimeComponent extends AtomicComponent {
   constructor() {
     super();
   }
-
-  ngOnInit(): void {}
 }
