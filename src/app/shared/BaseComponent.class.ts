@@ -3,17 +3,40 @@ import { Component, Input, OnInit } from '@angular/core';
   template: ''
 })
 export abstract class BaseComponent implements OnInit {
-  public crudC: boolean = false;
-  public crudR: boolean = true;
-  public crudU: boolean = false;
-  public crudD: boolean = false;
+  public canCreate: boolean = false;
+  public canRead: boolean = false;
+  public canUpdate: boolean = false;
+  public canDelete: boolean = false;
   public exprIsUni: boolean = false;
   public exprIsTot: boolean = false;
 
   @Input('isUni') isUni: any;
+  @Input('crud') crud: string = "crud";
+
   ngOnInit(): void {
+    this.crudTextSepperator(this.crud);
     this.exprIsUni = this.isUni !== undefined;
     console.log(`Boolean isUni is ${this.exprIsUni ? '' : 'non-'}present!`);
+  }
+
+  public crudTextSepperator(crud: string) {
+    var c = crud[0];
+    var r = crud[1];
+    var u = crud[2];
+    var d = crud[3];
+    
+    if(c == c.toUpperCase()) {
+      this.canCreate = true;
+    } 
+    if(r == r.toUpperCase()) {
+      this.canRead = true;
+    } 
+    if(u == u.toUpperCase()) {
+      this.canUpdate = true;
+    } 
+    if(d == d.toUpperCase()) {
+      this.canDelete = true;
+    }
   }
 
   public requireArray(property: any) {

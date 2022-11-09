@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { BaseComponent } from '../../BaseComponent.class';
 
 @Component({
@@ -6,4 +6,6 @@ import { BaseComponent } from '../../BaseComponent.class';
   templateUrl: './atomic-boolean.component.html',
   styleUrls: ['./atomic-boolean.component.css'],
 })
-export class AtomicBooleanComponent extends BaseComponent {}
+export class AtomicBooleanComponent extends BaseComponent {
+  @Input() property!: any | Array<any>;
+}
