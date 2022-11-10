@@ -1,0 +1,15 @@
+<p-card [header]="titleHeader" [subheader]="subHeader" styleClass="p-card-shadow">
+    <ng-template pTemplate="header">
+        <div class="text-center py-5">
+            <ng-container *ngTemplateOutlet="header || default"></ng-container>
+        </div>
+    </ng-template>
+    <ng-template pTemplate="body">
+        <ng-container *ngTemplateOutlet="body || default"></ng-container>
+    </ng-template>
+    <ng-template pTemplate="footer">
+        <ng-container *ngTemplateOutlet="footer || default"></ng-container>
+    </ng-template>
+</p-card>
+
+<ng-template #default></ng-template>
