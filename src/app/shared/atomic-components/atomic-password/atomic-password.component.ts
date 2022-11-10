@@ -1,5 +1,4 @@
-import { Attribute, Input, Optional } from '@angular/core';
-import { Component, OnInit } from '@angular/core';
+import { Input, Component } from '@angular/core';
 import { BaseComponent } from '../../BaseComponent.class';
 
 @Component({

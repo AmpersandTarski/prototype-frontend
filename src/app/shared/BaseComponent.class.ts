@@ -11,12 +11,13 @@ export abstract class BaseComponent implements OnInit {
   public exprIsTot: boolean = false;
 
   @Input('isUni') isUni: any;
+  @Input('isTot') isTot: any;
   @Input('crud') crud: string = "crud";
 
   ngOnInit(): void {
     this.crudTextSepperator(this.crud);
     this.exprIsUni = this.isUni !== undefined;
-    console.log(`Boolean isUni is ${this.exprIsUni ? '' : 'non-'}present!`);
+    this.exprIsTot = this.isTot !== undefined;
   }
 
   public crudTextSepperator(crud: string) {
