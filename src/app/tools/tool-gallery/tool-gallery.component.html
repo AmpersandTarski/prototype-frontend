@@ -1,0 +1,132 @@
+<div class="grid">
+    <div class="col-4">
+        <app-tool-gallery-element titleHeader="Alphanumeric" subHeader="Atomic">
+            <ng-template #header>
+                <app-atomic-alphanumeric [property]="'Pre-set value'" label="Projects" isUni isTot crud="CRUD"></app-atomic-alphanumeric>
+            </ng-template>
+            <ng-template #body>
+                <p>The alphanumeric component, allows you to create a text field that are mostly found on a form or inside a table to edit a value of some sort. The text field represents strings of short length, i.e. less than 255 characters.</p>
+            </ng-template>
+            <ng-template #footer>
+                <p-button label="How to use" icon="pi pi-question-circle"></p-button>
+            </ng-template>
+        </app-tool-gallery-element>
+    </div>
+    <div class="col-4">
+        <app-tool-gallery-element titleHeader="Bigalphanumeric" subHeader="Atomic">
+            <ng-template #header>
+                <app-atomic-bigalphanumeric [property]="'Pre-set value'" label="Projects" isUni isTot crud="CRUD"></app-atomic-bigalphanumeric>
+            </ng-template>
+            <ng-template #body>
+                <p>The Bigalphanumeric component, allows the user to type more than just a simple sentence. The component represents large strings of limited length, i.e. less than 64 kb.</p>
+            </ng-template>
+            <ng-template #footer>
+                <p-button label="How to use" icon="pi pi-question-circle"></p-button>
+            </ng-template>
+        </app-tool-gallery-element>
+    </div>
+    <div class="col-4">
+        <app-tool-gallery-element titleHeader="Hugealphanumeric" subHeader="Atomic">
+            <ng-template #header>
+                <app-atomic-hugealphanumeric [property]="'Pre-set value'" label="Projects" isUni isTot crud="CRUD"></app-atomic-hugealphanumeric>
+            </ng-template>
+            <ng-template #body>
+                <p>This is the biggest text area where the lentgth can arbitrary.</p>
+            </ng-template>
+            <ng-template #footer>
+                <p-button label="How to use" icon="pi pi-question-circle"></p-button>
+            </ng-template>
+        </app-tool-gallery-element>
+    </div>
+    <div class="col-4">
+        <app-tool-gallery-element titleHeader="Boolean" subHeader="Atomic">
+            <ng-template #header>
+                <app-atomic-boolean [property]="true" isUni isTot crud="CRUD"></app-atomic-boolean>
+            </ng-template>
+            <ng-template #body>
+                <p>The boolean component takes a true/false value to determine if something is true or false in the form of a switch. You can click the switch to toggle it and see it in action.</p>
+            </ng-template>
+            <ng-template #footer>
+                <p-button label="How to use" icon="pi pi-question-circle"></p-button>
+            </ng-template>
+        </app-tool-gallery-element>
+    </div>
+    <div class="col-4">
+        <app-tool-gallery-element titleHeader="Date" subHeader="Atomic">
+            <ng-template #header>
+                <app-atomic-date [property]="'26-11-1999'" [format]="'dd-mm-yy'" isUni isTot crud="CRUD"></app-atomic-date>
+            </ng-template>
+            <ng-template #body>
+                <p>The date component allows the user to fill in a date in the format that you desire. When you click on the date field, a calendar shows up to choose any date.</p>
+            </ng-template>
+            <ng-template #footer>
+                <p-button label="How to use" icon="pi pi-question-circle"></p-button>
+            </ng-template>
+        </app-tool-gallery-element>
+    </div>
+    <div class="col-4">
+        <app-tool-gallery-element titleHeader="DateTime" subHeader="Atomic">
+            <ng-template #header>
+                <app-atomic-datetime [property]="'26-11-1999 23:46'" isUni isTot crud="CRUD"></app-atomic-datetime>
+            </ng-template>
+            <ng-template #body>
+                <p>The datetime component builds upon the date component. It adds the ability to choose a time. </p>
+            </ng-template>
+            <ng-template #footer>
+                <p-button label="How to use" icon="pi pi-question-circle"></p-button>
+            </ng-template>
+        </app-tool-gallery-element>
+    </div>
+    <div class="col-4">
+        <app-tool-gallery-element titleHeader="Float" subHeader="Atomic">
+            <ng-template #header>
+                <app-atomic-float [property]="'9999999'" isUni isTot crud="CRUD"></app-atomic-float>
+            </ng-template>
+            <ng-template #body>
+                <p>The float comonent will ensure that the input that was given by the user is in the data type of a float. When typing in more than three numbers, you can see how the component acts on it.</p>
+            </ng-template>
+            <ng-template #footer>
+                <p-button label="How to use" icon="pi pi-question-circle"></p-button>
+            </ng-template>
+        </app-tool-gallery-element>
+    </div>
+    <div class="col-4">
+        <app-tool-gallery-element titleHeader="Integer" subHeader="Atomic">
+            <ng-template #header>
+                <app-atomic-integer [property]="'9999999'" isUni isTot crud="CRUD"></app-atomic-integer>
+            </ng-template>
+            <ng-template #body>
+                <p>With the integer component, its only possible to fill in numbers from 0 to 9. It represents positive and negative whole numbers in the range [-2^63..2^63 -1]</p>
+            </ng-template>
+            <ng-template #footer>
+                <p-button label="How to use" icon="pi pi-question-circle"></p-button>
+            </ng-template>
+        </app-tool-gallery-element>
+    </div>
+    <div class="col-4">
+        <app-tool-gallery-element titleHeader="Object" subHeader="Atomic">
+            <ng-template #header>
+                <app-atomic-object [property]="activeProjects" isUni isTot crud="CRUD"></app-atomic-object>
+            </ng-template>
+            <ng-template #body>
+                <p>The object component allows the user to inspect and read more of an entity and adds a dropdown of different actions that the user can take on the entity.</p>
+            </ng-template>
+            <ng-template #footer>
+                <p-button label="How to use" icon="pi pi-question-circle"></p-button>
+            </ng-template>
+        </app-tool-gallery-element>
+    </div>
+    <div class="col-4">
+        <app-tool-gallery-element titleHeader="Password" subHeader="Atomic">
+            <ng-template #header>
+                <app-atomic-password [property]="'Pre-set value'" isUni isTot crud="CRUD"></app-atomic-password>
+            </ng-template>
+            <ng-template #body>
+                <p>The password component allows the user to type in their password, without showing it on the screen</p>
+            </ng-template>
+            <ng-template #footer>
+                <p-button label="How to use" icon="pi pi-question-circle"></p-button>
+            </ng-template>
+        </app-tool-gallery-element>
+    </div>
+</div>
