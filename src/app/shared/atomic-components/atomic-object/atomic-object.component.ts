@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { MenuItem } from 'primeng/api';
 import { BaseComponent } from '../../BaseComponent.class';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-atomic-object',
@@ -19,6 +20,14 @@ export class AtomicObjectComponent extends BaseComponent {
       },
     },
   ];
+  
+  constructor(private router: Router) {
+    super();
+  }
+
+  navigateToSingleEntity(id: string, type: string) {
+    this.router.navigate([this.getRouterLink(type), `${id}`]);
+  }
 
   getRouterLink(ifc: any): string {
     return `/${ifc.id.toLowerCase()}`;
