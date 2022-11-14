@@ -12,6 +12,7 @@ const routes: Routes = [
     component: AppLayoutComponent,
     children: [
       { path: 'active-projects', component: ActiveProjectsComponent },
+      { path: 'project', component: ProjectComponent },
       { path: 'project/:id', component: ProjectComponent },
       { path: 'person', component: PersonComponent },
       { path: 'person/:id', component: PersonComponent },
