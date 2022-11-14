@@ -18,6 +18,12 @@ export class PersonComponent implements OnInit {
     this.route.paramMap.subscribe((params) => {
       this.personId = params.get('id');
     });
-    this.person = testdata.find((object) => object._id_ === this.personId);
+
+    // if null, pick first person from testdata
+    if (this.personId === null) {
+      this.person = testdata[0];
+    } else {
+      this.person = testdata.find((object) => object._id_ === this.personId);
+    }
   }
 }

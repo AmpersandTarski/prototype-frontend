@@ -13,6 +13,7 @@ const routes: Routes = [
     children: [
       { path: 'active-projects', component: ActiveProjectsComponent },
       { path: 'project/:id', component: ProjectComponent },
+      { path: 'person', component: PersonComponent },
       { path: 'person/:id', component: PersonComponent },
     ],
   },

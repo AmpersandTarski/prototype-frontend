@@ -19,15 +19,22 @@ export class AppMenuComponent implements OnInit {
       },
       {
         label: 'Tools',
-        items: [{ label: 'Tools', icon: 'pi pi-fw pi-code', routerLink: ['/tools'] }],
+        items: [
+          { label: 'Tools', icon: 'pi pi-fw pi-code', routerLink: ['/tools'] },
+        ],
       },
       {
         label: 'Pages',
         items: [
           {
             label: 'Active projects',
-            icon: 'pi pi-fw pi-id-card',
+            icon: 'pi pi-fw pi-bars',
             routerLink: ['/active-projects'],
+          },
+          {
+            label: 'Person details',
+            icon: 'pi pi-fw pi-id-card',
+            routerLink: ['/person'],
           },
           // {
           //   label: 'Menu',
