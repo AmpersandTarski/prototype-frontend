@@ -12,9 +12,9 @@ import {
   styleUrls: ['./box-table.component.css'],
 })
 export class BoxTableComponent implements OnInit {
-  @Input() data!: any[];
-  @ContentChild('headers') headers: TemplateRef<any> | undefined;
-  @ContentChild('rows') rows: TemplateRef<any> | undefined;
+  @Input() data: any;
+  @ContentChild('headers') headers!: TemplateRef<any>;
+  @ContentChild('rows') rows!: TemplateRef<any>;
 
-  ngOnInit(): void {}
+  ngOnInit(): void { }
 }

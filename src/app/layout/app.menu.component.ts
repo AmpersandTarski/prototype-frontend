@@ -9,7 +9,7 @@ import { LayoutService } from './service/app.layout.service';
 export class AppMenuComponent implements OnInit {
   model: any[] = [];
 
-  constructor(public layoutService: LayoutService) {}
+  constructor(public layoutService: LayoutService) { }
 
   ngOnInit() {
     this.model = [
@@ -33,8 +33,13 @@ export class AppMenuComponent implements OnInit {
           },
           {
             label: 'Project details',
-            icon: 'pi pi-fw pi-bars',
+            icon: 'pi pi-fw pi-id-card',
             routerLink: ['/project'],
+          },
+          {
+            label: 'Persons details',
+            icon: 'pi pi-fw pi-bars',
+            routerLink: ['/persons'],
           },
           {
             label: 'Person details',

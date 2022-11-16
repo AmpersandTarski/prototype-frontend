@@ -1,12 +1,10 @@
 <p-table [value]="data">
     <ng-template pTemplate="header">
         <tr>
-            <ng-container
-            *ngTemplateOutlet="
+            <ng-container *ngTemplateOutlet="
                 headers || defaultHeaderTemplate;
                 context: { $implicit: data }
-            "
-            ></ng-container>
+            "></ng-container>
         </tr>
     </ng-template>
     <ng-template pTemplate="body" let-data>
@@ -14,8 +12,7 @@
             <ng-container *ngTemplateOutlet="
                 rows || defaultRowTemplate;
                 context: { $implicit: data }
-            "
-            ></ng-container>
+            "></ng-container>
         </tr>
     </ng-template>
 </p-table>

@@ -4,9 +4,10 @@ import { ActiveProjectsComponent } from './active-projects/active-projects.compo
 import { SharedModule } from '../shared/shared.module';
 import { ProjectComponent } from './project/project.component';
 import { PersonComponent } from './person/person.component';
+import { PersonsComponent } from './persons/persons.component';
 
 @NgModule({
-  declarations: [ActiveProjectsComponent, ProjectComponent, PersonComponent],
+  declarations: [ActiveProjectsComponent, ProjectComponent, PersonComponent, PersonsComponent],
   imports: [CommonModule, SharedModule],
 })
-export class ProjectAdministrationModule {}
+export class ProjectAdministrationModule { }

@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { AppLayoutComponent } from './layout/app.layout.component';
 import { ActiveProjectsComponent } from './project-administration/active-projects/active-projects.component';
 import { PersonComponent } from './project-administration/person/person.component';
+import { PersonsComponent } from './project-administration/persons/persons.component';
 import { ProjectComponent } from './project-administration/project/project.component';
 import { ToolGalleryComponent } from './tools/tool-gallery/tool-gallery.component';
 
@@ -14,8 +15,8 @@ const routes: Routes = [
       { path: 'active-projects', component: ActiveProjectsComponent },
       { path: 'project', component: ProjectComponent },
       { path: 'project/:id', component: ProjectComponent },
-      { path: 'person', component: PersonComponent },
-      { path: 'person/:id', component: PersonComponent },
+      { path: 'persons', component: PersonsComponent },
+      { path: 'persons/:id', component: PersonComponent },
     ],
   },
   {
@@ -29,4 +30,4 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }
