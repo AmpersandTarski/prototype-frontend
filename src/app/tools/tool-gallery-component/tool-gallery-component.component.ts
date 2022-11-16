@@ -1,11 +1,11 @@
 import { Component, ContentChild, Input, OnInit, TemplateRef } from '@angular/core';
 
 @Component({
-  selector: 'app-tool-gallery-element',
-  templateUrl: './tool-gallery-element.component.html',
-  styleUrls: ['./tool-gallery-element.component.scss']
+  selector: 'app-tool-gallery-component',
+  templateUrl: './tool-gallery-component.component.html',
+  styleUrls: ['./tool-gallery-component.component.scss']
 })
-export class ToolGalleryElementComponent implements OnInit {
+export class ToolGalleryComponentComponent implements OnInit {
   @Input() titleHeader: string = "";
   @Input() subHeader: string = "";
   @ContentChild('header') header: TemplateRef<any> | undefined;

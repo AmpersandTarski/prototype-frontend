@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { AppLayoutComponent } from './layout/app.layout.component';
 import { ActiveProjectsComponent } from './project-administration/active-projects/active-projects.component';
 import { ProjectComponent } from './project-administration/project/project.component';
+import { ToolComponentDetailsComponent } from './tools/tool-component-details/tool-component-details.component';
 import { ToolGalleryComponent } from './tools/tool-gallery/tool-gallery.component';
 
 const routes: Routes = [
@@ -18,7 +19,8 @@ const routes: Routes = [
     path: 'tools',
     component: AppLayoutComponent,
     children: [
-      { path: '', component: ToolGalleryComponent }
+      { path: '', component: ToolGalleryComponent },
+      { path: ':componentType/:componentName', component: ToolComponentDetailsComponent },
     ],
   },
 ];
@@ -27,4 +29,4 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }

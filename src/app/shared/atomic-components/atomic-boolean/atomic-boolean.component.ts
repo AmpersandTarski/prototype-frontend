@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { BaseComponent } from '../../BaseComponent.class';
 
 @Component({
@@ -8,4 +8,9 @@ import { BaseComponent } from '../../BaseComponent.class';
 })
 export class AtomicBooleanComponent extends BaseComponent {
   @Input() property!: any | Array<any>;
+  @Output() state = new EventEmitter();
+
+  getState() {
+    this.state.emit(this.property);
+  }
 }
