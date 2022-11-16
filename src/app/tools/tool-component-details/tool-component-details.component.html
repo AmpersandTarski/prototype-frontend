@@ -1,7 +1,7 @@
 <div *ngIf="componentType == 'atomic'" class="surface-300 w-100 element-showcase text-center border-round-xl">
     <div *ngIf="componentName == 'alphanumeric'">
-        <app-atomic-alphanumeric [property]="'Pre-set value'" label="Projects" [attr.test]="exprIsUni ? 'test' : null"
-            isTot [crud]='crudOperationsToText()'>
+        <app-atomic-alphanumeric [property]="'Pre-set value'" label="Projects" isUni isTot
+            [crud]='crudOperationsToText()'>
         </app-atomic-alphanumeric>
     </div>
     <div *ngIf="componentName == 'bigalphanumeric'">
