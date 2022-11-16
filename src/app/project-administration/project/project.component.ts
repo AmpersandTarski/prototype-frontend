@@ -17,6 +17,11 @@ export class ProjectComponent implements OnInit {
     this.route.paramMap.subscribe((params) => {
       this.projectId = params.get('id');
     });
-    this.project = testdata.find((object) => object._id_ === this.projectId);
+
+    if (this.projectId === null) {
+      this.project = testdata[0];
+    } else {
+      this.project = testdata.find((object) => object._id_ === this.projectId);
+    }
   }
 }
