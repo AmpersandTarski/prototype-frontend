@@ -7,9 +7,9 @@ import { testdata } from './testdata';
   styleUrls: ['./persons.component.scss']
 })
 export class PersonsComponent implements OnInit {
-  constructor() { }
-
   data = testdata;
+
+  constructor() { }
 
   ngOnInit(): void {
   }

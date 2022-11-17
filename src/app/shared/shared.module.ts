@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
 
 // Components
 import { AtomicAlphanumericComponent } from './atomic-components/atomic-alphanumeric/atomic-alphanumeric.component';
@@ -48,7 +47,6 @@ import { TabViewModule } from 'primeng/tabview';
     InputTextModule,
     InputSwitchModule,
     InputNumberModule,
-    FormsModule,
     SkeletonModule,
     InputTextareaModule,
     CalendarModule,
