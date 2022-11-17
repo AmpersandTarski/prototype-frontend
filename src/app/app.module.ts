@@ -22,4 +22,4 @@ import { ToolsModule } from './tools/tools.module';
   providers: [],
   bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule { }
