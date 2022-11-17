@@ -5,6 +5,7 @@ import { ActiveProjectsComponent } from './project-administration/active-project
 import { PersonComponent } from './project-administration/person/person.component';
 import { PersonsComponent } from './project-administration/persons/persons.component';
 import { ProjectComponent } from './project-administration/project/project.component';
+import { ToolComponentDetailsComponent } from './tools/tool-component-details/tool-component-details.component';
 import { ToolGalleryComponent } from './tools/tool-gallery/tool-gallery.component';
 
 const routes: Routes = [
@@ -22,7 +23,10 @@ const routes: Routes = [
   {
     path: 'tools',
     component: AppLayoutComponent,
-    children: [{ path: '', component: ToolGalleryComponent }],
+    children: [
+      { path: '', component: ToolGalleryComponent },
+      { path: ':componentType/:componentName', component: ToolComponentDetailsComponent },
+    ],
   },
 ];
 

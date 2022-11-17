@@ -7,7 +7,7 @@ import { testdata } from '../../project-administration/active-projects/testdata'
   styleUrls: ['./tool-gallery.component.scss']
 })
 export class ToolGalleryComponent implements OnInit {
-  
+
   activeProjects = testdata[0];
 
   constructor() { }
