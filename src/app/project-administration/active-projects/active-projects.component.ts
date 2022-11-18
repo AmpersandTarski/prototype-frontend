@@ -7,9 +7,9 @@ import { testdata } from './testdata';
   styleUrls: ['./active-projects.component.css'],
 })
 export class ActiveProjectsComponent implements OnInit {
-  constructor() {}
-
   activeProjects = testdata;
 
-  ngOnInit(): void {}
+  constructor() { }
+
+  ngOnInit(): void { }
 }

@@ -6,7 +6,7 @@ import { LayoutService } from './layout/service/app.layout.service';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css'],
+  styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit {
   title = 'prototype-frontend';
@@ -14,7 +14,7 @@ export class AppComponent implements OnInit {
   constructor(
     private primengConfig: PrimeNGConfig,
     private layoutService: LayoutService
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.primengConfig.ripple = true; //enables core ripple functionality
