@@ -1,0 +1,26 @@
+<p-table [value]="data">
+    <ng-template pTemplate="header">
+        <tr>
+            <ng-container *ngTemplateOutlet="
+                headers || defaultHeaderTemplate;
+                context: { $implicit: data }
+            "></ng-container>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-data>
+        <tr>
+            <ng-container *ngTemplateOutlet="
+                rows || defaultRowTemplate;
+                context: { $implicit: data }
+            "></ng-container>
+        </tr>
+    </ng-template>
+</p-table>
+
+<ng-template #defaultHeaderTemplate let-data>
+    <th *ngFor="let header of data[0] | keyvalue">{{ header.key }}</th>
+</ng-template>
+
+<ng-template #defaultRowTemplate let-row>
+    <td *ngFor="let row of row | keyvalue">{{ row.value }}</td>
+</ng-template>
