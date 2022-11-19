@@ -4,7 +4,7 @@
         <th>Last Name</th>
         <th>Tabs</th>
     </ng-template>
-    <ng-template boxTableRow let-row>
+    <ng-template [boxTableRow]="data" let-row>
         <td>
             <app-atomic-alphanumeric [property]="row['First_32_name']" label="First Name" isUni isTot crud="cRUd">
             </app-atomic-alphanumeric>

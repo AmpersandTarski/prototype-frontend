@@ -9,7 +9,7 @@
         <th>Status</th>
         <th>Active</th>
     </ng-template>
-    <ng-template boxTableRow let-row>
+    <ng-template [boxTableRow]="activeProjects" let-row>
         <td>
             <app-atomic-object [property]="row['Projects']" label="Projects" isUni isTot crud="cRUd">
             </app-atomic-object>
