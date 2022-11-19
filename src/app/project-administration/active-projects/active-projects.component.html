@@ -1,5 +1,5 @@
 <app-box-table [data]="activeProjects" sortable sortBy="Name" order="desc">
-    <ng-template #headers>
+    <ng-template boxTableHeader>
         <th>Projects</th>
         <th>Name</th>
         <th>Description</th>
@@ -9,7 +9,7 @@
         <th>Status</th>
         <th>Active</th>
     </ng-template>
-    <ng-template #rows let-row>
+    <ng-template boxTableRow let-row>
         <td>
             <app-atomic-object [property]="row['Projects']" label="Projects" isUni isTot crud="cRUd">
             </app-atomic-object>
