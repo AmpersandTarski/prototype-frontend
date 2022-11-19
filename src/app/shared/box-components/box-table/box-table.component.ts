@@ -15,8 +15,8 @@ export class BoxTableRowTemplateDirective {}
   templateUrl: './box-table.component.html',
   styleUrls: ['./box-table.component.css'],
 })
-export class BoxTableComponent implements OnInit {
-  @Input() data: any;
+export class BoxTableComponent<TItem extends object> implements OnInit {
+  @Input() data!: TItem[];
   @ContentChild(BoxTableHeaderTemplateDirective, { read: TemplateRef })
   headers?: TemplateRef<any>;
   @ContentChild(BoxTableRowTemplateDirective, { read: TemplateRef })
