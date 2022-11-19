@@ -1,10 +1,14 @@
-import {
-  Component,
-  ContentChild,
-  Input,
-  OnInit,
-  TemplateRef,
-} from '@angular/core';
+import { Component, ContentChild, Directive, Input, OnInit, TemplateRef } from '@angular/core';
+
+@Directive({
+  selector: 'ng-template[boxTableHeader]',
+})
+export class BoxTableHeaderTemplateDirective {}
+
+@Directive({
+  selector: 'ng-template[boxTableRow]',
+})
+export class BoxTableRowTemplateDirective {}
 
 @Component({
   selector: 'app-box-table',
@@ -13,8 +17,10 @@ import {
 })
 export class BoxTableComponent implements OnInit {
   @Input() data: any;
-  @ContentChild('headers') headers!: TemplateRef<any>;
-  @ContentChild('rows') rows!: TemplateRef<any>;
+  @ContentChild(BoxTableHeaderTemplateDirective, { read: TemplateRef })
+  headers?: TemplateRef<any>;
+  @ContentChild(BoxTableRowTemplateDirective, { read: TemplateRef })
+  rows?: TemplateRef<any>;
 
-  ngOnInit(): void { }
+  ngOnInit(): void {}
 }
