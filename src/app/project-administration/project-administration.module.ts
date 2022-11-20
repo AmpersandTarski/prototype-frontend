@@ -5,9 +5,12 @@ import { SharedModule } from '../shared/shared.module';
 import { ProjectComponent } from './project/project.component';
 import { PersonComponent } from './person/person.component';
 import { PersonsComponent } from './persons/persons.component';
+import { BackendService } from './backend.service';
+import { BackendMockService } from './backend.mock.service';
 
 @NgModule({
   declarations: [ActiveProjectsComponent, ProjectComponent, PersonComponent, PersonsComponent],
   imports: [CommonModule, SharedModule],
+  providers: [{ provide: BackendService, useClass: BackendService }],
 })
-export class ProjectAdministrationModule { }
+export class ProjectAdministrationModule {}
