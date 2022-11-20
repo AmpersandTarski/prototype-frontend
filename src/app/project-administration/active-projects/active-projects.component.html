@@ -1,4 +1,4 @@
-<div *ngIf="activeProjects | async as data">
+<div *ngIf="data | async as data">
     <app-box-table [data]="data" sortable sortBy="Name" order="desc">
         <ng-template boxTableHeader>
             <th>Projects</th>

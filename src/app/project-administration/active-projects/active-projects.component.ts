@@ -7,7 +7,7 @@ import { BackendService } from '../backend.service';
   styleUrls: ['./active-projects.component.css'],
 })
 export class ActiveProjectsComponent implements OnInit {
-  activeProjects = this.service.getActiveProjects();
+  data = this.service.getActiveProjects();
 
   constructor(private service: BackendService) {}
 

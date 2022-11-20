@@ -10,7 +10,7 @@ import { PersonInterface } from './person.interface';
   styleUrls: ['./person.component.scss'],
 })
 export class PersonComponent implements OnInit {
-  public data$?: Observable<PersonInterface> = this.route.paramMap.pipe(
+  public data$: Observable<PersonInterface> = this.route.paramMap.pipe(
     switchMap((params) => {
       let id = params.get('id');
       if (id === null) {

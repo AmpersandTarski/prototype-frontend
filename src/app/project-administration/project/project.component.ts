@@ -12,7 +12,7 @@ import { testdata } from './testdata';
 })
 export class ProjectComponent implements OnInit {
   public projectId: string | null = null;
-  public project$: Observable<ProjectInterface> = this.route.paramMap.pipe(
+  public data$: Observable<ProjectInterface> = this.route.paramMap.pipe(
     switchMap((params) => {
       let id = params.get('id');
       if (id === null) {
