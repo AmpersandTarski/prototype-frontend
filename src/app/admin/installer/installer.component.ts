@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -6,11 +7,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./installer.component.scss'],
 })
 export class InstallerComponent implements OnInit {
-  constructor() {}
+  constructor(private http: HttpClient) {}
 
   ngOnInit(): void {}
 
-  reinstall(): void {}
+  reinstall(): void {
+    this.http.get('admin/installer').subscribe();
+  }
 
   reinstallWithoutPopulation(): void {}
 
