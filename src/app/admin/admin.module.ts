@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 import { InstallerComponent } from './installer/installer.component';
 import { RouterModule, Routes } from '@angular/router';
 import { AppLayoutComponent } from '../layout/app.layout.component';
+import { CardModule } from 'primeng/card';
+import { ButtonModule } from 'primeng/button';
 
 const routes: Routes = [
   {
@@ -21,6 +23,6 @@ export const menuItems: any[] = [
 
 @NgModule({
   declarations: [InstallerComponent],
-  imports: [CommonModule, RouterModule.forRoot(routes)],
+  imports: [CommonModule, RouterModule.forRoot(routes), CardModule, ButtonModule],
 })
 export class AdminModule {}
