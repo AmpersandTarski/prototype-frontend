@@ -23,6 +23,6 @@ export const menuItems: any[] = [
 
 @NgModule({
   declarations: [InstallerComponent],
-  imports: [CommonModule, RouterModule.forRoot(routes), CardModule, ButtonModule],
+  imports: [CommonModule, RouterModule.forChild(routes), CardModule, ButtonModule],
 })
 export class AdminModule {}
