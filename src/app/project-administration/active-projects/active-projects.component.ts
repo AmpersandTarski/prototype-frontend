@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { testdata } from './testdata';
+import { BackendService } from '../backend.service';
 
 @Component({
   selector: 'app-active-projects',
@@ -7,9 +7,9 @@ import { testdata } from './testdata';
   styleUrls: ['./active-projects.component.css'],
 })
 export class ActiveProjectsComponent implements OnInit {
-  activeProjects = testdata;
+  activeProjects = this.service.getActiveProjects();
 
-  constructor() { }
+  constructor(private service: BackendService) {}
 
-  ngOnInit(): void { }
+  ngOnInit(): void {}
 }
