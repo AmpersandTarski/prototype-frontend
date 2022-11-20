@@ -4,6 +4,7 @@ import { Observable, of } from 'rxjs';
 import { ActiveProjectsInterface } from './active-projects/active-projects.interface';
 import { IBackendService } from './backend.service.interface';
 import { PersonInterface } from './person/person.interface';
+import { ProjectInterface } from './project/project.interface';
 
 @Injectable()
 export class BackendService implements IBackendService {
@@ -11,6 +12,10 @@ export class BackendService implements IBackendService {
 
   getActiveProjects(): Observable<ActiveProjectsInterface[]> {
     return this.http.get<ActiveProjectsInterface[]>('resource/SESSION/1/Active_32_projects');
+  }
+
+  getProject(id: string): Observable<ProjectInterface> {
+    return this.http.get<ProjectInterface>(`resource/Project/${id}/Project`);
   }
 
   getPerson(id: string): Observable<PersonInterface> {
