@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { PersonInterface } from '../person/person.interface';
 import { testdata } from './testdata';
 
 @Component({
@@ -7,7 +8,7 @@ import { testdata } from './testdata';
   styleUrls: ['./persons.component.scss']
 })
 export class PersonsComponent implements OnInit {
-  data = testdata;
+  data: Array<PersonInterface> = testdata;
 
   constructor() { }
 

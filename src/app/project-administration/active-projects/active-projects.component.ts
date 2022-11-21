@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActiveProjectInterface } from './active-project.interface';
 import { testdata } from './testdata';
 
 @Component({
@@ -7,7 +8,7 @@ import { testdata } from './testdata';
   styleUrls: ['./active-projects.component.css'],
 })
 export class ActiveProjectsComponent implements OnInit {
-  activeProjects = testdata;
+  activeProjects: Array<ActiveProjectInterface> = testdata;
 
   constructor() { }
 

@@ -1,3 +1,5 @@
+import { ObjectBase } from "src/app/shared/component.interfaces";
+
 export interface PersonInterface extends ObjectBase {
   _view_: PersonNameView;
   First_32_name: string;
@@ -32,16 +34,4 @@ interface PersonNameView {
 
 interface ProjectNameView {
   name: string;
-}
-
-interface ObjectBase {
-  _id_: string;
-  _label_: string;
-  _path_: string;
-  _ifcs_: Array<InterfaceRefObject>;
-}
-
-interface InterfaceRefObject {
-  id: string;
-  label: string;
 }
