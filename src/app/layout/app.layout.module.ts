@@ -18,6 +18,8 @@ import { AppConfigModule } from './config/config.module';
 import { AppSidebarComponent } from "./app.sidebar.component";
 import { AppLayoutComponent } from "./app.layout.component";
 import { HomeComponent } from './home/home.component';
+import { CardModule } from 'primeng/card';
+import { ButtonModule } from 'primeng/button';
 
 @NgModule({
     declarations: [
@@ -37,6 +39,8 @@ import { HomeComponent } from './home/home.component';
         InputTextModule,
         SidebarModule,
         BadgeModule,
+        CardModule,
+        ButtonModule,
         RadioButtonModule,
         InputSwitchModule,
         RippleModule,
