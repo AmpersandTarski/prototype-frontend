@@ -1,4 +1,6 @@
-export const testdata = [
+import { ProjectInterface } from './project.interface';
+
+export const testdata: ProjectInterface[] = [
   {
     _id_: '2014_01',
     _label_: 'Beta board',

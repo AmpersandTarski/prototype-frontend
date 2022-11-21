@@ -15,19 +15,19 @@
 <app-box-table [data]="testData"></app-box-table>
 
 <app-box-table [data]="testData">
-    <ng-template #headers>
+    <ng-template boxTableHeader>
         <th>First name</th>
         <th>Last name</th>
     </ng-template>
 </app-box-table>
 
 <app-box-table [data]="testData">
-    <ng-template #headers>
+    <ng-template boxTableHeader>
         <th>First name</th>
         <th>Last name</th>
         <th>Additional header</th>
     </ng-template>
-    <ng-template #rows let-row>
+    <ng-template boxTableRow let-row>
         <td>{{ capitalizeFirstLetter(row.firstName) }}</td>
         <td>{{ capitalizeFirstLetter(row.lastName) }}</td>
         <td><button>Hi</button></td>

@@ -1,23 +1,22 @@
 <app-box-table [data]="data">
-    <ng-template #headers>
+    <ng-template boxTableHeader>
         <th>First Name</th>
         <th>Last Name</th>
         <th>Tabs</th>
     </ng-template>
-    <ng-template #rows let-row>
+    <ng-template [boxTableRow]="data" let-row>
         <td>
-            <app-atomic-alphanumeric [property]="row['First_32_name']" label="First Name" isUni isTot crud="cRUd">
+            <app-atomic-alphanumeric [property]="row.First_32_name" label="First Name" isUni isTot crud="cRUd">
             </app-atomic-alphanumeric>
         </td>
         <td>
-            <app-atomic-alphanumeric [property]="row['Last_32_name']" label="Last Name" isUni isTot crud="cRUd" isUni
-                isTot crud="CRUD">
+            <app-atomic-alphanumeric [property]="row.Last_32_name" label="Last Name" isUni isTot crud="cRUd">
             </app-atomic-alphanumeric>
         </td>
         <td>
-            <app-box-tab [data]="row['Projects']" [tabHeaders]="['Active', 'Inactive']">
+            <app-box-tab [data]="row.Projects" [tabHeaders]="['Active', 'Inactive']">
                 <ng-template #tabContent let-data="data" let-tabHeader="tabHeader">
-                    <app-atomic-alphanumeric *ngFor="let content of data[tabHeader]" [property]="content['_label_']"
+                    <app-atomic-alphanumeric *ngFor="let content of data[tabHeader]" [property]="content._label_"
                         label="Name" isUni isTot crud="CRUD">
                     </app-atomic-alphanumeric>
                 </ng-template>

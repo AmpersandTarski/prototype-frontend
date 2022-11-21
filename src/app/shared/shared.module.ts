@@ -13,7 +13,11 @@ import { AtomicHugealphanumericComponent } from './atomic-components/atomic-huge
 import { AtomicIntegerComponent } from './atomic-components/atomic-integer/atomic-integer.component';
 import { AtomicObjectComponent } from './atomic-components/atomic-object/atomic-object.component';
 import { AtomicPasswordComponent } from './atomic-components/atomic-password/atomic-password.component';
-import { BoxTableComponent } from './box-components/box-table/box-table.component';
+import {
+  BoxTableComponent,
+  BoxTableHeaderTemplateDirective,
+  BoxTableRowTemplateDirective,
+} from './box-components/box-table/box-table.component';
 import { BoxTabComponent } from './box-components/box-tab/box-tab.component';
 
 // PrimeNG modules
@@ -41,7 +45,9 @@ import { TabViewModule } from 'primeng/tabview';
     AtomicObjectComponent,
     AtomicPasswordComponent,
     BoxTableComponent,
-    BoxTabComponent
+    BoxTableHeaderTemplateDirective,
+    BoxTableRowTemplateDirective,
+    BoxTabComponent,
   ],
   imports: [
     CommonModule,
@@ -55,7 +61,7 @@ import { TabViewModule } from 'primeng/tabview';
     TableModule,
     SplitButtonModule,
     PasswordModule,
-    TabViewModule
+    TabViewModule,
   ],
   exports: [
     AtomicAlphanumericComponent,
@@ -69,7 +75,9 @@ import { TabViewModule } from 'primeng/tabview';
     AtomicObjectComponent,
     AtomicPasswordComponent,
     BoxTableComponent,
+    BoxTableHeaderTemplateDirective,
+    BoxTableRowTemplateDirective,
     BoxTabComponent,
   ],
 })
-export class SharedModule { }
+export class SharedModule {}

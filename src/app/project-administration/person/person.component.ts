@@ -12,18 +12,18 @@ export class PersonComponent implements OnInit {
   public personId?: string | null;
   public person?: PersonInterface;
 
-  constructor(private route: ActivatedRoute) { }
+  constructor(private route: ActivatedRoute) {}
 
   ngOnInit(): void {
     this.route.paramMap.subscribe((params) => {
       this.personId = params.get('id');
-    });
 
-    // if null, pick first person from testdata
-    if (this.personId === null) {
-      this.person = testdata[0];
-    } else {
-      this.person = testdata.find((object) => object._id_ === this.personId);
-    }
+      // if null, pick first person from testdata
+      if (this.personId === null) {
+        this.person = testdata[0];
+      } else {
+        this.person = testdata.find((object) => object._id_ === this.personId);
+      }
+    });
   }
 }

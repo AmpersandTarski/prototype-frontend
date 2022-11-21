@@ -1,5 +1,5 @@
 <app-box-table [data]="activeProjects" sortable sortBy="Name" order="desc">
-    <ng-template #headers>
+    <ng-template boxTableHeader>
         <th>Projects</th>
         <th>Name</th>
         <th>Description</th>
@@ -9,29 +9,28 @@
         <th>Status</th>
         <th>Active</th>
     </ng-template>
-    <ng-template #rows let-row>
+    <ng-template [boxTableRow]="activeProjects" let-row>
         <td>
-            <app-atomic-object [property]="row['Projects']" label="Projects" isUni isTot crud="cRUd">
-            </app-atomic-object>
+            <app-atomic-object [property]="row.Projects" label="Projects" isUni isTot crud="cRUd"> </app-atomic-object>
         </td>
         <td>
-            <app-atomic-alphanumeric [property]="row['Name']" label="Name" isUni isTot crud="CRUD">
+            <app-atomic-alphanumeric [property]="row.Name" label="Name" isUni isTot crud="CRUD">
             </app-atomic-alphanumeric>
         </td>
         <td>
-            <app-atomic-bigalphanumeric [property]="row['Description']" label="Description" isUni crud="CRUD">
+            <app-atomic-bigalphanumeric [property]="row.Description" label="Description" isUni crud="CRUD">
             </app-atomic-bigalphanumeric>
         </td>
         <td>
-            <app-atomic-password [property]="row['Name']" label="Test" isUni crud="CRUD"></app-atomic-password>
+            <app-atomic-password [property]="row.Name" label="Test" isUni crud="CRUD"></app-atomic-password>
         </td>
         <td></td>
         <td>
-            <app-atomic-date [property]="row['Start']" crud="cRUd"></app-atomic-date>
+            <app-atomic-date [property]="row.Start" crud="cRUd"></app-atomic-date>
         </td>
         <td></td>
         <td>
-            <app-atomic-boolean [property]="row['Active']" isUni crud="CRuD"></app-atomic-boolean>
+            <app-atomic-boolean [property]="row.Active" isUni crud="CRuD"></app-atomic-boolean>
         </td>
     </ng-template>
 </app-box-table>
