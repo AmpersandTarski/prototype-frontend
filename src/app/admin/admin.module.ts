@@ -5,6 +5,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { AppLayoutComponent } from '../layout/app.layout.component';
 import { CardModule } from 'primeng/card';
 import { ButtonModule } from 'primeng/button';
+import { MenuItem } from 'primeng/api';
 
 const routes: Routes = [
   {
@@ -14,7 +15,7 @@ const routes: Routes = [
   },
 ];
 
-export const menuItems: any[] = [
+export const menuItems: MenuItem[] = [
   {
     label: 'Admin',
     items: [{ label: 'Installer', icon: 'pi pi-fw pi-replay', routerLink: ['/admin/installer'] }],
