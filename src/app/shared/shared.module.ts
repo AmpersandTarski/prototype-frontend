@@ -13,11 +13,9 @@ import { AtomicHugealphanumericComponent } from './atomic-components/atomic-huge
 import { AtomicIntegerComponent } from './atomic-components/atomic-integer/atomic-integer.component';
 import { AtomicObjectComponent } from './atomic-components/atomic-object/atomic-object.component';
 import { AtomicPasswordComponent } from './atomic-components/atomic-password/atomic-password.component';
-import {
-  BoxTableComponent,
-  BoxTableHeaderTemplateDirective,
-  BoxTableRowTemplateDirective,
-} from './box-components/box-table/box-table.component';
+import { BoxTableComponent } from './box-components/box-table/box-table.component';
+import { BoxTableHeaderTemplateDirective } from './box-components/box-table/box-table-header-template.directive';
+import { BoxTableRowTemplateDirective } from './box-components/box-table/box-table-row-template.directive';
 import { BoxTabComponent } from './box-components/box-tab/box-tab.component';
 
 // PrimeNG modules
