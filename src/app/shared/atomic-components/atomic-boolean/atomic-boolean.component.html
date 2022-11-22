@@ -1,2 +1,16 @@
-<p-inputSwitch *ngIf="exprIsUni && canRead" [(ngModel)]="property" [disabled]="canUpdate ? false : true"
-    (click)="getState()"></p-inputSwitch>
+<div *ngIf="canRead; else notReadable">
+    <div class="p-inputgroup" *ngIf="exprIsUni; else exprIsNotUni">
+        <div class="w-full">
+            <p-inputSwitch *ngIf="exprIsUni && canRead" [(ngModel)]="property" [disabled]="canUpdate ? false : true"
+                (click)="getState()"></p-inputSwitch>
+        </div>
+    </div>
+</div>
+
+<ng-template #exprIsNotUni>
+    <span>Not implemented: non-uni boolean</span>
+</ng-template>
+
+<ng-template #notReadable>
+    <span><i>Boolean is not readable</i></span>
+</ng-template>
