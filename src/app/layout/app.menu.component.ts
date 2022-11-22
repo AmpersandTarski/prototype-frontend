@@ -1,5 +1,6 @@
 import { OnInit } from '@angular/core';
 import { Component } from '@angular/core';
+import { menuItems as adminMenuItems } from '../admin/admin.module';
 import { LayoutService } from './service/app.layout.service';
 
 @Component({
@@ -9,7 +10,7 @@ import { LayoutService } from './service/app.layout.service';
 export class AppMenuComponent implements OnInit {
   model: any[] = [];
 
-  constructor(public layoutService: LayoutService) { }
+  constructor(public layoutService: LayoutService) {}
 
   ngOnInit() {
     this.model = [
@@ -19,9 +20,7 @@ export class AppMenuComponent implements OnInit {
       },
       {
         label: 'Tools',
-        items: [
-          { label: 'Tools', icon: 'pi pi-fw pi-code', routerLink: ['/tools'] },
-        ],
+        items: [{ label: 'Tools', icon: 'pi pi-fw pi-code', routerLink: ['/tools'] }],
       },
       {
         label: 'Pages',
@@ -89,6 +88,7 @@ export class AppMenuComponent implements OnInit {
           // },
         ],
       },
+      ...adminMenuItems,
     ];
   }
 }
