@@ -6,10 +6,8 @@ import { BackendService } from '../backend.service';
   templateUrl: './active-projects.component.html',
   styleUrls: ['./active-projects.component.css'],
 })
-export class ActiveProjectsComponent implements OnInit {
+export class ActiveProjectsComponent {
   data = this.service.getActiveProjects();
 
   constructor(private service: BackendService) {}
-
-  ngOnInit(): void {}
 }

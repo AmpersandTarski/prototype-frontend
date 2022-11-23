@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Observable, switchMap } from 'rxjs';
 import { BackendService } from '../backend.service';
@@ -9,7 +9,7 @@ import { PersonInterface } from './person.interface';
   templateUrl: './person.component.html',
   styleUrls: ['./person.component.scss'],
 })
-export class PersonComponent implements OnInit {
+export class PersonComponent {
   public data$: Observable<PersonInterface> = this.route.paramMap.pipe(
     switchMap((params) => {
       let id = params.get('id');
@@ -21,6 +21,4 @@ export class PersonComponent implements OnInit {
   );
 
   constructor(private route: ActivatedRoute, private backend: BackendService) {}
-
-  ngOnInit(): void {}
 }
