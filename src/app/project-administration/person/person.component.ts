@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, ParamMap } from '@angular/router';
 import { Observable, switchMap } from 'rxjs';
 import { BackendService } from '../backend.service';
 import { PersonInterface } from './person.interface';
@@ -10,17 +10,19 @@ import { PersonInterface } from './person.interface';
   styleUrls: ['./person.component.scss'],
 })
 export class PersonComponent implements OnInit {
-  public data$: Observable<PersonInterface> = this.route.paramMap.pipe(
-    switchMap((params) => {
-      let id = params.get('id');
-      if (id === null) {
-        throw new Error();
-      }
-      return this.backend.getPerson(id);
-    }),
-  );
+  public data$!: Observable<PersonInterface>;
 
-  constructor(private route: ActivatedRoute, private backend: BackendService) {}
+  constructor(private route: ActivatedRoute, private service: BackendService) { }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.data$ = this.route.paramMap.pipe(
+      switchMap((params: ParamMap) => {
+        let id = params.get('id');
+        if (id === null) {
+          throw new Error("id does not exist")
+        }
+        return this.service.getPerson(id);
+      })
+    );
+  }
 }
