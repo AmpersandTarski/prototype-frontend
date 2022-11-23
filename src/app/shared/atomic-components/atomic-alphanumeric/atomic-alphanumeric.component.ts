@@ -9,4 +9,14 @@ import { BaseComponent } from '../../BaseComponent.class';
 })
 export class AtomicAlphanumericComponent extends BaseComponent {
   @Input() property!: string | Array<string>;
+  newItem!: string;
+
+  isNewItemInputRequired() {
+    if (this.exprIsTot) {
+      if (this.property.length === 0) {
+        return true;
+      }
+    }
+    return false;
+  }
 }

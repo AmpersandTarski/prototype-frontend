@@ -9,13 +9,16 @@
 
 <ng-template #exprIsNotUni>
     <div class="text-center w-full">
-        <div *ngFor="let row of requireArray(property); index as i">
-            <span my-showonhover-box class="glyphicon glyphicon-minus" uib-tooltip="Remove" tooltip-trigger="mouseenter"
-                tooltip-placement="left"></span>
+        <div *ngFor="let row of requireArray(property); index as i" class="flex align-items-center my-1">
+            <i class="pi pi-minus-circle mr-1 cursor-pointer"></i>
             <span class="wordwrap">{{row}}</span>
         </div>
         <div>
-            <!-- <input ng-model="selected.value" my-bluronenter type="text" placeholder="Add value" class="form-control input-sm" my-change-on-blur="addItem(resource, '$name$', selected, patchResource)"$if(exprIsTot)$ ng-required="resource['$name$'].length === 0"$endif$> -->
+            <div class="p-inputgroup">
+                <input type="text" class="min-w-10rem w-full" pInputText [(ngModel)]="newItem" placeholder="Add text"
+                    [required]="isNewItemInputRequired()" />
+                <button type="button" pButton pRipple icon="pi pi-plus" styleClass="p-button-success"></button>
+            </div>
         </div>
     </div>
 </ng-template>
