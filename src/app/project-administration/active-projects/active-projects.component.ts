@@ -11,9 +11,9 @@ import { ActiveProjectsInterface } from './active-projects.interface';
 export class ActiveProjectsComponent implements OnInit {
   data$!: Observable<ActiveProjectsInterface[]>;
 
-  constructor(private service: BackendService) { }
+  constructor(private service: BackendService) {}
 
   ngOnInit(): void {
-    this.data$ = this.service.getActiveProjects()
+    this.data$ = this.service.getActiveProjects();
   }
 }

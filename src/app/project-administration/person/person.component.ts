@@ -12,17 +12,17 @@ import { PersonInterface } from './person.interface';
 export class PersonComponent implements OnInit {
   public data$!: Observable<PersonInterface>;
 
-  constructor(private route: ActivatedRoute, private service: BackendService) { }
+  constructor(private route: ActivatedRoute, private service: BackendService) {}
 
   ngOnInit(): void {
     this.data$ = this.route.paramMap.pipe(
       switchMap((params: ParamMap) => {
         let id = params.get('id');
         if (id === null) {
-          throw new Error("id does not exist")
+          throw new Error('id does not exist');
         }
         return this.service.getPerson(id);
-      })
+      }),
     );
   }
 }
