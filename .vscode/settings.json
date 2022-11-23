@@ -1,17 +1,16 @@
 {
-    "files.insertFinalNewline": true,
     "[html]": {
         "editor.defaultFormatter": "esbenp.prettier-vscode",
         "editor.codeActionsOnSave": {
         "source.fixAll.eslint": true
         },
-        "editor.formatOnSave": false
     },
     "[typescript]": {
         "editor.defaultFormatter": "dbaeumer.vscode-eslint",
         "editor.codeActionsOnSave": {
         "source.fixAll.eslint": true
         },
-        "editor.formatOnSave": false
     },
+    "editor.formatOnSave": true,
+    "files.insertFinalNewline": true
 }
