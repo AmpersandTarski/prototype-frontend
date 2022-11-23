@@ -20,7 +20,7 @@ export class AtomicObjectComponent extends BaseComponent {
       },
     },
   ];
-  
+
   constructor(private router: Router) {
     super();
   }
@@ -43,7 +43,7 @@ export class AtomicObjectComponent extends BaseComponent {
             console.log('click');
           },
           // routerLink: [ifc.id, '123'],
-        }
+        },
     );
   }
 }
