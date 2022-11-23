@@ -22,7 +22,10 @@
         "johnpapa.angular2",
         "esbenp.prettier-vscode",
         "mhutchie.git-graph",
-		"eamodio.gitlens"
+        "eamodio.gitlens",
+        "editorconfig.editorconfig",
+        // Because of bug (see https://github.com/Microsoft/vscode/issues/45997):
+        "bdsoftware.format-on-auto-save"
       ],
       "settings": {
         "[html]": {
@@ -38,6 +41,7 @@
           }
         },
         "editor.formatOnSave": true,
+        "editor.defaultFormatter": "esbenp.prettier-vscode",
         "files.insertFinalNewline": true
       }
     }
