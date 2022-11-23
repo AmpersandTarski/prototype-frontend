@@ -1,8 +1,12 @@
 <div *ngIf="canRead; else notReadable">
     <div class="p-inputgroup" *ngIf="exprIsUni; else exprIsNotUni">
         <div class="w-full">
-            <p-inputSwitch *ngIf="exprIsUni && canRead" [(ngModel)]="property" [disabled]="!canUpdate"
-                (click)="getState()"></p-inputSwitch>
+            <p-inputSwitch
+                *ngIf="exprIsUni && canRead"
+                [(ngModel)]="property"
+                [disabled]="!canUpdate"
+                (click)="getState()"
+            ></p-inputSwitch>
         </div>
     </div>
 </div>

@@ -1,8 +1,5 @@
 <p-tabView>
     <p-tabPanel *ngFor="let tabHeader of tabHeaders" header="{{ tabHeader }}">
-        <ng-container *ngTemplateOutlet="
-        tabContent;
-        context: { data: data, tabHeader: tabHeader}">
-        </ng-container>
+        <ng-container *ngTemplateOutlet="tabContent; context: { data: data, tabHeader: tabHeader }"> </ng-container>
     </p-tabPanel>
 </p-tabView>
