@@ -1,4 +1,4 @@
-import { Component, ContentChild, Directive, Input, OnInit, TemplateRef } from '@angular/core';
+import { Component, ContentChild, Input, TemplateRef } from '@angular/core';
 import { BoxTableHeaderTemplateDirective } from './box-table-header-template.directive';
 import { BoxTableRowTemplateDirective } from './box-table-row-template.directive';
 
@@ -7,12 +7,10 @@ import { BoxTableRowTemplateDirective } from './box-table-row-template.directive
   templateUrl: './box-table.component.html',
   styleUrls: ['./box-table.component.css'],
 })
-export class BoxTableComponent<TItem extends object> implements OnInit {
+export class BoxTableComponent<TItem extends object> {
   @Input() data!: TItem[];
   @ContentChild(BoxTableHeaderTemplateDirective, { read: TemplateRef })
   headers?: TemplateRef<any>;
   @ContentChild(BoxTableRowTemplateDirective, { read: TemplateRef })
   rows?: TemplateRef<any>;
-
-  ngOnInit(): void {}
 }

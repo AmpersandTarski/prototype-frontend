@@ -16,8 +16,14 @@
         <td>
             <app-box-tab [data]="row.Projects" [tabHeaders]="['Active', 'Inactive']">
                 <ng-template #tabContent let-data="data" let-tabHeader="tabHeader">
-                    <app-atomic-alphanumeric *ngFor="let content of data[tabHeader]" [property]="content._label_"
-                        label="Name" isUni isTot crud="CRUD">
+                    <app-atomic-alphanumeric
+                        *ngFor="let content of data[tabHeader]"
+                        [property]="content._label_"
+                        label="Name"
+                        isUni
+                        isTot
+                        crud="CRUD"
+                    >
                     </app-atomic-alphanumeric>
                 </ng-template>
             </app-box-tab>

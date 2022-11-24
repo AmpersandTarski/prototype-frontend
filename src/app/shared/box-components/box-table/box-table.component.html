@@ -1,18 +1,14 @@
 <p-table [value]="data">
     <ng-template pTemplate="header">
         <tr>
-            <ng-container *ngTemplateOutlet="
-                headers || defaultHeaderTemplate;
-                context: { $implicit: data }
-            "></ng-container>
+            <ng-container
+                *ngTemplateOutlet="headers || defaultHeaderTemplate; context: { $implicit: data }"
+            ></ng-container>
         </tr>
     </ng-template>
     <ng-template pTemplate="body" let-data>
         <tr>
-            <ng-container *ngTemplateOutlet="
-                rows || defaultRowTemplate;
-                context: { $implicit: data }
-            "></ng-container>
+            <ng-container *ngTemplateOutlet="rows || defaultRowTemplate; context: { $implicit: data }"></ng-container>
         </tr>
     </ng-template>
 </p-table>

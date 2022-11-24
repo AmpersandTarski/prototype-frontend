@@ -1,4 +1,4 @@
-import { PersonInterface } from "./person.interface";
+import { PersonInterface } from './person.interface';
 
 export const testdata: Array<PersonInterface> = [
   {

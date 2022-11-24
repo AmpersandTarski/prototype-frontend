@@ -1,7 +1,7 @@
 import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 
 @Component({
-  template: ''
+  template: '',
 })
 export abstract class BaseComponent implements OnInit, OnChanges {
   public canCreate: boolean = false;
@@ -11,9 +11,9 @@ export abstract class BaseComponent implements OnInit, OnChanges {
   public exprIsUni: boolean = false;
   public exprIsTot: boolean = false;
 
-  @Input('isUni') isUni: boolean | string | undefined;
-  @Input('isTot') isTot: boolean | string | undefined;
-  @Input('crud') crud: string = "crud";
+  @Input() isUni: boolean | string | undefined;
+  @Input() isTot: boolean | string | undefined;
+  @Input() crud: string = 'crud';
 
   ngOnInit(): void {
     this.crudTextSepperator(this.crud);
@@ -43,25 +43,25 @@ export abstract class BaseComponent implements OnInit, OnChanges {
     if (c == c.toUpperCase()) {
       this.canCreate = true;
     } else {
-      this.canCreate = false
+      this.canCreate = false;
     }
 
     if (r == r.toUpperCase()) {
       this.canRead = true;
     } else {
-      this.canRead = false
+      this.canRead = false;
     }
 
     if (u == u.toUpperCase()) {
       this.canUpdate = true;
     } else {
-      this.canUpdate = false
+      this.canUpdate = false;
     }
 
     if (d == d.toUpperCase()) {
       this.canDelete = true;
     } else {
-      this.canDelete = false
+      this.canDelete = false;
     }
   }
 
@@ -75,4 +75,3 @@ export abstract class BaseComponent implements OnInit, OnChanges {
     }
   }
 }
-

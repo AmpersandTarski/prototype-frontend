@@ -10,12 +10,18 @@
     <div class="text-center w-full">
         <div *ngFor="let row of requireArray(property); index as i" class="flex align-items-center my-1">
             <i class="pi pi-minus-circle mr-1 cursor-pointer"></i>
-            <span class="wordwrap">{{row}}</span>
+            <span class="wordwrap">{{ row }}</span>
         </div>
         <div>
             <div class="p-inputgroup">
-                <input type="text" class="min-w-10rem w-full" pInputText [(ngModel)]="newItem" placeholder="Add text"
-                    [required]="isNewItemInputRequired()" />
+                <input
+                    type="text"
+                    class="min-w-10rem w-full"
+                    pInputText
+                    [(ngModel)]="newItem"
+                    placeholder="Add text"
+                    [required]="isNewItemInputRequired()"
+                />
                 <button type="button" pButton pRipple icon="pi pi-plus" styleClass="p-button-success"></button>
             </div>
         </div>
@@ -29,7 +35,7 @@
 </ng-template>
 
 <ng-template #exprIsNotUniAndNotUpdatable>
-    <div *ngFor="let row of requireArray(property); index as i" class="wordwrap">{{row}}</div>
+    <div *ngFor="let row of requireArray(property); index as i" class="wordwrap">{{ row }}</div>
 </ng-template>
 
 <ng-template #notReadable>
