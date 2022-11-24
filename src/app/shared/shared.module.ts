@@ -32,6 +32,7 @@ import { TabViewModule } from 'primeng/tabview';
 import { ButtonModule } from 'primeng/button';
 import { ButtonEditComponent } from './button-components/button-edit/button-edit.component';
 import { ButtonDeleteComponent } from './button-components/button-delete/button-delete.component';
+import { ButtonAddComponent } from './button-components/button-add/button-add.component';
 
 @NgModule({
   declarations: [
@@ -51,6 +52,7 @@ import { ButtonDeleteComponent } from './button-components/button-delete/button-
     BoxTabComponent,
     ButtonEditComponent,
     ButtonDeleteComponent,
+    ButtonAddComponent,
   ],
   imports: [
     CommonModule,
@@ -84,6 +86,7 @@ import { ButtonDeleteComponent } from './button-components/button-delete/button-
     BoxTabComponent,
     ButtonEditComponent,
     ButtonDeleteComponent,
+    ButtonAddComponent,
   ],
 })
 export class SharedModule {}
