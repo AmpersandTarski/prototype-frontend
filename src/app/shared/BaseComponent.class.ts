@@ -29,40 +29,16 @@ export abstract class BaseComponent implements OnInit, OnChanges {
     this.crudTextSepperator(changes['crud'].currentValue);
   }
 
-  public whatIsHappening() {
-    console.log(this.exprIsUni);
-    console.log(this.isUni);
-  }
-
   public crudTextSepperator(crud: string) {
     var c = crud[0];
     var r = crud[1];
     var u = crud[2];
     var d = crud[3];
 
-    if (c == c.toUpperCase()) {
-      this.canCreate = true;
-    } else {
-      this.canCreate = false;
-    }
-
-    if (r == r.toUpperCase()) {
-      this.canRead = true;
-    } else {
-      this.canRead = false;
-    }
-
-    if (u == u.toUpperCase()) {
-      this.canUpdate = true;
-    } else {
-      this.canUpdate = false;
-    }
-
-    if (d == d.toUpperCase()) {
-      this.canDelete = true;
-    } else {
-      this.canDelete = false;
-    }
+    this.canCreate = c == c.toUpperCase();
+    this.canRead = r == r.toUpperCase();
+    this.canUpdate = u == u.toUpperCase();
+    this.canDelete = d == d.toUpperCase();
   }
 
   public requireArray(property: any) {
