@@ -24,6 +24,7 @@ export interface ActiveProjectsInterface extends ObjectBase {
   Start: string | null;
   Status: string;
   Active: boolean;
+  _id_: string;
 }
 
 interface PersonNameView {
