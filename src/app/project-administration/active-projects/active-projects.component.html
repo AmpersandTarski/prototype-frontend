@@ -29,13 +29,20 @@
                 </app-atomic-bigalphanumeric>
             </td>
             <td>
-                <app-atomic-password [property]="row.Name" label="Test" isUni crud="CRUD"></app-atomic-password>
+                <app-atomic-object [property]="row.Projectleider" label="Projectleider" isUni crud="CRUD">
+                </app-atomic-object>
             </td>
-            <td></td>
+            <td>
+                <app-atomic-object [property]="row.Projectleider" label="Projectleider" isUni crud="CRUD">
+                </app-atomic-object>
+            </td>
             <td>
                 <app-atomic-date [property]="row.Start" crud="cRUd"></app-atomic-date>
             </td>
-            <td></td>
+            <td>
+                <app-atomic-alphanumeric [property]="row.Status" label="Name" isUni isTot crud="CRUD">
+                </app-atomic-alphanumeric>
+            </td>
             <td>
                 <app-atomic-boolean [property]="row.Active" isUni crud="CRuD"></app-atomic-boolean>
             </td>
