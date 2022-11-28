@@ -29,6 +29,10 @@ import { TableModule } from 'primeng/table';
 import { SplitButtonModule } from 'primeng/splitbutton';
 import { PasswordModule } from 'primeng/password';
 import { TabViewModule } from 'primeng/tabview';
+import { ButtonModule } from 'primeng/button';
+import { ButtonEditComponent } from './button-components/button-edit/button-edit.component';
+import { ButtonDeleteComponent } from './button-components/button-delete/button-delete.component';
+import { ButtonAddComponent } from './button-components/button-add/button-add.component';
 
 @NgModule({
   declarations: [
@@ -46,6 +50,9 @@ import { TabViewModule } from 'primeng/tabview';
     BoxTableHeaderTemplateDirective,
     BoxTableRowTemplateDirective,
     BoxTabComponent,
+    ButtonEditComponent,
+    ButtonDeleteComponent,
+    ButtonAddComponent,
   ],
   imports: [
     CommonModule,
@@ -60,6 +67,7 @@ import { TabViewModule } from 'primeng/tabview';
     SplitButtonModule,
     PasswordModule,
     TabViewModule,
+    ButtonModule,
   ],
   exports: [
     AtomicAlphanumericComponent,
@@ -76,6 +84,9 @@ import { TabViewModule } from 'primeng/tabview';
     BoxTableHeaderTemplateDirective,
     BoxTableRowTemplateDirective,
     BoxTabComponent,
+    ButtonEditComponent,
+    ButtonDeleteComponent,
+    ButtonAddComponent,
   ],
 })
 export class SharedModule {}
