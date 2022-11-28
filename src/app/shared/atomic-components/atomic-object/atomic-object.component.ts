@@ -10,39 +10,33 @@ import { Router } from '@angular/router';
 })
 export class AtomicObjectComponent extends BaseComponent {
   @Input() property!: any | Array<any>;
-
-  menu: Array<MenuItem> = [
-    {
-      label: 'Project',
-      routerLink: ['/project', '123'],
-      command: (event?) => {
-        console.log('click');
-      },
-    },
-  ];
+  public id!: string;
+  public ifcs!: Array<any>;
+  public label!: string;
+  public menu!: Array<MenuItem>;
 
   constructor(private router: Router) {
     super();
   }
 
-  navigateToSingleEntity(id: string, type: string) {
-    this.router.navigate([this.getRouterLink(type), `${id}`]);
+  public navigateToEntity(type: string, id: string) {
+    this.router.navigate([type.toLowerCase(), `${id}`]);
   }
 
-  getRouterLink(ifc: any): string {
-    return `/${ifc.id.toLowerCase()}`;
+  override ngOnInit(): void {
+    this.id = this.property._id_;
+    this.ifcs = this.property._ifcs_;
+    this.label = this.property._label_;
+    this.menu = this.toPrimeNgMenuModel(this.ifcs, this.id);
   }
 
-  toPrimeNgMenuModel(ifcs: Array<any>): Array<MenuItem> {
+  private toPrimeNgMenuModel(ifcs: Array<any>, id: string): Array<MenuItem> {
     return ifcs.map(
       (ifc) =>
         <MenuItem>{
           label: ifc.label,
           icon: 'pi pi-refresh',
-          command: (event?) => {
-            console.log('click');
-          },
-          // routerLink: [ifc.id, '123'],
+          command: () => this.navigateToEntity(ifc.id, id),
         },
     );
   }
