@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { MenuItem } from 'primeng/api';
 import { BaseComponent } from '../../BaseComponent.class';
 import { Router } from '@angular/router';
@@ -8,7 +8,7 @@ import { Router } from '@angular/router';
   templateUrl: './atomic-object.component.html',
   styleUrls: ['./atomic-object.component.scss'],
 })
-export class AtomicObjectComponent extends BaseComponent {
+export class AtomicObjectComponent extends BaseComponent implements OnInit {
   @Input() property!: any | Array<any>;
   public id!: string;
   public ifcs!: Array<any>;
