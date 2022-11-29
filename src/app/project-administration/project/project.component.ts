@@ -11,22 +11,20 @@ import { testdata } from './testdata';
   styleUrls: ['./project.component.scss'],
 })
 export class ProjectComponent implements OnInit {
-  public projectId: string | null = null;
-  public data$: Observable<ProjectInterface> = this.route.paramMap.pipe(
-    switchMap((params) => {
-      let id = params.get('id');
-      if (id === null) {
-        throw new Error();
-      }
-      return this.backend.getProject(id);
-    }),
-  );
+  public data$!: Observable<ProjectInterface>;
+  public projectId?: string;
 
-  constructor(private route: ActivatedRoute, private backend: BackendService) {}
+  constructor(private route: ActivatedRoute, private service: BackendService) {}
 
   ngOnInit(): void {
-    this.route.paramMap.subscribe((params) => {
-      this.projectId = params.get('id');
-    });
+    this.data$ = this.route.paramMap.pipe(
+      switchMap((params: ParamMap) => {
+        this.projectId = params.get('id')!;
+        if (this.projectId === null) {
+          throw new Error('id does not exist');
+        }
+        return this.service.getProject(this.projectId);
+      }),
+    );
   }
 }
