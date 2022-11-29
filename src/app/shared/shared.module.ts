@@ -17,6 +17,7 @@ import { BoxTableComponent } from './box-components/box-table/box-table.componen
 import { BoxTableHeaderTemplateDirective } from './box-components/box-table/box-table-header-template.directive';
 import { BoxTableRowTemplateDirective } from './box-components/box-table/box-table-row-template.directive';
 import { BoxTabComponent } from './box-components/box-tab/box-tab.component';
+import { BoxFormComponent } from './box-components/box-form/box-form.component';
 
 // PrimeNG modules
 import { CalendarModule } from 'primeng/calendar';
@@ -30,9 +31,6 @@ import { SplitButtonModule } from 'primeng/splitbutton';
 import { PasswordModule } from 'primeng/password';
 import { TabViewModule } from 'primeng/tabview';
 import { ButtonModule } from 'primeng/button';
-import { ButtonEditComponent } from './button-components/button-edit/button-edit.component';
-import { ButtonDeleteComponent } from './button-components/button-delete/button-delete.component';
-import { ButtonAddComponent } from './button-components/button-add/button-add.component';
 
 @NgModule({
   declarations: [
@@ -50,9 +48,7 @@ import { ButtonAddComponent } from './button-components/button-add/button-add.co
     BoxTableHeaderTemplateDirective,
     BoxTableRowTemplateDirective,
     BoxTabComponent,
-    ButtonEditComponent,
-    ButtonDeleteComponent,
-    ButtonAddComponent,
+    BoxFormComponent,
   ],
   imports: [
     CommonModule,
@@ -84,9 +80,7 @@ import { ButtonAddComponent } from './button-components/button-add/button-add.co
     BoxTableHeaderTemplateDirective,
     BoxTableRowTemplateDirective,
     BoxTabComponent,
-    ButtonEditComponent,
-    ButtonDeleteComponent,
-    ButtonAddComponent,
+    BoxFormComponent,
   ],
 })
 export class SharedModule {}
