@@ -17,6 +17,7 @@ import { BoxTableComponent } from './box-components/box-table/box-table.componen
 import { BoxTableHeaderTemplateDirective } from './box-components/box-table/box-table-header-template.directive';
 import { BoxTableRowTemplateDirective } from './box-components/box-table/box-table-row-template.directive';
 import { BoxTabComponent } from './box-components/box-tab/box-tab.component';
+import { BoxFormComponent } from './box-components/box-form/box-form.component';
 
 // PrimeNG modules
 import { CalendarModule } from 'primeng/calendar';
@@ -30,7 +31,6 @@ import { SplitButtonModule } from 'primeng/splitbutton';
 import { PasswordModule } from 'primeng/password';
 import { TabViewModule } from 'primeng/tabview';
 import { ButtonModule } from 'primeng/button';
-import { BoxFormComponent } from './box-components/box-form/box-form.component';
 
 @NgModule({
   declarations: [
