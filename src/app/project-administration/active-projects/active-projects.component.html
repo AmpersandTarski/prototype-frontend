@@ -1,7 +1,6 @@
 <div *ngIf="data$ | async as data">
     <div>
         <h2>Active Projects</h2>
-        <app-button-add></app-button-add>
     </div>
     <app-box-table [data]="data" sortable sortBy="Name" order="desc">
         <ng-template boxTableHeader>
@@ -45,12 +44,6 @@
             </td>
             <td>
                 <app-atomic-boolean [property]="row.Active" isUni crud="CRuD"></app-atomic-boolean>
-            </td>
-            <td>
-                <app-button-edit></app-button-edit>
-            </td>
-            <td>
-                <app-button-delete></app-button-delete>
             </td>
         </ng-template>
     </app-box-table>
