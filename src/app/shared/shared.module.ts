@@ -30,9 +30,6 @@ import { SplitButtonModule } from 'primeng/splitbutton';
 import { PasswordModule } from 'primeng/password';
 import { TabViewModule } from 'primeng/tabview';
 import { ButtonModule } from 'primeng/button';
-import { ButtonEditComponent } from './button-components/button-edit/button-edit.component';
-import { ButtonDeleteComponent } from './button-components/button-delete/button-delete.component';
-import { ButtonAddComponent } from './button-components/button-add/button-add.component';
 import { BoxFormComponent } from './box-components/box-form/box-form.component';
 
 @NgModule({
@@ -52,9 +49,6 @@ import { BoxFormComponent } from './box-components/box-form/box-form.component';
     BoxTableRowTemplateDirective,
     BoxTabComponent,
     BoxFormComponent,
-    ButtonAddComponent,
-    ButtonEditComponent,
-    ButtonDeleteComponent,
   ],
   imports: [
     CommonModule,
@@ -87,9 +81,6 @@ import { BoxFormComponent } from './box-components/box-form/box-form.component';
     BoxTableRowTemplateDirective,
     BoxTabComponent,
     BoxFormComponent,
-    ButtonEditComponent,
-    ButtonDeleteComponent,
-    ButtonAddComponent,
   ],
 })
 export class SharedModule {}
