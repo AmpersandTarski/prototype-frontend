@@ -33,6 +33,7 @@ import { ButtonModule } from 'primeng/button';
 import { ButtonEditComponent } from './button-components/button-edit/button-edit.component';
 import { ButtonDeleteComponent } from './button-components/button-delete/button-delete.component';
 import { ButtonAddComponent } from './button-components/button-add/button-add.component';
+import { BoxFormComponent } from './box-components/box-form/box-form.component';
 
 @NgModule({
   declarations: [
@@ -50,9 +51,10 @@ import { ButtonAddComponent } from './button-components/button-add/button-add.co
     BoxTableHeaderTemplateDirective,
     BoxTableRowTemplateDirective,
     BoxTabComponent,
+    BoxFormComponent,
+    ButtonAddComponent,
     ButtonEditComponent,
     ButtonDeleteComponent,
-    ButtonAddComponent,
   ],
   imports: [
     CommonModule,
@@ -84,6 +86,7 @@ import { ButtonAddComponent } from './button-components/button-add/button-add.co
     BoxTableHeaderTemplateDirective,
     BoxTableRowTemplateDirective,
     BoxTabComponent,
+    BoxFormComponent,
     ButtonEditComponent,
     ButtonDeleteComponent,
     ButtonAddComponent,
