@@ -1,1 +1,9 @@
-<p-calendar inputId="basic" [showTime]="true" [showIcon]="true"></p-calendar>
+<p-calendar
+    [(ngModel)]="property"
+    [(ngModelChange)]="changed"
+    inputId="basic"
+    [showIcon]="true"
+    [dateFormat]="format"
+    hourFormat="hh:mm"
+    [showTime]="true"
+></p-calendar>
