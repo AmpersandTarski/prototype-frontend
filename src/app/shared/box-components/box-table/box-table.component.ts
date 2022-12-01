@@ -10,7 +10,7 @@ import { BoxTableRowTemplateDirective } from './box-table-row-template.directive
 export class BoxTableComponent<TItem extends object> {
   @Input() data!: TItem[];
   @ContentChild(BoxTableHeaderTemplateDirective, { read: TemplateRef })
-  headers?: TemplateRef<any>;
+  headers?: TemplateRef<unknown>;
   @ContentChild(BoxTableRowTemplateDirective, { read: TemplateRef })
-  rows?: TemplateRef<any>;
+  rows?: TemplateRef<unknown>;
 }

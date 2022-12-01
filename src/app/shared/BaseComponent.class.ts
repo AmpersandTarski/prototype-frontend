@@ -4,21 +4,21 @@ import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/cor
   template: '',
 })
 export abstract class BaseComponent implements OnInit, OnChanges {
-  public canCreate: boolean = false;
-  public canRead: boolean = false;
-  public canUpdate: boolean = false;
-  public canDelete: boolean = false;
+  public canCreate: boolean = true;
+  public canRead: boolean = true;
+  public canUpdate: boolean = true;
+  public canDelete: boolean = true;
   public exprIsUni: boolean = false;
   public exprIsTot: boolean = false;
 
-  @Input() isUni: boolean | string | undefined;
-  @Input() isTot: boolean | string | undefined;
+  @Input() isUni: boolean | string = false;
+  @Input() isTot: boolean | string = false;
   @Input() crud: string = 'crud';
 
   ngOnInit(): void {
-    this.crudTextSepperator(this.crud);
-    this.exprIsUni = this.isUni !== undefined;
-    this.exprIsTot = this.isTot !== undefined;
+    this.setCRUDPermissions(this.crud);
+    this.exprIsUni = this.isUni == '';
+    this.exprIsTot = this.isTot == '';
   }
 
   ngOnChanges(changes: SimpleChanges) {
@@ -26,43 +26,19 @@ export abstract class BaseComponent implements OnInit, OnChanges {
       this.exprIsUni = changes['isUni'].firstChange;
     }
 
-    this.crudTextSepperator(changes['crud'].currentValue);
+    this.setCRUDPermissions(changes['crud'].currentValue);
   }
 
-  public whatIsHappening() {
-    console.log(this.exprIsUni);
-    console.log(this.isUni);
-  }
+  private setCRUDPermissions(crud: string) {
+    let c = crud[0];
+    let r = crud[1];
+    let u = crud[2];
+    let d = crud[3];
 
-  public crudTextSepperator(crud: string) {
-    var c = crud[0];
-    var r = crud[1];
-    var u = crud[2];
-    var d = crud[3];
-
-    if (c == c.toUpperCase()) {
-      this.canCreate = true;
-    } else {
-      this.canCreate = false;
-    }
-
-    if (r == r.toUpperCase()) {
-      this.canRead = true;
-    } else {
-      this.canRead = false;
-    }
-
-    if (u == u.toUpperCase()) {
-      this.canUpdate = true;
-    } else {
-      this.canUpdate = false;
-    }
-
-    if (d == d.toUpperCase()) {
-      this.canDelete = true;
-    } else {
-      this.canDelete = false;
-    }
+    this.canCreate = c == c.toUpperCase();
+    this.canRead = r == r.toUpperCase();
+    this.canUpdate = u == u.toUpperCase();
+    this.canDelete = d == d.toUpperCase();
   }
 
   public requireArray(property: any) {
