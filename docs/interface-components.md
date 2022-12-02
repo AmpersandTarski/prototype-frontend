@@ -86,7 +86,7 @@ The boolean component takes a true/false value to determine if something is true
 ### How does it work in an ampersand script:
 To use the boolean component in your script, add the following statement:
 ```
-REPRESENT projectActive TYPE BOOLEAN
+REPRESENT ProjectActive TYPE BOOLEAN
 ```
 ### How does it work in the front-end:
 The front-end provides an atomic-boolean component that accepts attributes that act on this component. The following is an example of the boolean component on the front-end side:
@@ -107,7 +107,7 @@ The date component allows the user to fill in a date in the format that you desi
 ### How does it work in an ampersand script:
 To use the date component in your script, add the following statement:
 ```
-REPRESENT projectStartDate TYPE DATE
+REPRESENT ProjectStartDate TYPE DATE
 ```
 ### How does it work in the front-end:
 The front-end provides an atomic-date component that accepts attributes that act on this component. The following is an example of the date component on the front-end side:
@@ -129,7 +129,7 @@ The datetime component builds upon the date component. It adds the ability to ch
 ### How does it work in an ampersand script:
 To use the datetime component in your script, add the following statement:
 ```
-REPRESENT projectStartTime TYPE DATETIME
+REPRESENT ProjectStartTime TYPE DATETIME
 ```
 ### How does it work in the front-end:
 The front-end provides an atomic-datetime component that accepts attributes that act on this component. The following is an example of the datetime component on the front-end side:
@@ -150,7 +150,7 @@ The float comonent will ensure that the input that was given by the user is in t
 ### How does it work in an ampersand script:
 To use the float component in your script, add the following statement:
 ```
-REPRESENT costs TYPE FLOAT
+REPRESENT Costs TYPE FLOAT
 ```
 ### How does it work in the front-end:
 The front-end provides an atomic-float component that accepts attributes that act on this component. The following is an example of the float component on the front-end side:
@@ -171,7 +171,7 @@ With the integer component, its only possible to fill in numbers from 0 to 9. It
 ### How does it work in an ampersand script:
 To use the integer component in your script, add the following statement:
 ```
-REPRESENT amount TYPE INT
+REPRESENT Amount TYPE INT
 ```
 ### How does it work in the front-end:
 The front-end provides an atomic-integer component that accepts attributes that act on this component. The following is an example of the integer component on the front-end side:
@@ -192,7 +192,7 @@ The object component allows the user to inspect and read more of an entity and a
 ### How does it work in an ampersand script:
 To use the integer component in your script, add the following statement:
 ```
-REPRESENT project TYPE OBJECT
+REPRESENT Project TYPE OBJECT
 ```
 ### How does it work in the front-end:
 The front-end provides an atomic-object component that accepts attributes that act on this component. The following is an example of the object component on the front-end side:
@@ -213,7 +213,7 @@ The password component allows the user to type in their password, without showin
 ### How does it work in an ampersand script:
 To use the password component in your script, add the following statement:
 ```
-REPRESENT password TYPE PASSWORD
+REPRESENT Password TYPE PASSWORD
 ```
 ### How does it work in the front-end:
 The front-end provides an atomic-password component that accepts attributes that act on this component. The following is an example of the password component on the front-end side:
