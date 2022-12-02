@@ -10,14 +10,7 @@ import { RouterModule } from '@angular/router';
 import { DividerModule } from 'primeng/divider';
 
 @NgModule({
-    declarations: [ToolGalleryComponent, ToolGalleryComponentComponent, ToolComponentDetailsComponent],
-    imports: [
-        CommonModule,
-        SharedModule,
-        CardModule,
-        ButtonModule,
-        RouterModule,
-        DividerModule
-    ],
+  declarations: [ToolGalleryComponent, ToolGalleryComponentComponent, ToolComponentDetailsComponent],
+  imports: [CommonModule, SharedModule, CardModule, ButtonModule, RouterModule, DividerModule],
 })
-export class ToolsModule { }
+export class ToolsModule {}

@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+import { Observable, switchMap } from 'rxjs';
+import { BackendService } from '../backend.service';
+import { ProjectInterface } from './project.interface';
 import { testdata } from './testdata';
 
 @Component({
@@ -8,20 +11,20 @@ import { testdata } from './testdata';
   styleUrls: ['./project.component.scss'],
 })
 export class ProjectComponent implements OnInit {
-  public projectId?: string | null;
-  public project?: object | null;
+  public data$!: Observable<ProjectInterface>;
+  public projectId?: string;
 
-  constructor(private route: ActivatedRoute) {}
+  constructor(private route: ActivatedRoute, private service: BackendService) {}
 
   ngOnInit(): void {
-    this.route.paramMap.subscribe((params) => {
-      this.projectId = params.get('id');
-    });
-
-    if (this.projectId === null) {
-      this.project = testdata[0];
-    } else {
-      this.project = testdata.find((object) => object._id_ === this.projectId);
-    }
+    this.data$ = this.route.paramMap.pipe(
+      switchMap((params: ParamMap) => {
+        this.projectId = params.get('id')!;
+        if (this.projectId === null) {
+          throw new Error('id does not exist');
+        }
+        return this.service.getProject(this.projectId);
+      }),
+    );
   }
 }

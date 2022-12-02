@@ -7,8 +7,8 @@ import { BaseComponent } from '../../BaseComponent.class';
   styleUrls: ['./atomic-date.component.css'],
 })
 export class AtomicDateComponent extends BaseComponent {
-  @Input() property!: string;
-  // Possible formats can be found at https://www.primefaces.org/primeng/calendar. 
-  // Scroll down to DateFormat for the documentation 
-  @Input() format: string = "yy-mm-dd";
+  @Input() property!: string | null;
+  // Possible formats can be found at https://www.primefaces.org/primeng/calendar.
+  // Scroll down to DateFormat for the documentation
+  @Input() format: string = 'yy-mm-dd';
 }

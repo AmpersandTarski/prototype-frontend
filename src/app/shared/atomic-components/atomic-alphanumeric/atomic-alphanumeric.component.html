@@ -1,27 +1,43 @@
-<input *ngIf="canRead && canUpdate && exprIsUni" type="text" pInputText [(ngModel)]="property"
-    [required]="exprIsTot ? true : false" />
-<!-- $if(crudR)$
-    <div class="input-group" ng-controller="AtomicController">
-        $if(crudU)$
-            $if(exprIsUni)$
-                <input ng-model="resource['$name$']" my-bluronenter type="text" placeholder="Value" class="form-control input-sm" my-change-on-blur="saveItem(resource, '$name$', patchResource)"$if(exprIsTot)$ required$endif$>
-            $else$
-                <div ng-repeat="row in resource['$name$'] track by \$index">
-                    <span my-showonhover-box class="glyphicon glyphicon-minus" ng-click="removeItem(resource, '$name$', \$index, patchResource)" uib-tooltip="Remove" tooltip-trigger="mouseenter" tooltip-placement="left"></span>
-                    <span class="wordwrap">{{row}}</span>
-                </div>
-                <div>
-                    <input ng-model="selected.value" my-bluronenter type="text" placeholder="Add value" class="form-control input-sm" my-change-on-blur="addItem(resource, '$name$', selected, patchResource)"$if(exprIsTot)$ ng-required="resource['$name$'].length === 0"$endif$>
-                </div>
-            $endif$
-        $else$
-            $if(exprIsUni)$
-                <div class="wordwrap">{{resource['$name$']}}</div>
-            $else$
-                <div ng-repeat="row in resource['$name$'] track by \$index" class="wordwrap">{{row}}</div>
-            $endif$
-        $endif$
+<div *ngIf="canRead; else notReadable">
+    <div class="p-inputgroup" *ngIf="canUpdate; else notUpdatable">
+        <div class="w-full" *ngIf="exprIsUni; else exprIsNotUni">
+            <input type="text" class="min-w-10rem w-full" pInputText [(ngModel)]="property" [required]="exprIsTot" />
+        </div>
     </div>
-$else$
-    <span><i>not readable</i></span>
-$endif$ -->
+</div>
+
+<ng-template #exprIsNotUni>
+    <div class="text-center w-full">
+        <div *ngFor="let row of requireArray(property); index as i" class="flex align-items-center my-1">
+            <i class="pi pi-minus-circle mr-1 cursor-pointer"></i>
+            <span class="wordwrap">{{ row }}</span>
+        </div>
+        <div>
+            <div class="p-inputgroup">
+                <input
+                    type="text"
+                    class="min-w-10rem w-full"
+                    pInputText
+                    [(ngModel)]="newItem"
+                    placeholder="Add text"
+                    [required]="isNewItemInputRequired()"
+                />
+                <button type="button" pButton pRipple icon="pi pi-plus" styleClass="p-button-success"></button>
+            </div>
+        </div>
+    </div>
+</ng-template>
+
+<ng-template #notUpdatable>
+    <div *ngIf="exprIsUni; else exprIsNotUniAndNotUpdatable">
+        <div class="wordwrap">{{ property }}</div>
+    </div>
+</ng-template>
+
+<ng-template #exprIsNotUniAndNotUpdatable>
+    <div *ngFor="let row of requireArray(property); index as i" class="wordwrap">{{ row }}</div>
+</ng-template>
+
+<ng-template #notReadable>
+    <span><i>Alphanumeric is not readable</i></span>
+</ng-template>

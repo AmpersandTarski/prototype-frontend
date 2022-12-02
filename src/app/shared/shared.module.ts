@@ -14,7 +14,10 @@ import { AtomicIntegerComponent } from './atomic-components/atomic-integer/atomi
 import { AtomicObjectComponent } from './atomic-components/atomic-object/atomic-object.component';
 import { AtomicPasswordComponent } from './atomic-components/atomic-password/atomic-password.component';
 import { BoxTableComponent } from './box-components/box-table/box-table.component';
+import { BoxTableHeaderTemplateDirective } from './box-components/box-table/box-table-header-template.directive';
+import { BoxTableRowTemplateDirective } from './box-components/box-table/box-table-row-template.directive';
 import { BoxTabComponent } from './box-components/box-tab/box-tab.component';
+import { BoxFormComponent } from './box-components/box-form/box-form.component';
 
 // PrimeNG modules
 import { CalendarModule } from 'primeng/calendar';
@@ -27,6 +30,7 @@ import { TableModule } from 'primeng/table';
 import { SplitButtonModule } from 'primeng/splitbutton';
 import { PasswordModule } from 'primeng/password';
 import { TabViewModule } from 'primeng/tabview';
+import { ButtonModule } from 'primeng/button';
 
 @NgModule({
   declarations: [
@@ -41,7 +45,10 @@ import { TabViewModule } from 'primeng/tabview';
     AtomicObjectComponent,
     AtomicPasswordComponent,
     BoxTableComponent,
-    BoxTabComponent
+    BoxTableHeaderTemplateDirective,
+    BoxTableRowTemplateDirective,
+    BoxTabComponent,
+    BoxFormComponent,
   ],
   imports: [
     CommonModule,
@@ -55,7 +62,8 @@ import { TabViewModule } from 'primeng/tabview';
     TableModule,
     SplitButtonModule,
     PasswordModule,
-    TabViewModule
+    TabViewModule,
+    ButtonModule,
   ],
   exports: [
     AtomicAlphanumericComponent,
@@ -69,7 +77,10 @@ import { TabViewModule } from 'primeng/tabview';
     AtomicObjectComponent,
     AtomicPasswordComponent,
     BoxTableComponent,
+    BoxTableHeaderTemplateDirective,
+    BoxTableRowTemplateDirective,
     BoxTabComponent,
+    BoxFormComponent,
   ],
 })
-export class SharedModule { }
+export class SharedModule {}

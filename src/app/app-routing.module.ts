@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AppLayoutComponent } from './layout/app.layout.component';
+import { HomeComponent } from './layout/home/home.component';
 import { ActiveProjectsComponent } from './project-administration/active-projects/active-projects.component';
 import { PersonComponent } from './project-administration/person/person.component';
 import { PersonsComponent } from './project-administration/persons/persons.component';
@@ -13,11 +14,12 @@ const routes: Routes = [
     path: '',
     component: AppLayoutComponent,
     children: [
+      { path: '', component: HomeComponent },
       { path: 'active-projects', component: ActiveProjectsComponent },
       { path: 'project', component: ProjectComponent },
       { path: 'project/:id', component: ProjectComponent },
       { path: 'persons', component: PersonsComponent },
-      { path: 'persons/:id', component: PersonComponent },
+      { path: 'person/:id', component: PersonComponent },
       { path: 'person', component: PersonComponent },
     ],
   },
@@ -35,4 +37,4 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

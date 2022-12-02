@@ -1,4 +1,6 @@
-export const testdata = [
+import { ActiveProjectsInterface } from './active-projects.interface';
+
+export const testdata: ActiveProjectsInterface[] = [
   {
     _id_: '1970_13',
     _label_: 'Apollo 13',
@@ -39,8 +41,7 @@ export const testdata = [
     Projectleider: {
       _id_: 'p10008',
       _label_: 'J. Lovell',
-      _path_:
-        'resource/SESSION/1/Active_32_projects/1970_13/Projectleider/p10008',
+      _path_: 'resource/SESSION/1/Active_32_projects/1970_13/Projectleider/p10008',
       _view_: {
         firstName: 'J.',
         txt1: ' ',
@@ -123,8 +124,7 @@ export const testdata = [
     Projectleider: {
       _id_: 'p10012',
       _label_: 'P. Leider',
-      _path_:
-        'resource/SESSION/1/Active_32_projects/2013_01/Projectleider/p10012',
+      _path_: 'resource/SESSION/1/Active_32_projects/2013_01/Projectleider/p10012',
       _view_: {
         firstName: 'P.',
         txt1: ' ',
@@ -207,8 +207,7 @@ export const testdata = [
     Projectleider: {
       _id_: 'p10012',
       _label_: 'P. Leider',
-      _path_:
-        'resource/SESSION/1/Active_32_projects/2014_01/Projectleider/p10012',
+      _path_: 'resource/SESSION/1/Active_32_projects/2014_01/Projectleider/p10012',
       _view_: {
         firstName: 'P.',
         txt1: ' ',
@@ -291,8 +290,7 @@ export const testdata = [
     Projectleider: {
       _id_: 'p10007',
       _label_: 'J. Ason',
-      _path_:
-        'resource/SESSION/1/Active_32_projects/2014_05/Projectleider/p10007',
+      _path_: 'resource/SESSION/1/Active_32_projects/2014_05/Projectleider/p10007',
       _view_: {
         firstName: 'J.',
         txt1: ' ',

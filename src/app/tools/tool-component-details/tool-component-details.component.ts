@@ -5,7 +5,7 @@ import { testdata } from '../../project-administration/active-projects/testdata'
 @Component({
   selector: 'app-tool-component-details',
   templateUrl: './tool-component-details.component.html',
-  styleUrls: ['./tool-component-details.component.scss']
+  styleUrls: ['./tool-component-details.component.scss'],
 })
 export class ToolComponentDetailsComponent implements OnInit {
   public componentType?: string | null;
@@ -22,7 +22,7 @@ export class ToolComponentDetailsComponent implements OnInit {
 
   activeProjects = testdata[0];
 
-  constructor(private route: ActivatedRoute) { }
+  constructor(private route: ActivatedRoute) {}
 
   ngOnInit(): void {
     this.route.paramMap.subscribe((params) => {
