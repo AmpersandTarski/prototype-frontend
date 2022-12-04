@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+import { ActivatedRoute, ParamMap } from '@angular/router';
 import { Observable, switchMap } from 'rxjs';
 import { BackendService } from '../backend.service';
 import { ProjectInterface } from './project.interface';
-import { testdata } from './testdata';
 
 @Component({
   selector: 'app-project',
