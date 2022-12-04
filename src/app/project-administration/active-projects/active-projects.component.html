@@ -1,7 +1,5 @@
+<h3>Active Projects</h3>
 <div *ngIf="data$ | async as data; else loading">
-    <div>
-        <h2>Active Projects</h2>
-    </div>
     <app-box-table [data]="data" sortable sortBy="Name" order="desc">
         <ng-template boxTableHeader>
             <ng-container *ngTemplateOutlet="header"></ng-container>
