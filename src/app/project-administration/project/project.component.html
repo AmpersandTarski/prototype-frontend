@@ -1,7 +1,7 @@
 <h3>Project</h3>
 <div *ngIf="data$ | async as data">
     <app-box-form>
-        <ng-template #components>
+        <ng-template boxFormTemplate>
             <div class="field grid">
                 <label class="col-fixed" style="width: 100px"><strong>Name</strong></label>
                 <app-atomic-alphanumeric
