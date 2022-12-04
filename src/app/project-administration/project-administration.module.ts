@@ -13,7 +13,7 @@ import { MenuItem } from 'primeng/api';
 
 const routes: Routes = [
   {
-    path: '',
+    path: 'p',
     component: AppLayoutComponent,
     children: [
       { path: 'active-projects', component: ActiveProjectsComponent },
@@ -33,22 +33,22 @@ export const menuItems: MenuItem[] = [
       {
         label: 'Active projects',
         icon: 'pi pi-fw pi-bars',
-        routerLink: ['/active-projects'],
+        routerLink: ['/p/active-projects'],
       },
       {
         label: 'Project details',
         icon: 'pi pi-fw pi-id-card',
-        routerLink: ['/project'],
+        routerLink: ['/p/project'],
       },
       {
         label: 'Persons details',
         icon: 'pi pi-fw pi-bars',
-        routerLink: ['/persons'],
+        routerLink: ['/p/persons'],
       },
       {
         label: 'Person details',
         icon: 'pi pi-fw pi-id-card',
-        routerLink: ['/person'],
+        routerLink: ['/p/person'],
       },
     ],
   },
