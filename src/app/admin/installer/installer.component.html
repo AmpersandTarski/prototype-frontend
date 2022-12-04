@@ -4,7 +4,14 @@
             <p>This action will reinstall the application and database and delete all content.</p>
             <p>If provided, the initial population will be installed.</p>
             <ng-template pTemplate="footer">
-                <p-button label="Reinstall" icon="pi pi-check" (onClick)="reinstall()"></p-button>
+                <p-button
+                    label="Reinstall"
+                    icon="pi pi-check"
+                    (onClick)="reinstall(true, false, buttonState1)"
+                    [loading]="buttonState1.isLoading()"
+                    [disabled]="isLoading()"
+                    [styleClass]="buttonState1.getStyleClass()"
+                ></p-button>
             </ng-template>
         </p-card>
     </div>
@@ -13,7 +20,14 @@
             <p>This action will reinstall the application and database and delete all content.</p>
             <p><strong>No initial population</strong> will be installed.</p>
             <ng-template pTemplate="footer">
-                <p-button label="Reinstall" icon="pi pi-check" (onClick)="reinstallWithoutPopulation()"></p-button>
+                <p-button
+                    label="Reinstall"
+                    icon="pi pi-check"
+                    (onClick)="reinstall(false, false, buttonState2)"
+                    [loading]="buttonState2.isLoading()"
+                    [disabled]="isLoading()"
+                    [styleClass]="buttonState2.getStyleClass()"
+                ></p-button>
             </ng-template>
         </p-card>
     </div>
@@ -28,7 +42,10 @@
                 <p-button
                     label="Reinstall"
                     icon="pi pi-check"
-                    (onClick)="reinstallIgnoreInvariantViolations()"
+                    (onClick)="reinstall(true, true, buttonState3)"
+                    [loading]="buttonState3.isLoading()"
+                    [disabled]="isLoading()"
+                    [styleClass]="buttonState3.getStyleClass()"
                 ></p-button>
             </ng-template>
         </p-card>
