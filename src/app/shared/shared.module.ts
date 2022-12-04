@@ -16,6 +16,7 @@ import { AtomicPasswordComponent } from './atomic-components/atomic-password/ato
 import { BoxTableComponent } from './box-components/box-table/box-table.component';
 import { BoxTableHeaderTemplateDirective } from './box-components/box-table/box-table-header-template.directive';
 import { BoxTableRowTemplateDirective } from './box-components/box-table/box-table-row-template.directive';
+import { BoxTableLoadingComponent } from './box-components/box-table-loading/box-table-loading.component';
 import { BoxTabComponent } from './box-components/box-tab/box-tab.component';
 import { BoxFormComponent } from './box-components/box-form/box-form.component';
 
@@ -47,6 +48,7 @@ import { ButtonModule } from 'primeng/button';
     BoxTableComponent,
     BoxTableHeaderTemplateDirective,
     BoxTableRowTemplateDirective,
+    BoxTableLoadingComponent,
     BoxTabComponent,
     BoxFormComponent,
   ],
@@ -79,6 +81,7 @@ import { ButtonModule } from 'primeng/button';
     BoxTableComponent,
     BoxTableHeaderTemplateDirective,
     BoxTableRowTemplateDirective,
+    BoxTableLoadingComponent,
     BoxTabComponent,
     BoxFormComponent,
   ],
