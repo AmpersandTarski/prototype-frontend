@@ -15,34 +15,34 @@
         </ng-template>
         <ng-template [boxTableRow]="data" let-row>
             <td>
-                <app-atomic-object [property]="row.Projects" label="Projects" isUni isTot crud="cRUd">
+                <app-atomic-object [property]="row.Projects" label="Projects" isUni isTot crud="cRud">
                 </app-atomic-object>
             </td>
             <td>
-                <app-atomic-alphanumeric [property]="row.Name" label="Name" isUni isTot crud="CRUD">
+                <app-atomic-alphanumeric [property]="row.Name" label="Name" isUni isTot crud="cRud">
                 </app-atomic-alphanumeric>
             </td>
             <td>
-                <app-atomic-bigalphanumeric [property]="row.Description" label="Description" isUni crud="CRUD">
+                <app-atomic-bigalphanumeric [property]="row.Description" label="Description" isUni crud="cRud">
                 </app-atomic-bigalphanumeric>
             </td>
             <td>
-                <app-atomic-object [property]="row.Projectleider" label="Projectleider" isUni crud="CRUD">
+                <app-atomic-object [property]="row.Projectleider" label="Projectleider" isUni crud="cRud">
                 </app-atomic-object>
             </td>
             <td>
-                <app-atomic-object [property]="row.Projectleider" label="Projectleider" isUni crud="CRUD">
+                <app-atomic-object [property]="row.Projectleider" label="Projectleider" isUni crud="cRud">
                 </app-atomic-object>
             </td>
             <td>
-                <app-atomic-date [property]="row.Start" crud="cRUd"></app-atomic-date>
+                <app-atomic-date [property]="row.Start" crud="cRud"></app-atomic-date>
             </td>
             <td>
-                <app-atomic-alphanumeric [property]="row.Status" label="Name" isUni isTot crud="CRUD">
+                <app-atomic-alphanumeric [property]="row.Status" label="Name" isUni isTot crud="cRud">
                 </app-atomic-alphanumeric>
             </td>
             <td>
-                <app-atomic-boolean [property]="row.Active" isUni crud="CRuD"></app-atomic-boolean>
+                <app-atomic-boolean [property]="row.Active" isUni crud="cRud"></app-atomic-boolean>
             </td>
         </ng-template>
     </app-box-table>
