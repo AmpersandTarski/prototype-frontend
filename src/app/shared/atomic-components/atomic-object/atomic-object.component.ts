@@ -20,7 +20,7 @@ export class AtomicObjectComponent extends BaseComponent implements OnInit {
   }
 
   public navigateToEntity(type: string, id: string) {
-    this.router.navigate([type.toLowerCase(), `${id}`]);
+    this.router.navigate(['p', type.toLowerCase(), `${id}`]);
   }
 
   override ngOnInit(): void {

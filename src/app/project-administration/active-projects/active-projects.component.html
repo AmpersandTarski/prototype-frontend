@@ -1,17 +1,8 @@
-<div *ngIf="data$ | async as data">
-    <div>
-        <h2>Active Projects</h2>
-    </div>
+<h3>Active Projects</h3>
+<div *ngIf="data$ | async as data; else loading">
     <app-box-table [data]="data" sortable sortBy="Name" order="desc">
         <ng-template boxTableHeader>
-            <th>Projects</th>
-            <th>Name</th>
-            <th>Description</th>
-            <th>Projectleider</th>
-            <th>@</th>
-            <th>Start</th>
-            <th>Status</th>
-            <th>Active</th>
+            <ng-container *ngTemplateOutlet="header"></ng-container>
         </ng-template>
         <ng-template [boxTableRow]="data" let-row>
             <td>
@@ -47,6 +38,25 @@
         </ng-template>
     </app-box-table>
 </div>
+
+<ng-template #header>
+    <th>Projects</th>
+    <th>Name</th>
+    <th>Description</th>
+    <th>Projectleider</th>
+    <th>@</th>
+    <th>Start</th>
+    <th>Status</th>
+    <th>Active</th>
+</ng-template>
+
+<ng-template #loading>
+    <app-box-table-loading [nrOfRows]="10">
+        <!-- <ng-template boxTableHeader>
+            <ng-container *ngTemplateOutlet="header"></ng-container>
+        </ng-template> -->
+    </app-box-table-loading>
+</ng-template>
 
 <!--
 INTERFACE "Active projects" : V[SESSION*Project];projectActive BOX <TABLE sortable sortBy="Name" order="desc">

@@ -1,3 +1,7 @@
-<form>
-    <ng-container *ngTemplateOutlet="components"> </ng-container>
-</form>
+<div class="card">
+    <ng-container *ngTemplateOutlet="template || defaultTemplate; context: { $implicit: data }"></ng-container>
+</div>
+
+<ng-template #defaultTemplate let-data>
+    <span>No template provided</span>
+</ng-template>
