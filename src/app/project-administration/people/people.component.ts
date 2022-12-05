@@ -3,10 +3,10 @@ import { testdata } from './testdata';
 
 @Component({
   selector: 'app-persons',
-  templateUrl: './persons.component.html',
-  styleUrls: ['./persons.component.scss'],
+  templateUrl: './people.component.html',
+  styleUrls: ['./people.component.scss'],
 })
-export class PersonsComponent {
+export class PeopleComponent {
   data = testdata;
 
   constructor() {}
