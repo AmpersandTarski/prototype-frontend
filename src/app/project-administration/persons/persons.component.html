@@ -6,11 +6,23 @@
     </ng-template>
     <ng-template [boxTableRow]="data" let-row>
         <td>
-            <app-atomic-alphanumeric [property]="row.First_32_name" label="First Name" isUni isTot crud="cRUd">
+            <app-atomic-alphanumeric
+                [property]="row.First_32_name"
+                label="First Name"
+                [isUni]="true"
+                [isTot]="true"
+                crud="cRUd"
+            >
             </app-atomic-alphanumeric>
         </td>
         <td>
-            <app-atomic-alphanumeric [property]="row.Last_32_name" label="Last Name" isUni isTot crud="cRUd">
+            <app-atomic-alphanumeric
+                [property]="row.Last_32_name"
+                label="Last Name"
+                [isUni]="true"
+                [isTot]="true"
+                crud="cRUd"
+            >
             </app-atomic-alphanumeric>
         </td>
         <td>
@@ -20,8 +32,8 @@
                         *ngFor="let content of data[tabHeader]"
                         [property]="content._label_"
                         label="Name"
-                        isUni
-                        isTot
+                        [isUni]="true"
+                        [isTot]="true"
                         crud="CRUD"
                     >
                     </app-atomic-alphanumeric>

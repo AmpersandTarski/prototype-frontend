@@ -12,7 +12,7 @@ export class AtomicBigalphanumericComponent extends BaseComponent {
   newItem!: string;
 
   isNewItemInputRequired() {
-    if (this.exprIsTot) {
+    if (this.isTot) {
       if (this.property.length === 0) {
         return true;
       }

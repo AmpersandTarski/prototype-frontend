@@ -1,7 +1,7 @@
 <div *ngIf="canRead; else notReadable">
     <div class="p-inputgroup" *ngIf="canUpdate; else notUpdatable">
-        <div class="w-full" *ngIf="exprIsUni; else exprIsNotUni">
-            <input type="text" class="min-w-10rem w-full" pInputText [(ngModel)]="property" [required]="exprIsTot" />
+        <div class="w-full" *ngIf="isUni; else exprIsNotUni">
+            <input type="text" class="min-w-10rem w-full" pInputText [(ngModel)]="property" [required]="isTot" />
         </div>
     </div>
 </div>
@@ -29,7 +29,7 @@
 </ng-template>
 
 <ng-template #notUpdatable>
-    <div *ngIf="exprIsUni; else exprIsNotUniAndNotUpdatable">
+    <div *ngIf="isUni; else exprIsNotUniAndNotUpdatable">
         <div class="wordwrap">{{ property }}</div>
     </div>
 </ng-template>

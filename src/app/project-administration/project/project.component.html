@@ -9,8 +9,8 @@
                 <app-atomic-alphanumeric
                     [property]="data.Name"
                     label="Name"
-                    isUni
-                    isTot
+                    [isUni]="true"
+                    [isTot]="true"
                     crud="cRud"
                 ></app-atomic-alphanumeric>
             </div>
@@ -19,8 +19,8 @@
                 <app-atomic-bigalphanumeric
                     [property]="data.Description"
                     label="Name"
-                    isUni
-                    isTot
+                    [isUni]="true"
+                    [isTot]="true"
                     crud="cRud"
                 ></app-atomic-bigalphanumeric>
             </div>
@@ -29,8 +29,8 @@
                 <app-atomic-date
                     [property]="data._40_Planned_41__32_start_32_date"
                     label="Name"
-                    isUni
-                    isTot
+                    [isUni]="true"
+                    [isTot]="true"
                     crud="cRud"
                 ></app-atomic-date>
             </div>
@@ -39,22 +39,28 @@
                 <app-atomic-alphanumeric
                     [property]="data.Status"
                     label="Name"
-                    isUni
-                    isTot
+                    [isUni]="true"
+                    [isTot]="true"
                     crud="cRud"
                 ></app-atomic-alphanumeric>
             </div>
             <div class="field grid">
                 <label class="col-fixed" style="width: 100px"><strong>Active</strong></label>
-                <app-atomic-boolean [property]="data.Active" label="Name" isUni isTot crud="cRud"></app-atomic-boolean>
+                <app-atomic-boolean
+                    [property]="data.Active"
+                    label="Name"
+                    [isUni]="true"
+                    [isTot]="true"
+                    crud="cRud"
+                ></app-atomic-boolean>
             </div>
             <div class="field grid">
                 <label class="col-fixed" style="width: 100px"><strong>Current PL</strong></label>
                 <app-atomic-object
                     [property]="data.Current_32_PL"
                     label="Name"
-                    isUni
-                    isTot
+                    [isUni]="true"
+                    [isTot]="true"
                     crud="cRud"
                 ></app-atomic-object>
             </div>
@@ -70,8 +76,8 @@
                             <app-atomic-alphanumeric
                                 [property]="row.Name"
                                 label="Name"
-                                isUni
-                                isTot
+                                [isUni]="true"
+                                [isTot]="true"
                                 crud="cRud"
                             ></app-atomic-alphanumeric>
                         </td>
@@ -79,8 +85,8 @@
                             <app-atomic-alphanumeric
                                 [property]="row.Email"
                                 label="Name"
-                                isUni
-                                isTot
+                                [isUni]="true"
+                                [isTot]="true"
                                 crud="cRud"
                             ></app-atomic-alphanumeric>
                         </td>

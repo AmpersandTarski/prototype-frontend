@@ -8,24 +8,17 @@ export abstract class BaseComponent implements OnInit, OnChanges {
   public canRead: boolean = true;
   public canUpdate: boolean = true;
   public canDelete: boolean = true;
-  public exprIsUni: boolean = false;
-  public exprIsTot: boolean = false;
 
-  @Input() isUni: boolean | string = false;
-  @Input() isTot: boolean | string = false;
-  @Input() crud: string = 'crud';
+  @Input() public isUni: boolean = false;
+  @Input() public isTot: boolean = false;
+  @Input() public crud: string = 'crud';
 
   ngOnInit(): void {
     this.setCRUDPermissions(this.crud);
-    this.exprIsUni = this.isUni == '';
-    this.exprIsTot = this.isTot == '';
   }
 
+  // only used for the tools
   ngOnChanges(changes: SimpleChanges) {
-    if (changes.hasOwnProperty('isUni')) {
-      this.exprIsUni = changes['isUni'].firstChange;
-    }
-
     this.setCRUDPermissions(changes['crud'].currentValue);
   }
 
