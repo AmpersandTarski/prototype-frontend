@@ -9,7 +9,16 @@ export abstract class BaseComponent implements OnInit, OnChanges {
   public canUpdate: boolean = true;
   public canDelete: boolean = true;
 
-  @Input() public isUni: boolean = false;
+  @Input()
+  set isUni(value: boolean | string) {
+    this.isUniBoolean =
+      value === 'true' || value.toString() === 'true' || value === '';
+  }
+  get isUni(): string {
+    return this.isUniBoolean.toString();
+  }
+  public isUniBoolean: boolean = false;
+
   @Input() public isTot: boolean = false;
   @Input() public crud: string = 'crud';
 
