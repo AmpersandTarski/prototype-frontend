@@ -1,8 +1,4 @@
 <h3>Person</h3>
-<pre>
-    {{ data$ | async | json }}
-</pre>
-
 <div *ngIf="data$ | async as data; else loading">
     <app-box-form>
         <ng-template boxFormTemplate>
