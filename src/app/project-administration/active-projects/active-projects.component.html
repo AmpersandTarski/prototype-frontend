@@ -38,11 +38,11 @@
                 <app-atomic-date [property]="row.Start" crud="cRUd"></app-atomic-date>
             </td>
             <td>
-                <app-atomic-alphanumeric [property]="row.Status" label="Name" isTot crud="CRUD">
+                <app-atomic-alphanumeric [property]="row.Status" label="Name" isUni isTot crud="CRUD">
                 </app-atomic-alphanumeric>
             </td>
             <td>
-                <app-atomic-boolean [property]="row.Active" isTot crud="CRuD"></app-atomic-boolean>
+                <app-atomic-boolean [property]="row.Active" isUni isTot crud="CRuD"></app-atomic-boolean>
             </td>
         </ng-template>
     </app-box-table>
