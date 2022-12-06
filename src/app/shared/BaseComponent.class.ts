@@ -8,7 +8,7 @@ export abstract class BaseComponent implements OnInit, OnChanges {
   public canRead: boolean = true;
   public canUpdate: boolean = true;
   public canDelete: boolean = true;
-  public _isUni: boolean = false;
+  private _isUni: boolean = false;
   @Input()
   set isUni(attribute: boolean | '') {
     this._isUni = attribute === '' || attribute;
@@ -16,7 +16,7 @@ export abstract class BaseComponent implements OnInit, OnChanges {
   get isUni(): boolean {
     return this._isUni;
   }
-  public _isTot: boolean = false;
+  private _isTot: boolean = false;
   @Input()
   set isTot(attribute: boolean | '') {
     this._isTot = attribute === '' || attribute;
