@@ -2,14 +2,15 @@ import { Component, Input } from '@angular/core';
 import { MenuItem } from 'primeng/api';
 import { BaseComponent } from '../../BaseComponent.class';
 import { Router } from '@angular/router';
+import { InterfaceRefObject } from 'src/app/project-administration/person/person.interface';
 
 @Component({
   selector: 'app-atomic-object',
   templateUrl: './atomic-object.component.html',
   styleUrls: ['./atomic-object.component.scss'],
 })
-export class AtomicObjectComponent extends BaseComponent {
-  @Input() property!: any | Array<any>;
+export class AtomicObjectComponent<T> extends BaseComponent {
+  @Input() property!: T | Array<T>;
 
   menu: Array<MenuItem> = [
     {
@@ -20,20 +21,20 @@ export class AtomicObjectComponent extends BaseComponent {
       },
     },
   ];
-  
+
   constructor(private router: Router) {
     super();
   }
 
   navigateToSingleEntity(id: string, type: string) {
-    this.router.navigate([this.getRouterLink(type), `${id}`]);
+    this.router.navigate([this.getRouterLink({ id: id }), `${id}`]);
   }
 
-  getRouterLink(ifc: any): string {
+  getRouterLink(ifc: { id: string }): string {
     return `/${ifc.id.toLowerCase()}`;
   }
 
-  toPrimeNgMenuModel(ifcs: Array<any>): Array<MenuItem> {
+  toPrimeNgMenuModel(ifcs: Array<InterfaceRefObject>): Array<MenuItem> {
     return ifcs.map(
       (ifc) =>
         <MenuItem>{

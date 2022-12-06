@@ -11,10 +11,10 @@ import {
   templateUrl: './box-table.component.html',
   styleUrls: ['./box-table.component.css'],
 })
-export class BoxTableComponent implements OnInit {
-  @Input() data: any;
-  @ContentChild('headers') headers!: TemplateRef<any>;
-  @ContentChild('rows') rows!: TemplateRef<any>;
+export class BoxTableComponent<T> implements OnInit {
+  @Input() data: T[] = [];
+  @ContentChild('headers') headers!: TemplateRef<T>;
+  @ContentChild('rows') rows!: TemplateRef<T>;
 
   ngOnInit(): void { }
 }

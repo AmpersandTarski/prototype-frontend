@@ -65,7 +65,7 @@ export abstract class BaseComponent implements OnInit, OnChanges {
     }
   }
 
-  public requireArray(property: any) {
+  public requireArray(property: unknown) {
     if (Array.isArray(property)) {
       return property;
     } else if (property === null) {

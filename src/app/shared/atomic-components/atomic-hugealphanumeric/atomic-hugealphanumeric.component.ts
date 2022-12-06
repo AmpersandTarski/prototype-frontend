@@ -6,6 +6,6 @@ import { BaseComponent } from '../../BaseComponent.class';
   templateUrl: './atomic-hugealphanumeric.component.html',
   styleUrls: ['./atomic-hugealphanumeric.component.css'],
 })
-export class AtomicHugealphanumericComponent extends BaseComponent {
-  @Input() property!: any | Array<any>;
+export class AtomicHugealphanumericComponent<T extends String> extends BaseComponent {
+  @Input() property!: T | Array<T>;
 }

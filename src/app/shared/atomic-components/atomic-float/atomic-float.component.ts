@@ -6,6 +6,6 @@ import { BaseComponent } from '../../BaseComponent.class';
   templateUrl: './atomic-float.component.html',
   styleUrls: ['./atomic-float.component.css'],
 })
-export class AtomicFloatComponent extends BaseComponent {
-  @Input() property!: any | Array<any>;
+export class AtomicFloatComponent<T> extends BaseComponent {
+  @Input() property!: T | Array<T>;
 }

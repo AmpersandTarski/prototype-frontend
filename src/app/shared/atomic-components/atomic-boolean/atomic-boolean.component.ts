@@ -7,7 +7,7 @@ import { BaseComponent } from '../../BaseComponent.class';
   styleUrls: ['./atomic-boolean.component.css'],
 })
 export class AtomicBooleanComponent extends BaseComponent {
-  @Input() property!: any | Array<any>;
+  @Input() property!: boolean | Array<boolean>;
   @Output() state = new EventEmitter();
 
   getState() {

@@ -1,5 +1,6 @@
 import { OnInit } from '@angular/core';
 import { Component } from '@angular/core';
+import { AmpersandMenuItem } from './app.menuitem.component';
 import { LayoutService } from './service/app.layout.service';
 
 @Component({
@@ -7,8 +8,7 @@ import { LayoutService } from './service/app.layout.service';
   templateUrl: './app.menu.component.html',
 })
 export class AppMenuComponent implements OnInit {
-  model: any[] = [];
-
+  model: AmpersandMenuItem[] = [];
   constructor(public layoutService: LayoutService) { }
 
   ngOnInit() {

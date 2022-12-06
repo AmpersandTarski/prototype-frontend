@@ -41,7 +41,7 @@ interface ObjectBase {
   _ifcs_: Array<InterfaceRefObject>;
 }
 
-interface InterfaceRefObject {
+export interface InterfaceRefObject {
   id: string;
   label: string;
 }
