@@ -1,0 +1,10 @@
+@import "../../../../node_modules/primeflex/primeflex.scss";
+
+.gallery-item {
+    @include styleclass('mb-3 mr-3 min-h-full');
+    width: 360px;
+}
+
+.gallery-item app-tool-gallery-component {
+    @include styleclass('flex min-h-full');
+}
