@@ -8,18 +8,22 @@ export abstract class BaseComponent implements OnInit, OnChanges {
   public canRead: boolean = true;
   public canUpdate: boolean = true;
   public canDelete: boolean = true;
-
+  public _isUni: boolean = false;
   @Input()
-  set isUni(value: boolean | string) {
-    this.isUniBoolean =
-      value === 'true' || value.toString() === 'true' || value === '';
+  set isUni(attribute: boolean | '') {
+    this._isUni = attribute === '' || attribute;
   }
-  get isUni(): string {
-    return this.isUniBoolean.toString();
+  get isUni(): boolean {
+    return this._isUni;
   }
-  public isUniBoolean: boolean = false;
-
-  @Input() public isTot: boolean = false;
+  public _isTot: boolean = false;
+  @Input()
+  set isTot(attribute: boolean | '') {
+    this._isTot = attribute === '' || attribute;
+  }
+  get isTot(): boolean {
+    return this._isTot;
+  }
   @Input() public crud: string = 'crud';
 
   ngOnInit(): void {
