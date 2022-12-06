@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { ActiveProjectsInterface } from './active-projects/active-projects.interface';
+import { InactiveProjectsInterface } from './inactive-projects/inactive-projects.interface';
 import { IBackendService } from './backend.service.interface';
 import { PersonInterface } from './person/person.interface';
 import { ProjectInterface } from './project/project.interface';
@@ -12,6 +13,10 @@ export class BackendService implements IBackendService {
 
   getActiveProjects(): Observable<ActiveProjectsInterface[]> {
     return this.http.get<ActiveProjectsInterface[]>('resource/SESSION/1/Active_32_projects');
+  }
+
+  getInActiveProjects(): Observable<InactiveProjectsInterface[]> {
+    return this.http.get<InactiveProjectsInterface[]>('resource/SESSION/1/Inactive_32_projects');
   }
 
   getProject(id: string): Observable<ProjectInterface> {

@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActiveProjectsComponent } from './active-projects/active-projects.component';
+import { InactiveProjectsComponent } from './inactive-projects/inactive-projects.component';
 import { SharedModule } from '../shared/shared.module';
 import { ProjectComponent } from './project/project.component';
 import { PersonComponent } from './person/person.component';
@@ -17,6 +18,7 @@ const routes: Routes = [
     component: AppLayoutComponent,
     children: [
       { path: 'active-projects', component: ActiveProjectsComponent },
+      { path: 'inactive-projects', component: InactiveProjectsComponent },
       { path: 'project', component: ProjectComponent },
       { path: 'project/:id', component: ProjectComponent },
       { path: 'people', component: PeopleComponent },
@@ -34,6 +36,11 @@ export const menuItems: MenuItem[] = [
         label: 'Active projects',
         icon: 'pi pi-fw pi-bars',
         routerLink: ['/p/active-projects'],
+      },
+      {
+        label: 'Inactive projects',
+        icon: 'pi pi-fw pi-bars',
+        routerLink: ['/p/inactive-projects'],
       },
       {
         label: 'Project details',
@@ -55,7 +62,7 @@ export const menuItems: MenuItem[] = [
 ];
 
 @NgModule({
-  declarations: [ActiveProjectsComponent, ProjectComponent, PersonComponent, PeopleComponent],
+  declarations: [ActiveProjectsComponent, InactiveProjectsComponent, ProjectComponent, PersonComponent, PeopleComponent],
   imports: [CommonModule, SharedModule, RouterModule.forChild(routes)],
   providers: [{ provide: BackendService, useClass: BackendService }],
 })
