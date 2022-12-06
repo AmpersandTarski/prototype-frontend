@@ -32,6 +32,10 @@ export abstract class BaseComponent implements OnInit, OnChanges {
 
   // only used for the tools
   ngOnChanges(changes: SimpleChanges) {
+    if (changes.hasOwnProperty('isUni')) {
+      this.isUni = changes['isUni'].firstChange;
+    }
+
     this.setCRUDPermissions(changes['crud'].currentValue);
   }
 
