@@ -1,7 +1,14 @@
 <div *ngIf="canRead; else notReadable">
     <div class="p-inputgroup" *ngIf="canUpdate; else notUpdatable">
         <div class="w-full" *ngIf="exprIsUni; else exprIsNotUni">
-            <input type="text" class="min-w-10rem w-full" pInputText [(ngModel)]="property" [required]="exprIsTot" />
+            <input
+                type="text"
+                class="min-w-10rem w-full"
+                pInputText
+                (blur)="changeProperty()"
+                [(ngModel)]="property"
+                [required]="exprIsTot"
+            />
         </div>
     </div>
 </div>
