@@ -1,11 +1,9 @@
-import { Component, Input } from '@angular/core';
-import { BaseComponent } from '../../BaseComponent.class';
+import { Component } from '@angular/core';
+import { BaseAtomicComponent } from '../BaseAtomicComponent.class';
 
 @Component({
   selector: 'app-atomic-hugealphanumeric',
   templateUrl: './atomic-hugealphanumeric.component.html',
   styleUrls: ['./atomic-hugealphanumeric.component.css'],
 })
-export class AtomicHugealphanumericComponent extends BaseComponent {
-  @Input() property!: any | Array<any>;
-}
+export class AtomicHugealphanumericComponent extends BaseAtomicComponent<string> {}
