@@ -11,9 +11,6 @@ import { InterfaceRefObject, ObjectBase } from '../../objectBase.interface';
 })
 export class AtomicObjectComponent extends BaseComponent implements OnInit {
   @Input() property!: ObjectBase | Array<ObjectBase>;
-  public id!: string;
-  public label!: string;
-  public menu!: Array<MenuItem>;
 
   constructor(private router: Router) {
     super();
@@ -23,7 +20,7 @@ export class AtomicObjectComponent extends BaseComponent implements OnInit {
     this.router.navigate(['p', type.toLowerCase(), `${id}`]);
   }
 
-  public toArray(prop: ObjectBase): Array<ObjectBase> {
+  public toArray(prop: ObjectBase | Array<ObjectBase>): Array<ObjectBase> {
     if (Array.isArray(prop)) {
       return prop;
     } else if (prop === null) {
