@@ -3,6 +3,7 @@ import { MenuItem } from 'primeng/api';
 import { BaseComponent } from '../../BaseComponent.class';
 import { Router } from '@angular/router';
 import { InterfaceRefObject, ObjectBase } from '../../objectBase.interface';
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 type AtomicObjectMenuItem = any;
 
 @Component({
@@ -11,16 +12,8 @@ type AtomicObjectMenuItem = any;
   styleUrls: ['./atomic-object.component.scss'],
 })
 export class AtomicObjectComponent extends BaseComponent implements OnInit {
-  private _objects!: Array<ObjectBase>;
+  @Input() property!: ObjectBase | Array<ObjectBase>;
   public menuItems: AtomicObjectMenuItem = [];
-
-  @Input()
-  set property(value: ObjectBase | Array<ObjectBase>) {
-    this._objects = this.requireArray(value);
-  }
-  get property(): Array<ObjectBase> {
-    return this._objects;
-  }
 
   constructor(private router: Router) {
     super();
@@ -28,9 +21,17 @@ export class AtomicObjectComponent extends BaseComponent implements OnInit {
 
   override ngOnInit(): void {
     super.ngOnInit();
-    this._objects.forEach((object) => {
-      this.menuItems[object._id_] = this.toPrimeNgMenuModel(object._ifcs_, object._id_);
-    });
+    if (this.isUni) {
+      this.property as ObjectBase;
+      this.menuItems[(this.property as ObjectBase)._id_] = this.toPrimeNgMenuModel(
+        (this.property as ObjectBase)._ifcs_,
+        (this.property as ObjectBase)._id_,
+      );
+    } else {
+      (this.property as Array<ObjectBase>).forEach((object) => {
+        this.menuItems[object._id_] = this.toPrimeNgMenuModel(object._ifcs_, object._id_);
+      });
+    }
   }
 
   public navigateToEntity(type: string, id: string) {
