@@ -18,9 +18,6 @@
                 </app-atomic-alphanumeric>
             </td>
             <td>
-                {{ row.Projects[0]._path_ }}
-                {{ row.Projects[1]._view_.name }}
-                {{ row.Projects[2]._view_.name }}
                 <app-atomic-object [property]="row.Projects" label="Project" isUni isTot crud="cRud">
                 </app-atomic-object>
             </td>
