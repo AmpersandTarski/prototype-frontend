@@ -1,18 +1,20 @@
-<p-splitButton
-    *ngIf="ifcs.length > 1"
-    label="{{ label }}"
-    (onClick)="navigateToEntity(ifcs[0].id, id)"
-    [model]="menu"
-    styleClass="p-button-text mr-2 mb-2 flex"
-></p-splitButton>
+<div *ngFor="let object; in: toArray(property)">
+    <p-splitButton
+        *ngIf="object._ifcs_.length > 1"
+        label="{{ label }}"
+        (onClick)="navigateToEntity(object._ifcs_[0].id, id)"
+        [model]="toPrimeNgMenuModel(object._ifcs_, object._id_)"
+        styleClass="p-button-text mr-2 mb-2 flex"
+    ></p-splitButton>
 
-<button
-    pButton
-    *ngIf="ifcs.length == 1"
-    (click)="navigateToEntity(ifcs[0].id, id)"
-    label="{{ label }}"
-    type="button"
-    class="p-button-text"
-></button>
+    <button
+        pButton
+        *ngIf="object._ifcs_.length == 1"
+        (click)="navigateToEntity(object._ifcs_[0].id, id)"
+        label="{{ label }}"
+        type="button"
+        class="p-button-text"
+    ></button>
 
-<span *ngIf="ifcs.length == 0 || ifcs == undefined">{{ label }}</span>
+    <span *ngIf="object._ifcs_.length == 0 || object._ifcs_ == undefined">{{ label }}</span>
+</div>
