@@ -12,7 +12,7 @@ type AtomicObjectMenuItem = any;
   styleUrls: ['./atomic-object.component.scss'],
 })
 export class AtomicObjectComponent extends BaseComponent implements OnInit {
-  @Input() property!: ObjectBase | Array<ObjectBase>;
+  @Input() property!: any;
   public menuItems: AtomicObjectMenuItem = [];
 
   constructor(private router: Router) {

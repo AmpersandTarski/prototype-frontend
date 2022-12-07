@@ -1,4 +1,81 @@
-<div *ngFor="let object of property">
+<ng-template [ngIf]="isUni">
+    <p-splitButton
+        *ngIf="property._ifcs_.length > 1"
+        label="{{ property._label_ }}"
+        (onClick)="navigateToEntity(property._ifcs_[0].id, property._id_)"
+        [model]="menuItems[property._id_]"
+        styleClass="p-button-text mr-2 mb-2 flex"
+    ></p-splitButton>
+
+    <button
+        pButton
+        *ngIf="property._ifcs_.length == 1"
+        (click)="navigateToEntity(property._ifcs_[0].id, property._id_)"
+        label="{{ property._label_ }}"
+        type="button"
+        class="p-button-text"
+    ></button>
+
+    <span *ngIf="property._ifcs_.length === 0 || property._ifcs_ == undefined">{{ property._label_ }}</span>
+</ng-template>
+
+<ng-template [ngIf]="!isUni">
+    <div *ngFor="let object; in: property">
+        <p-splitButton
+            *ngIf="property._ifcs_.length > 1"
+            label="{{ property._label_ }}"
+            (onClick)="navigateToEntity(property._ifcs_[0].id, property._id_)"
+            [model]="menuItems[property._id_]"
+            styleClass="p-button-text mr-2 mb-2 flex"
+        ></p-splitButton>
+
+        <button
+            pButton
+            *ngIf="property._ifcs_.length == 1"
+            (click)="navigateToEntity(property._ifcs_[0].id, property._id_)"
+            label="{{ property._label_ }}"
+            type="button"
+            class="p-button-text"
+        ></button>
+
+        <span *ngIf="property._ifcs_.length === 0 || property._ifcs_ == undefined">{{ property._label_ }}</span>
+    </div>
+</ng-template>
+
+<!-- 
+<ng-template #selectType let-obj="obj">
+    {{ obj }}
+    <ng-container [ngIf]="obj._ifcs_.length > 1" *ngTemplateOutlet="multiIfcsButton; context: obj"></ng-container>
+    <ng-container [ngIf]="obj._ifcs_.length === 1" *ngTemplateOutlet="singleIfcsButton; context: obj"></ng-container>
+    <ng-container
+        [ngIf]="obj._ifcs_.length === 0 || obj._ifcs_ == undefined"
+        *ngTemplateOutlet="noIfcsButton; context: obj"
+    ></ng-container>
+</ng-template>
+
+<ng-template #multiIfcsButton let-obj="obj">
+    <p-splitButton
+        label="{{ obj._label_ }}"
+        (onClick)="navigateToEntity(obj._ifcs_[0].id, obj._id_)"
+        [model]="menuItems[obj._id_]"
+        styleClass="p-button-text mr-2 mb-2 flex"
+    ></p-splitButton>
+</ng-template>
+
+<ng-template #singleIfcsButton let-obj="obj">
+    <button
+        pButton
+        (click)="navigateToEntity(obj._ifcs_[0].id, obj._id_)"
+        label="{{ obj._label_ }}"
+        type="button"
+        class="p-button-text"
+    ></button>
+</ng-template>
+<ng-template #noIfcsButton let-obj="obj">
+    <span>{{ obj._label_ }}</span>
+</ng-template> -->
+
+<!-- <div *ngFor="let object of property">
     <p-splitButton
         *ngIf="object._ifcs_.length > 1"
         label="{{ object._label_ }}"
@@ -16,5 +93,23 @@
         class="p-button-text"
     ></button>
 
-    <span *ngIf="object._ifcs_.length == 0 || object._ifcs_ == undefined">{{ object._label_ }}</span>
+    <span>{{ object._label_ }}</span>
 </div>
+
+-->
+
+<!--
+<ng-template #singleIfcsButton>
+    <button
+        pButton
+        *ngIf="object._ifcs_.length == 1"
+        (click)="navigateToEntity(object._ifcs_[0].id, object._id_)"
+        label="{{ object._label_ }}"
+        type="button"
+        class="p-button-text"
+    ></button>
+</ng-template>
+
+<ng-template #objectOnly>
+    
+</ng-template> -->
