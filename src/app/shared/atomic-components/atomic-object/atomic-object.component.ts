@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { MenuItem } from 'primeng/api';
 import { BaseComponent } from '../../BaseComponent.class';
 import { Router } from '@angular/router';
+import { InterfaceRefObject, ObjectBase } from '../../objectBase.interface';
 
 @Component({
   selector: 'app-atomic-object',
@@ -9,9 +10,8 @@ import { Router } from '@angular/router';
   styleUrls: ['./atomic-object.component.scss'],
 })
 export class AtomicObjectComponent extends BaseComponent implements OnInit {
-  @Input() property!: any | Array<any>;
+  @Input() property!: ObjectBase | Array<ObjectBase>;
   public id!: string;
-  public ifcs!: Array<any>;
   public label!: string;
   public menu!: Array<MenuItem>;
 
@@ -23,14 +23,17 @@ export class AtomicObjectComponent extends BaseComponent implements OnInit {
     this.router.navigate(['p', type.toLowerCase(), `${id}`]);
   }
 
-  override ngOnInit(): void {
-    this.id = this.property._id_;
-    this.ifcs = this.property._ifcs_;
-    this.label = this.property._label_;
-    this.menu = this.toPrimeNgMenuModel(this.ifcs, this.id);
+  public toArray(prop: ObjectBase): Array<ObjectBase> {
+    if (Array.isArray(prop)) {
+      return prop;
+    } else if (prop === null) {
+      return [];
+    } else {
+      return [prop];
+    }
   }
 
-  private toPrimeNgMenuModel(ifcs: Array<any>, id: string): Array<MenuItem> {
+  public toPrimeNgMenuModel(ifcs: Array<InterfaceRefObject>, id: string): Array<MenuItem> {
     return ifcs.map(
       (ifc) =>
         <MenuItem>{
