@@ -1,9 +1,9 @@
-<div *ngFor="let object of toArray(property)">
+<div *ngFor="let object of property">
     <p-splitButton
         *ngIf="object._ifcs_.length > 1"
         label="{{ object._label_ }}"
         (onClick)="navigateToEntity(object._ifcs_[0].id, object._id_)"
-        [model]="toPrimeNgMenuModel(object._ifcs_, object._id_)"
+        [model]="menuItems[object._id_]"
         styleClass="p-button-text mr-2 mb-2 flex"
     ></p-splitButton>
 
