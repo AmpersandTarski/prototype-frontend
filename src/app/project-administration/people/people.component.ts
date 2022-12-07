@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { BackendService } from '../backend.service';
-import { PersonInterface } from '../person/person.interface';
+import { PeopleInterface } from './people.interface';
 
 @Component({
   selector: 'app-persons',
@@ -9,7 +9,7 @@ import { PersonInterface } from '../person/person.interface';
   styleUrls: ['./people.component.scss'],
 })
 export class PeopleComponent implements OnInit {
-  data$!: Observable<PersonInterface[]>;
+  data$!: Observable<PeopleInterface[]>;
 
   constructor(private service: BackendService) {}
 
