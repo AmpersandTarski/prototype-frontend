@@ -1,4 +1,7 @@
 <h3>People</h3>
+<pre>
+    <!-- {{ data$ | async | json }} -->
+</pre>
 <div *ngIf="data$ | async as data; else loading">
     <app-box-table [data]="data">
         <ng-template boxTableHeader>
@@ -15,28 +18,16 @@
                 </app-atomic-alphanumeric>
             </td>
             <td>
-                <app-box-tab [data]="row.Projects" [tabHeaders]="['Active', 'Inactive']">
-                    <ng-template #tabContent let-data="data" let-tabHeader="tabHeader">
-                        <app-atomic-object
-                            *ngFor="let content of data[tabHeader]"
-                            [property]="content"
-                            label="Projects"
-                            isUni
-                            isTot
-                            crud="cRUd"
-                        >
-                        </app-atomic-object>
-                    </ng-template>
-                </app-box-tab>
+                {{ row.Projects[0]._path_ }}
+                {{ row.Projects[1]._view_.name }}
+                {{ row.Projects[2]._view_.name }}
+                <app-atomic-object [property]="row.Projects" label="Project" isUni isTot crud="cRud">
+                </app-atomic-object>
             </td>
         </ng-template>
     </app-box-table>
 </div>
 
 <ng-template #loading>
-    <app-box-table-loading [nrOfRows]="10">
-        <!-- <ng-template boxTableHeader>
-            <ng-container *ngTemplateOutlet="header"></ng-container>
-        </ng-template> -->
-    </app-box-table-loading>
+    <app-box-table-loading [nrOfRows]="10"> </app-box-table-loading>
 </ng-template>
