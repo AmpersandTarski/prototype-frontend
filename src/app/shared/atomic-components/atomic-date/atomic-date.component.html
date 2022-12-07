@@ -1,1 +1,22 @@
-<p-calendar [showIcon]="true" [(ngModel)]="property" [dateFormat]="format"></p-calendar>
+<div *ngIf="canRead; else notReadable">
+    <p-calendar
+        *ngIf="canUpdate; else notUpdatable"
+        [showIcon]="true"
+        [(ngModel)]="property"
+        [dateFormat]="format"
+    ></p-calendar>
+</div>
+
+<ng-template #notUpdatable>
+    <div *ngIf="isUni; else isNotUniAndNotUpdatable">
+        <div class="wordwrap">{{ property }}</div>
+    </div>
+</ng-template>
+
+<ng-template #isNotUniAndNotUpdatable>
+    <div *ngFor="let row of requireArray(property); index as i" class="wordwrap">{{ row }}</div>
+</ng-template>
+
+<ng-template #notReadable>
+    <span><i>Date is not readable</i></span>
+</ng-template>
