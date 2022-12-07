@@ -1,4 +1,88 @@
 <h3>Person</h3>
-<pre>
-    {{ data$ | async | json }}
-</pre>
+<div *ngIf="data$ | async as data; else loading">
+    <app-box-form>
+        <ng-template boxFormTemplate>
+            <h5>{{ data.First_32_name }} {{ data.Last_32_name }}</h5>
+            <div class="formgrid grid">
+                <div class="field col-12 box-form-field">
+                    <label class="box-form-label">First Name</label>
+                    <div class="box-form-value">
+                        <app-atomic-alphanumeric
+                            [property]="data.First_32_name"
+                            label="First Name"
+                            isUni
+                            isTot
+                            crud="cRud"
+                        ></app-atomic-alphanumeric>
+                    </div>
+                </div>
+                <div class="field col-12 box-form-field">
+                    <label class="box-form-label">Last Name</label>
+                    <div class="box-form-value">
+                        <app-atomic-bigalphanumeric
+                            [property]="data.Last_32_name"
+                            label="Last Name"
+                            isUni
+                            isTot
+                            crud="cRud"
+                        ></app-atomic-bigalphanumeric>
+                    </div>
+                </div>
+                <div class="field col-12 box-form-field">
+                    <label class="box-form-label">Status</label>
+                    <div class="box-form-value">
+                        <app-atomic-bigalphanumeric
+                            [property]="data.Status!"
+                            label="Status"
+                            isUni
+                            isTot
+                            crud="cRud"
+                        ></app-atomic-bigalphanumeric>
+                    </div>
+                </div>
+                <div class="field col-12 box-form-field">
+                    <label class="box-form-label">Email</label>
+                    <div class="box-form-value">
+                        <app-atomic-bigalphanumeric
+                            [property]="data.Email"
+                            label="Email"
+                            isUni
+                            isTot
+                            crud="cRud"
+                        ></app-atomic-bigalphanumeric>
+                    </div>
+                </div>
+                <app-box-tab [data]="data.Projects" [tabHeaders]="['Active', 'Inactive']">
+                    <ng-template #tabContent let-data="data" let-tabHeader="tabHeader">
+                        <app-atomic-object
+                            *ngFor="let content of data[tabHeader]"
+                            [property]="content"
+                            label="Name"
+                            isUni
+                            isTot
+                            crud="CRUD"
+                        >
+                        </app-atomic-object>
+                    </ng-template>
+                </app-box-tab>
+                <app-box-tab [data]="data.Works_32_with">
+                    <ng-template #tabContent let-data="data" let-tabHeader="tabHeader">
+                        <app-atomic-object
+                            *ngFor="let content of data[tabHeader]"
+                            [property]="content"
+                            label="Name"
+                            isUni
+                            isTot
+                            crud="CRUD"
+                        >
+                        </app-atomic-object>
+                    </ng-template>
+                </app-box-tab>
+            </div>
+        </ng-template>
+    </app-box-form>
+</div>
+
+<ng-template #loading>
+    <app-box-form-loading></app-box-form-loading>
+</ng-template>
