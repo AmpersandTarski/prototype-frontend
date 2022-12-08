@@ -5,10 +5,11 @@ import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChange
 })
 export abstract class BaseAtomicComponent<T> implements OnInit, OnChanges {
   @Input() property: T | Array<T> | null = null;
-  public canCreate: boolean = true;
-  public canRead: boolean = true;
-  public canUpdate: boolean = true;
-  public canDelete: boolean = true;
+  public oldProperty: T | Array<T> | null = null;
+  public canCreate!: boolean;
+  public canRead!: boolean;
+  public canUpdate!: boolean;
+  public canDelete!: boolean;
   private _isUni: boolean = false;
   @Input()
   set isUni(attribute: boolean | '') {
@@ -25,11 +26,12 @@ export abstract class BaseAtomicComponent<T> implements OnInit, OnChanges {
   get isTot(): boolean {
     return this._isTot;
   }
-  @Input() public crud: string = 'crud';
+  @Input() crud: string = 'crud';
   @Output() propertyEvent = new EventEmitter<T | Array<T> | null>();
 
   ngOnInit(): void {
     this.setCRUDPermissions(this.crud);
+    this.oldProperty = this.property;
   }
 
   // only used for the tools
@@ -37,11 +39,13 @@ export abstract class BaseAtomicComponent<T> implements OnInit, OnChanges {
     if (changes.hasOwnProperty('isUni')) {
       this.isUni = changes['isUni'].firstChange;
     }
-
     this.setCRUDPermissions(changes['crud'].currentValue);
   }
 
-  public changeProperty() {
+  public changeProperty(): void {
+    if (this.oldProperty == this.property) {
+      return;
+    }
     this.propertyEvent.emit(this.property);
   }
 
@@ -57,7 +61,7 @@ export abstract class BaseAtomicComponent<T> implements OnInit, OnChanges {
     this.canDelete = d == d.toUpperCase();
   }
 
-  public requireArray(property: any) {
+  public requireArray(property: T | Array<T> | null) {
     if (Array.isArray(property)) {
       return property;
     } else if (property === null) {
