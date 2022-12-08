@@ -21,16 +21,7 @@ export class AtomicObjectComponent extends BaseComponent implements OnInit {
 
   override ngOnInit(): void {
     super.ngOnInit();
-    if (this.isUni) {
-      this.menuItems[(this.property as ObjectBase)._id_] = this.toPrimeNgMenuModel(
-        (this.property as ObjectBase)._ifcs_,
-        (this.property as ObjectBase)._id_,
-      );
-    } else {
-      (this.property as Array<ObjectBase>).forEach((object) => {
-        this.menuItems[object._id_] = this.toPrimeNgMenuModel(object._ifcs_, object._id_);
-      });
-    }
+    this.property = this.requireArray(this.property);
   }
 
   public navigateToEntity(type: string, id: string) {
