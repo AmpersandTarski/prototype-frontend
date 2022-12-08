@@ -5,6 +5,7 @@
                 pInputTextarea
                 [(ngModel)]="property"
                 [required]="isTot"
+                (blur)="changeProperty()"
                 maxlength="64000"
                 class="w-full min-w-10rem"
             ></textarea>

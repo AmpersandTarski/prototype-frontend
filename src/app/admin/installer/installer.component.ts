@@ -12,9 +12,9 @@ class ButtonState {
   }
 
   getStyleClass(): string {
-    return this.success ? 'p-button-success' : (this.error ? 'p-button-danger' : '');
+    return this.success ? 'p-button-success' : this.error ? 'p-button-danger' : '';
   }
-  
+
   init(): void {
     this.loading = false;
     this.success = false;
@@ -39,14 +39,14 @@ export class InstallerComponent {
    * We capture this state in the associated buttonState(s)
    */
   isLoading(): boolean {
-    return [this.buttonState1, this.buttonState2, this.buttonState3].some(state => state.isLoading());
+    return [this.buttonState1, this.buttonState2, this.buttonState3].some((state) => state.isLoading());
   }
 
   /**
    * Set the buttonStates to their initial value
    */
   initButtonStates(): void {
-    [this.buttonState1, this.buttonState2, this.buttonState3].forEach(state => state.init());
+    [this.buttonState1, this.buttonState2, this.buttonState3].forEach((state) => state.init());
   }
 
   /**
@@ -59,11 +59,12 @@ export class InstallerComponent {
   reinstall(defaultPop: boolean, ignoreInvariants: boolean, buttonState: ButtonState): void {
     this.initButtonStates();
     buttonState.loading = true;
-    this.http.get('admin/installer', { params : {defaultPop : defaultPop, ignoreInvariantRules: ignoreInvariants}}).pipe(
-      finalize(() => buttonState.loading = false)
-    ).subscribe({
-      error: (err) => buttonState.error = true,
-      complete: () => buttonState.success = true
-    });
+    this.http
+      .get('admin/installer', { params: { defaultPop: defaultPop, ignoreInvariantRules: ignoreInvariants } })
+      .pipe(finalize(() => (buttonState.loading = false)))
+      .subscribe({
+        error: (err) => (buttonState.error = true),
+        complete: () => (buttonState.success = true),
+      });
   }
 }
