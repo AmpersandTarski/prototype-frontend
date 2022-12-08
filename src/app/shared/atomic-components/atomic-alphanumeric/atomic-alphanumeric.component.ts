@@ -9,7 +9,6 @@ import { BaseComponent } from '../../BaseComponent.class';
 })
 export class AtomicAlphanumericComponent extends BaseComponent {
   @Input() property!: string | Array<string>;
-  @Output() propertyEvent = new EventEmitter<string | Array<string>>();
   newItem!: string;
 
   isNewItemInputRequired() {
@@ -19,9 +18,5 @@ export class AtomicAlphanumericComponent extends BaseComponent {
       }
     }
     return false;
-  }
-
-  changeProperty() {
-    this.propertyEvent.emit(this.property);
   }
 }

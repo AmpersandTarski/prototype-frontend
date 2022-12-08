@@ -26,6 +26,7 @@
                             isUni
                             isTot
                             crud="CRUD"
+                            (propertyEvent)="patchProject($event, '/Description')"
                         ></app-atomic-bigalphanumeric>
                     </div>
                 </div>
@@ -38,6 +39,7 @@
                             isUni
                             isTot
                             crud="CRUD"
+                            (propertyEvent)="patchProject($event, '/Start_32_date')"
                         ></app-atomic-date>
                     </div>
                 </div>
@@ -50,6 +52,7 @@
                             isUni
                             isTot
                             crud="CRUD"
+                            (propertyEvent)="patchProject($event, '/Status')"
                         ></app-atomic-alphanumeric>
                     </div>
                 </div>
@@ -62,6 +65,7 @@
                             isUni
                             isTot
                             crud="CRUD"
+                            (propertyEvent)="patchProject($event, '/Active')"
                         ></app-atomic-boolean>
                     </div>
                 </div>
@@ -74,6 +78,7 @@
                             isUni
                             isTot
                             crud="CRUD"
+                            (propertyEvent)="patchProject($event, '/Project_32_members')"
                         ></app-atomic-object>
                     </div>
                 </div>
