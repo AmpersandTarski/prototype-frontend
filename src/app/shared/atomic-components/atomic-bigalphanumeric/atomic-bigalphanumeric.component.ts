@@ -1,22 +1,15 @@
-import { Input } from '@angular/core';
-import { Component, OnInit } from '@angular/core';
-import { BaseComponent } from '../../BaseComponent.class';
+import { Component } from '@angular/core';
+import { BaseAtomicComponent } from '../BaseAtomicComponent.class';
 
 @Component({
   selector: 'app-atomic-bigalphanumeric',
   templateUrl: './atomic-bigalphanumeric.component.html',
   styleUrls: ['./atomic-bigalphanumeric.component.css'],
 })
-export class AtomicBigalphanumericComponent extends BaseComponent {
-  @Input() property!: string | Array<string>;
+export class AtomicBigalphanumericComponent extends BaseAtomicComponent<string> {
   newItem!: string;
 
   isNewItemInputRequired() {
-    if (this.exprIsTot) {
-      if (this.property.length === 0) {
-        return true;
-      }
-    }
-    return false;
+    return this.isTot && this.property?.length === 0;
   }
 }
