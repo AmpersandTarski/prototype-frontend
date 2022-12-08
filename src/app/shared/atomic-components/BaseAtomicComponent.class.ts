@@ -5,7 +5,7 @@ import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChange
 })
 export abstract class BaseAtomicComponent<T> implements OnInit, OnChanges {
   @Input() property: T | Array<T> | null = null;
-  public oldProperty: T | Array<T> | null = null;
+  private oldProperty: T | Array<T> | null = null;
   public canCreate!: boolean;
   public canRead!: boolean;
   public canUpdate!: boolean;

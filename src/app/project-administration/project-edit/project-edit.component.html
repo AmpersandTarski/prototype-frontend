@@ -79,30 +79,13 @@
                 <div class="field col-12 box-form-field">
                     <label class="box-form-label">Project members</label>
                     <div class="box-form-value">
-                        <app-box-table [data]="data.Project_32_members" sortable>
-                            <ng-template boxTableHeader>
-                                <th>Name</th>
-                                <th>Email</th>
-                            </ng-template>
-                            <ng-template [boxTableRow]="data.Project_32_members" let-row>
-                                <td>
-                                    <app-atomic-alphanumeric
-                                        [property]="row.Name"
-                                        isUni
-                                        isTot
-                                        crud="CRUD"
-                                    ></app-atomic-alphanumeric>
-                                </td>
-                                <td>
-                                    <app-atomic-alphanumeric
-                                        [property]="row.Email"
-                                        isUni
-                                        isTot
-                                        crud="CRUD"
-                                    ></app-atomic-alphanumeric>
-                                </td>
-                            </ng-template>
-                        </app-box-table>
+                        <app-atomic-object
+                            [property]="data.Project_32_members"
+                            isUni
+                            isTot
+                            crud="CRUD"
+                            (propertyEvent)="patchProject($event, '/Project_32_members')"
+                        ></app-atomic-object>
                     </div>
                 </div>
             </div>
