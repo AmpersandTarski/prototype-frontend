@@ -1,7 +1,4 @@
 <h3>People</h3>
-<pre>
-    <!-- {{ data$ | async | json }} -->
-</pre>
 <div *ngIf="data$ | async as data; else loading">
     <app-box-table [data]="data">
         <ng-template boxTableHeader>
