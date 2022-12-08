@@ -1,11 +1,9 @@
-import { Input, Component } from '@angular/core';
-import { BaseComponent } from '../../BaseComponent.class';
+import { Component } from '@angular/core';
+import { BaseAtomicComponent } from '../BaseAtomicComponent.class';
 
 @Component({
   selector: 'app-atomic-password',
   templateUrl: './atomic-password.component.html',
   styleUrls: ['./atomic-password.component.css'],
 })
-export class AtomicPasswordComponent extends BaseComponent {
-  @Input() property!: string;
-}
+export class AtomicPasswordComponent extends BaseAtomicComponent<string> {}

@@ -1,6 +1,6 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MenuItem } from 'primeng/api';
-import { BaseComponent } from '../../BaseComponent.class';
+import { BaseAtomicComponent } from '../BaseAtomicComponent.class';
 import { Router } from '@angular/router';
 import { InterfaceRefObject, ObjectBase } from '../../objectBase.interface';
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -11,8 +11,7 @@ type AtomicObjectMenuItem = any;
   templateUrl: './atomic-object.component.html',
   styleUrls: ['./atomic-object.component.scss'],
 })
-export class AtomicObjectComponent extends BaseComponent implements OnInit {
-  @Input() property!: any;
+export class AtomicObjectComponent extends BaseAtomicComponent<any> implements OnInit {
   public menuItems: AtomicObjectMenuItem = [];
 
   constructor(private router: Router) {

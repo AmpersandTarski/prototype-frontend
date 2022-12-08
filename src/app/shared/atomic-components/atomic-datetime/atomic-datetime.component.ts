@@ -1,11 +1,9 @@
-import { Component, Input } from '@angular/core';
-import { BaseComponent } from '../../BaseComponent.class';
+import { Component } from '@angular/core';
+import { BaseAtomicComponent } from '../BaseAtomicComponent.class';
 
 @Component({
   selector: 'app-atomic-datetime',
   templateUrl: './atomic-datetime.component.html',
   styleUrls: ['./atomic-datetime.component.css'],
 })
-export class AtomicDatetimeComponent extends BaseComponent {
-  @Input() property!: any | Array<any>;
-}
+export class AtomicDatetimeComponent extends BaseAtomicComponent<string> {}

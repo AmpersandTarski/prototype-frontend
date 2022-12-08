@@ -3,7 +3,8 @@ import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/cor
 @Component({
   template: '',
 })
-export abstract class BaseComponent implements OnInit, OnChanges {
+export abstract class BaseAtomicComponent<T> implements OnInit, OnChanges {
+  @Input() property: T | Array<T> | null = null;
   public canCreate: boolean = true;
   public canRead: boolean = true;
   public canUpdate: boolean = true;

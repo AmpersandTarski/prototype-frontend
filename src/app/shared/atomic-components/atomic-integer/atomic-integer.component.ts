@@ -1,11 +1,9 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { BaseComponent } from '../../BaseComponent.class';
+import { Component } from '@angular/core';
+import { BaseAtomicComponent } from '../BaseAtomicComponent.class';
 
 @Component({
   selector: 'app-atomic-integer',
   templateUrl: './atomic-integer.component.html',
   styleUrls: ['./atomic-integer.component.css'],
 })
-export class AtomicIntegerComponent extends BaseComponent {
-  @Input() property!: any | Array<any>;
-}
+export class AtomicIntegerComponent extends BaseAtomicComponent<number> {}
