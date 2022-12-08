@@ -1,32 +1,27 @@
 <h3>People</h3>
-<app-box-table [data]="data">
-    <ng-template boxTableHeader>
-        <th>Person</th>
-        <th>Email</th>
-        <th>Projects</th>
-    </ng-template>
-    <ng-template [boxTableRow]="data" let-row>
-        <td>
-            <app-atomic-object [property]="row" label="Person" isUni isTot crud="cRud"> </app-atomic-object>
-        </td>
-        <td>
-            <app-atomic-alphanumeric [property]="row.Email" label="Email" isUni isTot crud="cRud">
-            </app-atomic-alphanumeric>
-        </td>
-        <td>
-            <app-box-tab [data]="row.Projects" [tabHeaders]="['Active', 'Inactive']">
-                <ng-template #tabContent let-data="data" let-tabHeader="tabHeader">
-                    <app-atomic-object
-                        *ngFor="let content of data[tabHeader]"
-                        [property]="content"
-                        label="Projects"
-                        isUni
-                        isTot
-                        crud="cRUd"
-                    >
-                    </app-atomic-object>
-                </ng-template>
-            </app-box-tab>
-        </td>
-    </ng-template>
-</app-box-table>
+<div *ngIf="data$ | async as data; else loading">
+    <app-box-table [data]="data">
+        <ng-template boxTableHeader>
+            <th>Person</th>
+            <th>Email</th>
+            <th>Projects</th>
+        </ng-template>
+        <ng-template [boxTableRow]="data" let-row>
+            <td>
+                <app-atomic-object [property]="row" label="Person" isUni isTot crud="cRud"> </app-atomic-object>
+            </td>
+            <td>
+                <app-atomic-alphanumeric [property]="row.Email" label="Email" isUni isTot crud="cRud">
+                </app-atomic-alphanumeric>
+            </td>
+            <td>
+                <app-atomic-object [property]="row.Projects" label="Project" isUni isTot crud="cRud">
+                </app-atomic-object>
+            </td>
+        </ng-template>
+    </app-box-table>
+</div>
+
+<ng-template #loading>
+    <app-box-table-loading [nrOfRows]="10"> </app-box-table-loading>
+</ng-template>

@@ -52,11 +52,6 @@ export const menuItems: MenuItem[] = [
         icon: 'pi pi-fw pi-bars',
         routerLink: ['/p/people'],
       },
-      {
-        label: 'Person details',
-        icon: 'pi pi-fw pi-id-card',
-        routerLink: ['/p/person'],
-      },
     ],
   },
 ];
