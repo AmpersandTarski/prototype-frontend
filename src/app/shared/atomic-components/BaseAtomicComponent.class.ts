@@ -26,8 +26,7 @@ export abstract class BaseAtomicComponent<T> implements OnInit, OnChanges {
     return this._isTot;
   }
   @Input() public crud: string = 'crud';
-
-  @Output() propertyEvent = new EventEmitter<string | Array<string>>();
+  @Output() propertyEvent = new EventEmitter<T | Array<T> | null>();
 
   ngOnInit(): void {
     this.setCRUDPermissions(this.crud);
@@ -42,8 +41,8 @@ export abstract class BaseAtomicComponent<T> implements OnInit, OnChanges {
     this.setCRUDPermissions(changes['crud'].currentValue);
   }
 
-  public changeProperty(property: any) {
-    this.propertyEvent.emit(property);
+  public changeProperty() {
+    this.propertyEvent.emit(this.property);
   }
 
   private setCRUDPermissions(crud: string) {

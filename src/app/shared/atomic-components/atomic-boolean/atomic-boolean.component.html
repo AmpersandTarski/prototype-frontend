@@ -5,7 +5,7 @@
                 *ngIf="isUni && canRead"
                 [(ngModel)]="property"
                 [disabled]="!canUpdate"
-                (click)="getState(); changeProperty(property)"
+                (click)="getState(); changeProperty()"
             ></p-inputSwitch>
         </div>
     </div>
