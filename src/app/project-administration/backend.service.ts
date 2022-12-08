@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { ActiveProjectsInterface } from './active-projects/active-projects.interface';
 import { IBackendService } from './backend.service.interface';
+import { ListAllInterfacesInterface } from './list-all-interfaces/list-all-interfaces.interface';
 import { PersonInterface } from './person/person.interface';
 import { ProjectInterface } from './project/project.interface';
 
@@ -20,5 +21,9 @@ export class BackendService implements IBackendService {
 
   getPerson(id: string): Observable<PersonInterface> {
     return this.http.get<PersonInterface>(`resource/Person/${id}/Person`);
+  }
+
+  getAllInterfaces(): Observable<ListAllInterfacesInterface[]> {
+    return this.http.get<ListAllInterfacesInterface[]>('resource/SESSION/1/List_32_all_32_interfaces');
   }
 }
