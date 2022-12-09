@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
+import { ProjectsInterface } from '../projects.interface';
 import { BackendService } from '../backend.service';
-import { InactiveProjectsInterface } from './inactive-projects.interface';
 
 @Component({
   selector: 'app-inactive-projects',
@@ -9,11 +9,11 @@ import { InactiveProjectsInterface } from './inactive-projects.interface';
   styleUrls: ['./inactive-projects.component.css'],
 })
 export class InactiveProjectsComponent implements OnInit {
-  data$!: Observable<InactiveProjectsInterface[]>;
+  data$!: Observable<ProjectsInterface[]>;
 
   constructor(private service: BackendService) {}
 
   ngOnInit(): void {
-    this.data$ = this.service.getInActiveProjects();
+    this.data$ = this.service.getInactiveProjects();
   }
 }

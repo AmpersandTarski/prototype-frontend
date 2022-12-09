@@ -1,5 +1,6 @@
-export interface ActiveProjectsInterface extends ObjectBase {
-  _view_: ProjectNameView;
+import { ObjectBase, PersonNameView, ProjectNameView, ProjectsInterface } from "../projects.interface";
+
+export interface ActiveProjectsInterface extends Omit<ProjectsInterface, 'Name'> {
   _sortValues_: {
     Projects: string;
     Name: string;
@@ -14,37 +15,8 @@ export interface ActiveProjectsInterface extends ObjectBase {
     _view_: ProjectNameView;
   };
   Name: string;
-  Description: string;
-  Projectleider: ObjectBase & {
-    _view_: PersonNameView;
-  };
   _64_: ObjectBase & {
     _view_: PersonNameView;
   };
   Start: string | null;
-  Status: string;
-  Active: boolean;
-  _id_: string;
-}
-
-interface PersonNameView {
-  firstName: string;
-  txt1: string;
-  lastName: string;
-}
-
-interface ProjectNameView {
-  name: string;
-}
-
-interface ObjectBase {
-  _id_: string;
-  _label_: string;
-  _path_: string;
-  _ifcs_: Array<InterfaceRefObject>;
-}
-
-interface InterfaceRefObject {
-  id: string;
-  label: string;
 }
