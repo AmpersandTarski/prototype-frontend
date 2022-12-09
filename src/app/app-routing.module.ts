@@ -9,9 +9,7 @@ const routes: Routes = [
   {
     path: '',
     component: AppLayoutComponent,
-    children: [
-      { path: '', component: HomeComponent },
-    ],
+    children: [{ path: '', component: HomeComponent }],
   },
   {
     path: 'tools',
