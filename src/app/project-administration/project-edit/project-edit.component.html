@@ -9,10 +9,10 @@
                     <div class="box-form-value">
                         <app-atomic-alphanumeric
                             [property]="data.Name"
-                            label="Name"
                             isUni
                             isTot
-                            crud="cRud"
+                            crud="CRUD"
+                            (propertyEvent)="patchProject($event, '/Name')"
                         ></app-atomic-alphanumeric>
                     </div>
                 </div>
@@ -21,10 +21,10 @@
                     <div class="box-form-value">
                         <app-atomic-bigalphanumeric
                             [property]="data.Description"
-                            label="Name"
                             isUni
                             isTot
-                            crud="cRud"
+                            crud="CRUD"
+                            (propertyEvent)="patchProject($event, '/Description')"
                         ></app-atomic-bigalphanumeric>
                     </div>
                 </div>
@@ -33,10 +33,10 @@
                     <div class="box-form-value">
                         <app-atomic-date
                             [property]="data._40_Planned_41__32_start_32_date"
-                            label="Name"
                             isUni
                             isTot
-                            crud="cRud"
+                            crud="CRUD"
+                            (propertyEvent)="patchProject($event, '/Start_32_date')"
                         ></app-atomic-date>
                     </div>
                 </div>
@@ -45,10 +45,10 @@
                     <div class="box-form-value">
                         <app-atomic-alphanumeric
                             [property]="data.Status"
-                            label="Name"
                             isUni
                             isTot
-                            crud="cRud"
+                            crud="CRUD"
+                            (propertyEvent)="patchProject($event, '/Status')"
                         ></app-atomic-alphanumeric>
                     </div>
                 </div>
@@ -57,10 +57,10 @@
                     <div class="box-form-value">
                         <app-atomic-boolean
                             [property]="data.Active"
-                            label="Name"
                             isUni
                             isTot
-                            crud="cRud"
+                            crud="CRUD"
+                            (propertyEvent)="patchProject($event, '/Active')"
                         ></app-atomic-boolean>
                     </div>
                 </div>
@@ -69,42 +69,23 @@
                     <div class="box-form-value">
                         <app-atomic-object
                             [property]="data.Current_32_PL"
-                            label="Name"
                             isUni
                             isTot
-                            crud="cRud"
+                            crud="CRUD"
+                            (propertyEvent)="patchProject($event, '/Project_32_members')"
                         ></app-atomic-object>
                     </div>
                 </div>
                 <div class="field col-12 box-form-field">
                     <label class="box-form-label">Project members</label>
                     <div class="box-form-value">
-                        <app-box-table [data]="data.Project_32_members" sortable>
-                            <ng-template boxTableHeader>
-                                <th>Name</th>
-                                <th>Email</th>
-                            </ng-template>
-                            <ng-template [boxTableRow]="data.Project_32_members" let-row>
-                                <td>
-                                    <app-atomic-alphanumeric
-                                        [property]="row.Name"
-                                        label="Name"
-                                        isUni
-                                        isTot
-                                        crud="cRud"
-                                    ></app-atomic-alphanumeric>
-                                </td>
-                                <td>
-                                    <app-atomic-alphanumeric
-                                        [property]="row.Email"
-                                        label="Name"
-                                        isUni
-                                        isTot
-                                        crud="cRud"
-                                    ></app-atomic-alphanumeric>
-                                </td>
-                            </ng-template>
-                        </app-box-table>
+                        <app-atomic-object
+                            [property]="data.Project_32_members"
+                            isUni
+                            isTot
+                            crud="CRUD"
+                            (propertyEvent)="patchProject($event, '/Project_32_members')"
+                        ></app-atomic-object>
                     </div>
                 </div>
             </div>

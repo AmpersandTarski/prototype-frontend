@@ -1,21 +1,20 @@
-<div *ngFor="let obj of requireArray(property)">
-    <!-- [routerLink]="[getRouterLink(obj._ifcs_[0]), obj._id_]" -->
+<div *ngFor="let object of property">
     <p-splitButton
-        *ngIf="obj._ifcs_.length > 1"
-        label="{{ obj._label_ }}"
-        (onClick)="navigateToSingleEntity(obj._id_, obj._ifcs_[0])"
-        [model]="toPrimeNgMenuModel(obj._ifcs_)"
-        styleClass="p-button-text mr-2 mb-2"
+        *ngIf="object._ifcs_.length > 1"
+        label="{{ object._label_ }}"
+        (onClick)="navigateToEntity(object._ifcs_[0].id, object._id_)"
+        [model]="menuItems[object._id_]"
+        styleClass="p-button-text mr-2 mb-2 flex"
     ></p-splitButton>
 
     <button
         pButton
-        *ngIf="obj._ifcs_.length == 1"
-        [routerLink]="[obj._ifcs_[0].id, obj._id_]"
-        label="{{ obj._label_ }}"
+        *ngIf="object._ifcs_.length == 1"
+        (click)="navigateToEntity(object._ifcs_[0].id, object._id_)"
+        label="{{ object._label_ }}"
         type="button"
         class="p-button-text"
     ></button>
 
-    <span *ngIf="obj._ifcs_.length == 0 || obj._ifcs_ == undefined">{{ obj._label_ }}</span>
+    <span *ngIf="object._ifcs_.length == 0 || object._ifcs_ == undefined">{{ object._label_ }}</span>
 </div>

@@ -1,0 +1,13 @@
+@import "../../../../node_modules/primeflex/primeflex.scss";
+
+::ng-deep .p-card {
+    @include styleclass('flex flex-column min-h-full');
+}
+
+::ng-deep .p-card-body {
+    @include styleclass('flex-grow-1 flex flex-column min-h-full');
+}
+
+::ng-deep .p-card-content {
+    @include styleclass('flex-grow-1');
+}

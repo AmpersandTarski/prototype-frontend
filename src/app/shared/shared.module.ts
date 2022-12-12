@@ -16,8 +16,11 @@ import { AtomicPasswordComponent } from './atomic-components/atomic-password/ato
 import { BoxTableComponent } from './box-components/box-table/box-table.component';
 import { BoxTableHeaderTemplateDirective } from './box-components/box-table/box-table-header-template.directive';
 import { BoxTableRowTemplateDirective } from './box-components/box-table/box-table-row-template.directive';
+import { BoxTableLoadingComponent } from './box-components/box-table-loading/box-table-loading.component';
 import { BoxTabComponent } from './box-components/box-tab/box-tab.component';
 import { BoxFormComponent } from './box-components/box-form/box-form.component';
+import { BoxFormTemplateDirective } from './box-components/box-form/box-form-template.directive';
+import { BoxFormLoadingComponent } from './box-components/box-form-loading/box-form-loading.component';
 
 // PrimeNG modules
 import { CalendarModule } from 'primeng/calendar';
@@ -47,8 +50,11 @@ import { ButtonModule } from 'primeng/button';
     BoxTableComponent,
     BoxTableHeaderTemplateDirective,
     BoxTableRowTemplateDirective,
+    BoxTableLoadingComponent,
     BoxTabComponent,
     BoxFormComponent,
+    BoxFormTemplateDirective,
+    BoxFormLoadingComponent,
   ],
   imports: [
     CommonModule,
@@ -79,8 +85,11 @@ import { ButtonModule } from 'primeng/button';
     BoxTableComponent,
     BoxTableHeaderTemplateDirective,
     BoxTableRowTemplateDirective,
+    BoxTableLoadingComponent,
     BoxTabComponent,
     BoxFormComponent,
+    BoxFormTemplateDirective,
+    BoxFormLoadingComponent,
   ],
 })
 export class SharedModule {}

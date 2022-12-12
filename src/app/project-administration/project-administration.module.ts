@@ -4,13 +4,55 @@ import { ActiveProjectsComponent } from './active-projects/active-projects.compo
 import { SharedModule } from '../shared/shared.module';
 import { ProjectComponent } from './project/project.component';
 import { PersonComponent } from './person/person.component';
-import { PersonsComponent } from './persons/persons.component';
+import { PeopleComponent } from './people/people.component';
 import { BackendService } from './backend.service';
-import { BackendMockService } from './backend.mock.service';
+import { RouterModule, Routes } from '@angular/router';
+import { AppLayoutComponent } from '../layout/app.layout.component';
+import { MenuItem } from 'primeng/api';
+import { ProjectEditComponent } from './project-edit/project-edit.component';
+
+const routes: Routes = [
+  {
+    path: 'p',
+    component: AppLayoutComponent,
+    children: [
+      { path: 'active-projects', component: ActiveProjectsComponent },
+      { path: 'project', component: ProjectComponent },
+      { path: 'project/:id', component: ProjectComponent },
+      { path: 'people', component: PeopleComponent },
+      { path: 'person/:id', component: PersonComponent },
+      { path: 'person', component: PersonComponent },
+      { path: 'new_47_edit_32_project/:id', component: ProjectEditComponent },
+    ],
+  },
+];
+
+export const menuItems: MenuItem[] = [
+  {
+    label: 'Project administration',
+    items: [
+      {
+        label: 'Active projects',
+        icon: 'pi pi-fw pi-bars',
+        routerLink: ['/p/active-projects'],
+      },
+      {
+        label: 'Project details',
+        icon: 'pi pi-fw pi-id-card',
+        routerLink: ['/p/project'],
+      },
+      {
+        label: 'People',
+        icon: 'pi pi-fw pi-bars',
+        routerLink: ['/p/people'],
+      },
+    ],
+  },
+];
 
 @NgModule({
-  declarations: [ActiveProjectsComponent, ProjectComponent, PersonComponent, PersonsComponent],
-  imports: [CommonModule, SharedModule],
+  declarations: [ActiveProjectsComponent, ProjectComponent, PersonComponent, PeopleComponent, ProjectEditComponent],
+  imports: [CommonModule, SharedModule, RouterModule.forChild(routes)],
   providers: [{ provide: BackendService, useClass: BackendService }],
 })
 export class ProjectAdministrationModule {}

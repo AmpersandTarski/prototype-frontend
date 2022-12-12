@@ -1,5 +1,5 @@
-<div class="grid">
-    <div class="col-4">
+<div class="flex flex-wrap">
+    <div class="gallery-item">
         <app-tool-gallery-component titleHeader="Alphanumeric" subHeader="Atomic">
             <ng-template #header>
                 <app-atomic-alphanumeric [property]="'Pre-set value'" label="Projects" isUni isTot crud="CRUD">
@@ -18,7 +18,7 @@
             </ng-template>
         </app-tool-gallery-component>
     </div>
-    <div class="col-4">
+    <div class="gallery-item">
         <app-tool-gallery-component titleHeader="Bigalphanumeric" subHeader="Atomic">
             <ng-template #header>
                 <app-atomic-bigalphanumeric [property]="'Pre-set value'" label="Projects" isUni isTot crud="CRUD">
@@ -36,7 +36,7 @@
             </ng-template>
         </app-tool-gallery-component>
     </div>
-    <div class="col-4">
+    <div class="gallery-item">
         <app-tool-gallery-component titleHeader="Hugealphanumeric" subHeader="Atomic">
             <ng-template #header>
                 <app-atomic-hugealphanumeric [property]="'Pre-set value'" label="Projects" isUni isTot crud="CRUD">
@@ -51,7 +51,7 @@
             </ng-template>
         </app-tool-gallery-component>
     </div>
-    <div class="col-4">
+    <div class="gallery-item">
         <app-tool-gallery-component titleHeader="Boolean" subHeader="Atomic">
             <ng-template #header>
                 <app-atomic-boolean [property]="true" isUni isTot crud="CRUD"></app-atomic-boolean>
@@ -67,7 +67,7 @@
             </ng-template>
         </app-tool-gallery-component>
     </div>
-    <div class="col-4">
+    <div class="gallery-item">
         <app-tool-gallery-component titleHeader="Date" subHeader="Atomic">
             <ng-template #header>
                 <app-atomic-date [property]="'26-11-1999'" [format]="'dd-mm-yy'" isUni isTot crud="CRUD">
@@ -84,7 +84,7 @@
             </ng-template>
         </app-tool-gallery-component>
     </div>
-    <div class="col-4">
+    <div class="gallery-item">
         <app-tool-gallery-component titleHeader="DateTime" subHeader="Atomic">
             <ng-template #header>
                 <app-atomic-datetime [property]="'26-11-1999 23:46'" isUni isTot crud="CRUD"></app-atomic-datetime>
@@ -98,7 +98,7 @@
             </ng-template>
         </app-tool-gallery-component>
     </div>
-    <div class="col-4">
+    <div class="gallery-item">
         <app-tool-gallery-component titleHeader="Float" subHeader="Atomic">
             <ng-template #header>
                 <app-atomic-float [property]="'9999999'" isUni isTot crud="CRUD"></app-atomic-float>
@@ -114,10 +114,10 @@
             </ng-template>
         </app-tool-gallery-component>
     </div>
-    <div class="col-4">
+    <div class="gallery-item">
         <app-tool-gallery-component titleHeader="Integer" subHeader="Atomic">
             <ng-template #header>
-                <app-atomic-integer [property]="'9999999'" isUni isTot crud="CRUD"></app-atomic-integer>
+                <app-atomic-integer [property]="9999999" isUni isTot crud="CRUD"></app-atomic-integer>
             </ng-template>
             <ng-template #body>
                 <p>
@@ -130,7 +130,7 @@
             </ng-template>
         </app-tool-gallery-component>
     </div>
-    <div class="col-4">
+    <div class="gallery-item">
         <app-tool-gallery-component titleHeader="Object" subHeader="Atomic">
             <ng-template #header>
                 <app-atomic-object [property]="activeProjects" isUni isTot crud="CRUD"></app-atomic-object>
@@ -146,7 +146,7 @@
             </ng-template>
         </app-tool-gallery-component>
     </div>
-    <div class="col-4">
+    <div class="gallery-item">
         <app-tool-gallery-component titleHeader="Password" subHeader="Atomic">
             <ng-template #header>
                 <app-atomic-password [property]="'Pre-set value'" isUni isTot crud="CRUD"></app-atomic-password>

@@ -17,8 +17,8 @@ export class ToolComponentDetailsComponent implements OnInit {
   public canUpdate: boolean = true;
   public canDelete: boolean = true;
 
-  public exprIsUni: boolean = true;
-  public exprIsTot: boolean = true;
+  public isUni: boolean = true;
+  public isTot: boolean = true;
 
   activeProjects = testdata[0];
 
@@ -47,12 +47,12 @@ export class ToolComponentDetailsComponent implements OnInit {
     this.canDelete = canDelete;
   }
 
-  setExprIsUniState(exprIsUni: boolean) {
-    this.exprIsUni = exprIsUni;
+  setIsUniState(isUni: boolean) {
+    this.isUni = isUni;
   }
 
-  setExprIsTotState(exprIsTot: boolean) {
-    this.exprIsTot = exprIsTot;
+  setIsTotState(isTot: boolean) {
+    this.isTot = isTot;
   }
 
   public crudOperationsToText(): string {

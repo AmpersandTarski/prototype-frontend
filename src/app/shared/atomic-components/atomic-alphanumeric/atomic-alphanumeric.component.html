@@ -1,12 +1,19 @@
 <div *ngIf="canRead; else notReadable">
     <div class="p-inputgroup" *ngIf="canUpdate; else notUpdatable">
-        <div class="w-full" *ngIf="exprIsUni; else exprIsNotUni">
-            <input type="text" class="min-w-10rem w-full" pInputText [(ngModel)]="property" [required]="exprIsTot" />
+        <div class="w-full" *ngIf="isUni; else isNotUni">
+            <input
+                type="text"
+                class="min-w-10rem w-full"
+                pInputText
+                (blur)="changeProperty()"
+                [(ngModel)]="property"
+                [required]="isTot"
+            />
         </div>
     </div>
 </div>
 
-<ng-template #exprIsNotUni>
+<ng-template #isNotUni>
     <div class="text-center w-full">
         <div *ngFor="let row of requireArray(property); index as i" class="flex align-items-center my-1">
             <i class="pi pi-minus-circle mr-1 cursor-pointer"></i>
@@ -29,12 +36,12 @@
 </ng-template>
 
 <ng-template #notUpdatable>
-    <div *ngIf="exprIsUni; else exprIsNotUniAndNotUpdatable">
+    <div *ngIf="isUni; else isNotUniAndNotUpdatable">
         <div class="wordwrap">{{ property }}</div>
     </div>
 </ng-template>
 
-<ng-template #exprIsNotUniAndNotUpdatable>
+<ng-template #isNotUniAndNotUpdatable>
     <div *ngFor="let row of requireArray(property); index as i" class="wordwrap">{{ row }}</div>
 </ng-template>
 

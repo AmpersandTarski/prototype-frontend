@@ -1,48 +1,42 @@
-import { Component, Input } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MenuItem } from 'primeng/api';
-import { BaseComponent } from '../../BaseComponent.class';
+import { BaseAtomicComponent } from '../BaseAtomicComponent.class';
 import { Router } from '@angular/router';
+import { InterfaceRefObject, ObjectBase } from '../../objectBase.interface';
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+type AtomicObjectMenuItem = any;
 
 @Component({
   selector: 'app-atomic-object',
   templateUrl: './atomic-object.component.html',
   styleUrls: ['./atomic-object.component.scss'],
 })
-export class AtomicObjectComponent extends BaseComponent {
-  @Input() property!: any | Array<any>;
-
-  menu: Array<MenuItem> = [
-    {
-      label: 'Project',
-      routerLink: ['/project', '123'],
-      command: (event?) => {
-        console.log('click');
-      },
-    },
-  ];
+export class AtomicObjectComponent extends BaseAtomicComponent<any> implements OnInit {
+  public menuItems: AtomicObjectMenuItem = [];
 
   constructor(private router: Router) {
     super();
   }
 
-  navigateToSingleEntity(id: string, type: string) {
-    this.router.navigate([this.getRouterLink(type), `${id}`]);
+  override ngOnInit(): void {
+    super.ngOnInit();
+    this.property = this.requireArray(this.property);
+    (this.property as Array<ObjectBase>).forEach((object) => {
+      this.menuItems[object._id_] = this.toPrimeNgMenuModel(object._ifcs_, object._id_);
+    });
   }
 
-  getRouterLink(ifc: any): string {
-    return `/${ifc.id.toLowerCase()}`;
+  public navigateToEntity(type: string, id: string) {
+    this.router.navigate(['p', type.toLowerCase(), `${id}`]);
   }
 
-  toPrimeNgMenuModel(ifcs: Array<any>): Array<MenuItem> {
+  public toPrimeNgMenuModel(ifcs: Array<InterfaceRefObject>, id: string): Array<MenuItem> {
     return ifcs.map(
       (ifc) =>
         <MenuItem>{
           label: ifc.label,
           icon: 'pi pi-refresh',
-          command: (event?) => {
-            console.log('click');
-          },
-          // routerLink: [ifc.id, '123'],
+          command: () => this.navigateToEntity(ifc.id, id),
         },
     );
   }
