@@ -6,11 +6,11 @@ import { ProjectComponent } from './project/project.component';
 import { PersonComponent } from './person/person.component';
 import { PeopleComponent } from './people/people.component';
 import { BackendService } from './backend.service';
-import { BackendMockService } from './backend.mock.service';
 import { RouterModule, Routes } from '@angular/router';
 import { AppLayoutComponent } from '../layout/app.layout.component';
 import { MenuItem } from 'primeng/api';
 import { ListAllInterfacesComponent } from './list-all-interfaces/list-all-interfaces.component';
+import { ProjectEditComponent } from './project-edit/project-edit.component';
 
 const routes: Routes = [
   {
@@ -24,6 +24,7 @@ const routes: Routes = [
       { path: 'person/:id', component: PersonComponent },
       { path: 'person', component: PersonComponent },
       { path: 'list-all-interfaces', component: ListAllInterfacesComponent },
+      { path: 'new_47_edit_32_project/:id', component: ProjectEditComponent },
     ],
   },
 ];
@@ -62,6 +63,7 @@ export const menuItems: MenuItem[] = [
     ProjectComponent,
     PersonComponent,
     PeopleComponent,
+    ProjectEditComponent,
     ListAllInterfacesComponent,
   ],
   imports: [CommonModule, SharedModule, RouterModule.forChild(routes)],

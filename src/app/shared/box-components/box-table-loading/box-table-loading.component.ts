@@ -4,7 +4,7 @@ import { BoxTableHeaderTemplateDirective } from '../box-table/box-table-header-t
 @Component({
   selector: 'app-box-table-loading',
   templateUrl: './box-table-loading.component.html',
-  styleUrls: ['./box-table-loading.component.scss']
+  styleUrls: ['./box-table-loading.component.scss'],
 })
 export class BoxTableLoadingComponent {
   @Input()
@@ -12,8 +12,8 @@ export class BoxTableLoadingComponent {
 
   @ContentChild(BoxTableHeaderTemplateDirective, { read: TemplateRef })
   headers?: TemplateRef<unknown>;
-  
+
   range(size: number, startAt = 0): Array<number> {
-    return [...Array(size).keys()].map(i => i + startAt);
+    return [...Array(size).keys()].map((i) => i + startAt);
   }
 }
