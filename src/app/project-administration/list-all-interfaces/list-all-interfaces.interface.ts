@@ -11,11 +11,23 @@ export interface ListAllInterfacesInterface extends ObjectBase {
   Label: string;
   Is_32_public: boolean;
   Is_32_API: boolean;
-  Nav_32_items: string;
-  For_32_roles: string;
+  Nav_32_items: ObjectBase & {
+    _view_: NavItemsNameView;
+  };
+  For_32_roles: ObjectBase & {
+    _view_: ForRolesNameView;
+  };
 }
 
 interface InterfaceNameView {
+  label: string;
+}
+
+interface NavItemsNameView {
+  label: string;
+}
+
+interface ForRolesNameView {
   label: string;
 }
 
