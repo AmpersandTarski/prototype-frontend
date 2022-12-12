@@ -13,8 +13,7 @@ export class AtomicDatetimeComponent extends BaseAtomicComponent<string> {
   @Input() format: string = 'yy-mm-dd';
 
   public onDateChange(date: Date): void {
-    console.log(date);
     let datePipe: DatePipe = new DatePipe('en-US');
-    this.property = datePipe.transform(date, 'yyyy-MM-dd');
+    this.property = datePipe.transform(date, 'yyyy-MM-dd HH:mm');
   }
 }
