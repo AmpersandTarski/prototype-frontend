@@ -30,4 +30,8 @@ export class BackendService implements IBackendService {
   public patchProject(id: string, data: any): Observable<ProjectInterface> {
     return this.http.patch<ProjectInterface>(`resource/Project/${id}/New_47_edit_32_project`, data);
   }
+
+  public patchPerson(id: string, data: any): Observable<PersonInterface> {
+    return this.http.patch<PersonInterface>(`resource/Person/${id}/Person`, data);
+  }
 }
