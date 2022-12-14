@@ -15,7 +15,7 @@
 
 <ng-template #isNotUni>
     <div class="text-center w-full">
-        <div *ngFor="let row of requireArray(property); index as i" class="flex align-items-center my-1">
+        <div *ngFor="let row of data" class="flex align-items-center my-1">
             <i class="pi pi-minus-circle mr-1 cursor-pointer"></i>
             <span class="wordwrap">{{ row }}</span>
         </div>
@@ -36,13 +36,7 @@
 </ng-template>
 
 <ng-template #notUpdatable>
-    <div *ngIf="isUni; else isNotUniAndNotUpdatable">
-        <div class="wordwrap">{{ property }}</div>
-    </div>
-</ng-template>
-
-<ng-template #isNotUniAndNotUpdatable>
-    <div *ngFor="let row of requireArray(property); index as i" class="wordwrap">{{ row }}</div>
+    <div *ngFor="let row of data" class="wordwrap">{{ row }}</div>
 </ng-template>
 
 <ng-template #notReadable>

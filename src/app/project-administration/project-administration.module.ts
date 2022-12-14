@@ -9,6 +9,7 @@ import { BackendService } from './backend.service';
 import { RouterModule, Routes } from '@angular/router';
 import { AppLayoutComponent } from '../layout/app.layout.component';
 import { MenuItem } from 'primeng/api';
+import { ListAllInterfacesComponent } from './list-all-interfaces/list-all-interfaces.component';
 import { ProjectEditComponent } from './project-edit/project-edit.component';
 import { PersonEditComponent } from './person-edit/person-edit.component';
 
@@ -23,6 +24,7 @@ const routes: Routes = [
       { path: 'people', component: PeopleComponent },
       { path: 'person/:id/detail', component: PersonComponent },
       { path: 'person/:id', component: PersonEditComponent },
+      { path: 'list-all-interfaces', component: ListAllInterfacesComponent },
       { path: 'new_47_edit_32_project/:id', component: ProjectEditComponent },
     ],
   },
@@ -47,6 +49,11 @@ export const menuItems: MenuItem[] = [
         icon: 'pi pi-fw pi-bars',
         routerLink: ['/p/people'],
       },
+      {
+        label: 'List all interfaces',
+        icon: 'pi pi-fw pi-bars',
+        routerLink: ['/p/list-all-interfaces'],
+      },
     ],
   },
 ];
@@ -55,10 +62,17 @@ export const menuItems: MenuItem[] = [
   declarations: [
     ActiveProjectsComponent,
     ProjectComponent,
+<<<<<<< HEAD
     PersonEditComponent,
     PersonComponent,
     PeopleComponent,
     ProjectEditComponent,
+=======
+    PersonComponent,
+    PeopleComponent,
+    ProjectEditComponent,
+    ListAllInterfacesComponent,
+>>>>>>> ca5aa00f05a8ffed6c84c9625d6999f617591904
   ],
   imports: [CommonModule, SharedModule, RouterModule.forChild(routes)],
   providers: [{ provide: BackendService, useClass: BackendService }],
