@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 import { ActiveProjectsComponent } from './active-projects/active-projects.component';
 import { SharedModule } from '../shared/shared.module';
 import { ProjectComponent } from './project/project.component';
-import { PersonComponent } from './person/person.component';
 import { PeopleComponent } from './people/people.component';
 import { BackendService } from './backend.service';
 import { RouterModule, Routes } from '@angular/router';
@@ -22,7 +21,6 @@ const routes: Routes = [
       { path: 'project', component: ProjectComponent },
       { path: 'project/:id', component: ProjectComponent },
       { path: 'people', component: PeopleComponent },
-      { path: 'person/:id/detail', component: PersonComponent },
       { path: 'person/:id', component: PersonEditComponent },
       { path: 'list-all-interfaces', component: ListAllInterfacesComponent },
       { path: 'new_47_edit_32_project/:id', component: ProjectEditComponent },
@@ -63,7 +61,6 @@ export const menuItems: MenuItem[] = [
     ActiveProjectsComponent,
     ProjectComponent,
     PersonEditComponent,
-    PersonComponent,
     PeopleComponent,
     ProjectEditComponent,
     ListAllInterfacesComponent,

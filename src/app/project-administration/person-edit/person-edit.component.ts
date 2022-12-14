@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { Observable, switchMap } from 'rxjs';
 import { BackendService } from '../backend.service';
-import { PersonInterface } from '../person/person.interface';
+import { PersonInterface } from './person.interface';
 
 @Component({
   selector: 'app-person-edit',
