@@ -5,7 +5,8 @@ import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChange
 })
 export abstract class BaseAtomicComponent<T> implements OnInit, OnChanges {
   @Input() property: T | Array<T> | null = null;
-  private oldProperty: T | Array<T> | null = null;
+  public data: Array<T> = [];
+  private oldProperty: Array<T> = [];
   public canCreate!: boolean;
   public canRead!: boolean;
   public canUpdate!: boolean;
@@ -31,7 +32,9 @@ export abstract class BaseAtomicComponent<T> implements OnInit, OnChanges {
 
   ngOnInit(): void {
     this.setCRUDPermissions(this.crud);
-    this.oldProperty = this.property;
+    // TODO: unneeded when ng formcontrols work
+    this.oldProperty = this.requireArray(this.property);
+    this.data = this.requireArray(this.property);
   }
 
   // only used for the tools
@@ -43,10 +46,10 @@ export abstract class BaseAtomicComponent<T> implements OnInit, OnChanges {
   }
 
   public changeProperty(): void {
-    if (this.oldProperty == this.property) {
+    if (this.oldProperty == this.data) {
       return;
     }
-    this.propertyEvent.emit(this.property);
+    this.propertyEvent.emit(this.data);
   }
 
   private setCRUDPermissions(crud: string) {
