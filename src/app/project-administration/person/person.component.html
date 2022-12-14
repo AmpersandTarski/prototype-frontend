@@ -12,7 +12,8 @@
                             label="First Name"
                             isUni
                             isTot
-                            crud="cRud"
+                            crud="cRUd"
+                            (propertyEvent)="patchPerson($event, '/First_32_name')"
                         ></app-atomic-alphanumeric>
                     </div>
                 </div>
@@ -24,7 +25,8 @@
                             label="Last Name"
                             isUni
                             isTot
-                            crud="cRud"
+                            crud="cRUd"
+                            (propertyEvent)="patchPerson($event, '/Last_32_name')"
                         ></app-atomic-bigalphanumeric>
                     </div>
                 </div>
@@ -36,7 +38,8 @@
                             label="Status"
                             isUni
                             isTot
-                            crud="cRud"
+                            crud="cRUd"
+                            (propertyEvent)="patchPerson($event, '/Status')"
                         ></app-atomic-bigalphanumeric>
                     </div>
                 </div>
@@ -48,36 +51,25 @@
                             label="Email"
                             isUni
                             isTot
-                            crud="cRud"
+                            crud="cRUd"
+                            (propertyEvent)="patchPerson($event, '/Email')"
                         ></app-atomic-bigalphanumeric>
                     </div>
                 </div>
-                <app-box-tab [data]="data.Projects" [tabHeaders]="['Active', 'Inactive']">
-                    <ng-template #tabContent let-data="data" let-tabHeader="tabHeader">
-                        <app-atomic-object
-                            *ngFor="let content of data[tabHeader]"
-                            [property]="content"
-                            label="Name"
-                            isUni
-                            isTot
-                            crud="CRUD"
-                        >
-                        </app-atomic-object>
-                    </ng-template>
-                </app-box-tab>
-                <app-box-tab [data]="data.Works_32_with">
-                    <ng-template #tabContent let-data="data" let-tabHeader="tabHeader">
-                        <app-atomic-object
-                            *ngFor="let content of data[tabHeader]"
-                            [property]="content"
-                            label="Name"
-                            isUni
-                            isTot
-                            crud="CRUD"
-                        >
-                        </app-atomic-object>
-                    </ng-template>
-                </app-box-tab>
+                <div class="field col-12 box-form-field">
+                    <label class="box-form-label">Projects</label>
+                    <app-box-tab [data]="data.Projects" [tabHeaders]="['Active', 'Inactive']">
+                        <ng-template #tabContent let-data="data" let-tabHeader="tabHeader">
+                            <app-atomic-object [property]="data[tabHeader]" label="Name" isUni isTot crud="cRud">
+                            </app-atomic-object>
+                        </ng-template>
+                    </app-box-tab>
+                </div>
+                <div class="field col-12 box-form-field">
+                    <label class="box-form-label">Works with</label>
+                    <app-atomic-object [property]="data.Works_32_with" label="Name" isUni isTot crud="cRud">
+                    </app-atomic-object>
+                </div>
             </div>
         </ng-template>
     </app-box-form>
