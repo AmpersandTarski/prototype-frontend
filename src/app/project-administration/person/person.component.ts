@@ -5,11 +5,11 @@ import { BackendService } from '../backend.service';
 import { PersonInterface } from './person.interface';
 
 @Component({
-  selector: 'app-person-edit',
-  templateUrl: './person-edit.component.html',
-  styleUrls: ['./person-edit.component.scss'],
+  selector: 'app-person',
+  templateUrl: './person.component.html',
+  styleUrls: ['./person.component.scss'],
 })
-export class PersonEditComponent implements OnInit {
+export class PersonComponent implements OnInit {
   public data$!: Observable<PersonInterface>;
   private personId!: string;
 
