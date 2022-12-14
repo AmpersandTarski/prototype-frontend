@@ -35,7 +35,6 @@ export abstract class BaseAtomicComponent<T> implements OnInit, OnChanges {
     // TODO: unneeded when ng formcontrols work
     this.oldProperty = this.requireArray(this.property);
     this.data = this.requireArray(this.property);
-    console.log(this.data);
   }
 
   // only used for the tools
