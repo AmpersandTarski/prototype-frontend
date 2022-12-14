@@ -10,7 +10,7 @@ import { AppLayoutComponent } from '../layout/app.layout.component';
 import { MenuItem } from 'primeng/api';
 import { ListAllInterfacesComponent } from './list-all-interfaces/list-all-interfaces.component';
 import { ProjectEditComponent } from './project-edit/project-edit.component';
-import { PersonEditComponent } from './person-edit/person-edit.component';
+import { PersonComponent } from './person/person.component';
 
 const routes: Routes = [
   {
@@ -21,7 +21,7 @@ const routes: Routes = [
       { path: 'project', component: ProjectComponent },
       { path: 'project/:id', component: ProjectComponent },
       { path: 'people', component: PeopleComponent },
-      { path: 'person/:id', component: PersonEditComponent },
+      { path: 'person/:id', component: PersonComponent },
       { path: 'list-all-interfaces', component: ListAllInterfacesComponent },
       { path: 'new_47_edit_32_project/:id', component: ProjectEditComponent },
     ],
@@ -60,7 +60,7 @@ export const menuItems: MenuItem[] = [
   declarations: [
     ActiveProjectsComponent,
     ProjectComponent,
-    PersonEditComponent,
+    PersonComponent,
     PeopleComponent,
     ProjectEditComponent,
     ListAllInterfacesComponent,

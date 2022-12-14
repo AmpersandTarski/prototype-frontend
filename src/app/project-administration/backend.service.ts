@@ -5,7 +5,7 @@ import { ActiveProjectsInterface } from './active-projects/active-projects.inter
 import { IBackendService } from './backend.service.interface';
 import { ListAllInterfacesInterface } from './list-all-interfaces/list-all-interfaces.interface';
 import { PeopleInterface } from './people/people.interface';
-import { PersonInterface } from './person-edit/person.interface';
+import { PersonInterface } from './person/person.interface';
 import { ProjectInterface } from './project/project.interface';
 
 @Injectable()

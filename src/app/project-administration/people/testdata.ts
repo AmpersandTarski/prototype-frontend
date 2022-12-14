@@ -1,4 +1,4 @@
-import { PersonInterface } from '../person-edit/person.interface';
+import { PersonInterface } from '../person/person.interface';
 
 export const testdata: Array<PersonInterface> = [
   {
