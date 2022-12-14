@@ -62,17 +62,11 @@ export const menuItems: MenuItem[] = [
   declarations: [
     ActiveProjectsComponent,
     ProjectComponent,
-<<<<<<< HEAD
     PersonEditComponent,
     PersonComponent,
     PeopleComponent,
     ProjectEditComponent,
-=======
-    PersonComponent,
-    PeopleComponent,
-    ProjectEditComponent,
     ListAllInterfacesComponent,
->>>>>>> ca5aa00f05a8ffed6c84c9625d6999f617591904
   ],
   imports: [CommonModule, SharedModule, RouterModule.forChild(routes)],
   providers: [{ provide: BackendService, useClass: BackendService }],
