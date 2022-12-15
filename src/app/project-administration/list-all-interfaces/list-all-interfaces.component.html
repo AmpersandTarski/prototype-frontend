@@ -1,0 +1,47 @@
+<h3>List all interfaces</h3>
+<div *ngIf="data$ | async as data; else loading">
+    <app-box-table [data]="data" sortable sortBy="Name" order="desc">
+        <ng-template boxTableHeader>
+            <ng-container *ngTemplateOutlet="header"></ng-container>
+        </ng-template>
+        <ng-template [boxTableRow]="data" let-row
+            ><td>
+                <app-atomic-object [property]="row.Interface" label="Interface" isUni isTot crud="cRud">
+                </app-atomic-object>
+            </td>
+            <td>
+                <app-atomic-alphanumeric [property]="row.Label" label="Label" isUni isTot crud="cRud">
+                </app-atomic-alphanumeric>
+            </td>
+            <td>
+                <app-atomic-boolean [property]="row.Is_32_public" label="Is_32_public" isUni isTot crud="cRud">
+                </app-atomic-boolean>
+            </td>
+            <td>
+                <app-atomic-boolean [property]="row.Is_32_API" label="Is_32_API" isUni isTot crud="cRud">
+                </app-atomic-boolean>
+            </td>
+            <td>
+                <app-atomic-object [property]="row.Nav_32_items" label="Nav_32_items" isTot crud="cRud">
+                </app-atomic-object>
+            </td>
+            <td>
+                <app-atomic-object [property]="row.For_32_roles" label="For_32_roles" isTot crud="cRud">
+                </app-atomic-object>
+            </td>
+        </ng-template>
+    </app-box-table>
+</div>
+
+<ng-template #header>
+    <th>Interface</th>
+    <th>Label</th>
+    <th>Is public</th>
+    <th>Is API</th>
+    <th>Nav items</th>
+    <th>For roles</th>
+</ng-template>
+
+<ng-template #loading>
+    <app-box-table-loading [nrOfRows]="10"> </app-box-table-loading>
+</ng-template>
