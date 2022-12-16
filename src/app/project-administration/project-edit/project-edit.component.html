@@ -1,0 +1,98 @@
+<h3>Project</h3>
+<div *ngIf="data$ | async as data; else loading">
+    <app-box-form>
+        <ng-template boxFormTemplate>
+            <h5>{{ data.Name }}</h5>
+            <div class="formgrid grid">
+                <div class="field col-12 box-form-field">
+                    <label class="box-form-label">Name</label>
+                    <div class="box-form-value">
+                        <app-atomic-alphanumeric
+                            [property]="data.Name"
+                            isUni
+                            isTot
+                            crud="CRUD"
+                            (propertyEvent)="patchProject($event, '/Name')"
+                        ></app-atomic-alphanumeric>
+                    </div>
+                </div>
+                <div class="field col-12 box-form-field">
+                    <label class="box-form-label">Description</label>
+                    <div class="box-form-value">
+                        <app-atomic-bigalphanumeric
+                            [property]="data.Description"
+                            isUni
+                            isTot
+                            crud="CRUD"
+                            (propertyEvent)="patchProject($event, '/Description')"
+                        ></app-atomic-bigalphanumeric>
+                    </div>
+                </div>
+                <div class="field col-12 box-form-field">
+                    <label class="box-form-label">(Planned) start date</label>
+                    <div class="box-form-value">
+                        <app-atomic-date
+                            [property]="data._40_Planned_41__32_start_32_date"
+                            isUni
+                            isTot
+                            crud="CRUD"
+                            (propertyEvent)="patchProject($event, '/Start_32_date')"
+                        ></app-atomic-date>
+                    </div>
+                </div>
+                <div class="field col-12 box-form-field">
+                    <label class="box-form-label">Status</label>
+                    <div class="box-form-value">
+                        <app-atomic-alphanumeric
+                            [property]="data.Status"
+                            isUni
+                            isTot
+                            crud="CRUD"
+                            (propertyEvent)="patchProject($event, '/Status')"
+                        ></app-atomic-alphanumeric>
+                    </div>
+                </div>
+                <div class="field col-12 box-form-field">
+                    <label class="box-form-label">Active</label>
+                    <div class="box-form-value">
+                        <app-atomic-boolean
+                            [property]="data.Active"
+                            isUni
+                            isTot
+                            crud="CRUD"
+                            (propertyEvent)="patchProject($event, '/Active')"
+                        ></app-atomic-boolean>
+                    </div>
+                </div>
+                <div class="field col-12 box-form-field">
+                    <label class="box-form-label">Current PL</label>
+                    <div class="box-form-value">
+                        <app-atomic-object
+                            [property]="data.Current_32_PL"
+                            isUni
+                            isTot
+                            crud="CRUD"
+                            (propertyEvent)="patchProject($event, '/Project_32_members')"
+                        ></app-atomic-object>
+                    </div>
+                </div>
+                <div class="field col-12 box-form-field">
+                    <label class="box-form-label">Project members</label>
+                    <div class="box-form-value">
+                        <app-atomic-object
+                            [property]="data.Project_32_members"
+                            isUni
+                            isTot
+                            crud="CRUD"
+                            (propertyEvent)="patchProject($event, '/Project_32_members')"
+                        ></app-atomic-object>
+                    </div>
+                </div>
+            </div>
+        </ng-template>
+    </app-box-form>
+</div>
+
+<ng-template #loading>
+    <app-box-form-loading></app-box-form-loading>
+</ng-template>

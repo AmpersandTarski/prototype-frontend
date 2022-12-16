@@ -1,1 +1,20 @@
-<p-calendar [showIcon]="true" [(ngModel)]="property" [dateFormat]="format"></p-calendar>
+<div *ngIf="canRead; else notReadable">
+    <p-calendar
+        *ngIf="canUpdate; else notUpdatable"
+        [showClear]="true"
+        [readonlyInput]="true"
+        [dateFormat]="format"
+        [(ngModel)]="property"
+        (ngModelChange)="onDateChange($event)"
+        (onSelect)="changeProperty()"
+        (onClear)="changeProperty()"
+    ></p-calendar>
+</div>
+
+<ng-template #notUpdatable>
+    <div class="wordwrap">{{ property }}</div>
+</ng-template>
+
+<ng-template #notReadable>
+    <span><i>Date is not readable</i></span>
+</ng-template>

@@ -11,18 +11,33 @@ import { PersonInterface } from './person.interface';
 })
 export class PersonComponent implements OnInit {
   public data$!: Observable<PersonInterface>;
+  private personId!: string;
 
   constructor(private route: ActivatedRoute, private service: BackendService) {}
 
   ngOnInit(): void {
     this.data$ = this.route.paramMap.pipe(
       switchMap((params: ParamMap) => {
-        let id = params.get('id');
-        if (id === null) {
+        this.personId = params.get('id')!;
+        if (this.personId === null) {
           throw new Error('id does not exist');
         }
-        return this.service.getPerson(id);
+        return this.service.getPerson(this.personId);
       }),
     );
+  }
+
+  patchPerson(property: any, path: string) {
+    let body = [
+      {
+        op: 'replace',
+        path: path,
+        value: property,
+      },
+    ];
+
+    this.service.patchPerson(this.personId, body).subscribe(() => {
+      this.data$ = this.service.getPerson(this.personId);
+    });
   }
 }

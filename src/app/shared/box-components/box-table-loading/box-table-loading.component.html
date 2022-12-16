@@ -1,0 +1,21 @@
+<p-table [value]="range(nrOfRows)">
+    <ng-template pTemplate="header">
+        <tr>
+            <ng-container *ngTemplateOutlet="headers || defaultHeaderTemplate"></ng-container>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body">
+        <tr>
+            <td colspan="42">
+                <p-skeleton width="100%" styleClass="mb-2"></p-skeleton>
+                <p-skeleton width="75%"></p-skeleton>
+            </td>
+        </tr>
+    </ng-template>
+</p-table>
+
+<ng-template #defaultHeaderTemplate>
+    <th>
+        <p-skeleton width="100%" height="2rem" styleClass="mb-2"></p-skeleton>
+    </th>
+</ng-template>

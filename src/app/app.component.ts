@@ -5,7 +5,7 @@ import { LayoutService } from './layout/service/app.layout.service';
 
 @Component({
   selector: 'app-root',
-  templateUrl: './app.component.html',
+  template: '<router-outlet></router-outlet>',
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit {
@@ -25,17 +25,5 @@ export class AppComponent implements OnInit {
       theme: 'md-light-indigo', //default component theme for PrimeNG
       scale: 14, //size of the body font size to scale the whole application
     };
-  }
-
-  testData = [
-    { firstName: 'patrick', lastName: 'ramge' },
-    { firstName: 'mark', lastName: 'corazon' },
-    { firstName: 'michiel', lastName: 'stornebrink' },
-    { firstName: 'wilco', lastName: 'morren' },
-    { firstName: 'li-wei', lastName: 'yeh' },
-  ];
-
-  capitalizeFirstLetter(string: string): string {
-    return string.charAt(0).toUpperCase() + string.slice(1);
   }
 }

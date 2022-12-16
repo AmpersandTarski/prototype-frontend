@@ -1,36 +1,35 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MenuItem } from 'primeng/api';
-import { BaseComponent } from '../../BaseComponent.class';
+import { BaseAtomicComponent } from '../BaseAtomicComponent.class';
 import { Router } from '@angular/router';
+import { InterfaceRefObject, ObjectBase } from '../../objectBase.interface';
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+type AtomicObjectMenuItem = any;
 
 @Component({
   selector: 'app-atomic-object',
   templateUrl: './atomic-object.component.html',
   styleUrls: ['./atomic-object.component.scss'],
 })
-export class AtomicObjectComponent extends BaseComponent implements OnInit {
-  @Input() property!: any | Array<any>;
-  public id!: string;
-  public ifcs!: Array<any>;
-  public label!: string;
-  public menu!: Array<MenuItem>;
+export class AtomicObjectComponent extends BaseAtomicComponent<ObjectBase> implements OnInit {
+  public menuItems: AtomicObjectMenuItem = [];
 
   constructor(private router: Router) {
     super();
   }
 
-  public navigateToEntity(type: string, id: string) {
-    this.router.navigate([type.toLowerCase(), `${id}`]);
-  }
-
   override ngOnInit(): void {
-    this.id = this.property._id_;
-    this.ifcs = this.property._ifcs_;
-    this.label = this.property._label_;
-    this.menu = this.toPrimeNgMenuModel(this.ifcs, this.id);
+    super.ngOnInit();
+    this.data.forEach((object) => {
+      this.menuItems[object._id_] = this.toPrimeNgMenuModel(object._ifcs_, object._id_);
+    });
   }
 
-  private toPrimeNgMenuModel(ifcs: Array<any>, id: string): Array<MenuItem> {
+  public navigateToEntity(type: string, id: string) {
+    this.router.navigate(['p', type.toLowerCase(), `${id}`]);
+  }
+
+  public toPrimeNgMenuModel(ifcs: Array<InterfaceRefObject>, id: string): Array<MenuItem> {
     return ifcs.map(
       (ifc) =>
         <MenuItem>{
