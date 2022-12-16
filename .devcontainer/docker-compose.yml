@@ -1,4 +1,4 @@
-version: '3.7'
+version: "3.7"
 
 volumes:
   db-data:
@@ -21,7 +21,6 @@ services:
     networks:
       - db
 
-
   projadmin:
     container_name: projectAdministration
     build: https://github.com/Michiel-s/Project-administration.git
@@ -40,13 +39,19 @@ services:
   prototype-db:
     container_name: prototype-db
     image: mariadb:10.4
-    command: ["--sql-mode=ANSI,TRADITIONAL"]
+    command: ["--lower-case-table-names=1", "--sql-mode=ANSI,TRADITIONAL"]
     restart: unless-stopped
     env_file: ./devcontainer.env
     volumes:
       - db-data:/var/lib/mysql
+      - ./db-init-scripts:/docker-entrypoint-initdb.d # script to setup db authorization for user ampersand. 
     networks:
       - db
+    # logging:
+    #   driver: "json-file"
+    #   options:
+    #     max-size: "200k"
+    #     max-file: "100"
 
   phpmyadmin:
     container_name: phpmyadmin
@@ -55,7 +60,14 @@ services:
       - prototype-db
     ports:
       - "8080:80"
+    volumes:
+      - ./db-init-scripts/:/docker-entrypoint-initdb.d # script to setup db authorization for user ampersand.
     networks:
       - db
     environment:
       - PMA_HOST=prototype-db # https://hub.docker.com/r/phpmyadmin/phpmyadmin/
+    # logging:
+    #   driver: "json-file"
+    #   options:
+    #     max-size: "200k"
+    #     max-file: "100"

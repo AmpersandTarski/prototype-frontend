@@ -49,11 +49,15 @@
       }
     }
   },
-  "forwardPorts": [4200]
+  "forwardPorts": [4200, 8080],
+  "portsAttributes": {
+    "4200": { "label": "Application port" },
+    "8080": { "label": "phpadmin port" }
+  },
   // Use 'forwardPorts' to make a list of ports inside the container available locally.
   // "forwardPorts": [],
   // Use 'postCreateCommand' to run commands after the container is created.
-  "postCreateCommand": "npm install",
+  "postCreateCommand": "npm install && npm start",
   // Comment out to connect as root instead. More info: https://aka.ms/vscode-remote/containers/non-root.
   "remoteUser": "node"
 }
