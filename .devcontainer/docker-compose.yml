@@ -1,0 +1,62 @@
+version: '3.7'
+
+volumes:
+  db-data:
+
+networks:
+  db:
+
+services:
+  protofrontenddev:
+    container_name: prototype-frontend-dev
+    build:
+      context: .
+      dockerfile: Dockerfile
+    depends_on:
+      - projadmin
+  projadmin:
+    container_name: projectAdministration
+    build: https://github.com/Michiel-s/Project-administration.git
+    image: projectadministration-image
+    env_file: "./devcontainer.env"
+    environment:
+      - AMPERSAND_DBHOST=prototype-db # refers to database service below
+      - AMPERSAND_LOG_CONFIG=logging.debug.yaml
+      - AMPERSAND_PRODUCTION_MODE=false
+      - AMPERSAND_DEBUG_MODE=true
+      - AMPERSAND_SERVER_URL=${SERVER_HOST_NAME} # from .env file
+      - AMPERSAND_DBUSER=${MYSQL_USER} # from .env file
+      - AMPERSAND_DBPASS=${MYSQL_PASSWORD} # from .env file
+      - AMPERSAND_DBNAME=${DATABASE_NAME:?} # from .env file
+    volumes:
+      - ./:/usr/local/project
+    restart: always
+    depends_on:
+      - prototype-db
+    ports:
+      - "80:80"
+    networks:
+      - db
+
+  prototype-db:
+    container_name: prototype-db
+    image: mariadb:10.4
+    command: ["--sql-mode=ANSI,TRADITIONAL"]
+    restart: unless-stopped
+    env_file: ./devcontainer.env
+    volumes:
+      - db-data:/var/lib/mysql
+    networks:
+      - db
+
+  phpmyadmin:
+    container_name: phpmyadmin
+    image: phpmyadmin/phpmyadmin
+    depends_on:
+      - prototype-db
+    ports:
+      - "8080:80"
+    networks:
+      - db
+    environment:
+      - PMA_HOST=prototype-db # https://hub.docker.com/r/phpmyadmin/phpmyadmin/
