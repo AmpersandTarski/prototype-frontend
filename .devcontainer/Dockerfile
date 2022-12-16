@@ -21,4 +21,4 @@ ENV CHROME_BIN=/usr/bin/chromium
 
 # [Optional] Uncomment if you want to install more global node packages
 # RUN su node -c "npm install -g <your-package-list -here>"
-CMD [ "ng", "watch" ]
+

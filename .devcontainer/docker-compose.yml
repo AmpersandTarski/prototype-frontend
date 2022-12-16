@@ -12,10 +12,14 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
+    volumes:
+      - ..:/prototype-frontend:cached
+    command: sleep infinity
     image: prototype-frontend-dev-image
     depends_on:
       - projadmin
-    # command: ["npm", "start"]
+    networks:
+      - db
 
 
   projadmin:
