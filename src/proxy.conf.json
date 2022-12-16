@@ -1,7 +1,7 @@
 {
-  "/api/*": {
-    "target": "http://projadmin:80/api",
-    "secure": false,
-    "pathRewrite": { "^/api": "" }
+    "/api/*": {
+      "target": "http://localhost:80/api",
+      "secure": false,
+      "pathRewrite": {"^/api" : ""}
+    }
   }
-}
