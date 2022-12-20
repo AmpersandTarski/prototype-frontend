@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { BaseAtomicComponent } from '../BaseAtomicComponent.class';
 import { FormControl } from '@angular/forms';
-import { debounceTime, distinctUntilChanged, tap } from 'rxjs';
+import { debounceTime, distinctUntilChanged, map, tap } from 'rxjs';
 import { Resource } from '../../interfacing/resource.interface';
 
 @Component({
@@ -30,7 +30,8 @@ export class AtomicAlphanumericComponent extends BaseAtomicComponent<string> {
       .pipe(
         debounceTime(300),
         distinctUntilChanged(),
-        tap(x => console.log(x)),
+        map(x => x === '' ? null : x), // transform empty string to null value
+        tap(x => console.log(x)), // TODO: remove this line
       )
       .subscribe(
         x => this.resource.patch([{
