@@ -28,8 +28,7 @@ export const testdata = [
     Projectleider: {
       _id_: 'p10011',
       _label_: 'O. Dysseus',
-      _path_:
-        'resource/SESSION/1/Inactive_32_projects/2014_04/Projectleider/p10011',
+      _path_: 'resource/SESSION/1/Inactive_32_projects/2014_04/Projectleider/p10011',
       _view_: {
         firstName: 'O.',
         txt1: ' ',
@@ -84,8 +83,7 @@ export const testdata = [
     Projectleider: {
       _id_: 'p10012',
       _label_: 'P. Leider',
-      _path_:
-        'resource/SESSION/1/Inactive_32_projects/2014_03/Projectleider/p10012',
+      _path_: 'resource/SESSION/1/Inactive_32_projects/2014_03/Projectleider/p10012',
       _view_: {
         firstName: 'P.',
         txt1: ' ',
