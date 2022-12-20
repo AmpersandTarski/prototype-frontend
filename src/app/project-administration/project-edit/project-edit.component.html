@@ -8,6 +8,8 @@
                     <label class="box-form-label">Name</label>
                     <div class="box-form-value">
                         <app-atomic-alphanumeric
+                            [resource]="this"
+                            propertyName="Name"
                             [property]="data.Name"
                             isUni
                             isTot
