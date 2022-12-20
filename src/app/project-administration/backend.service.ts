@@ -1,13 +1,13 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { ProjectsInterface } from './projects.interface';
 import { ActiveProjectsInterface } from './active-projects/active-projects.interface';
 import { ProjectInterface } from './project/project.interface';
 import { IBackendService } from './backend.service.interface';
 import { ListAllInterfacesInterface } from './list-all-interfaces/list-all-interfaces.interface';
 import { PeopleInterface } from './people/people.interface';
 import { PersonInterface } from './person/person.interface';
+import { InactiveProjectsInterface } from './inactive-projects/inactive-projects.interface';
 
 @Injectable()
 export class BackendService implements IBackendService {
@@ -17,10 +17,10 @@ export class BackendService implements IBackendService {
     return this.http.get<ActiveProjectsInterface[]>('resource/SESSION/1/Active_32_projects');
   }
 
-  public getInactiveProjects(): Observable<ProjectsInterface[]> {
-    return this.http.get<ProjectsInterface[]>('resource/SESSION/1/Inactive_32_projects');
+  public getInactiveProjects(): Observable<InactiveProjectsInterface[]> {
+    return this.http.get<InactiveProjectsInterface[]>('resource/SESSION/1/Inactive_32_projects');
   }
-  
+
   public getPeople(): Observable<PeopleInterface[]> {
     return this.http.get<PeopleInterface[]>('resource/SESSION/1/People');
   }
