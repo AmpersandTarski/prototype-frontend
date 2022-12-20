@@ -41,7 +41,9 @@ export abstract class BaseAtomicComponent<T> implements OnInit, OnChanges {
     if (changes.hasOwnProperty('isUni')) {
       this.isUni = changes['isUni'].firstChange;
     }
-    this.setCRUDPermissions(changes['crud'].currentValue);
+    if (changes.hasOwnProperty('crud')) {
+      this.setCRUDPermissions(changes['crud'].currentValue);
+    }
   }
 
   private setCRUDPermissions(crud: string) {
