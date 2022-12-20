@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
+import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 
 @Component({
   template: '',
@@ -28,7 +28,6 @@ export abstract class BaseAtomicComponent<T> implements OnInit, OnChanges {
     return this._isTot;
   }
   @Input() crud: string = 'crud';
-  @Output() propertyEvent = new EventEmitter<T | Array<T> | null>();
 
   ngOnInit(): void {
     this.setCRUDPermissions(this.crud);
@@ -43,13 +42,6 @@ export abstract class BaseAtomicComponent<T> implements OnInit, OnChanges {
       this.isUni = changes['isUni'].firstChange;
     }
     this.setCRUDPermissions(changes['crud'].currentValue);
-  }
-
-  public changeProperty(): void {
-    if (this.oldProperty == this.data) {
-      return;
-    }
-    this.propertyEvent.emit(this.data);
   }
 
   private setCRUDPermissions(crud: string) {
