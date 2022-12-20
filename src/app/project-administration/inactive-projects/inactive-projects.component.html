@@ -1,0 +1,40 @@
+<h3>Inactive Projects</h3>
+<div *ngIf="data$ | async as data; else loading">
+    <app-box-table [data]="data" sortable sortBy="Name" order="desc">
+        <ng-template boxTableHeader>
+            <ng-container *ngTemplateOutlet="header"></ng-container>
+        </ng-template>
+        <ng-template [boxTableRow]="data" let-row>
+            <td>
+                <app-atomic-object [property]="row.Name" label="Name" isUni isTot crud="cRud"> </app-atomic-object>
+            </td>
+            <td>
+                <app-atomic-bigalphanumeric [property]="row.Description" label="Description" isUni crud="cRud">
+                </app-atomic-bigalphanumeric>
+            </td>
+            <td>
+                <app-atomic-object [property]="row.Projectleider" label="Projectleider" isUni crud="cRUD">
+                </app-atomic-object>
+            </td>
+            <td>
+                <app-atomic-alphanumeric [property]="row.Status" label="Status" isUni isTot crud="cRud">
+                </app-atomic-alphanumeric>
+            </td>
+            <td>
+                <app-atomic-boolean [property]="row.Active" isUni crud="cRUd"></app-atomic-boolean>
+            </td>
+        </ng-template>
+    </app-box-table>
+</div>
+
+<ng-template #header>
+    <th>Name</th>
+    <th>Description</th>
+    <th>Projectleider</th>
+    <th>Status</th>
+    <th>Active</th>
+</ng-template>
+
+<ng-template #loading>
+    <app-box-table-loading [nrOfRows]="10"> </app-box-table-loading>
+</ng-template>
