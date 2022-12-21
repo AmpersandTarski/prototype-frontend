@@ -6,9 +6,9 @@ import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/cor
 export abstract class BaseAtomicComponent<T> implements OnInit, OnChanges {
   @Input()
   property: T | Array<T> | null = null;
-  
+
   public data: Array<T> = [];
-  
+
   private _isUni: boolean = false;
   @Input()
   set isUni(attribute: boolean | '') {
