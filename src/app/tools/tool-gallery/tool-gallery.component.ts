@@ -13,7 +13,7 @@ import { applyPatch } from 'fast-json-patch';
   styleUrls: ['./tool-gallery.component.scss'],
 })
 export class ToolGalleryComponent implements Resource<TestDataInterface> {
-  data = JSON.parse(JSON.stringify(testdata[0]));
+  data: TestDataInterface = JSON.parse(JSON.stringify(testdata[0]));
 
   constructor() {}
 

@@ -1,6 +1,22 @@
 <div class="flex flex-wrap">
     <div class="gallery-item">
-        <app-tool-gallery-component titleHeader="{{ data.Name }}" subHeader="Atomic">
+        <app-tool-gallery-component titleHeader="{{ data._label_ }}" subHeader="Object reference">
+            <ng-template #header>
+                <app-atomic-object [property]="data" isUni isTot crud="CRUD"></app-atomic-object>
+            </ng-template>
+            <ng-template #body>
+                <p>
+                    The object component allows the user to inspect and read more of an entity and adds a dropdown of
+                    different actions that the user can take on the entity.
+                </p>
+            </ng-template>
+            <ng-template #footer>
+                <p-button label="How to use" icon="pi pi-question-circle" routerLink="/tools/atomic/object"></p-button>
+            </ng-template>
+        </app-tool-gallery-component>
+    </div>
+    <div class="gallery-item">
+        <app-tool-gallery-component [titleHeader]="data.Name" subHeader="Alphanumeric">
             <ng-template #header>
                 <app-atomic-alphanumeric
                     [resource]="this"
@@ -27,9 +43,9 @@
         </app-tool-gallery-component>
     </div>
     <div class="gallery-item">
-        <app-tool-gallery-component titleHeader="Bigalphanumeric" subHeader="Atomic">
+        <app-tool-gallery-component [titleHeader]="data.Name" subHeader="Bigalphanumeric">
             <ng-template #header>
-                <app-atomic-bigalphanumeric [property]="'Pre-set value'" label="Projects" isUni isTot crud="CRUD">
+                <app-atomic-bigalphanumeric [property]="data.Name" label="Projects" isUni isTot crud="CRUD">
                 </app-atomic-bigalphanumeric>
             </ng-template>
             <ng-template #body>
@@ -45,9 +61,9 @@
         </app-tool-gallery-component>
     </div>
     <div class="gallery-item">
-        <app-tool-gallery-component titleHeader="Hugealphanumeric" subHeader="Atomic">
+        <app-tool-gallery-component [titleHeader]="data.Name" subHeader="Hugealphanumeric">
             <ng-template #header>
-                <app-atomic-hugealphanumeric [property]="'Pre-set value'" label="Projects" isUni isTot crud="CRUD">
+                <app-atomic-hugealphanumeric [property]="data.Name" label="Projects" isUni isTot crud="CRUD">
                 </app-atomic-hugealphanumeric>
             </ng-template>
             <ng-template #body>
@@ -60,7 +76,7 @@
         </app-tool-gallery-component>
     </div>
     <div class="gallery-item">
-        <app-tool-gallery-component titleHeader="Boolean" subHeader="Atomic">
+        <app-tool-gallery-component titleHeader="TODO" subHeader="Boolean">
             <ng-template #header>
                 <app-atomic-boolean [property]="true" isUni isTot crud="CRUD"></app-atomic-boolean>
             </ng-template>
@@ -76,7 +92,7 @@
         </app-tool-gallery-component>
     </div>
     <div class="gallery-item">
-        <app-tool-gallery-component titleHeader="Date" subHeader="Atomic">
+        <app-tool-gallery-component titleHeader="TODO" subHeader="Date">
             <ng-template #header>
                 <app-atomic-date [property]="'26-11-1999'" [format]="'dd-mm-yy'" isUni isTot crud="CRUD">
                 </app-atomic-date>
@@ -93,7 +109,7 @@
         </app-tool-gallery-component>
     </div>
     <div class="gallery-item">
-        <app-tool-gallery-component titleHeader="DateTime" subHeader="Atomic">
+        <app-tool-gallery-component titleHeader="TODO" subHeader="DateTime">
             <ng-template #header>
                 <app-atomic-datetime [property]="'26-11-1999 23:46'" isUni isTot crud="CRUD"></app-atomic-datetime>
             </ng-template>
@@ -107,7 +123,7 @@
         </app-tool-gallery-component>
     </div>
     <div class="gallery-item">
-        <app-tool-gallery-component titleHeader="Float" subHeader="Atomic">
+        <app-tool-gallery-component titleHeader="TODO" subHeader="Float">
             <ng-template #header>
                 <app-atomic-float [property]="'9999999'" isUni isTot crud="CRUD"></app-atomic-float>
             </ng-template>
@@ -123,7 +139,7 @@
         </app-tool-gallery-component>
     </div>
     <div class="gallery-item">
-        <app-tool-gallery-component titleHeader="Integer" subHeader="Atomic">
+        <app-tool-gallery-component titleHeader="TODO" subHeader="Integer">
             <ng-template #header>
                 <app-atomic-integer [property]="9999999" isUni isTot crud="CRUD"></app-atomic-integer>
             </ng-template>
@@ -139,23 +155,7 @@
         </app-tool-gallery-component>
     </div>
     <div class="gallery-item">
-        <app-tool-gallery-component titleHeader="Object" subHeader="Atomic">
-            <ng-template #header>
-                <app-atomic-object [property]="data" isUni isTot crud="CRUD"></app-atomic-object>
-            </ng-template>
-            <ng-template #body>
-                <p>
-                    The object component allows the user to inspect and read more of an entity and adds a dropdown of
-                    different actions that the user can take on the entity.
-                </p>
-            </ng-template>
-            <ng-template #footer>
-                <p-button label="How to use" icon="pi pi-question-circle" routerLink="/tools/atomic/object"></p-button>
-            </ng-template>
-        </app-tool-gallery-component>
-    </div>
-    <div class="gallery-item">
-        <app-tool-gallery-component titleHeader="Password" subHeader="Atomic">
+        <app-tool-gallery-component titleHeader="TODO" subHeader="Password">
             <ng-template #header>
                 <app-atomic-password [property]="'Pre-set value'" isUni isTot crud="CRUD"></app-atomic-password>
             </ng-template>
