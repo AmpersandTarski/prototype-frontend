@@ -20,10 +20,6 @@ export class AtomicAlphanumericComponent extends BaseAtomicComponent<string> imp
   @Input()
   propertyName!: string;
 
-  isNewItemInputRequired() {
-    return this.isTot && this.property?.length === 0;
-  }
-
   override ngOnInit(): void {
     super.ngOnInit();
     this.formControl = new FormControl(this.data[0], { nonNullable: false, updateOn: 'blur' });

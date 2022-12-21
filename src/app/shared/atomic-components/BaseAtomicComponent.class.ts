@@ -63,4 +63,8 @@ export abstract class BaseAtomicComponent<T> implements OnInit, OnChanges {
       return [property];
     }
   }
+
+  public isNewItemInputRequired() {
+    return this.isTot && this.data.length === 0;
+  }
 }
