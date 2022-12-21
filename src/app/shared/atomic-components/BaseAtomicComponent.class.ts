@@ -30,7 +30,6 @@ export abstract class BaseAtomicComponent<T> implements OnInit, OnChanges {
 
   ngOnInit(): void {
     this.setCRUDPermissions(this.crud);
-    // TODO: unneeded when ng formcontrols work
     this.data = this.requireArray(this.property);
   }
 
