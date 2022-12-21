@@ -1,4 +1,4 @@
-# Onboarding
+# prototype-frontend
 
 This document describes the necessary setup to run the **prototype-frontend** application.
 
