@@ -8,8 +8,4 @@ import { BaseAtomicComponent } from '../BaseAtomicComponent.class';
 })
 export class AtomicBigalphanumericComponent extends BaseAtomicComponent<string> {
   newItem!: string;
-
-  isNewItemInputRequired() {
-    return this.isTot && this.property?.length === 0;
-  }
 }
