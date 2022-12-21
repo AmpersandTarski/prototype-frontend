@@ -1,8 +1,16 @@
 <div class="flex flex-wrap">
     <div class="gallery-item">
-        <app-tool-gallery-component titleHeader="Alphanumeric" subHeader="Atomic">
+        <app-tool-gallery-component titleHeader="{{ data.Name }}" subHeader="Atomic">
             <ng-template #header>
-                <app-atomic-alphanumeric [property]="'Pre-set value'" label="Projects" isUni isTot crud="CRUD">
+                <app-atomic-alphanumeric
+                    [resource]="this"
+                    propertyName="Name"
+                    [property]="data.Name"
+                    label="Projects"
+                    isUni
+                    isTot
+                    crud="CRUD"
+                >
                 </app-atomic-alphanumeric>
             </ng-template>
             <ng-template #body>
@@ -133,7 +141,7 @@
     <div class="gallery-item">
         <app-tool-gallery-component titleHeader="Object" subHeader="Atomic">
             <ng-template #header>
-                <app-atomic-object [property]="activeProjects" isUni isTot crud="CRUD"></app-atomic-object>
+                <app-atomic-object [property]="data" isUni isTot crud="CRUD"></app-atomic-object>
             </ng-template>
             <ng-template #body>
                 <p>
