@@ -21,10 +21,12 @@ export class ToolGalleryComponent implements Resource<TestDataInterface> {
     // Prepend path of patches with '/', because our backend has a different (probably wrong) implementation
     // of the JSON-Patch (RFC6902) standard. The applyPatch function below requires the '/'.
     patches.forEach((x) => (x.path = `/${x.path}`));
+    let content = applyPatch(this.data, patches).newDocument;
+    content._label_ = content.Name; // Mock rule in backend
 
     return from([
       {
-        content: applyPatch(this.data, patches).newDocument,
+        content: content,
         patches: patches,
         isCommitted: true,
       } as PatchResponse<TestDataInterface>,
