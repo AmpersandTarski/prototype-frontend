@@ -5,6 +5,7 @@ import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/cor
 })
 export abstract class BaseAtomicComponent<T> implements OnInit, OnChanges {
   @Input()
+  // TODO Refactor to combination of parent-propertyName. We need a link to the parent anyway
   property: T | Array<T> | null = null;
 
   public data: Array<T> = [];

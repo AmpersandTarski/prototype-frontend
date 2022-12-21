@@ -14,11 +14,13 @@ export class AtomicAlphanumericComponent extends BaseAtomicComponent<string> imp
   newItemControl: FormControl<string> = new FormControl<string>('', { nonNullable: true, updateOn: 'blur' });
 
   @Input()
-  // TODO: change unknown type
-  resource!: Resource<unknown>;
+  // The type of the T for Resource<T> is not relevant nor to determine here; therefore unknow
+  // We require a Resource, that implements the required methods (like patch)
+  // Most likely this is a top-level component for a specific application interface (e.g. ProjectComponent)
+  resource!: Resource<unknown>; // TODO move to the base class. It is needed for all atomic components
 
   @Input()
-  propertyName!: string;
+  propertyName!: string; // TODO move to the base class. It is needed for all atomic components
 
   override ngOnInit(): void {
     super.ngOnInit();
