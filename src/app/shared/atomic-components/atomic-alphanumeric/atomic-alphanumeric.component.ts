@@ -10,8 +10,8 @@ import { Resource } from '../../interfacing/resource.interface';
   styleUrls: ['./atomic-alphanumeric.component.css'],
 })
 export class AtomicAlphanumericComponent extends BaseAtomicComponent<string> implements OnInit {
-  value!: FormControl<string | null>;
-  newItem: FormControl<string> = new FormControl<string>('', { nonNullable: true, updateOn: 'blur' });
+  formControl!: FormControl<string | null>;
+  newItemControl: FormControl<string> = new FormControl<string>('', { nonNullable: true, updateOn: 'blur' });
 
   @Input()
   // TODO: change unknown type
@@ -26,8 +26,9 @@ export class AtomicAlphanumericComponent extends BaseAtomicComponent<string> imp
 
   override ngOnInit(): void {
     super.ngOnInit();
-    this.value = new FormControl(this.data[0], { nonNullable: false, updateOn: 'blur' });
-    this.value.valueChanges
+    this.formControl = new FormControl(this.data[0], { nonNullable: false, updateOn: 'blur' });
+
+    this.formControl.valueChanges
       .pipe(
         debounceTime(300),
         distinctUntilChanged(),
