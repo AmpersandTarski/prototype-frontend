@@ -39,7 +39,7 @@ export class AtomicAlphanumericComponent extends BaseAtomicComponent<string> imp
           .patch([
             {
               op: 'replace',
-              path: this.propertyName,
+              path: this.propertyName, // FIXME: this must be relative to path of this.resource
               value: x,
             },
           ])
