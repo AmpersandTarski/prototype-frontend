@@ -1,5 +1,5 @@
 export interface PatchReplace {
-    op: 'replace',
-    path: string,
-    value: string | null,
+  op: 'replace';
+  path: string;
+  value: string | null;
 }

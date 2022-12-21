@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { BaseAtomicComponent } from '../BaseAtomicComponent.class';
 import { FormControl } from '@angular/forms';
 import { debounceTime, distinctUntilChanged, map, tap } from 'rxjs';
@@ -9,12 +9,13 @@ import { Resource } from '../../interfacing/resource.interface';
   templateUrl: './atomic-alphanumeric.component.html',
   styleUrls: ['./atomic-alphanumeric.component.css'],
 })
-export class AtomicAlphanumericComponent extends BaseAtomicComponent<string> {
+export class AtomicAlphanumericComponent extends BaseAtomicComponent<string> implements OnInit {
   value!: FormControl<string | null>;
-  newItem: FormControl<string> = new FormControl<string>('', {nonNullable: true});
+  newItem: FormControl<string> = new FormControl<string>('', { nonNullable: true });
 
   @Input()
-  resource!: Resource<any>;
+  // TODO: change unknown type
+  resource!: Resource<unknown>;
 
   @Input()
   propertyName!: string;
@@ -25,20 +26,23 @@ export class AtomicAlphanumericComponent extends BaseAtomicComponent<string> {
 
   override ngOnInit(): void {
     super.ngOnInit();
-    this.value = new FormControl(this.requireArray(this.property)[0], {nonNullable: false});
+    this.value = new FormControl(this.data[0], { nonNullable: false });
     this.value.valueChanges
       .pipe(
         debounceTime(300),
         distinctUntilChanged(),
-        map(x => x === '' ? null : x), // transform empty string to null value
-        tap(x => console.log(x)), // TODO: remove this line
+        map((x) => (x === '' ? null : x)), // transform empty string to null value
       )
-      .subscribe(
-        x => this.resource.patch([{
-          op: 'replace',
-          path: this.propertyName,
-          value: x,
-        }]).subscribe()
+      .subscribe((x) =>
+        this.resource
+          .patch([
+            {
+              op: 'replace',
+              path: this.propertyName,
+              value: x,
+            },
+          ])
+          .subscribe(),
       );
   }
 }

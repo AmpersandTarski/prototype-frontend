@@ -31,13 +31,12 @@ export class ProjectEditComponent implements OnInit, Resource<ProjectInterface> 
   }
 
   patch(patches: PatchReplace[]): Observable<PatchResponse<ProjectInterface>> {
-    return this.service.patchProject(this.projectId, patches)
-      .pipe(
-        tap(x => {
-          if (x.isCommitted) {
-            this.data$ = from([x.content])
-          }
-        }),
-      );
+    return this.service.patchProject(this.projectId, patches).pipe(
+      tap((x) => {
+        if (x.isCommitted) {
+          this.data$ = from([x.content]);
+        }
+      }),
+    );
   }
 }

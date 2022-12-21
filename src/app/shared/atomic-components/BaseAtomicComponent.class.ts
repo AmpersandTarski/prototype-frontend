@@ -6,7 +6,6 @@ import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/cor
 export abstract class BaseAtomicComponent<T> implements OnInit, OnChanges {
   @Input() property: T | Array<T> | null = null;
   public data: Array<T> = [];
-  private oldProperty: Array<T> = [];
   public canCreate!: boolean;
   public canRead!: boolean;
   public canUpdate!: boolean;
@@ -32,7 +31,6 @@ export abstract class BaseAtomicComponent<T> implements OnInit, OnChanges {
   ngOnInit(): void {
     this.setCRUDPermissions(this.crud);
     // TODO: unneeded when ng formcontrols work
-    this.oldProperty = this.requireArray(this.property);
     this.data = this.requireArray(this.property);
   }
 
