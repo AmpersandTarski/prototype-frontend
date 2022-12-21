@@ -4,12 +4,11 @@ import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/cor
   template: '',
 })
 export abstract class BaseAtomicComponent<T> implements OnInit, OnChanges {
-  @Input() property: T | Array<T> | null = null;
+  @Input()
+  property: T | Array<T> | null = null;
+  
   public data: Array<T> = [];
-  public canCreate!: boolean;
-  public canRead!: boolean;
-  public canUpdate!: boolean;
-  public canDelete!: boolean;
+  
   private _isUni: boolean = false;
   @Input()
   set isUni(attribute: boolean | '') {
@@ -18,6 +17,7 @@ export abstract class BaseAtomicComponent<T> implements OnInit, OnChanges {
   get isUni(): boolean {
     return this._isUni;
   }
+
   private _isTot: boolean = false;
   @Input()
   set isTot(attribute: boolean | '') {
@@ -26,7 +26,14 @@ export abstract class BaseAtomicComponent<T> implements OnInit, OnChanges {
   get isTot(): boolean {
     return this._isTot;
   }
-  @Input() crud: string = 'crud';
+
+  @Input()
+  crud: string = 'crud';
+
+  public canCreate!: boolean;
+  public canRead!: boolean;
+  public canUpdate!: boolean;
+  public canDelete!: boolean;
 
   ngOnInit(): void {
     this.setCRUDPermissions(this.crud);
