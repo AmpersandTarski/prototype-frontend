@@ -1,5 +1,5 @@
-<div *ngIf="canRead; else notReadable">
-    <div class="p-inputgroup" *ngIf="canUpdate; else notUpdatable">
+<div *ngIf="canRead(); else notReadable">
+    <div class="p-inputgroup" *ngIf="canUpdate(); else notUpdatable">
         <div class="w-full" *ngIf="isUni; else isNotUni">
             <textarea
                 pInputTextarea

@@ -28,15 +28,22 @@ export abstract class BaseAtomicComponent<T> implements OnInit, OnChanges {
   }
 
   @Input()
-  crud: string = 'crud';
+  crud: string = 'cRud';
 
-  public canCreate!: boolean;
-  public canRead!: boolean;
-  public canUpdate!: boolean;
-  public canDelete!: boolean;
+  public canCreate(): boolean {
+    return this.crud.includes('C');
+  }
+  public canRead(): boolean {
+    return this.crud.includes('R');
+  }
+  public canUpdate(): boolean {
+    return this.crud.includes('U');
+  }
+  public canDelete(): boolean {
+    return this.crud.includes('D');
+  }
 
   ngOnInit(): void {
-    this.setCRUDPermissions(this.crud);
     this.data = this.requireArray(this.property);
   }
 
@@ -45,21 +52,6 @@ export abstract class BaseAtomicComponent<T> implements OnInit, OnChanges {
     if (changes.hasOwnProperty('isUni')) {
       this.isUni = changes['isUni'].firstChange;
     }
-    if (changes.hasOwnProperty('crud')) {
-      this.setCRUDPermissions(changes['crud'].currentValue);
-    }
-  }
-
-  private setCRUDPermissions(crud: string) {
-    let c = crud[0];
-    let r = crud[1];
-    let u = crud[2];
-    let d = crud[3];
-
-    this.canCreate = c == c.toUpperCase();
-    this.canRead = r == r.toUpperCase();
-    this.canUpdate = u == u.toUpperCase();
-    this.canDelete = d == d.toUpperCase();
   }
 
   public requireArray(property: T | Array<T> | null) {
