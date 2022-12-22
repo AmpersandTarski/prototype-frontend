@@ -1,6 +1,6 @@
-<div *ngIf="canRead; else notReadable">
+<div *ngIf="canRead(); else notReadable">
     <p-calendar
-        *ngIf="canUpdate; else notUpdatable"
+        *ngIf="canUpdate(); else notUpdatable"
         [(ngModel)]="property"
         [showIcon]="true"
         [showClear]="true"
@@ -8,8 +8,6 @@
         [readonlyInput]="true"
         [showTime]="true"
         (ngModelChange)="onDateChange($event)"
-        (onSelect)="changeProperty()"
-        (onClear)="changeProperty()"
     ></p-calendar>
 </div>
 

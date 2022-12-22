@@ -8,11 +8,12 @@
                     <label class="box-form-label">Name</label>
                     <div class="box-form-value">
                         <app-atomic-alphanumeric
+                            [resource]="this"
+                            propertyName="Name"
                             [property]="data.Name"
                             isUni
                             isTot
                             crud="CRUD"
-                            (propertyEvent)="patchProject($event, '/Name')"
                         ></app-atomic-alphanumeric>
                     </div>
                 </div>
@@ -20,11 +21,12 @@
                     <label class="box-form-label">Description</label>
                     <div class="box-form-value">
                         <app-atomic-bigalphanumeric
+                            [resource]="this"
+                            propertyName="Description"
                             [property]="data.Description"
                             isUni
                             isTot
                             crud="CRUD"
-                            (propertyEvent)="patchProject($event, '/Description')"
                         ></app-atomic-bigalphanumeric>
                     </div>
                 </div>
@@ -32,11 +34,12 @@
                     <label class="box-form-label">(Planned) start date</label>
                     <div class="box-form-value">
                         <app-atomic-date
+                            [resource]="this"
+                            propertyName="Start_32_date"
                             [property]="data._40_Planned_41__32_start_32_date"
                             isUni
                             isTot
                             crud="CRUD"
-                            (propertyEvent)="patchProject($event, '/Start_32_date')"
                         ></app-atomic-date>
                     </div>
                 </div>
@@ -44,11 +47,12 @@
                     <label class="box-form-label">Status</label>
                     <div class="box-form-value">
                         <app-atomic-alphanumeric
+                            [resource]="this"
+                            propertyName="Status"
                             [property]="data.Status"
                             isUni
                             isTot
                             crud="CRUD"
-                            (propertyEvent)="patchProject($event, '/Status')"
                         ></app-atomic-alphanumeric>
                     </div>
                 </div>
@@ -56,24 +60,19 @@
                     <label class="box-form-label">Active</label>
                     <div class="box-form-value">
                         <app-atomic-boolean
+                            [resource]="this"
+                            propertyName="Active"
                             [property]="data.Active"
                             isUni
                             isTot
                             crud="CRUD"
-                            (propertyEvent)="patchProject($event, '/Active')"
                         ></app-atomic-boolean>
                     </div>
                 </div>
                 <div class="field col-12 box-form-field">
                     <label class="box-form-label">Current PL</label>
                     <div class="box-form-value">
-                        <app-atomic-object
-                            [property]="data.Current_32_PL"
-                            isUni
-                            isTot
-                            crud="CRUD"
-                            (propertyEvent)="patchProject($event, '/Project_32_members')"
-                        ></app-atomic-object>
+                        <app-atomic-object [property]="data.Current_32_PL" isUni isTot crud="CRUD"></app-atomic-object>
                     </div>
                 </div>
                 <div class="field col-12 box-form-field">
@@ -84,7 +83,6 @@
                             isUni
                             isTot
                             crud="CRUD"
-                            (propertyEvent)="patchProject($event, '/Project_32_members')"
                         ></app-atomic-object>
                     </div>
                 </div>

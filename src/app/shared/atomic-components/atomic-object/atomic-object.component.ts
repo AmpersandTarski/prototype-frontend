@@ -3,8 +3,6 @@ import { MenuItem } from 'primeng/api';
 import { BaseAtomicComponent } from '../BaseAtomicComponent.class';
 import { Router } from '@angular/router';
 import { InterfaceRefObject, ObjectBase } from '../../objectBase.interface';
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-type AtomicObjectMenuItem = any;
 
 @Component({
   selector: 'app-atomic-object',
@@ -12,7 +10,7 @@ type AtomicObjectMenuItem = any;
   styleUrls: ['./atomic-object.component.scss'],
 })
 export class AtomicObjectComponent extends BaseAtomicComponent<ObjectBase> implements OnInit {
-  public menuItems: AtomicObjectMenuItem = [];
+  public menuItems: { [index: string]: Array<MenuItem> } = {};
 
   constructor(private router: Router) {
     super();

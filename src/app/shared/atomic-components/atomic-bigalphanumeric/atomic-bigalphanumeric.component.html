@@ -1,11 +1,10 @@
-<div *ngIf="canRead; else notReadable">
-    <div class="p-inputgroup" *ngIf="canUpdate; else notUpdatable">
+<div *ngIf="canRead(); else notReadable">
+    <div class="p-inputgroup" *ngIf="canUpdate(); else notUpdatable">
         <div class="w-full" *ngIf="isUni; else isNotUni">
             <textarea
                 pInputTextarea
-                [(ngModel)]="property"
+                [formControl]="formControl"
                 [required]="isTot"
-                (blur)="changeProperty()"
                 maxlength="64000"
                 class="w-full min-w-10rem"
             ></textarea>
@@ -23,7 +22,7 @@
             <div class="p-inputgroup">
                 <textarea
                     pInputTextarea
-                    [(ngModel)]="newItem"
+                    [formControl]="newItemControl"
                     [required]="isNewItemInputRequired()"
                     maxlength="64000"
                     placeholder="Add text"
@@ -36,12 +35,6 @@
 </ng-template>
 
 <ng-template #notUpdatable>
-    <div *ngIf="isUni; else isNotUniAndNotUpdatable">
-        <div class="wordwrap">{{ property }}</div>
-    </div>
-</ng-template>
-
-<ng-template #isNotUniAndNotUpdatable>
     <div *ngFor="let row of data" class="wordwrap">{{ row }}</div>
 </ng-template>
 
