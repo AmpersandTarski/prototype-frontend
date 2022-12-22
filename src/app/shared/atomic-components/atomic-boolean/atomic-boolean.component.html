@@ -1,11 +1,11 @@
-<div *ngIf="canRead; else notReadable">
+<div *ngIf="canRead(); else notReadable">
     <div class="p-inputgroup" *ngIf="isUni; else isNotUni">
         <div class="w-full">
             <p-inputSwitch
-                *ngIf="isUni && canRead"
+                *ngIf="isUni && canRead()"
                 [(ngModel)]="property"
-                [disabled]="!canUpdate"
-                (click)="getState(); changeProperty()"
+                [disabled]="!canUpdate()"
+                (click)="getState()"
             ></p-inputSwitch>
         </div>
     </div>

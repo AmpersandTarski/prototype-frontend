@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 // Components
 import { AtomicAlphanumericComponent } from './atomic-components/atomic-alphanumeric/atomic-alphanumeric.component';
@@ -58,6 +58,7 @@ import { ButtonModule } from 'primeng/button';
   ],
   imports: [
     CommonModule,
+    ReactiveFormsModule,
     FormsModule,
     InputTextModule,
     InputSwitchModule,

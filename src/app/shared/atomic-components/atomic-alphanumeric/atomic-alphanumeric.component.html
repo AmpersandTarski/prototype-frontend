@@ -1,14 +1,7 @@
-<div *ngIf="canRead; else notReadable">
-    <div class="p-inputgroup" *ngIf="canUpdate; else notUpdatable">
+<div *ngIf="canRead(); else notReadable">
+    <div class="p-inputgroup" *ngIf="canUpdate(); else notUpdatable">
         <div class="w-full" *ngIf="isUni; else isNotUni">
-            <input
-                type="text"
-                class="min-w-10rem w-full"
-                pInputText
-                (blur)="changeProperty()"
-                [(ngModel)]="property"
-                [required]="isTot"
-            />
+            <input type="text" class="min-w-10rem w-full" pInputText [formControl]="formControl" [required]="isTot" />
         </div>
     </div>
 </div>
@@ -25,7 +18,7 @@
                     type="text"
                     class="min-w-10rem w-full"
                     pInputText
-                    [(ngModel)]="newItem"
+                    [formControl]="newItemControl"
                     placeholder="Add text"
                     [required]="isNewItemInputRequired()"
                 />

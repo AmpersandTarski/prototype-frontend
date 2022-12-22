@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, ParamMap } from '@angular/router';
-import { Observable, switchMap } from 'rxjs';
+import { from, Observable, switchMap, tap } from 'rxjs';
+import { PatchReplace } from 'src/app/shared/interfacing/patch-replace.interface';
+import { PatchResponse } from 'src/app/shared/interfacing/patch-response.interface';
+import { Resource } from 'src/app/shared/interfacing/resource.interface';
 import { BackendService } from '../backend.service';
 import { ProjectInterface } from '../project/project.interface';
 
@@ -9,7 +12,7 @@ import { ProjectInterface } from '../project/project.interface';
   templateUrl: './project-edit.component.html',
   styleUrls: ['./project-edit.component.scss'],
 })
-export class ProjectEditComponent implements OnInit {
+export class ProjectEditComponent implements OnInit, Resource<ProjectInterface> {
   public data$!: Observable<ProjectInterface>;
   public projectId!: string;
 
@@ -27,17 +30,13 @@ export class ProjectEditComponent implements OnInit {
     );
   }
 
-  patchProject(property: any, path: string) {
-    let body = [
-      {
-        op: 'replace',
-        path: path,
-        value: property,
-      },
-    ];
-
-    this.service.patchProject(this.projectId, body).subscribe(() => {
-      this.data$ = this.service.getProject(this.projectId);
-    });
+  patch(patches: PatchReplace[]): Observable<PatchResponse<ProjectInterface>> {
+    return this.service.patchProject(this.projectId, patches).pipe(
+      tap((x) => {
+        if (x.isCommitted) {
+          this.data$ = from([x.content]);
+        }
+      }),
+    );
   }
 }

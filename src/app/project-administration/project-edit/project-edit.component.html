@@ -8,11 +8,12 @@
                     <label class="box-form-label">Name</label>
                     <div class="box-form-value">
                         <app-atomic-alphanumeric
+                            [resource]="this"
+                            propertyName="Name"
                             [property]="data.Name"
                             isUni
                             isTot
                             crud="CRUD"
-                            (propertyEvent)="patchProject($event, '/Name')"
                         ></app-atomic-alphanumeric>
                     </div>
                 </div>
@@ -24,7 +25,6 @@
                             isUni
                             isTot
                             crud="CRUD"
-                            (propertyEvent)="patchProject($event, '/Description')"
                         ></app-atomic-bigalphanumeric>
                     </div>
                 </div>
@@ -36,7 +36,6 @@
                             isUni
                             isTot
                             crud="CRUD"
-                            (propertyEvent)="patchProject($event, '/Start_32_date')"
                         ></app-atomic-date>
                     </div>
                 </div>
@@ -48,32 +47,19 @@
                             isUni
                             isTot
                             crud="CRUD"
-                            (propertyEvent)="patchProject($event, '/Status')"
                         ></app-atomic-alphanumeric>
                     </div>
                 </div>
                 <div class="field col-12 box-form-field">
                     <label class="box-form-label">Active</label>
                     <div class="box-form-value">
-                        <app-atomic-boolean
-                            [property]="data.Active"
-                            isUni
-                            isTot
-                            crud="CRUD"
-                            (propertyEvent)="patchProject($event, '/Active')"
-                        ></app-atomic-boolean>
+                        <app-atomic-boolean [property]="data.Active" isUni isTot crud="CRUD"></app-atomic-boolean>
                     </div>
                 </div>
                 <div class="field col-12 box-form-field">
                     <label class="box-form-label">Current PL</label>
                     <div class="box-form-value">
-                        <app-atomic-object
-                            [property]="data.Current_32_PL"
-                            isUni
-                            isTot
-                            crud="CRUD"
-                            (propertyEvent)="patchProject($event, '/Project_32_members')"
-                        ></app-atomic-object>
+                        <app-atomic-object [property]="data.Current_32_PL" isUni isTot crud="CRUD"></app-atomic-object>
                     </div>
                 </div>
                 <div class="field col-12 box-form-field">
@@ -84,7 +70,6 @@
                             isUni
                             isTot
                             crud="CRUD"
-                            (propertyEvent)="patchProject($event, '/Project_32_members')"
                         ></app-atomic-object>
                     </div>
                 </div>
