@@ -1,4 +1,5 @@
 import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { Resource } from '../interfacing/resource.interface';
 
 @Component({
   template: '',
@@ -7,6 +8,15 @@ export abstract class BaseAtomicComponent<T> implements OnInit, OnChanges {
   @Input()
   // TODO Refactor to combination of parent-propertyName. We need a link to the parent anyway
   property: T | Array<T> | null = null;
+
+  @Input()
+  // The type of the T for Resource<T> is not relevant nor to be determined here; therefore unknown
+  // We require a Resource, that implements the required methods (like patch)
+  // Most likely this is a top-level component for a specific application interface (e.g. ProjectComponent)
+  resource!: Resource<unknown>;
+
+  @Input()
+  propertyName!: string;
 
   public data: Array<T> = [];
 
