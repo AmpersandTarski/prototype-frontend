@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { BaseAtomicComponent } from '../BaseAtomicComponent.class';
 
@@ -7,7 +7,7 @@ import { BaseAtomicComponent } from '../BaseAtomicComponent.class';
   templateUrl: './atomic-bigalphanumeric.component.html',
   styleUrls: ['./atomic-bigalphanumeric.component.css'],
 })
-export class AtomicBigalphanumericComponent extends BaseAtomicComponent<string> {
+export class AtomicBigalphanumericComponent extends BaseAtomicComponent<string> implements OnInit {
   formControl!: FormControl<string | null>;
   newItemControl: FormControl<string> = new FormControl<string>('', { nonNullable: true, updateOn: 'blur' });
 

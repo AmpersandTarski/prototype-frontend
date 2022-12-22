@@ -47,6 +47,8 @@
                     <label class="box-form-label">Status</label>
                     <div class="box-form-value">
                         <app-atomic-alphanumeric
+                            [resource]="this"
+                            propertyName="Status"
                             [property]="data.Status"
                             isUni
                             isTot
@@ -57,7 +59,14 @@
                 <div class="field col-12 box-form-field">
                     <label class="box-form-label">Active</label>
                     <div class="box-form-value">
-                        <app-atomic-boolean [property]="data.Active" isUni isTot crud="CRUD"></app-atomic-boolean>
+                        <app-atomic-boolean
+                            [resource]="this"
+                            propertyName="Active"
+                            [property]="data.Active"
+                            isUni
+                            isTot
+                            crud="CRUD"
+                        ></app-atomic-boolean>
                     </div>
                 </div>
                 <div class="field col-12 box-form-field">

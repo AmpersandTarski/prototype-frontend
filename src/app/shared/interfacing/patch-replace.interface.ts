@@ -1,5 +1,6 @@
 export interface PatchReplace {
   op: 'replace';
   path: string;
-  value: string | null;
+  // make generic
+  value: string | boolean | null;
 }
