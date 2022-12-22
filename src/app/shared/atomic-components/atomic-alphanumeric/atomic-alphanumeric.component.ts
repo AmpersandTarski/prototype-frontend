@@ -16,18 +16,16 @@ export class AtomicAlphanumericComponent extends BaseAtomicComponent<string> imp
     super.ngOnInit();
     this.formControl = new FormControl(this.data[0], { nonNullable: false, updateOn: 'blur' });
 
-    this.formControl.valueChanges.subscribe(
-      (x) =>
-        this.resource
-          .patch([
-            {
-              op: 'replace',
-              path: this.propertyName, // FIXME: this must be relative to path of this.resource
-              value: x,
-            },
-          ])
-          .subscribe(),
-      // .subscribe(() => this.resource.data$.subscribe((x: any) => console.log(x))),
+    this.formControl.valueChanges.subscribe((x) =>
+      this.resource
+        .patch([
+          {
+            op: 'replace',
+            path: this.propertyName, // FIXME: this must be relative to path of this.resource
+            value: x,
+          },
+        ])
+        .subscribe(),
     );
   }
 }
