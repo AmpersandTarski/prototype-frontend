@@ -25,6 +25,14 @@ export class AtomicObjectComponent extends BaseAtomicComponent<ObjectBase> imple
     });
   }
 
+  public remove(fieldName: string, object: ObjectBase, patchResource: any) {
+    //TODO: connect to patch request with angular forms
+  }
+
+  public destroy(fieldName: string, object: ObjectBase) {
+    //TODO connect to delete request
+  }
+
   public navigateToEntity(type: string, id: string) {
     this.router.navigate(['p', type.toLowerCase(), `${id}`]);
   }
