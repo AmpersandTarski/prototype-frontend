@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ɵɵsetComponentScope } from '@angular/core';
 import { ActivatedRoute, ParamMap } from '@angular/router';
-import { from, Observable, switchMap, tap } from 'rxjs';
+import { from, Observable, reduce, switchMap, tap } from 'rxjs';
 import { PatchReplace } from 'src/app/shared/interfacing/patch-replace.interface';
 import { PatchResponse } from 'src/app/shared/interfacing/patch-response.interface';
 import { Resource } from 'src/app/shared/interfacing/resource.interface';
@@ -15,7 +15,6 @@ import { ProjectInterface } from '../project/project.interface';
 export class ProjectEditComponent implements OnInit, Resource<ProjectInterface> {
   public data$!: Observable<ProjectInterface>;
   public projectId!: string;
-
   constructor(private route: ActivatedRoute, private service: BackendService) {}
 
   ngOnInit(): void {

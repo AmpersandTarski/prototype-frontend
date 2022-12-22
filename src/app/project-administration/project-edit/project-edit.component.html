@@ -21,6 +21,8 @@
                     <label class="box-form-label">Description</label>
                     <div class="box-form-value">
                         <app-atomic-bigalphanumeric
+                            [resource]="this"
+                            propertyName="Description"
                             [property]="data.Description"
                             isUni
                             isTot
