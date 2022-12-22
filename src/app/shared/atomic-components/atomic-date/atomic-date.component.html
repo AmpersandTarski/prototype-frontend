@@ -4,8 +4,7 @@
         [showClear]="true"
         [readonlyInput]="true"
         [dateFormat]="format"
-        [(ngModel)]="property"
-        (ngModelChange)="onDateChange($event)"
+        [formControl]="formControl"
     ></p-calendar>
 </div>
 
