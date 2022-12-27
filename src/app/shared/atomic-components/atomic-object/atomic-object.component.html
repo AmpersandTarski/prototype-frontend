@@ -1,6 +1,6 @@
 <div *ngFor="let object of data">
     <div
-        *ngIf="canUpdate"
+        *ngIf="canUpdate()"
         class="pi pi-fw pi-minus"
         (click)="remove('template', object, object._path_)"
         pTooltip="Remove"
@@ -9,7 +9,7 @@
     ></div>
 
     <div
-        *ngIf="canDelete"
+        *ngIf="canDelete()"
         class="pi pi-fw pi-trash"
         (click)="destroy('template', object)"
         pTooltip="Destroy"
@@ -37,7 +37,17 @@
     <span *ngIf="object._ifcs_.length == 0 || object._ifcs_ == undefined">{{ object._label_ }}</span>
 </div>
 
-<!-- <p-dropdown *ngIf="canUpdate" [(ngModel)]="data" optionLabel="name"></p-dropdown>
+<p-dropdown
+    *ngIf="alternativeObjects$ | async as alternativeObjects"
+    [options]="alternativeObjects"
+    [formControl]="newItemControl"
+    optionLabel="_label_"
+    [filter]="true"
+    filterBy="_label_"
+    [showClear]="true"
+    placeholder="Select an object"
+>
+    <!-- <p-dropdown *ngIf="canUpdate" [(ngModel)]="data" optionLabel="name"></p-dropdown>
 
 <div ng-controller="AtomicTypeAheadController">
     <input
@@ -67,3 +77,4 @@
     >$endif$
     <div ng-show="hasNoResults && selected.value" style="color: orangered; font-size: 12px">$target$ not found!</div>
 </div> -->
+</p-dropdown>
