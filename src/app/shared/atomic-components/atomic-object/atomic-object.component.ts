@@ -30,23 +30,39 @@ export class AtomicObjectComponent extends BaseAtomicComponent<ObjectBase> imple
 
   override ngOnInit(): void {
     super.ngOnInit();
+
     this.data.forEach((object) => {
       this.menuItems[object._id_] = this.toPrimeNgMenuModel(object._ifcs_, object._id_);
     });
-    this.alternativeObjects$ = this.service.getPeople();
-    this.newItemControl.valueChanges.subscribe((x: any) =>
-      this.resource
+
+    if (this.canUpdate()) {
+      this.alternativeObjects$ = this.getPatchItems();
+    }
+
+    this.newItemControl.valueChanges.subscribe((x: ObjectBase | string) => {
+      if (x == '') return;
+      const y = x as ObjectBase;
+
+      return this.resource
         .patch([
           {
             op: 'add',
             path: this.propertyName, // FIXME: this must be relative to path of this.resource
-            value: x._id_,
+            value: y._id_,
           },
         ])
         .subscribe(() => {
-          this.data.push(x);
-        }),
-    );
+          this.newItemControl.setValue('');
+          for (const item of this.data) {
+            if (item._id_ == y._id_) return;
+          }
+          this.data.push(x as ObjectBase);
+        });
+    });
+  }
+
+  getPatchItems(): Observable<ObjectBase[]> {
+    return this.service.getPeople();
   }
 
   public remove(fieldName: string, object: ObjectBase, patchResource: unknown) {
