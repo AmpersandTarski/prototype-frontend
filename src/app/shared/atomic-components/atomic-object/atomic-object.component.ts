@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { MenuItem } from 'primeng/api';
 import { BaseAtomicComponent } from '../BaseAtomicComponent.class';
 import { Router } from '@angular/router';
@@ -16,13 +16,9 @@ import { PersonInterface } from 'src/app/project-administration/person/person.in
 export class AtomicObjectComponent extends BaseAtomicComponent<ObjectBase> implements OnInit {
   public menuItems: { [index: string]: Array<MenuItem> } = {};
   public alternativeObjects$!: Observable<ObjectBase[]>;
+  @Input()
+  public placeholder!: string;
   newItemControl: FormControl<string> = new FormControl<string>('', { nonNullable: true, updateOn: 'change' });
-
-  set selectedObject(object: ObjectBase | null | undefined) {
-    if (object) {
-      this.replaceObject(object);
-    }
-  }
 
   constructor(private router: Router, private service: BackendService) {
     super();
@@ -36,6 +32,7 @@ export class AtomicObjectComponent extends BaseAtomicComponent<ObjectBase> imple
     });
 
     if (this.canUpdate()) {
+      if (this.isUni && this.data.length > 0) return;
       this.alternativeObjects$ = this.getPatchItems();
     }
 
@@ -47,7 +44,7 @@ export class AtomicObjectComponent extends BaseAtomicComponent<ObjectBase> imple
         .patch([
           {
             op: 'add',
-            path: this.propertyName, // FIXME: this must be relative to path of this.resource
+            path: this.propertyName,
             value: y._id_,
           },
         ])
@@ -62,11 +59,27 @@ export class AtomicObjectComponent extends BaseAtomicComponent<ObjectBase> imple
   }
 
   getPatchItems(): Observable<ObjectBase[]> {
-    return this.service.getPeople();
+    return this.service.getPeople(); //TODO make generic
   }
 
   public remove(fieldName: string, object: ObjectBase, patchResource: unknown) {
-    //TODO: connect to patch request with angular forms
+    return this.resource
+      .patch([
+        {
+          op: 'remove',
+          path: `${this.propertyName}/${object._id_}`,
+        },
+      ])
+      .subscribe(() => {
+        this.newItemControl.setValue('');
+        for (const item of this.data) {
+          if (item._id_ == object._id_) return;
+          const index = this.data.indexOf(object, 0);
+          if (index > -1) {
+            this.data.splice(index, 1);
+          }
+        }
+      });
   }
 
   public destroy(fieldName: string, object: ObjectBase) {
@@ -87,18 +100,4 @@ export class AtomicObjectComponent extends BaseAtomicComponent<ObjectBase> imple
         },
     );
   }
-
-  public replaceObject(object: ObjectBase) {
-    let body = [
-      {
-        op: 'replace',
-        path: '/Projectleider',
-        value: object._id_,
-      },
-    ];
-    // this.service.patchObject('/resource/SESSION/1/Inactive_32_projects/2013_01', body).subscribe(() => {});
-  }
-
-  //[{op: "add", path: "/Project_32_members", value: "p10009"}]
-  //[{op: "remove", path: "/Project_32_members/p10009"}]
 }
