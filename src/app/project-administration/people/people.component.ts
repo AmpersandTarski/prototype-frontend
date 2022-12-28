@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { BackendService } from '../backend.service';
 import { PeopleInterface } from './people.interface';
@@ -11,9 +12,16 @@ import { PeopleInterface } from './people.interface';
 export class PeopleComponent implements OnInit {
   data$!: Observable<PeopleInterface[]>;
 
-  constructor(private service: BackendService) {}
+  constructor(private service: BackendService, private router: Router) {}
 
   ngOnInit(): void {
     this.data$ = this.service.getPeople();
+  }
+
+  public newPerson(): void {
+    const newPersonId = this.service.postPerson();
+    newPersonId.subscribe((person) => {
+      this.router.navigate(['p', 'person', `${person._id_}`]);
+    });
   }
 }

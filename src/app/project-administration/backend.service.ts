@@ -45,4 +45,8 @@ export class BackendService implements IBackendService {
   public patchPerson(id: string, data: any): Observable<PersonInterface> {
     return this.http.patch<PersonInterface>(`resource/Person/${id}/Person`, data);
   }
+
+  public postPerson(): Observable<{ _id_: string }> {
+    return this.http.post<{ _id_: string }>(`resource/Person`, {});
+  }
 }
