@@ -2,7 +2,7 @@
     <div
         *ngIf="canUpdate()"
         class="pi pi-fw pi-minus"
-        (click)="remove('template', object, object._path_)"
+        (click)="remove(object)"
         pTooltip="Remove"
         tooltipPosition="left"
         style="color: red; position: relative; display: inline-block; bottom: 9px; cursor: pointer"

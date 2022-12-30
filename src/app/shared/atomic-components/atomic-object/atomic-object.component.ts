@@ -5,8 +5,7 @@ import { Router } from '@angular/router';
 import { FormControl } from '@angular/forms';
 import { InterfaceRefObject, ObjectBase } from '../../objectBase.interface';
 import { Observable } from 'rxjs';
-import { BackendService } from 'src/app/project-administration/backend.service';
-import { PersonInterface } from 'src/app/project-administration/person/person.interface';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-atomic-object',
@@ -19,8 +18,9 @@ export class AtomicObjectComponent extends BaseAtomicComponent<ObjectBase> imple
   @Input()
   public placeholder!: string;
   newItemControl: FormControl<string> = new FormControl<string>('', { nonNullable: true, updateOn: 'change' });
+  @Input() itemsMethod!: Function | null;
 
-  constructor(private router: Router, private service: BackendService) {
+  constructor(private router: Router, private http: HttpClient /* required to make property 'itemsMethod' work  */) {
     super();
   }
 
@@ -33,7 +33,7 @@ export class AtomicObjectComponent extends BaseAtomicComponent<ObjectBase> imple
 
     if (this.canUpdate()) {
       if (this.isUni && this.data.length > 0) return;
-      this.alternativeObjects$ = this.getPatchItems();
+      this.alternativeObjects$ = this.getPatchItems()!;
     }
 
     this.newItemControl.valueChanges.subscribe((x: ObjectBase | string) => {
@@ -58,11 +58,12 @@ export class AtomicObjectComponent extends BaseAtomicComponent<ObjectBase> imple
     });
   }
 
-  getPatchItems(): Observable<ObjectBase[]> {
-    return this.service.getPeople(); //TODO make generic
+  getPatchItems(): Observable<ObjectBase[]> | null {
+    if (this.itemsMethod == null) return null;
+    return this.itemsMethod();
   }
 
-  public remove(fieldName: string, object: ObjectBase, patchResource: unknown) {
+  public remove(object: ObjectBase) {
     return this.resource
       .patch([
         {
