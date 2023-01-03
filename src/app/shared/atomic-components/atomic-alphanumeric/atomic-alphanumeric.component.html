@@ -6,11 +6,28 @@
     </div>
 </div>
 
+<!-- CanUpdate and !isUni -->
 <ng-template #isNotUni>
-    <div class="text-center w-full">
-        <div *ngFor="let row of data" class="flex align-items-center my-1">
-            <i class="pi pi-minus-circle mr-1 cursor-pointer"></i>
-            <span class="wordwrap">{{ row }}</span>
+    <div class="text-center">
+        <pre> {{ this.formArray.value | json }}</pre>
+        <hr />
+        <div *ngFor="let name of formArray.controls; let i = index">
+            <div class="p-inputgroup">
+                <input
+                    type="text"
+                    class="min-w-10rem w-full"
+                    pInputText
+                    [formControl]="transform(formArray.controls[i])"
+                    [required]="isTot"
+                />
+                <button
+                    pButton
+                    type="button"
+                    icon="pi pi-minus"
+                    class="p-button-danger"
+                    (click)="deleteAlphanumericItem(i)"
+                ></button>
+            </div>
         </div>
         <div>
             <div class="p-inputgroup">
@@ -22,7 +39,14 @@
                     placeholder="Add text"
                     [required]="isNewItemInputRequired()"
                 />
-                <button type="button" pButton pRipple icon="pi pi-plus" styleClass="p-button-success"></button>
+                <button
+                    type="button"
+                    pButton
+                    pRipple
+                    icon="pi pi-plus"
+                    styleClass="p-button-success"
+                    (click)="addAlphanumericItem()"
+                ></button>
             </div>
         </div>
     </div>
