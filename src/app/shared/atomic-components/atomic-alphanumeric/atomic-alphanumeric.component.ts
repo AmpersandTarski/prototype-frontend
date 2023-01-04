@@ -9,39 +9,41 @@ import { FormArray, FormControl, FormGroup } from '@angular/forms';
 })
 export class AtomicAlphanumericComponent extends BaseAtomicComponent<string> implements OnInit {
   // make generic and put in BaseAtomicComponent class
-  formControl!: FormControl<string | null>; // isUni
   newItemControl: FormControl<string> = new FormControl<string>('', { nonNullable: true, updateOn: 'blur' });
-
-  // can we use FormControl[] ?
-  formArray!: FormArray; // !isUni
+  formArray!: FormArray;
 
   override ngOnInit(): void {
     super.ngOnInit();
 
-    // isUni
-    this.formControl = new FormControl(this.data[0], { nonNullable: false, updateOn: 'blur' });
-    this.formControl.valueChanges.subscribe((x) =>
-      this.resource
-        .patch([
-          {
-            op: 'replace',
-            path: this.propertyName, // FIXME: this must be relative to path of this.resource
-            value: x,
-          },
-        ])
-        .subscribe(),
-    );
+    this.mapToFormArray();
+  }
 
-    // can this be combined with isUni? always use array?
-    // !isUni
-    this.formArray = new FormArray(
-      this.data.map((x) => {
-        return new FormControl(x, { nonNullable: false, updateOn: 'blur' });
-      }),
-    );
-    this.formArray.valueChanges.subscribe((x) => console.log(x));
+  mapToFormArray() {
+    if (this.isUni) {
+      this.formArray = new FormArray([new FormControl(this.data[0], { nonNullable: false, updateOn: 'blur' })]);
+      this.formArray.valueChanges.subscribe((x) =>
+        this.resource
+          .patch([
+            {
+              op: 'replace',
+              path: this.propertyName, // FIXME: this must be relative to path of this.resource
+              value: x,
+            },
+          ])
+          .subscribe(),
+      );
+    }
 
-    this.newItemControl.valueChanges.subscribe((x) => console.log(x));
+    if (!this.isUni) {
+      this.formArray = new FormArray(
+        this.data.map((x) => {
+          return new FormControl(x, { nonNullable: false, updateOn: 'blur' });
+        }),
+      );
+      this.formArray.valueChanges.subscribe((x) => console.log(x));
+
+      this.newItemControl.valueChanges.subscribe((x) => console.log(x));
+    }
   }
 
   addAlphanumericItem() {
