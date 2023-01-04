@@ -27,7 +27,7 @@ export class AtomicAlphanumericComponent extends BaseAtomicComponent<string> imp
             {
               op: 'replace',
               path: this.propertyName, // FIXME: this must be relative to path of this.resource
-              value: x,
+              value: x[0],
             },
           ])
           .subscribe(),
