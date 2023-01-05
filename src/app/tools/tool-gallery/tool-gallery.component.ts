@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { from, Observable, tap } from 'rxjs';
-import { Patch } from 'src/app/shared/interfacing/patch';
+import { Patch, PatchValue } from 'src/app/shared/interfacing/patch';
 import { PatchResponse } from 'src/app/shared/interfacing/patch-response.interface';
 import { Resource } from 'src/app/shared/interfacing/resource.interface';
 import { TestDataInterface } from '../test-data.interface';
@@ -17,7 +17,7 @@ export class ToolGalleryComponent implements Resource<TestDataInterface> {
 
   constructor() {}
 
-  patch(patches: Patch[]): Observable<PatchResponse<TestDataInterface>> {
+  patch(patches: PatchValue[]): Observable<PatchResponse<TestDataInterface>> {
     // Prepend path of patches with '/', because our backend has a different (probably wrong) implementation
     // of the JSON-Patch (RFC6902) standard. The applyPatch function below requires the '/'.
     patches.forEach((x) => (x.path = `/${x.path}`));

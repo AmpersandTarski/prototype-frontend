@@ -84,17 +84,28 @@
                 <div class="field col-12 box-form-field">
                     <label class="box-form-label">Current PL</label>
                     <div class="box-form-value">
-                        <app-atomic-object [property]="data.Current_32_PL" isUni isTot crud="CRUD"></app-atomic-object>
+                        <app-atomic-object
+                            [resource]="this"
+                            [property]="data.Current_32_PL"
+                            propertyName="Current_32_PL"
+                            isUni
+                            isTot
+                            crud="cRUd"
+                            [itemsMethod]="service.getPeople"
+                        ></app-atomic-object>
                     </div>
                 </div>
                 <div class="field col-12 box-form-field">
                     <label class="box-form-label">Project members</label>
                     <div class="box-form-value">
                         <app-atomic-object
+                            [resource]="this"
                             [property]="data.Project_32_members"
-                            isUni
+                            propertyName="Project_32_members"
+                            placeholder="add Person"
                             isTot
-                            crud="CRUD"
+                            crud="cRUd"
+                            [itemsMethod]="service.getPeople"
                         ></app-atomic-object>
                     </div>
                 </div>

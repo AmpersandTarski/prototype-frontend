@@ -1,8 +1,8 @@
-import { Patch } from './patch';
+import { Patch, PatchValue } from './patch';
 
 export interface PatchResponse<T> {
   content: T;
-  patches: Array<Patch>;
+  patches: Array<Patch | PatchValue>;
   //   TODO: change unknown types
   notifications: {
     errors: Array<unknown>;

@@ -15,7 +15,7 @@ import { ProjectInterface } from '../project/project.interface';
 export class ProjectEditComponent implements OnInit, Resource<ProjectInterface> {
   public data$!: Observable<ProjectInterface>;
   public projectId!: string;
-  constructor(private route: ActivatedRoute, private service: BackendService) {}
+  constructor(private route: ActivatedRoute, public service: BackendService) {}
 
   ngOnInit(): void {
     this.data$ = this.route.paramMap.pipe(
