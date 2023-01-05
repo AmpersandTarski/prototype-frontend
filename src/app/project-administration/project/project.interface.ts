@@ -5,6 +5,7 @@ export interface ProjectInterface extends ObjectBase {
   _40_Planned_41__32_start_32_date: string | null;
   Status: string;
   Active: boolean;
+  Keywords: Array<string>;
   Current_32_PL: ObjectBase & {
     _view_: PersonNameView;
   };

@@ -7,20 +7,6 @@
                 <div class="field col-12 box-form-field">
                     <label class="box-form-label">Name</label>
                     <div class="box-form-value">
-                        <div *ngIf="exampleNames$ | async as exampleNames; else loading">
-                            <app-atomic-alphanumeric
-                                [resource]="this"
-                                propertyName="Name"
-                                [property]="exampleNames"
-                                isTot
-                                crud="CRUD"
-                            ></app-atomic-alphanumeric>
-                        </div>
-                    </div>
-                </div>
-                <div class="field col-12 box-form-field">
-                    <label class="box-form-label">Name</label>
-                    <div class="box-form-value">
                         <app-atomic-alphanumeric
                             [resource]="this"
                             propertyName="Name"
@@ -81,6 +67,18 @@
                             isTot
                             crud="CRUD"
                         ></app-atomic-boolean>
+                    </div>
+                </div>
+                <div class="field col-12 box-form-field">
+                    <label class="box-form-label">Keywords</label>
+                    <div class="box-form-value">
+                        <app-atomic-alphanumeric
+                            [resource]="this"
+                            propertyName="Keywords"
+                            [property]="data.Keywords"
+                            isTot
+                            crud="CRUD"
+                        ></app-atomic-alphanumeric>
                     </div>
                 </div>
                 <div class="field col-12 box-form-field">

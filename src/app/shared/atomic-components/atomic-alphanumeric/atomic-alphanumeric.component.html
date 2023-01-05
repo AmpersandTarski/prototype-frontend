@@ -1,24 +1,25 @@
 <div *ngIf="canRead(); else notReadable">
     <div class="p-inputgroup" *ngIf="canUpdate(); else notUpdatable">
         <div class="text-center">
-            <pre> {{ this.formArray.value | json }}</pre>
-            <hr />
             <div *ngFor="let name of formArray.controls; let i = index">
                 <div class="p-inputgroup">
-                    <input
+                    <div>
+                        {{ name.value }}
+                    </div>
+                    <!-- <input
                         type="text"
                         class="min-w-10rem w-full"
                         pInputText
                         [formControl]="transform(formArray.controls[i])"
                         [required]="isTot"
-                    />
+                    /> -->
                     <button
                         *ngIf="!isUni"
                         pButton
                         type="button"
                         icon="pi pi-minus"
                         class="p-button-danger"
-                        (click)="deleteAlphanumericItem(i)"
+                        (click)="removeAlphanumericItem(i)"
                     ></button>
                 </div>
             </div>

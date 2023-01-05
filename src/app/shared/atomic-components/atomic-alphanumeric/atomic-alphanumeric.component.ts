@@ -40,21 +40,38 @@ export class AtomicAlphanumericComponent extends BaseAtomicComponent<string> imp
           return new FormControl(x, { nonNullable: false, updateOn: 'blur' });
         }),
       );
-      this.formArray.valueChanges.subscribe((x) => console.log(x));
-
-      this.newItemControl.valueChanges.subscribe((x) => console.log(x));
     }
   }
 
   addAlphanumericItem() {
-    // TODO: patch method with try catch?
-    this.formArray.push(this.newItemControl);
-    console.log(this.formArray);
-    this.newItemControl = new FormControl<string>('', { nonNullable: true, updateOn: 'blur' });
+    // TODO: show warning message?
+    if (this.formArray.value.some((x: string) => x == this.newItemControl.value)) {
+      throw new Error('Value already exists');
+    } else {
+      this.resource
+        .patch([
+          {
+            op: 'add',
+            path: this.propertyName, // FIXME: this must be relative to path of this.resource
+            value: this.newItemControl.value,
+          },
+        ])
+        .subscribe();
+      this.formArray.push(this.newItemControl);
+      this.newItemControl = new FormControl<string>('', { nonNullable: true, updateOn: 'blur' });
+    }
   }
 
-  deleteAlphanumericItem(index: number) {
-    // TODO: delete method with try catch?
+  removeAlphanumericItem(index: number) {
+    this.resource
+      .patch([
+        {
+          op: 'remove',
+          path: this.propertyName, // FIXME: this must be relative to path of this.resource
+          value: this.formArray.controls[index].value,
+        },
+      ])
+      .subscribe();
     this.formArray.removeAt(index);
   }
 
