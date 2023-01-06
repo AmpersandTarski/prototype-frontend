@@ -70,6 +70,18 @@
                     </div>
                 </div>
                 <div class="field col-12 box-form-field">
+                    <label class="box-form-label">Keywords</label>
+                    <div class="box-form-value">
+                        <app-atomic-alphanumeric
+                            [resource]="this"
+                            propertyName="Keywords"
+                            [property]="data.Keywords"
+                            isTot
+                            crud="CRUD"
+                        ></app-atomic-alphanumeric>
+                    </div>
+                </div>
+                <div class="field col-12 box-form-field">
                     <label class="box-form-label">Current PL</label>
                     <div class="box-form-value">
                         <app-atomic-object
@@ -90,7 +102,7 @@
                             [resource]="this"
                             [property]="data.Project_32_members"
                             propertyName="Project_32_members"
-                            placeholder="add Person"
+                            placeholder="Add Person"
                             isTot
                             crud="cRUd"
                             [itemsMethod]="service.getPeople"

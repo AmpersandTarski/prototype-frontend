@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { from, Observable, switchMap, tap } from 'rxjs';
-import { PatchReplace } from 'src/app/shared/interfacing/patch-replace.interface';
+import { Patch } from 'src/app/shared/interfacing/patch';
 import { PatchResponse } from 'src/app/shared/interfacing/patch-response.interface';
 import { Resource } from 'src/app/shared/interfacing/resource.interface';
 import { BackendService } from '../backend.service';
@@ -24,12 +24,12 @@ export class ProjectEditComponent implements OnInit, Resource<ProjectInterface> 
         if (this.projectId === null) {
           throw new Error('id does not exist');
         }
-        return this.service.getProject(this.projectId);
+        return this.service.getProjectEdit(this.projectId);
       }),
     );
   }
 
-  patch(patches: PatchReplace[]): Observable<PatchResponse<ProjectInterface>> {
+  patch(patches: Patch[]): Observable<PatchResponse<ProjectInterface>> {
     return this.service.patchProject(this.projectId, patches).pipe(
       tap((x) => {
         if (x.isCommitted) {

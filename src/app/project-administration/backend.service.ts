@@ -30,6 +30,10 @@ export class BackendService implements IBackendService {
     return this.http.get<ProjectInterface>(`resource/Project/${id}/Project`);
   }
 
+  public getProjectEdit(id: string): Observable<ProjectInterface> {
+    return this.http.get<ProjectInterface>(`resource/Project/${id}/New_47_edit_32_project`);
+  }
+
   public getPerson(id: string): Observable<PersonInterface> {
     return this.http.get<PersonInterface>(`resource/Person/${id}/Person`);
   }
