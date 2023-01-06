@@ -1,8 +1,8 @@
 /*
- * $ifcNameKebab$.component.ts
  * Generated code by Ampersand compiler
- * Template: $usedTemplate$
- * Context: $contextName$
+ * File:        $ifcNameKebab$.component.ts
+ * Template:    $usedTemplate$
+ * Context:     $contextName$
  */
 
 // Imports
