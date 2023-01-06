@@ -1,0 +1,52 @@
+/*
+ * project.module.ts
+ * Generated code by Ampersand compiler
+ * Context: $contextName$
+ */
+
+// Imports
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { RouterModule, Routes } from '@angular/router';
+import { AppLayoutComponent } from '../layout/app.layout.component';
+import { SharedModule } from '../shared/shared.module';
+import { MenuItem } from 'primeng/api';
+
+$ifcs:{ifc|import { $ifc.ifcNamePascal$Component \} from './$ifc.ifcNameKebab$/$ifc.ifcNameKebab$.component';
+}$
+
+// Routes
+const routes: Routes = [
+  {
+    path: 'p',
+    component: AppLayoutComponent,
+    children: [$ifcs:{ifc|
+      { path: '$ifc.ifcNameKebab$$if(!ifc.isSessionInterface)$/:id$endif$', component: $ifc.ifcNamePascal$Component \},}$
+    ],
+  },
+];
+
+// Menu
+export const menuItems: MenuItem[] = [
+  {
+    label: 'Project',
+    items: [$ifcs:{ifc|$if(ifc.isSessionInterface)$
+     
+      {
+        label: '$ifc.ifcLabel$',
+        icon: 'pi pi-fw pi-bars',
+        routerLink: ['/p/$ifc.ifcNameKebab$'],
+      \},$endif$}$
+    ],
+  },
+];
+
+// Module
+@NgModule({
+  declarations: [$ifcs:{ifc|
+    $ifc.ifcNamePascal$Component,}$
+  ],
+  imports: [CommonModule, SharedModule, RouterModule.forChild(routes)],
+  providers: [{ provide: BackendService, useClass: BackendService }],
+})
+export class ProjectModule {}
