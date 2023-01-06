@@ -1,12 +1,15 @@
 <div *ngIf="canRead(); else notReadable">
-    <p-calendar
-        *ngIf="canUpdate(); else notUpdatable"
-        [showClear]="true"
-        [readonlyInput]="true"
-        [dateFormat]="format"
-        [formControl]="formControl"
-    ></p-calendar>
+  
+        <p-calendar
+            *ngIf="canUpdate(); else notUpdatable"
+            [showClear]="(canDelete())"
+            [readonlyInput]="true"
+            [dateFormat]="format"
+            [formControl]="formControl"      
+        ></p-calendar>
+
 </div>
+
 
 <ng-template #notUpdatable>
     <div class="wordwrap">{{ property }}</div>
