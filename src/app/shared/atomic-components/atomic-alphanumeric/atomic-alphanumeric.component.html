@@ -27,30 +27,9 @@
             style="color: red; cursor: pointer"
         ></div>
 
-        <!-- <button
-            *ngIf="canUpdate() && !isUni"
-            pButton
-            pRipple
-            pTooltip="Remove"
-            tooltipPosition="left"
-            type="button"
-            icon="pi pi-minus"
-            class="p-button-danger p-button-text"
-            (click)="removeAlphanumericItem(i)"
-        ></button> -->
-
         <span style="padding-left: 9px">
             {{ name }}
         </span>
-
-        <!-- i think formArray.controls[i] can be formControl, no? -->
-        <!-- <input
-            type="text"
-            class="min-w-10rem w-full"
-            pInputText
-            [formControl]="transform(formArray.controls[i])"
-            [required]="isTot"
-        /> -->
     </div>
     <div class="p-inputgroup">
         <input
