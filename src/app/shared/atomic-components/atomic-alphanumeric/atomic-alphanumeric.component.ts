@@ -1,22 +1,16 @@
-import { Component, OnInit } from '@angular/core';
-import { BaseAtomicComponent } from '../BaseAtomicComponent.class';
+import { Component } from '@angular/core';
 import { FormControl } from '@angular/forms';
+import { BaseAtomicFormControlComponent } from '../BaseAtomicFormControlComponent.class';
 
 @Component({
   selector: 'app-atomic-alphanumeric',
   templateUrl: './atomic-alphanumeric.component.html',
   styleUrls: ['./atomic-alphanumeric.component.css'],
 })
-export class AtomicAlphanumericComponent extends BaseAtomicComponent<string> implements OnInit {
+export class AtomicAlphanumericComponent extends BaseAtomicFormControlComponent<string> {
   public placeholder: string = 'Add value';
   // make generic and put in BaseAtomicComponent class
-  public formControl!: FormControl<string>;
   public newItemControl: FormControl<string> = new FormControl<string>('', { nonNullable: true, updateOn: 'change' });
-
-  override ngOnInit(): void {
-    super.ngOnInit();
-    this.initFormControl();
-  }
 
   public addAlphanumericItem() {
     // TODO: show warning message?
@@ -48,20 +42,5 @@ export class AtomicAlphanumericComponent extends BaseAtomicComponent<string> imp
       ])
       .subscribe();
     this.data.splice(index, 1);
-  }
-
-  private initFormControl() {
-    this.formControl = new FormControl<string>(this.data[0], { nonNullable: true, updateOn: 'blur' });
-    this.formControl.valueChanges.subscribe((x) =>
-      this.resource
-        .patch([
-          {
-            op: 'replace',
-            path: this.propertyName, // FIXME: this must be relative to path of this.resource
-            value: x,
-          },
-        ])
-        .subscribe(),
-    );
   }
 }
