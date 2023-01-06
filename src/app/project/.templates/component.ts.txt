@@ -1,0 +1,51 @@
+/*
+ * $ifcNameKebab$.component.ts
+ * Generated code by Ampersand compiler
+ * Template: $usedTemplate$
+ * Context: $contextName$
+ */
+
+// Imports
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, ParamMap } from '@angular/router';
+import { from, map, Observable, switchMap, tap } from 'rxjs';
+import { PatchReplace } from 'src/app/shared/interfacing/patch-replace.interface';
+import { PatchResponse } from 'src/app/shared/interfacing/patch-response.interface';
+import { Resource } from 'src/app/shared/interfacing/resource.interface';
+import { IBackendService } from '../backend.service.interface';
+
+import { $ifcNamePascal$Interface } from './$ifcNameKebab$.interface';
+
+@Component({
+  selector: 'project-$ifcNameKebab$',
+  templateUrl: './$ifcNameKebab$.component.html',
+  // styleUrls: ['./$ifcNameKebab$.component.scss'],
+})
+export class $ifcNamePascal$Component implements OnInit {
+  public data\$!: Observable<$ifcNamePascal$Interface>;
+  
+  constructor(private route: ActivatedRoute, private service: IBackendService) {}
+
+  ngOnInit(): void {$if(isSessionInterface)$
+    this.data\$ = this.service.get$ifcNamePascal$();$else$
+    this.data\$ = this.route.paramMap.pipe(
+      switchMap((params: ParamMap) => {
+        let resourceId = params.get('id')!;
+        if (resourceId === null) {
+          throw new Error('id does not exist');
+        }
+        return this.service.get$ifcNamePascal$(resourceId);
+      }),
+    );$endif$
+  }
+
+  patch(resource: Resource, patches: PatchReplace[]): Observable<PatchResponse<$ifcNamePascal$Interface>> {
+    return this.service.patch(resource.id, patches).pipe(
+      tap((x) => {
+        if (x.isCommitted) {
+          this.data\$ = from([x.content]);
+        }
+      }),
+    );
+  }
+}
