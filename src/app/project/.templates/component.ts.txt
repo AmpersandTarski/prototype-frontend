@@ -17,18 +17,17 @@ import { IBackendService } from '../backend.service.interface';
 import { $ifcNamePascal$Interface } from './$ifcNameKebab$.interface';
 
 @Component({
-  selector: 'project-$ifcNameKebab$',
+  selector: 'app-$ifcNameKebab$',
   templateUrl: './$ifcNameKebab$.component.html',
   // styleUrls: ['./$ifcNameKebab$.component.scss'],
 })
 export class $ifcNamePascal$Component implements OnInit {
   public data\$!: Observable<$ifcNamePascal$Interface>;
-  
+
   constructor(private route: ActivatedRoute, private service: IBackendService) {}
 
-  ngOnInit(): void {$if(isSessionInterface)$
-    this.data\$ = this.service.get$ifcNamePascal$();$else$
-    this.data\$ = this.route.paramMap.pipe(
+  ngOnInit(): void {
+    $if(isSessionInterface)$this.data\$ = this.service.get$ifcNamePascal$();$else$this.data\$ = this.route.paramMap.pipe(
       switchMap((params: ParamMap) => {
         let resourceId = params.get('id')!;
         if (resourceId === null) {
@@ -49,3 +48,4 @@ export class $ifcNamePascal$Component implements OnInit {
     );
   }
 }
+
