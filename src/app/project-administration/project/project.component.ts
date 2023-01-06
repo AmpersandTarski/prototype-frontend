@@ -21,7 +21,6 @@ export class ProjectComponent implements OnInit {
       switchMap((params: ParamMap) => {
         this.projectId = params.get('id')!;
         if (this.projectId === null) {
-        //  throw new Error('id does not exist');
           this.router.navigate(['/404'], { skipLocationChange: true });
         }
         return this.service.getProject(this.projectId);
