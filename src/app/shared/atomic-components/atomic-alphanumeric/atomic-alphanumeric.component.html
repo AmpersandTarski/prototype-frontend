@@ -1,51 +1,77 @@
 <div *ngIf="canRead(); else notReadable">
-    <div class="p-inputgroup" *ngIf="canUpdate(); else notUpdatable">
-        <div class="text-center">
-            <div *ngFor="let name of formArray.controls; let i = index">
-                <div class="p-inputgroup">
-                    <div>
-                        {{ name.value }}
-                    </div>
-                    <!-- <input
-                        type="text"
-                        class="min-w-10rem w-full"
-                        pInputText
-                        [formControl]="transform(formArray.controls[i])"
-                        [required]="isTot"
-                    /> -->
-                    <button
-                        *ngIf="!isUni"
-                        pButton
-                        type="button"
-                        icon="pi pi-minus"
-                        class="p-button-danger"
-                        (click)="removeAlphanumericItem(i)"
-                    ></button>
-                </div>
-            </div>
-            <div *ngIf="!isUni">
-                <div class="p-inputgroup">
-                    <input
-                        type="text"
-                        class="min-w-10rem w-full"
-                        pInputText
-                        [formControl]="newItemControl"
-                        placeholder="Add text"
-                        [required]="isNewItemInputRequired()"
-                    />
-                    <button
-                        type="button"
-                        pButton
-                        pRipple
-                        icon="pi pi-plus"
-                        styleClass="p-button-success"
-                        (click)="addAlphanumericItem()"
-                    ></button>
-                </div>
-            </div>
+    <div *ngIf="canUpdate(); else notUpdatable">
+        <div *ngIf="isUni; else isNotUni">
+            <input type="text" class="min-w-10rem w-full" pInputText [formControl]="formControl" [required]="isTot" />
         </div>
     </div>
 </div>
+
+<ng-template #isNotUni>
+    <div *ngFor="let name of data; let i = index">
+        <div
+            *ngIf="canUpdate() && !isUni"
+            class="pi pi-fw pi-minus"
+            (click)="removeAlphanumericItem(i)"
+            pTooltip="Remove"
+            tooltipPosition="left"
+            style="color: red; padding-bottom: 9px; cursor: pointer"
+        ></div>
+
+        <!-- TODO: create onDestroy -->
+        <div
+            *ngIf="canDelete() && !isUni"
+            class="pi pi-fw pi-trash"
+            (click)="removeAlphanumericItem(i)"
+            pTooltip="Destroy"
+            tooltipPosition="left"
+            style="color: red; cursor: pointer"
+        ></div>
+
+        <!-- <button
+            *ngIf="canUpdate() && !isUni"
+            pButton
+            pRipple
+            pTooltip="Remove"
+            tooltipPosition="left"
+            type="button"
+            icon="pi pi-minus"
+            class="p-button-danger p-button-text"
+            (click)="removeAlphanumericItem(i)"
+        ></button> -->
+
+        <span style="padding-left: 9px">
+            {{ name }}
+        </span>
+
+        <!-- i think formArray.controls[i] can be formControl, no? -->
+        <!-- <input
+            type="text"
+            class="min-w-10rem w-full"
+            pInputText
+            [formControl]="transform(formArray.controls[i])"
+            [required]="isTot"
+        /> -->
+    </div>
+    <div class="p-inputgroup">
+        <input
+            type="text"
+            class="min-w-10rem w-full"
+            pInputText
+            [formControl]="newItemControl"
+            [placeholder]="placeholder"
+            [required]="isNewItemInputRequired()"
+            (keyup.enter)="addAlphanumericItem()"
+        />
+        <button
+            type="button"
+            pButton
+            pRipple
+            icon="pi pi-plus"
+            styleClass="p-button-success"
+            (click)="addAlphanumericItem()"
+        ></button>
+    </div>
+</ng-template>
 
 <ng-template #notUpdatable>
     <div *ngFor="let row of data" class="wordwrap">{{ row }}</div>

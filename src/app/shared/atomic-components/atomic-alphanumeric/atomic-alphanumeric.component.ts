@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { BaseAtomicComponent } from '../BaseAtomicComponent.class';
-import { FormArray, FormControl, FormGroup } from '@angular/forms';
+import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-atomic-alphanumeric',
@@ -8,44 +8,19 @@ import { FormArray, FormControl, FormGroup } from '@angular/forms';
   styleUrls: ['./atomic-alphanumeric.component.css'],
 })
 export class AtomicAlphanumericComponent extends BaseAtomicComponent<string> implements OnInit {
+  public placeholder: string = 'Add value';
   // make generic and put in BaseAtomicComponent class
-  newItemControl: FormControl<string> = new FormControl<string>('', { nonNullable: true, updateOn: 'blur' });
-  formArray!: FormArray;
+  public formControl!: FormControl<string>;
+  public newItemControl: FormControl<string> = new FormControl<string>('', { nonNullable: true, updateOn: 'change' });
 
   override ngOnInit(): void {
     super.ngOnInit();
-
-    this.mapToFormArray();
+    this.initFormControl();
   }
 
-  mapToFormArray() {
-    if (this.isUni) {
-      this.formArray = new FormArray([new FormControl(this.data[0], { nonNullable: false, updateOn: 'blur' })]);
-      this.formArray.valueChanges.subscribe((x) =>
-        this.resource
-          .patch([
-            {
-              op: 'replace',
-              path: this.propertyName, // FIXME: this must be relative to path of this.resource
-              value: x[0],
-            },
-          ])
-          .subscribe(),
-      );
-    }
-
-    if (!this.isUni) {
-      this.formArray = new FormArray(
-        this.data.map((x) => {
-          return new FormControl(x, { nonNullable: false, updateOn: 'blur' });
-        }),
-      );
-    }
-  }
-
-  addAlphanumericItem() {
+  public addAlphanumericItem() {
     // TODO: show warning message?
-    if (this.formArray.value.some((x: string) => x == this.newItemControl.value)) {
+    if (this.data.some((x: string) => x == this.newItemControl.value)) {
       throw new Error('Value already exists');
     } else {
       this.resource
@@ -57,26 +32,36 @@ export class AtomicAlphanumericComponent extends BaseAtomicComponent<string> imp
           },
         ])
         .subscribe();
-      this.formArray.push(this.newItemControl);
-      this.newItemControl = new FormControl<string>('', { nonNullable: true, updateOn: 'blur' });
+      this.data.push(this.newItemControl.value);
+      this.newItemControl = new FormControl<string>('', { nonNullable: true, updateOn: 'change' });
     }
   }
 
-  removeAlphanumericItem(index: number) {
+  public removeAlphanumericItem(index: number) {
     this.resource
       .patch([
         {
           op: 'remove',
           path: this.propertyName, // FIXME: this must be relative to path of this.resource
-          value: this.formArray.controls[index].value,
+          value: this.data[index],
         },
       ])
       .subscribe();
-    this.formArray.removeAt(index);
+    this.data.splice(index, 1);
   }
 
-  // TODO: look for other solution
-  transform(something: unknown): FormControl {
-    return something as FormControl;
+  private initFormControl() {
+    this.formControl = new FormControl<string>(this.data[0], { nonNullable: true, updateOn: 'blur' });
+    this.formControl.valueChanges.subscribe((x) =>
+      this.resource
+        .patch([
+          {
+            op: 'replace',
+            path: this.propertyName, // FIXME: this must be relative to path of this.resource
+            value: x,
+          },
+        ])
+        .subscribe(),
+    );
   }
 }
