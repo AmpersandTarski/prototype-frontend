@@ -11,7 +11,7 @@
         <div
             *ngIf="canUpdate() && !isUni"
             class="pi pi-fw pi-minus"
-            (click)="removeAlphanumericItem(i)"
+            (click)="removeItem(i)"
             pTooltip="Remove"
             tooltipPosition="left"
             style="color: red; padding-bottom: 9px; cursor: pointer"
@@ -21,7 +21,7 @@
         <!-- <div
             *ngIf="canDelete() && !isUni"
             class="pi pi-fw pi-trash"
-            pTooltip="Destroy"
+            pTooltip="Delete"
             tooltipPosition="left"
             style="color: red; cursor: pointer"
         ></div> -->
@@ -36,9 +36,9 @@
             class="min-w-10rem w-full"
             pInputText
             [formControl]="newItemControl"
-            [placeholder]="placeholder"
+            [placeholder]="'Add value'"
             [required]="isNewItemInputRequired()"
-            (keyup.enter)="addAlphanumericItem()"
+            (keyup.enter)="addItem()"
         />
         <button
             type="button"
@@ -46,7 +46,7 @@
             pRipple
             icon="pi pi-plus"
             styleClass="p-button-success"
-            (click)="addAlphanumericItem()"
+            (click)="addItem()"
         ></button>
     </div>
 </ng-template>

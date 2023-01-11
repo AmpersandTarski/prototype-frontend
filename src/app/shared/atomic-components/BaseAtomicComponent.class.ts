@@ -93,6 +93,56 @@ export abstract class BaseAtomicComponent<T> implements OnInit, OnChanges {
     }
   }
 
+  public addItem(formatValue?: (x: T) => string) {
+    console.log('adding item');
+    // TODO: show warning message?
+    if (this.data.some((x: T) => x == (this.newItemControl.value as unknown))) {
+      throw new Error('Value already exists');
+    }
+
+    let val: T = this.newItemControl.value as unknown as T;
+    if (typeof formatValue != 'undefined') {
+      val = formatValue(val) as unknown as T;
+    }
+
+    this.resource
+      .patch([
+        {
+          op: 'add',
+          path: this.propertyName, // FIXME: this must be relative to path of this.resource
+          value: val,
+        },
+      ])
+      .subscribe();
+    this.data.push(val);
+    this.newItemControl.setValue('');
+  }
+
+  public removeItem(index: number) {
+    // TODO: show warning message?
+    if (this.isTot && this.data.length == 1) {
+      throw new Error('Must have at least one element');
+    }
+    this.resource
+      .patch([
+        {
+          op: 'remove',
+          path: this.propertyName, // FIXME: this must be relative to path of this.resource
+          value: this.data[index],
+        },
+      ])
+      .subscribe();
+    this.data.splice(index, 1);
+  }
+
+  public deleteItem(index: number) {
+    // TODO: show warning message?
+    if (this.isTot && this.data.length == 1) {
+      throw new Error('Must have at least one element');
+    }
+    // TODO: resource delete method
+  }
+
   public isNewItemInputRequired() {
     return this.isTot && this.data.length === 0;
   }

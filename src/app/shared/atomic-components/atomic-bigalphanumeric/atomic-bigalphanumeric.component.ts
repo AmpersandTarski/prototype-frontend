@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl } from '@angular/forms';
 import { AtomicComponentType } from '../../models/atomic-component-types';
-import { BaseAtomicComponent } from '../BaseAtomicComponent.class';
 import { BaseAtomicFormControlComponent } from '../BaseAtomicFormControlComponent.class';
 
 @Component({
@@ -16,7 +14,7 @@ export class AtomicBigalphanumericComponent extends BaseAtomicFormControlCompone
       this.initNewItemControl(AtomicComponentType.BigAlphanumeric);
     }
     if (this.isUni) {
-      this.initFormControl('change');
+      this.initFormControl('blur');
     }
   }
 }

@@ -29,7 +29,7 @@ export class AtomicObjectComponent extends BaseAtomicComponent<ObjectBase> imple
       this.newItemControl.valueChanges.subscribe((x: string | boolean | ObjectBase) => {
         const obj = x as ObjectBase;
 
-        return this.resource
+        this.resource
           .patch([
             {
               op: 'add',
@@ -37,8 +37,9 @@ export class AtomicObjectComponent extends BaseAtomicComponent<ObjectBase> imple
               value: obj._id_,
             },
           ])
+          // TODO: Fix this bug
           .subscribe(() => {
-            this.newItemControl.setValue('');
+            this.newItemControl.setValue({} as ObjectBase);
             for (const item of this.data) {
               if (item._id_ == obj._id_) return;
             }
@@ -55,11 +56,6 @@ export class AtomicObjectComponent extends BaseAtomicComponent<ObjectBase> imple
       if (this.isUni && this.data.length > 0) return;
       this.alternativeObjects$ = this.getPatchItems()!;
     }
-  }
-
-  getPatchItems(): Observable<ObjectBase[]> | null {
-    if (this.itemsMethod == null) return null;
-    return this.itemsMethod();
   }
 
   public remove(object: ObjectBase) {
@@ -82,7 +78,7 @@ export class AtomicObjectComponent extends BaseAtomicComponent<ObjectBase> imple
       });
   }
 
-  public destroy(fieldName: string, object: ObjectBase) {
+  public override deleteItem(index: number) {
     //TODO connect to delete request
   }
 
@@ -99,5 +95,10 @@ export class AtomicObjectComponent extends BaseAtomicComponent<ObjectBase> imple
           command: () => this.navigateToEntity(ifc.id, id),
         },
     );
+  }
+
+  private getPatchItems(): Observable<ObjectBase[]> | null {
+    if (this.itemsMethod == null) return null;
+    return this.itemsMethod();
   }
 }

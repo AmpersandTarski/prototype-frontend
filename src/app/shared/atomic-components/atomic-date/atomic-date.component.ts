@@ -23,7 +23,7 @@ export class AtomicDateComponent extends BaseAtomicFormControlComponent<string> 
     }
   }
 
-  private formatDate(date: string): string {
+  public formatDate(date: string): string {
     let datePipe: DatePipe = new DatePipe('en-US');
     return datePipe.transform(date, 'yyyy-MM-dd')!;
   }
