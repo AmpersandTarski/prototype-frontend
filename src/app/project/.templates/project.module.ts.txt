@@ -9,9 +9,10 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
+import { MenuItem } from 'primeng/api';
+import { BackendService } from './backend.service';
 import { AppLayoutComponent } from '../layout/app.layout.component';
 import { SharedModule } from '../shared/shared.module';
-import { MenuItem } from 'primeng/api';
 
 $ifcs:{ifc|import { $ifc.ifcNamePascal$Component \} from './$ifc.ifcNameKebab$/$ifc.ifcNameKebab$.component';
 }$
@@ -50,3 +51,4 @@ export const menuItems: MenuItem[] = [
   providers: [{ provide: BackendService, useClass: BackendService }],
 })
 export class ProjectModule {}
+

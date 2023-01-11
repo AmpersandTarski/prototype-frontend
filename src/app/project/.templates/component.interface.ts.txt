@@ -1,0 +1,21 @@
+/*
+ * Generated code by Ampersand compiler
+ * File:        $targetFilePath$
+ * Template:    $templateFilePath$
+ * Context:     $contextName$
+ */
+
+export interface $ifcNamePascal$Interface extends ObjectBase {}
+
+interface ObjectBase {
+  _id_: string;
+  _label_: string;
+  _path_: string;
+  _ifcs_: Array<InterfaceRefObject>;
+}
+
+interface InterfaceRefObject {
+  id: string;
+  label: string;
+}
+

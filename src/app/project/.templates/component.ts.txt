@@ -9,7 +9,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { from, map, Observable, switchMap, tap } from 'rxjs';
-import { IBackendService } from '../backend.service.interface';
+import { BackendService } from '../backend.service';
 
 import { $ifcNamePascal$Interface } from './$ifcNameKebab$.interface';
 
@@ -19,9 +19,9 @@ import { $ifcNamePascal$Interface } from './$ifcNameKebab$.interface';
   // styleUrls: ['./$ifcNameKebab$.component.scss'],
 })
 export class $ifcNamePascal$Component implements OnInit {
-  public data\$!: Observable<$ifcNamePascal$Interface>;
+  public data\$!: Observable<$ifcNamePascal$Interface$if(!exprIsUni)$[]$endif$>;
 
-  constructor(private route: ActivatedRoute, private service: IBackendService) {}
+  constructor(private route: ActivatedRoute, private service: BackendService) {}
 
   ngOnInit(): void {
     $if(isSessionInterface)$this.data\$ = this.service.get$ifcNamePascal$();$else$this.data\$ = this.route.paramMap.pipe(

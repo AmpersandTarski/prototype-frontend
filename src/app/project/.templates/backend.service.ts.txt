@@ -1,0 +1,22 @@
+/*
+ * Generated code by Ampersand compiler
+ * File:        $targetFilePath$
+ * Template:    $templateFilePath$
+ * Context:     $contextName$
+ */
+
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+
+$ifcs:{ifc|import { $ifc.ifcNamePascal$Interface \} from './$ifc.ifcNameKebab$/$ifc.ifcNameKebab$.interface';
+}$
+@Injectable()
+export class BackendService {
+  constructor(private http: HttpClient) {}
+$ifcs:{ifc|
+  public get$ifc.ifcNamePascal$($if(!ifc.isSessionInterface)$id: string$endif$): Observable<$ifc.ifcNamePascal$Interface$if(!ifc.feiObj.exprIsUni)$[]$endif$> {
+    return this.http.get<$ifc.ifcNamePascal$Interface$if(!ifc.feiObj.exprIsUni)$[]$endif$>(`resource/$if(ifc.isSessionInterface)$SESSION/1$else$$ifc.srcConcept$/\${id\}$endif$/$ifc.ifcName$`);
+  \}
+}$}
+
