@@ -18,6 +18,9 @@ export class AtomicBooleanComponent extends BaseAtomicFormControlComponent<boole
     if (this.isUni) {
       this.initFormControl('blur');
     }
+    if (!this.canUpdate()) {
+      this.formControl.disable();
+    }
   }
 
   public getState() {
