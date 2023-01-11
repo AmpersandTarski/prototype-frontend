@@ -2,10 +2,10 @@ import { Component, Input, OnInit } from '@angular/core';
 import { MenuItem } from 'primeng/api';
 import { BaseAtomicComponent } from '../BaseAtomicComponent.class';
 import { Router } from '@angular/router';
-import { FormControl } from '@angular/forms';
 import { InterfaceRefObject, ObjectBase } from '../../objectBase.interface';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
+import { AtomicComponentType } from '../../models/atomic-component-types';
 
 @Component({
   selector: 'app-atomic-object',
@@ -17,7 +17,7 @@ export class AtomicObjectComponent extends BaseAtomicComponent<ObjectBase> imple
   public alternativeObjects$!: Observable<ObjectBase[]>;
   @Input()
   public placeholder!: string;
-  newItemControl: FormControl<string> = new FormControl<string>('', { nonNullable: true, updateOn: 'change' });
+
   @Input() itemsMethod!: Function | null;
 
   constructor(private router: Router, private http: HttpClient /* required to make property 'itemsMethod' work  */) {
@@ -26,6 +26,9 @@ export class AtomicObjectComponent extends BaseAtomicComponent<ObjectBase> imple
 
   override ngOnInit(): void {
     super.ngOnInit();
+    if (!this.isUni) {
+      this.initNewItemControl(AtomicComponentType.Object);
+    }
 
     this.data.forEach((object) => {
       this.menuItems[object._id_] = this.toPrimeNgMenuModel(object._ifcs_, object._id_);
@@ -36,22 +39,21 @@ export class AtomicObjectComponent extends BaseAtomicComponent<ObjectBase> imple
       this.alternativeObjects$ = this.getPatchItems()!;
     }
 
-    this.newItemControl.valueChanges.subscribe((x: ObjectBase | string) => {
-      if (x == '') return;
-      const y = x as ObjectBase;
+    this.newItemControl.valueChanges.subscribe((x: string | boolean | ObjectBase) => {
+      const obj = x as ObjectBase;
 
       return this.resource
         .patch([
           {
             op: 'add',
             path: this.propertyName,
-            value: y._id_,
+            value: obj._id_,
           },
         ])
         .subscribe(() => {
           this.newItemControl.setValue('');
           for (const item of this.data) {
-            if (item._id_ == y._id_) return;
+            if (item._id_ == obj._id_) return;
           }
           this.data.push(x as ObjectBase);
         });
@@ -91,7 +93,7 @@ export class AtomicObjectComponent extends BaseAtomicComponent<ObjectBase> imple
     this.router.navigate(['p', type.toLowerCase(), `${id}`]);
   }
 
-  public toPrimeNgMenuModel(ifcs: Array<InterfaceRefObject>, id: string): Array<MenuItem> {
+  private toPrimeNgMenuModel(ifcs: Array<InterfaceRefObject>, id: string): Array<MenuItem> {
     return ifcs.map(
       (ifc) =>
         <MenuItem>{

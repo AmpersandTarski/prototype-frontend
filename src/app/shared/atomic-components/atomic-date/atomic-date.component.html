@@ -9,7 +9,7 @@
 </div>
 
 <ng-template #notUpdatable>
-    <div class="wordwrap">{{ property }}</div>
+    <div *ngFor="let row of data" class="wordwrap">{{ row }}</div>
 </ng-template>
 
 <ng-template #notReadable>

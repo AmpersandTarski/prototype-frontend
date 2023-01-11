@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
+import { AtomicComponentType } from '../../models/atomic-component-types';
 import { BaseAtomicFormControlComponent } from '../BaseAtomicFormControlComponent.class';
 
 @Component({
@@ -7,11 +7,20 @@ import { BaseAtomicFormControlComponent } from '../BaseAtomicFormControlComponen
   templateUrl: './atomic-alphanumeric.component.html',
   styleUrls: ['./atomic-alphanumeric.component.css'],
 })
-export class AtomicAlphanumericComponent extends BaseAtomicFormControlComponent<string> {
+export class AtomicAlphanumericComponent extends BaseAtomicFormControlComponent<string> implements OnInit {
   public placeholder: string = 'Add value';
-  // make generic and put in BaseAtomicComponent class
-  public newItemControl: FormControl<string> = new FormControl<string>('', { nonNullable: true, updateOn: 'change' });
 
+  override ngOnInit(): void {
+    super.ngOnInit();
+    if (!this.isUni) {
+      this.initNewItemControl(AtomicComponentType.Alphanumeric);
+    }
+    if (this.isUni) {
+      this.initFormControl('change');
+    }
+  }
+
+  // Put in BaseAtomicFormControlComponent
   public addAlphanumericItem() {
     // TODO: show warning message?
     if (this.data.some((x: string) => x == this.newItemControl.value)) {
@@ -26,8 +35,8 @@ export class AtomicAlphanumericComponent extends BaseAtomicFormControlComponent<
           },
         ])
         .subscribe();
-      this.data.push(this.newItemControl.value);
-      this.newItemControl = new FormControl<string>('', { nonNullable: true, updateOn: 'change' });
+      this.data.push(this.newItemControl.value as string);
+      this.newItemControl.setValue('');
     }
   }
 
