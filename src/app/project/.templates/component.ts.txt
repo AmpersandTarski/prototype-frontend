@@ -9,9 +9,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { from, map, Observable, switchMap, tap } from 'rxjs';
-import { PatchReplace } from 'src/app/shared/interfacing/patch-replace.interface';
-import { PatchResponse } from 'src/app/shared/interfacing/patch-response.interface';
-import { Resource } from 'src/app/shared/interfacing/resource.interface';
 import { IBackendService } from '../backend.service.interface';
 
 import { $ifcNamePascal$Interface } from './$ifcNameKebab$.interface';
@@ -36,16 +33,6 @@ export class $ifcNamePascal$Component implements OnInit {
         return this.service.get$ifcNamePascal$(resourceId);
       }),
     );$endif$
-  }
-
-  patch(resource: Resource, patches: PatchReplace[]): Observable<PatchResponse<$ifcNamePascal$Interface>> {
-    return this.service.patch(resource.id, patches).pipe(
-      tap((x) => {
-        if (x.isCommitted) {
-          this.data\$ = from([x.content]);
-        }
-      }),
-    );
   }
 }
 
