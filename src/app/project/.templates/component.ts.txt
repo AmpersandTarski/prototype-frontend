@@ -1,7 +1,7 @@
 /*
  * Generated code by Ampersand compiler
- * File:        $ifcNameKebab$.component.ts
- * Template:    $usedTemplate$
+ * File:        $targetFilePath$
+ * Template:    $templateFilePath$
  * Context:     $contextName$
  */
 
