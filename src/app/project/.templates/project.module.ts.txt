@@ -1,7 +1,8 @@
 /*
- * project.module.ts
  * Generated code by Ampersand compiler
- * Context: $contextName$
+ * File:        $targetFilePath$
+ * Template:    $templateFilePath$
+ * Context:     $contextName$
  */
 
 // Imports
@@ -14,7 +15,6 @@ import { MenuItem } from 'primeng/api';
 
 $ifcs:{ifc|import { $ifc.ifcNamePascal$Component \} from './$ifc.ifcNameKebab$/$ifc.ifcNameKebab$.component';
 }$
-
 // Routes
 const routes: Routes = [
   {
@@ -31,7 +31,7 @@ export const menuItems: MenuItem[] = [
   {
     label: 'Project',
     items: [$ifcs:{ifc|$if(ifc.isSessionInterface)$
-     
+
       {
         label: '$ifc.ifcLabel$',
         icon: 'pi pi-fw pi-bars',
