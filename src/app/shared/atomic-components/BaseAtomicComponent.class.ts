@@ -7,20 +7,17 @@ import { ObjectBase } from '../objectBase.interface';
   template: '',
 })
 export abstract class BaseAtomicComponent<T> implements OnInit, OnChanges {
-  @Input()
   // TODO Refactor to combination of parent-propertyName. We need a link to the parent anyway
-  property: T | Array<T> | null = null;
+  @Input() property: T | Array<T> | null = null;
 
-  @Input()
   // The type of the T for Resource<T> is not relevant nor to be determined here; therefore unknown
   // We require a Resource, that implements the required methods (like patch)
   // Most likely this is a top-level component for a specific application interface (e.g. ProjectComponent)
-  resource!: Resource<unknown>;
+  @Input() resource!: Resource<unknown>;
 
   public newItemControl!: FormControl<string | boolean | ObjectBase>;
 
-  @Input()
-  propertyName!: string;
+  @Input() propertyName!: string;
 
   public data: Array<T> = [];
 
@@ -42,8 +39,7 @@ export abstract class BaseAtomicComponent<T> implements OnInit, OnChanges {
     return this._isTot;
   }
 
-  @Input()
-  crud: string = 'cRud';
+  @Input() crud: string = 'cRud';
 
   public canCreate(): boolean {
     return this.crud.includes('C');

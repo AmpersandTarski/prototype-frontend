@@ -15,9 +15,7 @@ import { AtomicComponentType } from '../../models/atomic-component-types';
 export class AtomicObjectComponent extends BaseAtomicComponent<ObjectBase> implements OnInit {
   public menuItems: { [index: string]: Array<MenuItem> } = {};
   public alternativeObjects$!: Observable<ObjectBase[]>;
-  @Input()
-  public placeholder!: string;
-
+  @Input() public placeholder!: string;
   @Input() itemsMethod!: Function | null;
 
   constructor(private router: Router, private http: HttpClient /* required to make property 'itemsMethod' work  */) {
@@ -28,6 +26,25 @@ export class AtomicObjectComponent extends BaseAtomicComponent<ObjectBase> imple
     super.ngOnInit();
     if (!this.isUni) {
       this.initNewItemControl(AtomicComponentType.Object);
+      this.newItemControl.valueChanges.subscribe((x: string | boolean | ObjectBase) => {
+        const obj = x as ObjectBase;
+
+        return this.resource
+          .patch([
+            {
+              op: 'add',
+              path: this.propertyName,
+              value: obj._id_,
+            },
+          ])
+          .subscribe(() => {
+            this.newItemControl.setValue('');
+            for (const item of this.data) {
+              if (item._id_ == obj._id_) return;
+            }
+            this.data.push(x as ObjectBase);
+          });
+      });
     }
 
     this.data.forEach((object) => {
@@ -38,26 +55,6 @@ export class AtomicObjectComponent extends BaseAtomicComponent<ObjectBase> imple
       if (this.isUni && this.data.length > 0) return;
       this.alternativeObjects$ = this.getPatchItems()!;
     }
-
-    this.newItemControl.valueChanges.subscribe((x: string | boolean | ObjectBase) => {
-      const obj = x as ObjectBase;
-
-      return this.resource
-        .patch([
-          {
-            op: 'add',
-            path: this.propertyName,
-            value: obj._id_,
-          },
-        ])
-        .subscribe(() => {
-          this.newItemControl.setValue('');
-          for (const item of this.data) {
-            if (item._id_ == obj._id_) return;
-          }
-          this.data.push(x as ObjectBase);
-        });
-    });
   }
 
   getPatchItems(): Observable<ObjectBase[]> | null {
