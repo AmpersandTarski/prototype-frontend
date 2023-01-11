@@ -2,7 +2,7 @@
 
 # Ampersand compiled output
 /src/app/project
-!/src/app/project/.templates
+!/src/app/project/.templates/*.*
 
 # Compiled output
 /dist
