@@ -94,7 +94,10 @@ export abstract class BaseAtomicComponent<T> implements OnInit, OnChanges {
   }
 
   public addItem(formatValue?: (x: T) => string) {
-    console.log('adding item');
+    if (this.isUni) {
+      return;
+    }
+
     // TODO: show warning message?
     if (this.data.some((x: T) => x == (this.newItemControl.value as unknown))) {
       throw new Error('Value already exists');
@@ -119,6 +122,10 @@ export abstract class BaseAtomicComponent<T> implements OnInit, OnChanges {
   }
 
   public removeItem(index: number) {
+    if (this.isUni) {
+      return;
+    }
+
     // TODO: show warning message?
     if (this.isTot && this.data.length == 1) {
       throw new Error('Must have at least one element');
@@ -136,6 +143,9 @@ export abstract class BaseAtomicComponent<T> implements OnInit, OnChanges {
   }
 
   public deleteItem(index: number) {
+    if (this.isUni) {
+      return;
+    }
     // TODO: show warning message?
     if (this.isTot && this.data.length == 1) {
       throw new Error('Must have at least one element');

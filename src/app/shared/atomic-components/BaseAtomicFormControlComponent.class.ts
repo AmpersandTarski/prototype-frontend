@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { AtomicComponentType } from '../models/atomic-component-types';
 import { BaseAtomicComponent } from './BaseAtomicComponent.class';
 
 @Component({
@@ -10,7 +9,6 @@ export abstract class BaseAtomicFormControlComponent<T> extends BaseAtomicCompon
   public formControl!: FormControl<T>;
 
   public initFormControl(updateOn: 'change' | 'blur', formatValue?: (x: T) => string) {
-    // Add isTot rules
     this.formControl = new FormControl<T>(this.data[0], { nonNullable: true, updateOn: updateOn });
     this.formControl.valueChanges.subscribe((x) =>
       this.resource

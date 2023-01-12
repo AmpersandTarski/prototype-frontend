@@ -26,6 +26,7 @@ export class AtomicObjectComponent extends BaseAtomicComponent<ObjectBase> imple
     super.ngOnInit();
     if (!this.isUni) {
       this.initNewItemControl(AtomicComponentType.Object);
+      // TODO: make this into a function
       this.newItemControl.valueChanges.subscribe((x: string | boolean | ObjectBase) => {
         const obj = x as ObjectBase;
 
@@ -58,6 +59,7 @@ export class AtomicObjectComponent extends BaseAtomicComponent<ObjectBase> imple
     }
   }
 
+  // TODO: change function name to removeItem(index)
   public remove(object: ObjectBase) {
     return this.resource
       .patch([
