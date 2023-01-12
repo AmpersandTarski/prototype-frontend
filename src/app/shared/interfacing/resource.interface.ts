@@ -1,7 +1,7 @@
 import { Observable } from 'rxjs';
-import { PatchReplace } from './patch-replace.interface';
+import { Patch, PatchValue } from './patch';
 import { PatchResponse } from './patch-response.interface';
 
 export interface Resource<T> {
-  patch(patches: Array<PatchReplace>): Observable<PatchResponse<T>>;
+  patch(patches: Array<Patch | PatchValue>): Observable<PatchResponse<T>>;
 }

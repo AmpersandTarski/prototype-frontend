@@ -9,6 +9,7 @@ import { ListAllInterfacesInterface } from './list-all-interfaces/list-all-inter
 import { PeopleInterface } from './people/people.interface';
 import { PersonInterface } from './person/person.interface';
 import { InactiveProjectsInterface } from './inactive-projects/inactive-projects.interface';
+import { ProjectEditInterface } from './project-edit/project-edit.interface';
 
 @Injectable()
 export class BackendService implements IBackendService {
@@ -30,6 +31,10 @@ export class BackendService implements IBackendService {
     return this.http.get<ProjectInterface>(`resource/Project/${id}/Project`);
   }
 
+  public getProjectEdit(id: string): Observable<ProjectEditInterface> {
+    return this.http.get<ProjectEditInterface>(`resource/Project/${id}/New_47_edit_32_project`);
+  }
+
   public getPerson(id: string): Observable<PersonInterface> {
     return this.http.get<PersonInterface>(`resource/Person/${id}/Person`);
   }
@@ -38,8 +43,8 @@ export class BackendService implements IBackendService {
     return this.http.get<ListAllInterfacesInterface[]>('resource/SESSION/1/List_32_all_32_interfaces');
   }
 
-  public patchProject(id: string, data: any): Observable<PatchResponse<ProjectInterface>> {
-    return this.http.patch<PatchResponse<ProjectInterface>>(`resource/Project/${id}/New_47_edit_32_project`, data);
+  public patchProject(id: string, data: any): Observable<PatchResponse<ProjectEditInterface>> {
+    return this.http.patch<PatchResponse<ProjectEditInterface>>(`resource/Project/${id}/New_47_edit_32_project`, data);
   }
 
   public patchPerson(id: string, data: any): Observable<PersonInterface> {
