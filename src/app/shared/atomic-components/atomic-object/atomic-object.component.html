@@ -5,17 +5,18 @@
         (click)="remove(object)"
         pTooltip="Remove"
         tooltipPosition="left"
-        style="color: red; position: relative; display: inline-block; bottom: 9px; cursor: pointer"
+        style="color: red; padding-bottom: 9px; cursor: pointer"
     ></div>
 
-    <div
+    <!-- TODO: add the delete method -->
+    <!-- <div
         *ngIf="canDelete()"
         class="pi pi-fw pi-trash"
-        (click)="destroy('template', object)"
-        pTooltip="Destroy"
+        (click)="deleteItem()"
+        pTooltip="Delete"
         tooltipPosition="left"
-        style="color: red; position: relative; display: inline-block; bottom: 9px; cursor: pointer"
-    ></div>
+        style="color: red; padding-bottom: 9px; cursor: pointer"
+    ></div> -->
 
     <p-splitButton
         *ngIf="object._ifcs_.length > 1"

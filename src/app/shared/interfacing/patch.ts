@@ -4,5 +4,6 @@ export interface Patch {
 }
 
 export interface PatchValue extends Patch {
-  value: string | boolean | null;
+  // TODO: change any to generic
+  value: any | null;
 }

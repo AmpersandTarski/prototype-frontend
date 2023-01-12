@@ -1,32 +1,20 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl } from '@angular/forms';
-import { BaseAtomicComponent } from '../BaseAtomicComponent.class';
+import { AtomicComponentType } from '../../models/atomic-component-types';
+import { BaseAtomicFormControlComponent } from '../BaseAtomicFormControlComponent.class';
 
 @Component({
   selector: 'app-atomic-bigalphanumeric',
   templateUrl: './atomic-bigalphanumeric.component.html',
   styleUrls: ['./atomic-bigalphanumeric.component.css'],
 })
-export class AtomicBigalphanumericComponent extends BaseAtomicComponent<string> implements OnInit {
-  formControl!: FormControl<string | null>;
-  newItemControl: FormControl<string> = new FormControl<string>('', { nonNullable: true, updateOn: 'blur' });
-
-  // TODO: make FormGroup for when !isUni
-
+export class AtomicBigalphanumericComponent extends BaseAtomicFormControlComponent<string> implements OnInit {
   override ngOnInit(): void {
     super.ngOnInit();
-    this.formControl = new FormControl(this.data[0], { nonNullable: false, updateOn: 'blur' });
-
-    this.formControl.valueChanges.subscribe((x) =>
-      this.resource
-        .patch([
-          {
-            op: 'replace',
-            path: this.propertyName, // FIXME: this must be relative to path of this.resource
-            value: x,
-          },
-        ])
-        .subscribe(),
-    );
+    if (!this.isUni) {
+      this.initNewItemControl(AtomicComponentType.BigAlphanumeric);
+    }
+    if (this.isUni) {
+      this.initFormControl('blur');
+    }
   }
 }

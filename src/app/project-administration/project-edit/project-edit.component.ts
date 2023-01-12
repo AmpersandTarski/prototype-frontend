@@ -5,15 +5,15 @@ import { Patch } from 'src/app/shared/interfacing/patch';
 import { PatchResponse } from 'src/app/shared/interfacing/patch-response.interface';
 import { Resource } from 'src/app/shared/interfacing/resource.interface';
 import { BackendService } from '../backend.service';
-import { ProjectInterface } from '../project/project.interface';
+import { ProjectEditInterface } from './project-edit.interface';
 
 @Component({
   selector: 'app-project-edit',
   templateUrl: './project-edit.component.html',
   styleUrls: ['./project-edit.component.scss'],
 })
-export class ProjectEditComponent implements OnInit, Resource<ProjectInterface> {
-  public data$!: Observable<ProjectInterface>;
+export class ProjectEditComponent implements OnInit, Resource<ProjectEditInterface> {
+  public data$!: Observable<ProjectEditInterface>;
   public projectId!: string;
   constructor(private route: ActivatedRoute, public service: BackendService) {}
 
@@ -29,7 +29,7 @@ export class ProjectEditComponent implements OnInit, Resource<ProjectInterface> 
     );
   }
 
-  patch(patches: Patch[]): Observable<PatchResponse<ProjectInterface>> {
+  patch(patches: Patch[]): Observable<PatchResponse<ProjectEditInterface>> {
     return this.service.patchProject(this.projectId, patches).pipe(
       tap((x) => {
         if (x.isCommitted) {
