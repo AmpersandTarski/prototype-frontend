@@ -1,13 +1,11 @@
 <div *ngIf="canRead(); else notReadable">
-    <div *ngIf="canUpdate(); else notUpdatable">
-        <p-calendar
-            *ngIf="isUni; else isNotUni"
-            [showClear]="true"
-            [readonlyInput]="true"
-            [dateFormat]="format"
-            [formControl]="formControl"
-        ></p-calendar>
-    </div>
+    <p-calendar
+        *ngIf="canUpdate(); else notUpdatable"
+        [showClear]="canDelete()"
+        [readonlyInput]="true"
+        [dateFormat]="format"
+        [formControl]="formControl"
+    ></p-calendar>
 </div>
 
 <ng-template #isNotUni>
