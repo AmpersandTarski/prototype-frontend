@@ -26,27 +26,6 @@ export class AtomicObjectComponent extends BaseAtomicComponent<ObjectBase> imple
     super.ngOnInit();
     if (!this.isUni) {
       this.initNewItemControl(AtomicComponentType.Object);
-      // TODO: make this into a function
-      this.newItemControl.valueChanges.subscribe((x: string | boolean | ObjectBase) => {
-        const obj = x as ObjectBase;
-
-        this.resource
-          .patch([
-            {
-              op: 'add',
-              path: this.propertyName,
-              value: obj._id_,
-            },
-          ])
-          // TODO: Fix this bug
-          .subscribe(() => {
-            this.newItemControl.setValue({} as ObjectBase);
-            for (const item of this.data) {
-              if (item._id_ == obj._id_) return;
-            }
-            this.data.push(x as ObjectBase);
-          });
-      });
     }
 
     this.data.forEach((object) => {
@@ -57,6 +36,23 @@ export class AtomicObjectComponent extends BaseAtomicComponent<ObjectBase> imple
       if (this.isUni && this.data.length > 0) return;
       this.alternativeObjects$ = this.getPatchItems()!;
     }
+  }
+
+  public override addItem() {
+    let val = this.newItemControl.value as ObjectBase;
+
+    this.resource
+      .patch([
+        {
+          op: 'add',
+          path: this.propertyName, // FIXME: this must be relative to path of this.resource
+          value: val._id_,
+        },
+      ])
+      .subscribe(() => {
+        this.data.push(val);
+        this.newItemControl.setValue('');
+      });
   }
 
   public override removeItem(index: number) {
