@@ -51,7 +51,7 @@ export class AtomicObjectComponent extends BaseAtomicComponent<ObjectBase> imple
       ])
       .subscribe(() => {
         this.data.push(val);
-        this.newItemControl.setValue('');
+        this.newItemControl.setValue({} as ObjectBase);
       });
   }
 
