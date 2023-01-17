@@ -1,16 +1,26 @@
-import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
-
+import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { FormControl } from '@angular/forms';
+import { Resource } from '../interfacing/resource.interface';
+import { AtomicComponentType } from '../models/atomic-component-types';
+import { ObjectBase } from '../objectBase.interface';
 @Component({
   template: '',
 })
 export abstract class BaseAtomicComponent<T> implements OnInit, OnChanges {
+  // TODO Refactor to combination of parent-propertyName. We need a link to the parent anyway
   @Input() property: T | Array<T> | null = null;
+
+  // The type of the T for Resource<T> is not relevant nor to be determined here; therefore unknown
+  // We require a Resource, that implements the required methods (like patch)
+  // Most likely this is a top-level component for a specific application interface (e.g. ProjectComponent)
+  @Input() resource!: Resource<unknown>;
+
+  public newItemControl!: FormControl<string | boolean | ObjectBase>;
+
+  @Input() propertyName!: string;
+
   public data: Array<T> = [];
-  private oldProperty: Array<T> = [];
-  public canCreate!: boolean;
-  public canRead!: boolean;
-  public canUpdate!: boolean;
-  public canDelete!: boolean;
+
   private _isUni: boolean = false;
   @Input()
   set isUni(attribute: boolean | '') {
@@ -19,6 +29,7 @@ export abstract class BaseAtomicComponent<T> implements OnInit, OnChanges {
   get isUni(): boolean {
     return this._isUni;
   }
+
   private _isTot: boolean = false;
   @Input()
   set isTot(attribute: boolean | '') {
@@ -27,13 +38,23 @@ export abstract class BaseAtomicComponent<T> implements OnInit, OnChanges {
   get isTot(): boolean {
     return this._isTot;
   }
-  @Input() crud: string = 'crud';
-  @Output() propertyEvent = new EventEmitter<T | Array<T> | null>();
+
+  @Input() crud: string = 'cRud';
+
+  public canCreate(): boolean {
+    return this.crud.includes('C');
+  }
+  public canRead(): boolean {
+    return this.crud.includes('R');
+  }
+  public canUpdate(): boolean {
+    return this.crud.includes('U');
+  }
+  public canDelete(): boolean {
+    return this.crud.includes('D');
+  }
 
   ngOnInit(): void {
-    this.setCRUDPermissions(this.crud);
-    // TODO: unneeded when ng formcontrols work
-    this.oldProperty = this.requireArray(this.property);
     this.data = this.requireArray(this.property);
   }
 
@@ -42,26 +63,6 @@ export abstract class BaseAtomicComponent<T> implements OnInit, OnChanges {
     if (changes.hasOwnProperty('isUni')) {
       this.isUni = changes['isUni'].firstChange;
     }
-    this.setCRUDPermissions(changes['crud'].currentValue);
-  }
-
-  public changeProperty(): void {
-    if (this.oldProperty == this.data) {
-      return;
-    }
-    this.propertyEvent.emit(this.data);
-  }
-
-  private setCRUDPermissions(crud: string) {
-    let c = crud[0];
-    let r = crud[1];
-    let u = crud[2];
-    let d = crud[3];
-
-    this.canCreate = c == c.toUpperCase();
-    this.canRead = r == r.toUpperCase();
-    this.canUpdate = u == u.toUpperCase();
-    this.canDelete = d == d.toUpperCase();
   }
 
   public requireArray(property: T | Array<T> | null) {
@@ -72,5 +73,76 @@ export abstract class BaseAtomicComponent<T> implements OnInit, OnChanges {
     } else {
       return [property];
     }
+  }
+
+  public initNewItemControl(type: AtomicComponentType) {
+    if (
+      type == AtomicComponentType.Alphanumeric ||
+      type == AtomicComponentType.BigAlphanumeric ||
+      type == AtomicComponentType.Date
+    ) {
+      this.newItemControl = new FormControl<string>('', { nonNullable: true, updateOn: 'change' });
+    }
+
+    if (type == AtomicComponentType.Object) {
+      this.newItemControl = new FormControl<ObjectBase>({} as ObjectBase, { nonNullable: true, updateOn: 'change' });
+    }
+
+    if (type == AtomicComponentType.Boolean) {
+      this.newItemControl = new FormControl<boolean>(false, { nonNullable: true, updateOn: 'blur' });
+    }
+  }
+
+  public addItem(formatValue?: (x: T) => string) {
+    // TODO: show warning message?
+    if (this.data.some((x: T) => x == (this.newItemControl.value as unknown))) {
+      throw new Error('Value already exists');
+    }
+
+    let val: T = this.newItemControl.value as unknown as T;
+    if (typeof formatValue != 'undefined') {
+      val = formatValue(val) as unknown as T;
+    }
+
+    this.resource
+      .patch([
+        {
+          op: 'add',
+          path: this.propertyName, // FIXME: this must be relative to path of this.resource
+          value: val,
+        },
+      ])
+      .subscribe();
+    this.data.push(val);
+    this.newItemControl.setValue('');
+  }
+
+  public removeItem(index: number) {
+    // TODO: show warning message?
+    if (this.isTot && this.data.length == 1) {
+      throw new Error('Must have at least one element');
+    }
+    this.resource
+      .patch([
+        {
+          op: 'remove',
+          path: this.propertyName, // FIXME: this must be relative to path of this.resource
+          value: this.data[index],
+        },
+      ])
+      .subscribe();
+    this.data.splice(index, 1);
+  }
+
+  public deleteItem(index: number) {
+    // TODO: show warning message?
+    if (this.isTot && this.data.length == 1) {
+      throw new Error('Must have at least one element');
+    }
+    // TODO: resource delete method
+  }
+
+  public isNewItemInputRequired() {
+    return this.isTot && this.data.length === 0;
   }
 }

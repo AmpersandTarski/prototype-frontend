@@ -20,6 +20,7 @@ import { AppLayoutComponent } from './app.layout.component';
 import { HomeComponent } from './home/home.component';
 import { CardModule } from 'primeng/card';
 import { ButtonModule } from 'primeng/button';
+import { NotFoundComponentComponent } from './not-found-component/not-found-component.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import { ButtonModule } from 'primeng/button';
     AppSidebarComponent,
     AppLayoutComponent,
     HomeComponent,
+    NotFoundComponentComponent,
   ],
   imports: [
     BrowserModule,

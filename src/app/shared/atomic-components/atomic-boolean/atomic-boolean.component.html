@@ -1,18 +1,46 @@
-<div *ngIf="canRead; else notReadable">
-    <div class="p-inputgroup" *ngIf="isUni; else isNotUni">
-        <div class="w-full">
-            <p-inputSwitch
-                *ngIf="isUni && canRead"
-                [(ngModel)]="property"
-                [disabled]="!canUpdate"
-                (click)="getState(); changeProperty()"
-            ></p-inputSwitch>
-        </div>
+<div *ngIf="canRead(); else notReadable">
+    <div *ngIf="isUni; else isNotUni">
+        <p-inputSwitch *ngIf="isUni && canRead()" [formControl]="formControl" (click)="getState()"></p-inputSwitch>
     </div>
 </div>
 
 <ng-template #isNotUni>
-    <span>Not implemented: non-uni boolean</span>
+    <div *ngFor="let name of data; let i = index">
+        <div
+            *ngIf="canUpdate() && !isUni"
+            class="pi pi-fw pi-minus"
+            (click)="removeItem(i)"
+            pTooltip="Remove"
+            tooltipPosition="left"
+            style="color: red; padding-bottom: 9px; cursor: pointer"
+        ></div>
+
+        <!-- TODO: add the delete method -->
+        <!-- <div
+            *ngIf="canDelete() && !isUni"
+            class="pi pi-fw pi-trash"
+            pTooltip="Delete"
+            tooltipPosition="left"
+            style="color: red; cursor: pointer"
+        ></div> -->
+
+        <span style="padding-left: 9px">
+            {{ name }}
+        </span>
+    </div>
+
+    <div class="p-inputgroup">
+        <p-inputSwitch [formControl]="newItemControl"></p-inputSwitch>
+        <!-- Does not work yet for this case, concept idea -->
+        <div
+            *ngIf="canUpdate() && !isUni"
+            class="pi pi-fw pi-plus"
+            pTooltip="Add"
+            (click)="addItem()"
+            tooltipPosition="left"
+            style="color: green; padding-bottom: 9px; cursor: pointer"
+        ></div>
+    </div>
 </ng-template>
 
 <ng-template #notReadable>

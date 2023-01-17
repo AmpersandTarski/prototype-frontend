@@ -1,4 +1,23 @@
 <div *ngFor="let object of data">
+    <div
+        *ngIf="canUpdate()"
+        class="pi pi-fw pi-minus"
+        (click)="remove(object)"
+        pTooltip="Remove"
+        tooltipPosition="left"
+        style="color: red; padding-bottom: 9px; cursor: pointer"
+    ></div>
+
+    <!-- TODO: add the delete method -->
+    <!-- <div
+        *ngIf="canDelete()"
+        class="pi pi-fw pi-trash"
+        (click)="deleteItem()"
+        pTooltip="Delete"
+        tooltipPosition="left"
+        style="color: red; padding-bottom: 9px; cursor: pointer"
+    ></div> -->
+
     <p-splitButton
         *ngIf="object._ifcs_.length > 1"
         label="{{ object._label_ }}"
@@ -18,3 +37,15 @@
 
     <span *ngIf="object._ifcs_.length == 0 || object._ifcs_ == undefined">{{ object._label_ }}</span>
 </div>
+
+<p-dropdown
+    *ngIf="alternativeObjects$ | async as alternativeObjects"
+    [options]="alternativeObjects"
+    [formControl]="newItemControl"
+    optionLabel="_label_"
+    [filter]="true"
+    filterBy="_label_"
+    [showClear]="true"
+    [placeholder]="placeholder"
+>
+</p-dropdown>

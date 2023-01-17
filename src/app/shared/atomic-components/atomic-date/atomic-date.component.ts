@@ -1,20 +1,30 @@
 import { DatePipe } from '@angular/common';
-import { Component, Input } from '@angular/core';
-import { BaseAtomicComponent } from '../BaseAtomicComponent.class';
+import { Component, Input, OnInit } from '@angular/core';
+import { AtomicComponentType } from '../../models/atomic-component-types';
+import { BaseAtomicFormControlComponent } from '../BaseAtomicFormControlComponent.class';
 
 @Component({
   selector: 'app-atomic-date',
   templateUrl: './atomic-date.component.html',
   styleUrls: ['./atomic-date.component.css'],
 })
-export class AtomicDateComponent extends BaseAtomicComponent<string> {
+export class AtomicDateComponent extends BaseAtomicFormControlComponent<string> implements OnInit {
   // Possible formats can be found at https://www.primefaces.org/primeng/calendar.
   // Scroll down to DateFormat for the documentation
   @Input() format: string = 'yy-mm-dd';
 
-  public onDateChange(date: Date): void {
-    console.log(date);
+  override ngOnInit(): void {
+    super.ngOnInit();
+    if (!this.isUni) {
+      this.initNewItemControl(AtomicComponentType.BigAlphanumeric);
+    }
+    if (this.isUni) {
+      this.initFormControl('change', this.formatDate);
+    }
+  }
+
+  public formatDate(date: string): string {
     let datePipe: DatePipe = new DatePipe('en-US');
-    this.property = datePipe.transform(date, 'yyyy-MM-dd');
+    return datePipe.transform(date, 'yyyy-MM-dd')!;
   }
 }

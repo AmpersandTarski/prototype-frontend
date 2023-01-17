@@ -1,19 +1,21 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, ParamMap } from '@angular/router';
-import { Observable, switchMap } from 'rxjs';
+import { from, Observable, switchMap, tap } from 'rxjs';
+import { Patch } from 'src/app/shared/interfacing/patch';
+import { PatchResponse } from 'src/app/shared/interfacing/patch-response.interface';
+import { Resource } from 'src/app/shared/interfacing/resource.interface';
 import { BackendService } from '../backend.service';
-import { ProjectInterface } from '../project/project.interface';
+import { ProjectEditInterface } from './project-edit.interface';
 
 @Component({
   selector: 'app-project-edit',
   templateUrl: './project-edit.component.html',
   styleUrls: ['./project-edit.component.scss'],
 })
-export class ProjectEditComponent implements OnInit {
-  public data$!: Observable<ProjectInterface>;
+export class ProjectEditComponent implements OnInit, Resource<ProjectEditInterface> {
+  public data$!: Observable<ProjectEditInterface>;
   public projectId!: string;
-
-  constructor(private route: ActivatedRoute, private service: BackendService) {}
+  constructor(private route: ActivatedRoute, public service: BackendService) {}
 
   ngOnInit(): void {
     this.data$ = this.route.paramMap.pipe(
@@ -22,22 +24,18 @@ export class ProjectEditComponent implements OnInit {
         if (this.projectId === null) {
           throw new Error('id does not exist');
         }
-        return this.service.getProject(this.projectId);
+        return this.service.getProjectEdit(this.projectId);
       }),
     );
   }
 
-  patchProject(property: any, path: string) {
-    let body = [
-      {
-        op: 'replace',
-        path: path,
-        value: property,
-      },
-    ];
-
-    this.service.patchProject(this.projectId, body).subscribe(() => {
-      this.data$ = this.service.getProject(this.projectId);
-    });
+  patch(patches: Patch[]): Observable<PatchResponse<ProjectEditInterface>> {
+    return this.service.patchProject(this.projectId, patches).pipe(
+      tap((x) => {
+        if (x.isCommitted) {
+          this.data$ = from([x.content]);
+        }
+      }),
+    );
   }
 }

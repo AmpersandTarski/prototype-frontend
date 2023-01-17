@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 // Components
 import { AtomicAlphanumericComponent } from './atomic-components/atomic-alphanumeric/atomic-alphanumeric.component';
@@ -24,6 +24,7 @@ import { BoxFormLoadingComponent } from './box-components/box-form-loading/box-f
 
 // PrimeNG modules
 import { CalendarModule } from 'primeng/calendar';
+import { DropdownModule } from 'primeng/dropdown';
 import { InputNumberModule } from 'primeng/inputnumber';
 import { InputSwitchModule } from 'primeng/inputswitch';
 import { InputTextModule } from 'primeng/inputtext';
@@ -58,7 +59,9 @@ import { ButtonModule } from 'primeng/button';
   ],
   imports: [
     CommonModule,
+    ReactiveFormsModule,
     FormsModule,
+    DropdownModule,
     InputTextModule,
     InputSwitchModule,
     InputNumberModule,

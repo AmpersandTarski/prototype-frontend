@@ -1,18 +1,54 @@
-<div *ngIf="canRead; else notReadable">
-    <p-calendar
-        *ngIf="canUpdate; else notUpdatable"
-        [showClear]="true"
-        [readonlyInput]="true"
-        [dateFormat]="format"
-        [(ngModel)]="property"
-        (ngModelChange)="onDateChange($event)"
-        (onSelect)="changeProperty()"
-        (onClear)="changeProperty()"
-    ></p-calendar>
+<div *ngIf="canRead(); else notReadable">
+    <div *ngIf="canUpdate(); else notUpdatable">
+        <p-calendar
+            *ngIf="isUni; else isNotUni"
+            [showClear]="canDelete()"
+            [readonlyInput]="true"
+            [dateFormat]="format"
+            [formControl]="formControl"
+        ></p-calendar>
+    </div>
 </div>
 
+<ng-template #isNotUni>
+    <div *ngFor="let name of data; let i = index">
+        <div
+            *ngIf="canUpdate() && !isUni"
+            class="pi pi-fw pi-minus"
+            (click)="removeItem(i)"
+            pTooltip="Remove"
+            tooltipPosition="left"
+            style="color: red; padding-bottom: 9px; cursor: pointer"
+        ></div>
+
+        <!-- TODO: add the delete method -->
+        <!-- <div
+            *ngIf="canDelete() && !isUni"
+            class="pi pi-fw pi-trash"
+            pTooltip="Delete"
+            tooltipPosition="left"
+            style="color: red; cursor: pointer"
+        ></div> -->
+
+        <span style="padding-left: 9px">
+            {{ name }}
+        </span>
+    </div>
+
+    <div class="p-inputgroup">
+        <p-calendar
+            [showClear]="true"
+            [readonlyInput]="true"
+            [dateFormat]="format"
+            [formControl]="newItemControl"
+            [required]="isNewItemInputRequired()"
+            (onSelect)="addItem(formatDate)"
+        ></p-calendar>
+    </div>
+</ng-template>
+
 <ng-template #notUpdatable>
-    <div class="wordwrap">{{ property }}</div>
+    <div *ngFor="let row of data" class="wordwrap">{{ row }}</div>
 </ng-template>
 
 <ng-template #notReadable>

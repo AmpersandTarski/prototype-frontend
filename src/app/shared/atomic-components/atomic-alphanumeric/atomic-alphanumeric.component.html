@@ -1,37 +1,53 @@
-<div *ngIf="canRead; else notReadable">
-    <div class="p-inputgroup" *ngIf="canUpdate; else notUpdatable">
-        <div class="w-full" *ngIf="isUni; else isNotUni">
-            <input
-                type="text"
-                class="min-w-10rem w-full"
-                pInputText
-                (blur)="changeProperty()"
-                [(ngModel)]="property"
-                [required]="isTot"
-            />
+<div *ngIf="canRead(); else notReadable">
+    <div *ngIf="canUpdate(); else notUpdatable">
+        <div *ngIf="isUni; else isNotUni">
+            <input type="text" class="min-w-10rem w-full" pInputText [formControl]="formControl" [required]="isTot" />
         </div>
     </div>
 </div>
 
 <ng-template #isNotUni>
-    <div class="text-center w-full">
-        <div *ngFor="let row of data" class="flex align-items-center my-1">
-            <i class="pi pi-minus-circle mr-1 cursor-pointer"></i>
-            <span class="wordwrap">{{ row }}</span>
-        </div>
-        <div>
-            <div class="p-inputgroup">
-                <input
-                    type="text"
-                    class="min-w-10rem w-full"
-                    pInputText
-                    [(ngModel)]="newItem"
-                    placeholder="Add text"
-                    [required]="isNewItemInputRequired()"
-                />
-                <button type="button" pButton pRipple icon="pi pi-plus" styleClass="p-button-success"></button>
-            </div>
-        </div>
+    <div *ngFor="let name of data; let i = index">
+        <div
+            *ngIf="canUpdate() && !isUni"
+            class="pi pi-fw pi-minus"
+            (click)="removeItem(i)"
+            pTooltip="Remove"
+            tooltipPosition="left"
+            style="color: red; padding-bottom: 9px; cursor: pointer"
+        ></div>
+
+        <!-- TODO: add the delete method -->
+        <!-- <div
+            *ngIf="canDelete() && !isUni"
+            class="pi pi-fw pi-trash"
+            pTooltip="Delete"
+            tooltipPosition="left"
+            style="color: red; cursor: pointer"
+        ></div> -->
+
+        <span style="padding-left: 9px">
+            {{ name }}
+        </span>
+    </div>
+    <div class="p-inputgroup">
+        <input
+            type="text"
+            class="min-w-10rem w-full"
+            pInputText
+            [formControl]="newItemControl"
+            [placeholder]="'Add value'"
+            [required]="isNewItemInputRequired()"
+            (keyup.enter)="addItem()"
+        />
+        <button
+            type="button"
+            pButton
+            pRipple
+            icon="pi pi-plus"
+            styleClass="p-button-success"
+            (click)="addItem()"
+        ></button>
     </div>
 </ng-template>
 

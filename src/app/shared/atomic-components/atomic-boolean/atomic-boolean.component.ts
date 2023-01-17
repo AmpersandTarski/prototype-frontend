@@ -1,15 +1,29 @@
-import { Component, EventEmitter, Output } from '@angular/core';
-import { BaseAtomicComponent } from '../BaseAtomicComponent.class';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { AtomicComponentType } from '../../models/atomic-component-types';
+import { BaseAtomicFormControlComponent } from '../BaseAtomicFormControlComponent.class';
 
 @Component({
   selector: 'app-atomic-boolean',
   templateUrl: './atomic-boolean.component.html',
   styleUrls: ['./atomic-boolean.component.css'],
 })
-export class AtomicBooleanComponent extends BaseAtomicComponent<boolean> {
+export class AtomicBooleanComponent extends BaseAtomicFormControlComponent<boolean> implements OnInit {
   @Output() state = new EventEmitter();
 
-  getState() {
+  override ngOnInit(): void {
+    super.ngOnInit();
+    if (!this.isUni) {
+      this.initNewItemControl(AtomicComponentType.Boolean);
+    }
+    if (this.isUni) {
+      this.initFormControl('blur');
+    }
+    if (!this.canUpdate()) {
+      this.formControl.disable();
+    }
+  }
+
+  public getState() {
     this.state.emit(this.property);
   }
 }

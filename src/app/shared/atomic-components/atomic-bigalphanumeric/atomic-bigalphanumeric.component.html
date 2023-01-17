@@ -1,11 +1,10 @@
-<div *ngIf="canRead; else notReadable">
-    <div class="p-inputgroup" *ngIf="canUpdate; else notUpdatable">
+<div *ngIf="canRead(); else notReadable">
+    <div *ngIf="canUpdate(); else notUpdatable">
         <div class="w-full" *ngIf="isUni; else isNotUni">
             <textarea
                 pInputTextarea
-                [(ngModel)]="property"
+                [formControl]="formControl"
                 [required]="isTot"
-                (blur)="changeProperty()"
                 maxlength="64000"
                 class="w-full min-w-10rem"
             ></textarea>
@@ -14,34 +13,51 @@
 </div>
 
 <ng-template #isNotUni>
-    <div class="text-center w-full">
-        <div *ngFor="let row of data" class="flex align-items-center my-1">
-            <i class="pi pi-minus-circle mr-1 cursor-pointer"></i>
-            <span class="wordwrap">{{ row }}</span>
-        </div>
-        <div>
-            <div class="p-inputgroup">
-                <textarea
-                    pInputTextarea
-                    [(ngModel)]="newItem"
-                    [required]="isNewItemInputRequired()"
-                    maxlength="64000"
-                    placeholder="Add text"
-                    class="w-full min-w-10rem"
-                ></textarea>
-                <button type="button" pButton pRipple icon="pi pi-plus" styleClass="p-button-success"></button>
-            </div>
-        </div>
+    <div *ngFor="let name of data; let i = index">
+        <div
+            *ngIf="canUpdate() && !isUni"
+            class="pi pi-fw pi-minus"
+            (click)="removeItem(i)"
+            pTooltip="Remove"
+            tooltipPosition="left"
+            style="color: red; padding-bottom: 9px; cursor: pointer"
+        ></div>
+
+        <!-- TODO: add the delete method -->
+        <!-- <div
+            *ngIf="canDelete() && !isUni"
+            class="pi pi-fw pi-trash"
+            pTooltip="Delete"
+            tooltipPosition="left"
+            style="color: red; cursor: pointer"
+        ></div> -->
+
+        <span style="padding-left: 9px">
+            {{ name }}
+        </span>
+    </div>
+    <div class="p-inputgroup">
+        <textarea
+            type="text"
+            class="min-w-10rem w-full"
+            pInputText
+            [formControl]="newItemControl"
+            [placeholder]="'Add value'"
+            [required]="isNewItemInputRequired()"
+            (keyup.enter)="addItem()"
+        ></textarea>
+        <button
+            type="button"
+            pButton
+            pRipple
+            icon="pi pi-plus"
+            styleClass="p-button-success"
+            (click)="addItem()"
+        ></button>
     </div>
 </ng-template>
 
 <ng-template #notUpdatable>
-    <div *ngIf="isUni; else isNotUniAndNotUpdatable">
-        <div class="wordwrap">{{ property }}</div>
-    </div>
-</ng-template>
-
-<ng-template #isNotUniAndNotUpdatable>
     <div *ngFor="let row of data" class="wordwrap">{{ row }}</div>
 </ng-template>
 
