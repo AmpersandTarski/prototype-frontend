@@ -1,8 +1,8 @@
-<div *ngFor="let object of data">
+<div *ngFor="let object of data; let i = index">
     <div
         *ngIf="canUpdate()"
         class="pi pi-fw pi-minus"
-        (click)="remove(object)"
+        (click)="removeItem(i)"
         pTooltip="Remove"
         tooltipPosition="left"
         style="color: red; padding-bottom: 9px; cursor: pointer"
@@ -47,5 +47,6 @@
     filterBy="_label_"
     [showClear]="true"
     [placeholder]="placeholder"
+    (onChange)="addItem()"
 >
 </p-dropdown>

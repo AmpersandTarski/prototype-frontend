@@ -26,27 +26,6 @@ export class AtomicObjectComponent extends BaseAtomicComponent<ObjectBase> imple
     super.ngOnInit();
     if (!this.isUni) {
       this.initNewItemControl(AtomicComponentType.Object);
-      // TODO: make this into a function
-      this.newItemControl.valueChanges.subscribe((x: string | boolean | ObjectBase) => {
-        const obj = x as ObjectBase;
-
-        this.resource
-          .patch([
-            {
-              op: 'add',
-              path: this.propertyName,
-              value: obj._id_,
-            },
-          ])
-          // TODO: Fix this bug
-          .subscribe(() => {
-            this.newItemControl.setValue({} as ObjectBase);
-            for (const item of this.data) {
-              if (item._id_ == obj._id_) return;
-            }
-            this.data.push(x as ObjectBase);
-          });
-      });
     }
 
     this.data.forEach((object) => {
@@ -59,23 +38,39 @@ export class AtomicObjectComponent extends BaseAtomicComponent<ObjectBase> imple
     }
   }
 
-  // TODO: change function name to removeItem(index)
-  public remove(object: ObjectBase) {
-    return this.resource
+  public override addItem() {
+    let val = this.newItemControl.value as ObjectBase;
+
+    this.resource
       .patch([
         {
-          op: 'remove',
-          path: `${this.propertyName}/${object._id_}`,
+          op: 'add',
+          path: this.propertyName, // FIXME: this must be relative to path of this.resource
+          value: val._id_,
         },
       ])
       .subscribe(() => {
-        this.newItemControl.setValue('');
-        for (const item of this.data) {
-          if (item._id_ == object._id_) return;
-          const index = this.data.indexOf(object, 0);
-          if (index > -1) {
-            this.data.splice(index, 1);
-          }
+        this.data.push(val);
+        this.newItemControl.setValue({} as ObjectBase);
+      });
+  }
+
+  public override removeItem(index: number) {
+    console.log(this.data[index]._id_);
+    // TODO: show warning message?
+    if (this.isTot && this.data.length == 1) {
+      throw new Error('Must have at least one element');
+    }
+    this.resource
+      .patch([
+        {
+          op: 'remove',
+          path: `${this.propertyName}/${this.data[index]._id_}`, // FIXME: this must be relative to path of this.resource
+        },
+      ])
+      .subscribe((x: any) => {
+        if (x.content[this.propertyName].length != this.data.length) {
+          this.data.splice(index, 1);
         }
       });
   }
