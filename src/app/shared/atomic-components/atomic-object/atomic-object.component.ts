@@ -24,16 +24,18 @@ export class AtomicObjectComponent extends BaseAtomicComponent<ObjectBase> imple
 
   override ngOnInit(): void {
     super.ngOnInit();
-    if (!this.isUni) {
-      this.initNewItemControl(AtomicComponentType.Object);
-    }
 
     this.data.forEach((object) => {
       this.menuItems[object._id_] = this.toPrimeNgMenuModel(object._ifcs_, object._id_);
     });
 
     if (this.canUpdate()) {
-      if (this.isUni && this.data.length > 0) return;
+      this.initNewItemControl(AtomicComponentType.Object);
+
+      if (this.isUni && this.data.length > 0) {
+        this.newItemControl.disable(); // disables dropdown when univalent and already has a value
+      }
+
       this.alternativeObjects$ = this.getPatchItems()!;
     }
   }
@@ -50,16 +52,15 @@ export class AtomicObjectComponent extends BaseAtomicComponent<ObjectBase> imple
         },
       ])
       .subscribe(() => {
+        if (this.isUni) {
+          this.newItemControl.disable();
+        }
         this.data.push(val);
         this.newItemControl.setValue({} as ObjectBase);
       });
   }
 
   public override removeItem(index: number) {
-    // TODO: show warning message?
-    // if (this.isTot && this.data.length == 1) {
-    //   throw new Error('Must have at least one element');
-    // }
     this.resource
       .patch([
         {
@@ -69,11 +70,15 @@ export class AtomicObjectComponent extends BaseAtomicComponent<ObjectBase> imple
       ])
       .subscribe((x: any) => {
         if (x.invariantRulesHold && x.isCommitted) {
-          if (x.content[this.propertyName].length != this.data.length) {
-            this.data.splice(index, 1);
-          } else {
-            // show warning message, isTot requirement has been violated
+          if ((!this.isUni && x.content[this.propertyName].length != this.data.length) || this.isUni) {
+            this.data.splice(index, 1); // data is only spliced when change has occurred
           }
+          if (this.isUni) {
+            // since an element has been removed, the dropdown menu should be enabled again when univalent
+            this.newItemControl.enable();
+          }
+        } else {
+          // TODO: show warning message; isTot requirement has been violated
         }
       });
   }
