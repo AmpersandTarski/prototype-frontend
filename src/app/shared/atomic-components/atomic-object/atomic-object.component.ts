@@ -56,11 +56,10 @@ export class AtomicObjectComponent extends BaseAtomicComponent<ObjectBase> imple
   }
 
   public override removeItem(index: number) {
-    console.log(this.data[index]._id_);
     // TODO: show warning message?
-    if (this.isTot && this.data.length == 1) {
-      throw new Error('Must have at least one element');
-    }
+    // if (this.isTot && this.data.length == 1) {
+    //   throw new Error('Must have at least one element');
+    // }
     this.resource
       .patch([
         {
@@ -69,8 +68,12 @@ export class AtomicObjectComponent extends BaseAtomicComponent<ObjectBase> imple
         },
       ])
       .subscribe((x: any) => {
-        if (x.content[this.propertyName].length != this.data.length) {
-          this.data.splice(index, 1);
+        if (x.invariantRulesHold && x.isCommitted) {
+          if (x.content[this.propertyName].length != this.data.length) {
+            this.data.splice(index, 1);
+          } else {
+            // show warning message, isTot requirement has been violated
+          }
         }
       });
   }
