@@ -119,9 +119,9 @@ export abstract class BaseAtomicComponent<T> implements OnInit, OnChanges {
 
   public removeItem(index: number) {
     // TODO: show warning message?
-    if (this.isTot && this.data.length == 1) {
-      throw new Error('Must have at least one element');
-    }
+    // in the subscribe should be an if condition to check whether the patch has gone through
+    // this checks if the isTot relation is satisfied
+    // if it has, the you splice `this.data`.
     this.resource
       .patch([
         {

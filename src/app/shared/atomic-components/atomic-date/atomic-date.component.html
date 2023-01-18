@@ -2,7 +2,7 @@
     <div *ngIf="canUpdate(); else notUpdatable">
         <p-calendar
             *ngIf="isUni; else isNotUni"
-            [showClear]="canDelete()"
+            [showClear]="!isTot"
             [readonlyInput]="true"
             [dateFormat]="format"
             [formControl]="formControl"
@@ -37,7 +37,7 @@
 
     <div class="p-inputgroup">
         <p-calendar
-            [showClear]="true"
+            [showClear]="!isTot"
             [readonlyInput]="true"
             [dateFormat]="format"
             [formControl]="newItemControl"
