@@ -42,7 +42,11 @@ export class AtomicBooleanComponent extends BaseAtomicComponent<boolean> impleme
               value: x,
             },
           ])
-          .subscribe(),
+          .subscribe((x) => {
+            if (!(x.invariantRulesHold && x.isCommitted)) {
+              // TODO: show warning message of x.notifications.invariants
+            }
+          }),
       );
     }
   }

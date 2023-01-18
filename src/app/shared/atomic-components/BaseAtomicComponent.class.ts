@@ -94,10 +94,10 @@ export abstract class BaseAtomicComponent<T> implements OnInit, OnChanges {
   }
 
   public addItem(formatValue?: (x: T) => string) {
-    // TODO: show warning message?
-    if (this.data.some((x: T) => x == (this.newItemControl.value as unknown))) {
-      throw new Error('Value already exists');
-    }
+    // TODO: show warning message when item already exists?
+    // if (this.data.some((x: T) => x == (this.newItemControl.value as unknown))) {
+    //   // the warning message
+    // }
 
     let val: T = this.newItemControl.value as unknown as T;
     if (typeof formatValue != 'undefined') {
@@ -117,11 +117,8 @@ export abstract class BaseAtomicComponent<T> implements OnInit, OnChanges {
     this.newItemControl.setValue('');
   }
 
+  // remove for not univalent atomic-components
   public removeItem(index: number) {
-    // TODO: show warning message?
-    // in the subscribe should be an if condition to check whether the patch has gone through
-    // this checks if the isTot relation is satisfied
-    // if it has, the you splice `this.data`.
     this.resource
       .patch([
         {
@@ -130,12 +127,16 @@ export abstract class BaseAtomicComponent<T> implements OnInit, OnChanges {
           value: this.data[index],
         },
       ])
-      .subscribe();
-    this.data.splice(index, 1);
+      .subscribe((x) => {
+        if (x.isCommitted && x.invariantRulesHold) {
+          // TODO: show warning message
+          this.data.splice(index, 1);
+        }
+      });
   }
 
   public deleteItem(index: number) {
-    // TODO: show warning message?
+    // TODO: show warning message
     if (this.isTot && this.data.length == 1) {
       throw new Error('Must have at least one element');
     }
