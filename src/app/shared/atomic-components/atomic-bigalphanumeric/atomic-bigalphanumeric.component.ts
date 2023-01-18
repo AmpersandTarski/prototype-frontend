@@ -14,7 +14,7 @@ export class AtomicBigalphanumericComponent extends BaseAtomicComponent<string> 
 
   override ngOnInit(): void {
     super.ngOnInit();
-    if (!this.isUni) {
+    if (!this.isUni && this.canUpdate()) {
       this.initNewItemControl(AtomicComponentType.BigAlphanumeric);
     }
     if (this.isUni) {

@@ -17,7 +17,7 @@ export class AtomicDateComponent extends BaseAtomicComponent<string> implements 
 
   override ngOnInit(): void {
     super.ngOnInit();
-    if (!this.isUni) {
+    if (!this.isUni && this.canUpdate()) {
       this.initNewItemControl(AtomicComponentType.BigAlphanumeric);
     }
     if (this.isUni) {

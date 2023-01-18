@@ -53,6 +53,7 @@ export class AtomicObjectComponent extends BaseAtomicComponent<ObjectBase> imple
       ])
       .subscribe(() => {
         if (this.isUni) {
+          // since an element has been added, the dropdown menu should be disabled again when univalent
           this.newItemControl.disable();
         }
         this.data.push(val);
