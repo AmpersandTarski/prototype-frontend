@@ -26,14 +26,17 @@
         class="layout-topbar-menu"
         [ngClass]="{ 'layout-topbar-menu-mobile-active': layoutService.state.profileSidebarVisible }"
     >
-        <button class="p-link layout-topbar-button">
-            <i class="pi pi-calendar"></i>
-            <span>Calendar</span>
+        <!-- Tools Menu -->
+        <button class="p-link layout-topbar-button" label="Show" (click)="menuTools.toggle($event)">
+            <i class="pi pi-bars"></i>
         </button>
+        <p-menu #menuTools styleClass="align-right" [popup]="true" [model]="toolsItems"></p-menu>
+        <!-- Login -->
         <button class="p-link layout-topbar-button">
             <i class="pi pi-user"></i>
             <span>Profile</span>
         </button>
+        <!-- Settings -->
         <button class="p-link layout-topbar-button" [routerLink]="'/documentation'">
             <i class="pi pi-cog"></i>
             <span>Settings</span>
