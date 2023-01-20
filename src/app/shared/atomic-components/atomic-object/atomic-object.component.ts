@@ -69,6 +69,8 @@ export class AtomicObjectComponent extends BaseAtomicComponent<ObjectBase> imple
           path: `${this.propertyName}/${this.data[index]._id_}`, // FIXME: this must be relative to path of this.resource
         },
       ])
+      // Working with generics doesn't work well with this subscribe method due to the types of PatchResponse<T>
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       .subscribe((x: any) => {
         if (x.invariantRulesHold && x.isCommitted) {
           if ((!this.isUni && x.content[this.propertyName].length != this.data.length) || this.isUni) {
