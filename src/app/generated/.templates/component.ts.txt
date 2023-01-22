@@ -1,0 +1,38 @@
+/*
+ * Generated code by Ampersand compiler
+ * File:        $targetFilePath$
+ * Template:    $templateFilePath$
+ * Context:     $contextName$
+ */
+
+// Imports
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, ParamMap } from '@angular/router';
+import { from, map, Observable, switchMap, tap } from 'rxjs';
+import { BackendService } from '../backend.service';
+
+import { $ifcNamePascal$Interface } from './$ifcNameKebab$.interface';
+
+@Component({
+  selector: 'app-$ifcNameKebab$',
+  templateUrl: './$ifcNameKebab$.component.html',
+  // styleUrls: ['./$ifcNameKebab$.component.scss'],
+})
+export class $ifcNamePascal$Component implements OnInit {
+  public data\$!: Observable<$ifcNamePascal$Interface>;
+
+  constructor(private route: ActivatedRoute, private service: BackendService) {}
+
+  ngOnInit(): void {
+    $if(isSessionInterface)$this.data\$ = this.service.get$ifcNamePascal$();$else$this.data\$ = this.route.paramMap.pipe(
+      switchMap((params: ParamMap) => {
+        let resourceId = params.get('id')!;
+        if (resourceId === null) {
+          throw new Error('id does not exist');
+        }
+        return this.service.get$ifcNamePascal$(resourceId);
+      }),
+    );$endif$
+  }
+}
+

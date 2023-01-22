@@ -1,0 +1,21 @@
+/*
+ * Generated code by Ampersand compiler
+ * File:        $targetFilePath$
+ * Template:    $templateFilePath$
+ * Context:     $contextName$
+ */
+
+export type Object = {
+  _id_: string;
+  _label_: string;
+  _path_: string;
+  _ifcs_: Array<InterfaceRef>;
+};
+
+export type InterfaceRef = {
+  id: string;
+  label: string;
+};
+
+$concepts:{concept|export type $concept.cptId$ = $concept.typescriptType$;
+}$
