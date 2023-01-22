@@ -1,0 +1,12 @@
+/*
+ * Generated code by Ampersand compiler
+ * File:        $targetFilePath$
+ * Template:    $templateFilePath$
+ * Context:     $contextName$
+ */
+
+$views:{view|export type $view.viewId$View = {$view.viewSegments:{segment|
+  $segment.segmentLabel$: $segment.segmentTypescriptType$;}$$if(!view.viewIsEmpty)$
+
+$endif$\};
+}$

@@ -5,17 +5,8 @@
  * Context:     $contextName$
  */
 
-export interface $ifcNamePascal$Interface extends ObjectBase {}
+import * as concepts from '../project.concepts';
+import * as views from '../project.views';
 
-interface ObjectBase {
-  _id_: string;
-  _label_: string;
-  _path_: string;
-  _ifcs_: Array<InterfaceRefObject>;
-}
-
-interface InterfaceRefObject {
-  id: string;
-  label: string;
-}
+export type $ifcNamePascal$Interface = $contents$;
 

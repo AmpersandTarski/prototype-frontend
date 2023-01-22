@@ -19,7 +19,7 @@ import { $ifcNamePascal$Interface } from './$ifcNameKebab$.interface';
   // styleUrls: ['./$ifcNameKebab$.component.scss'],
 })
 export class $ifcNamePascal$Component implements OnInit {
-  public data\$!: Observable<$ifcNamePascal$Interface$if(!exprIsUni)$[]$endif$>;
+  public data\$!: Observable<$ifcNamePascal$Interface>;
 
   constructor(private route: ActivatedRoute, private service: BackendService) {}
 

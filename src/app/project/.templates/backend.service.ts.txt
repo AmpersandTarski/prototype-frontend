@@ -15,8 +15,10 @@ $ifcs:{ifc|import { $ifc.ifcNamePascal$Interface \} from './$ifc.ifcNameKebab$/$
 export class BackendService {
   constructor(private http: HttpClient) {}
 $ifcs:{ifc|
-  public get$ifc.ifcNamePascal$($if(!ifc.isSessionInterface)$id: string$endif$): Observable<$ifc.ifcNamePascal$Interface$if(!ifc.feiObj.exprIsUni)$[]$endif$> {
-    return this.http.get<$ifc.ifcNamePascal$Interface$if(!ifc.feiObj.exprIsUni)$[]$endif$>(`resource/$if(ifc.isSessionInterface)$SESSION/1$else$$ifc.srcConcept$/\${id\}$endif$/$ifc.ifcName$`);
+  public get$ifc.ifcNamePascal$($if(!ifc.isSessionInterface)$id: string$endif$): Observable<$ifc.ifcNamePascal$Interface> {
+    return this.http.get<$ifc.ifcNamePascal$Interface>(
+      `resource/$if(ifc.isSessionInterface)$SESSION/1$else$$ifc.srcConcept$/\${id\}$endif$/$ifc.ifcName$`,
+    );
   \}
 }$}
 
