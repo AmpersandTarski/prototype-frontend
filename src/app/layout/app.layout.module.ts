@@ -22,6 +22,7 @@ import { CardModule } from 'primeng/card';
 import { ButtonModule } from 'primeng/button';
 import { MenuModule } from 'primeng/menu';
 import { NotFoundComponentComponent } from './not-found-component/not-found-component.component';
+import { ManagementAPIService } from '../management-api/management-api.service';
 
 @NgModule({
   declarations: [
@@ -52,5 +53,6 @@ import { NotFoundComponentComponent } from './not-found-component/not-found-comp
     MenuModule,
   ],
   exports: [AppLayoutComponent],
+  providers: [{ provide: ManagementAPIService, useClass: ManagementAPIService }],
 })
 export class AppLayoutModule {}

@@ -1,5 +1,7 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { MenuItem } from 'primeng/api';
+import { ManagementAPIService } from '../management-api/management-api.service';
+import { Population } from '../shared/interfacing/population';
 import { LayoutService } from './service/app.layout.service';
 @Component({
   selector: 'app-topbar',
@@ -14,9 +16,7 @@ export class AppTopBarComponent implements OnInit {
 
   @ViewChild('topbarmenu') menu!: ElementRef;
 
-  constructor(
-    public layoutService: LayoutService, // private messageService: MessageService, // private primengConfig: PrimeNGConfig,
-  ) {}
+  constructor(public layoutService: LayoutService, private managementAPIService: ManagementAPIService) {}
 
   ngOnInit(): void {
     this.toolsItems = [
@@ -24,42 +24,42 @@ export class AppTopBarComponent implements OnInit {
         label: 'Refresh page',
         icon: 'pi pi-refresh',
         command: () => {
-          console.log('clicking update');
+          window.location.reload();
         },
       },
       {
         label: 'Reinstall application',
         icon: 'pi pi-trash',
-        command: () => {
-          console.log('clicking update');
-        },
+        routerLink: ['/admin/installer'],
       },
       {
         label: '(Re)evaluate all rules)',
         icon: 'pi pi-check-square',
         command: () => {
-          console.log('clicking update');
+          // TODO: let user know rules are evaluated
+          this.managementAPIService.getEvaluateAllRules().subscribe();
         },
       },
       {
         label: 'Run execution engine',
         icon: 'pi pi-cog',
         command: () => {
-          console.log('clicking update');
+          // TODO: let user know the execution engine is run
+          this.managementAPIService.getRunExecutionEngine().subscribe();
         },
       },
       {
         label: 'Population importer',
         icon: 'pi pi-arrow-circle-up',
-        command: () => {
-          console.log('clicking update');
-        },
+        routerLink: ['/ext/importer'],
       },
       {
         label: 'Population exporter',
         icon: 'pi pi-arrow-circle-down',
         command: () => {
-          console.log('clicking update');
+          this.managementAPIService
+            .getExportPopulation()
+            .subscribe((json: Population) => this.managementAPIService.exportPopulation(json));
         },
       },
     ];

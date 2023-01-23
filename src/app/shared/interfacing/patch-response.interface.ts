@@ -1,17 +1,11 @@
+import { Notifications } from './notifications';
 import { Patch, PatchValue } from './patch';
 
 export interface PatchResponse<T> {
   content: T;
   patches: Array<Patch | PatchValue>;
   //   TODO: change unknown types
-  notifications: {
-    errors: Array<unknown>;
-    warnings: Array<unknown>;
-    infos: Array<unknown>;
-    successes: Array<unknown>;
-    invariants: Array<unknown>;
-    signals: Array<unknown>;
-  };
+  notifications: Notifications;
   invariantRulesHold: boolean;
   isCommitted: boolean;
   sessionRefreshAdvice: boolean;
