@@ -22,7 +22,8 @@ import { CardModule } from 'primeng/card';
 import { ButtonModule } from 'primeng/button';
 import { MenuModule } from 'primeng/menu';
 import { NotFoundComponentComponent } from './not-found-component/not-found-component.component';
-import { ManagementAPIService } from '../management-api/management-api.service';
+import { PopulationService } from '../admin/population/population.service';
+import { UtilsService } from '../admin/utils/utils.service';
 
 @NgModule({
   declarations: [
@@ -53,6 +54,9 @@ import { ManagementAPIService } from '../management-api/management-api.service';
     MenuModule,
   ],
   exports: [AppLayoutComponent],
-  providers: [{ provide: ManagementAPIService, useClass: ManagementAPIService }],
+  providers: [
+    { provide: UtilsService, useClass: UtilsService },
+    { provide: PopulationService, useClass: PopulationService },
+  ],
 })
 export class AppLayoutModule {}

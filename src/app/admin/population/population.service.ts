@@ -1,20 +1,11 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Notifications } from '../shared/interfacing/notifications';
-import { IManagementAPIService } from './management-api.service.interface';
+import { IPopulationService } from './population.service.interface';
 
 @Injectable()
-export class ManagementAPIService implements IManagementAPIService {
+export class PopulationService implements IPopulationService {
   constructor(private http: HttpClient) {}
-
-  public getEvaluateAllRules(): Observable<Notifications> {
-    return this.http.get<Notifications>('admin/ruleengine/evaluate/all');
-  }
-
-  public getRunExecutionEngine(): Observable<Notifications> {
-    return this.http.get<Notifications>('admin/execengine/run');
-  }
 
   public getExportPopulation(): Observable<Object> {
     return this.http.get<Object>('admin/exporter/export/all');

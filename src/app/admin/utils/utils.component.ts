@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { finalize } from 'rxjs';
-import { ManagementAPIService } from 'src/app/management-api/management-api.service';
+import { UtilsService } from './utils.service';
 
 class ButtonState {
   public loading: boolean = false;
@@ -31,7 +31,7 @@ export class UtilsComponent {
   buttonState1: ButtonState = new ButtonState();
   buttonState2: ButtonState = new ButtonState();
 
-  constructor(private managementAPIService: ManagementAPIService) {}
+  constructor(private utilsService: UtilsService) {}
 
   /**
    * Method to determine if there is a 'installer' call to the backend in progress, triggered by any of the buttons
@@ -55,7 +55,7 @@ export class UtilsComponent {
   evaluateRules(buttonState: ButtonState) {
     this.initButtonStates();
     buttonState.loading = true;
-    this.managementAPIService
+    this.utilsService
       .getEvaluateAllRules()
       .pipe(finalize(() => (buttonState.loading = false)))
       .subscribe({
@@ -71,7 +71,7 @@ export class UtilsComponent {
   runExecutionEngine(buttonState: ButtonState) {
     this.initButtonStates();
     buttonState.loading = true;
-    this.managementAPIService
+    this.utilsService
       .getRunExecutionEngine()
       .pipe(finalize(() => (buttonState.loading = false)))
       .subscribe({

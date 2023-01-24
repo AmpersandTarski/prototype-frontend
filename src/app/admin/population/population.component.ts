@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { finalize } from 'rxjs';
-import { ManagementAPIService } from 'src/app/management-api/management-api.service';
+import { PopulationService } from './population.service';
 
 class ButtonState {
   public loading: boolean = false;
@@ -31,7 +31,7 @@ export class PopulationComponent {
   buttonState1: ButtonState = new ButtonState();
   buttonState2: ButtonState = new ButtonState();
 
-  constructor(private managementAPIService: ManagementAPIService) {}
+  constructor(private populationService: PopulationService) {}
 
   /**
    * Method to determine if there is a 'installer' call to the backend in progress, triggered by any of the buttons
@@ -56,13 +56,13 @@ export class PopulationComponent {
   exportPopulation(buttonState: ButtonState): void {
     this.initButtonStates();
     buttonState.loading = true;
-    this.managementAPIService
+    this.populationService
       .getExportPopulation()
       .pipe(finalize(() => (buttonState.loading = false)))
       .subscribe({
         error: (err) => (buttonState.error = true),
         complete: () => (buttonState.success = true),
-        next: (x) => this.managementAPIService.exportPopulation(x),
+        next: (x) => this.populationService.exportPopulation(x),
       });
   }
 
@@ -74,13 +74,13 @@ export class PopulationComponent {
   exportPopulationMetaModel(buttonState: ButtonState): void {
     this.initButtonStates();
     buttonState.loading = true;
-    this.managementAPIService
+    this.populationService
       .getExportPopulationMetaModel()
       .pipe(finalize(() => (buttonState.loading = false)))
       .subscribe({
         error: (err) => (buttonState.error = true),
         complete: () => (buttonState.success = true),
-        next: (x) => this.managementAPIService.exportPopulation(x),
+        next: (x) => this.populationService.exportPopulation(x),
       });
   }
 }
