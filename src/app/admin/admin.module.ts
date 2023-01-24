@@ -8,6 +8,8 @@ import { ButtonModule } from 'primeng/button';
 import { MenuItem } from 'primeng/api';
 import { UtilsComponent } from './utils/utils.component';
 import { PopulationComponent } from './population/population.component';
+import { UtilsService } from './utils/utils.service';
+import { PopulationService } from './population/population.service';
 
 const routes: Routes = [
   {
@@ -41,5 +43,9 @@ export const menuItems: MenuItem[] = [
 @NgModule({
   declarations: [InstallerComponent, UtilsComponent, PopulationComponent],
   imports: [CommonModule, RouterModule.forChild(routes), CardModule, ButtonModule],
+  providers: [
+    { provide: UtilsService, useClass: UtilsService },
+    { provide: PopulationService, useClass: PopulationService },
+  ],
 })
 export class AdminModule {}
