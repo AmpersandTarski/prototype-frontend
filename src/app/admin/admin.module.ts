@@ -7,6 +7,7 @@ import { CardModule } from 'primeng/card';
 import { ButtonModule } from 'primeng/button';
 import { MenuItem } from 'primeng/api';
 import { UtilsComponent } from './utils/utils.component';
+import { PopulationComponent } from './population/population.component';
 
 const routes: Routes = [
   {
@@ -18,6 +19,10 @@ const routes: Routes = [
         path: 'utils',
         component: UtilsComponent,
       },
+      {
+        path: 'population',
+        component: PopulationComponent,
+      },
     ],
   },
 ];
@@ -28,12 +33,13 @@ export const menuItems: MenuItem[] = [
     items: [
       { label: 'Installer', icon: 'pi pi-fw pi-replay', routerLink: ['/admin/installer'] },
       { label: 'Utils', icon: 'pi pi-fw pi-cog', routerLink: ['/admin/utils'] },
+      { label: 'Population', icon: 'pi pi-fw pi-users', routerLink: ['/admin/population'] },
     ],
   },
 ];
 
 @NgModule({
-  declarations: [InstallerComponent, UtilsComponent],
+  declarations: [InstallerComponent, UtilsComponent, PopulationComponent],
   imports: [CommonModule, RouterModule.forChild(routes), CardModule, ButtonModule],
 })
 export class AdminModule {}

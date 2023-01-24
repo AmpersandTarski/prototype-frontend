@@ -4,7 +4,7 @@
             <p>This action will (re)evaluate all rules.</p>
             <ng-template pTemplate="footer">
                 <p-button
-                    label="Reinstall"
+                    label="Evaluate"
                     icon="pi pi-check"
                     (onClick)="evaluateRules(buttonState1)"
                     [loading]="buttonState1.isLoading()"
@@ -19,7 +19,7 @@
             <p>This action will run the execution engine</p>
             <ng-template pTemplate="footer">
                 <p-button
-                    label="Reinstall"
+                    label="Run"
                     icon="pi pi-check"
                     (onClick)="runExecutionEngine(buttonState2)"
                     [loading]="buttonState2.isLoading()"
