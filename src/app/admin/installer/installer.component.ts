@@ -31,6 +31,7 @@ export class InstallerComponent {
   buttonState1: ButtonState = new ButtonState();
   buttonState2: ButtonState = new ButtonState();
   buttonState3: ButtonState = new ButtonState();
+  buttonState4: ButtonState = new ButtonState();
 
   constructor(private http: HttpClient) {}
 
@@ -39,14 +40,16 @@ export class InstallerComponent {
    * We capture this state in the associated buttonState(s)
    */
   isLoading(): boolean {
-    return [this.buttonState1, this.buttonState2, this.buttonState3].some((state) => state.isLoading());
+    return [this.buttonState1, this.buttonState2, this.buttonState3, this.buttonState4].some((state) =>
+      state.isLoading(),
+    );
   }
 
   /**
    * Set the buttonStates to their initial value
    */
   initButtonStates(): void {
-    [this.buttonState1, this.buttonState2, this.buttonState3].forEach((state) => state.init());
+    [this.buttonState1, this.buttonState2, this.buttonState3, this.buttonState4].forEach((state) => state.init());
   }
 
   /**
@@ -61,6 +64,16 @@ export class InstallerComponent {
     buttonState.loading = true;
     this.http
       .get('admin/installer', { params: { defaultPop: defaultPop, ignoreInvariantRules: ignoreInvariants } })
+      .pipe(finalize(() => (buttonState.loading = false)))
+      .subscribe({
+        error: (err) => (buttonState.error = true),
+        complete: () => (buttonState.success = true),
+      });
+  }
+
+  updateChecksum(buttonState: ButtonState): void {
+    this.http
+      .get('admin/installer/checksum/update')
       .pipe(finalize(() => (buttonState.loading = false)))
       .subscribe({
         error: (err) => (buttonState.error = true),
