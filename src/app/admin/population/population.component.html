@@ -5,11 +5,26 @@
             <ng-template pTemplate="footer">
                 <p-button
                     label="Export"
-                    icon="pi pi-check"
+                    icon="pi pi-arrow-circle-down"
                     (onClick)="exportPopulation(buttonState1)"
                     [loading]="buttonState1.isLoading()"
                     [disabled]="isLoading()"
                     [styleClass]="buttonState1.getStyleClass()"
+                ></p-button>
+            </ng-template>
+        </p-card>
+    </div>
+    <div class="flex-1 mb-3 mr-3 min-h-full">
+        <p-card header="Export population metamodel" styleClass="p-card-shadow">
+            <p>This action will export the population to a .json file as a metamodel.</p>
+            <ng-template pTemplate="footer">
+                <p-button
+                    label="Export"
+                    icon="pi pi-arrow-circle-down"
+                    (onClick)="exportPopulationMetaModel(buttonState2)"
+                    [loading]="buttonState2.isLoading()"
+                    [disabled]="isLoading()"
+                    [styleClass]="buttonState2.getStyleClass()"
                 ></p-button>
             </ng-template>
         </p-card>
@@ -21,7 +36,11 @@
                 populations.
             </p>
             <ng-template pTemplate="footer">
-                <p-button label="Import" icon="pi pi-check" [routerLink]="'/admin/population/import'"></p-button>
+                <p-button
+                    label="Import"
+                    icon="pi pi-arrow-circle-up"
+                    [routerLink]="'/admin/population/import'"
+                ></p-button>
             </ng-template>
         </p-card>
     </div>

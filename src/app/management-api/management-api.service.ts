@@ -2,7 +2,6 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Notifications } from '../shared/interfacing/notifications';
-import { Population } from '../shared/interfacing/population';
 import { IManagementAPIService } from './management-api.service.interface';
 
 @Injectable()
@@ -17,11 +16,15 @@ export class ManagementAPIService implements IManagementAPIService {
     return this.http.get<Notifications>('admin/execengine/run');
   }
 
-  public getExportPopulation(): Observable<Population> {
-    return this.http.get<Population>('admin/exporter/export/all');
+  public getExportPopulation(): Observable<Object> {
+    return this.http.get<Object>('admin/exporter/export/all');
   }
 
-  public exportPopulation(jsonResponse: Population): void {
+  public getExportPopulationMetaModel(): Observable<Object> {
+    return this.http.get<Object>('admin/exporter/export/metamodel');
+  }
+
+  public exportPopulation(jsonResponse: Object): void {
     let currentDate = new Date().toISOString();
 
     // Creates a fake DOM and simulates the onClick to download the json file

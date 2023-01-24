@@ -1,13 +1,14 @@
 import { Observable } from 'rxjs';
 import { Notifications } from '../shared/interfacing/notifications';
-import { Population } from '../shared/interfacing/population';
 
 export interface IManagementAPIService {
   getEvaluateAllRules(): Observable<Notifications>;
 
   getRunExecutionEngine(): Observable<Notifications>;
 
-  getExportPopulation(): Observable<Population>;
+  getExportPopulation(): Observable<Object>;
 
-  exportPopulation(jsonResponse: Population): void;
+  getExportPopulationMetaModel(): Observable<Object>;
+
+  exportPopulation(jsonResponse: Object): void;
 }

@@ -1,7 +1,6 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { MenuItem } from 'primeng/api';
 import { ManagementAPIService } from '../management-api/management-api.service';
-import { Population } from '../shared/interfacing/population';
 import { LayoutService } from './service/app.layout.service';
 @Component({
   selector: 'app-topbar',
@@ -59,7 +58,7 @@ export class AppTopBarComponent implements OnInit {
         command: () => {
           this.managementAPIService
             .getExportPopulation()
-            .subscribe((json: Population) => this.managementAPIService.exportPopulation(json));
+            .subscribe((json: Object) => this.managementAPIService.exportPopulation(json));
         },
       },
     ];
