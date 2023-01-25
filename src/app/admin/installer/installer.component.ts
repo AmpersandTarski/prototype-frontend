@@ -1,7 +1,7 @@
-import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { finalize } from 'rxjs';
 import { ButtonState } from 'src/app/shared/helper/button-state';
+import { InstallerService } from './installer.service';
 
 @Component({
   selector: 'app-installer',
@@ -14,7 +14,7 @@ export class InstallerComponent {
   buttonState3: ButtonState = new ButtonState();
   buttonState4: ButtonState = new ButtonState();
 
-  constructor(private http: HttpClient) {}
+  constructor(private installerService: InstallerService) {}
 
   /**
    * Method to determine if there is a 'installer' call to the backend in progress, triggered by any of the buttons
@@ -43,8 +43,8 @@ export class InstallerComponent {
   reinstall(defaultPop: boolean, ignoreInvariants: boolean, buttonState: ButtonState): void {
     this.initButtonStates();
     buttonState.loading = true;
-    this.http
-      .get('admin/installer', { params: { defaultPop: defaultPop, ignoreInvariantRules: ignoreInvariants } })
+    this.installerService
+      .getReinstall(defaultPop, ignoreInvariants)
       .pipe(finalize(() => (buttonState.loading = false)))
       .subscribe({
         error: (err) => (buttonState.error = true),
@@ -53,8 +53,8 @@ export class InstallerComponent {
   }
 
   updateChecksum(buttonState: ButtonState): void {
-    this.http
-      .get('admin/installer/checksum/update')
+    this.installerService
+      .getChecksumUpdate()
       .pipe(finalize(() => (buttonState.loading = false)))
       .subscribe({
         error: (err) => (buttonState.error = true),

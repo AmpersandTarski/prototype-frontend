@@ -1,14 +1,16 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { InstallerComponent } from './installer/installer.component';
 import { RouterModule, Routes } from '@angular/router';
 import { AppLayoutComponent } from '../layout/app.layout.component';
 import { CardModule } from 'primeng/card';
 import { ButtonModule } from 'primeng/button';
 import { MenuItem } from 'primeng/api';
+import { InstallerComponent } from './installer/installer.component';
+import { InstallerService } from './installer/installer.service';
+
 import { UtilsComponent } from './utils/utils.component';
-import { PopulationComponent } from './population/population.component';
 import { UtilsService } from './utils/utils.service';
+import { PopulationComponent } from './population/population.component';
 import { PopulationService } from './population/population.service';
 import { ReportComponent } from './report/report.component';
 import { ReportService } from './report/report.service';
@@ -51,6 +53,7 @@ export const menuItems: MenuItem[] = [
   declarations: [InstallerComponent, UtilsComponent, PopulationComponent, ReportComponent],
   imports: [CommonModule, RouterModule.forChild(routes), CardModule, ButtonModule],
   providers: [
+    { provide: InstallerService, useClass: InstallerService },
     { provide: UtilsService, useClass: UtilsService },
     { provide: PopulationService, useClass: PopulationService },
     { provide: ReportService, useClass: ReportService },
