@@ -10,6 +10,8 @@ import { UtilsComponent } from './utils/utils.component';
 import { PopulationComponent } from './population/population.component';
 import { UtilsService } from './utils/utils.service';
 import { PopulationService } from './population/population.service';
+import { ReportComponent } from './report/report.component';
+import { ReportService } from './report/report.service';
 
 const routes: Routes = [
   {
@@ -25,6 +27,10 @@ const routes: Routes = [
         path: 'population',
         component: PopulationComponent,
       },
+      {
+        path: 'report',
+        component: ReportComponent,
+      },
     ],
   },
 ];
@@ -36,16 +42,18 @@ export const menuItems: MenuItem[] = [
       { label: 'Installer', icon: 'pi pi-fw pi-replay', routerLink: ['/admin/installer'] },
       { label: 'Utils', icon: 'pi pi-fw pi-cog', routerLink: ['/admin/utils'] },
       { label: 'Population', icon: 'pi pi-fw pi-users', routerLink: ['/admin/population'] },
+      { label: 'Report', icon: 'pi pi-fw pi-pencil', routerLink: ['/admin/report'] },
     ],
   },
 ];
 
 @NgModule({
-  declarations: [InstallerComponent, UtilsComponent, PopulationComponent],
+  declarations: [InstallerComponent, UtilsComponent, PopulationComponent, ReportComponent],
   imports: [CommonModule, RouterModule.forChild(routes), CardModule, ButtonModule],
   providers: [
     { provide: UtilsService, useClass: UtilsService },
     { provide: PopulationService, useClass: PopulationService },
+    { provide: ReportService, useClass: ReportService },
   ],
 })
 export class AdminModule {}

@@ -1,0 +1,77 @@
+<div class="flex flex-wrap">
+    <div class="flex-1 mb-3 mr-3 min-h-full">
+        <p-card header="Relations" styleClass="p-card-shadow">
+            <p>some description</p>
+            <ng-template pTemplate="footer">
+                <p-button
+                    label="Export"
+                    icon="pi pi-arrow-circle-down"
+                    (onClick)="relations(buttonState1)"
+                    [loading]="buttonState1.isLoading()"
+                    [disabled]="isLoading()"
+                    [styleClass]="buttonState1.getStyleClass()"
+                ></p-button>
+            </ng-template>
+        </p-card>
+    </div>
+    <div class="flex-1 mb-3 mr-3 min-h-full">
+        <p-card header="Conjunct Usage" styleClass="p-card-shadow">
+            <p>some description</p>
+            <ng-template pTemplate="footer">
+                <p-button
+                    label="Export"
+                    icon="pi pi-arrow-circle-down"
+                    (onClick)="conjuntUsage(buttonState2)"
+                    [loading]="buttonState2.isLoading()"
+                    [disabled]="isLoading()"
+                    [styleClass]="buttonState2.getStyleClass()"
+                ></p-button>
+            </ng-template>
+        </p-card>
+    </div>
+    <div class="flex-1 mb-3 mr-3 min-h-full">
+        <p-card header="Conjunct Performance" styleClass="p-card-shadow">
+            <p>some description</p>
+            <ng-template pTemplate="footer">
+                <p-button
+                    label="Export"
+                    icon="pi pi-arrow-circle-down"
+                    (onClick)="conjunctPerformance(buttonState3)"
+                    [loading]="buttonState3.isLoading()"
+                    [disabled]="isLoading()"
+                    [styleClass]="buttonState3.getStyleClass()"
+                ></p-button>
+            </ng-template>
+        </p-card>
+    </div>
+    <div class="flex-1 mb-3 mr-3 min-h-full">
+        <p-card header="Interfaces" styleClass="p-card-shadow">
+            <p>some description</p>
+            <ng-template pTemplate="footer">
+                <p-button
+                    label="Export"
+                    icon="pi pi-arrow-circle-down"
+                    (onClick)="interfaces(buttonState4)"
+                    [loading]="buttonState4.isLoading()"
+                    [disabled]="isLoading()"
+                    [styleClass]="buttonState4.getStyleClass()"
+                ></p-button>
+            </ng-template>
+        </p-card>
+    </div>
+    <div class="flex-1 mb-3 mr-3 min-h-full">
+        <p-card header="Interface issues" styleClass="p-card-shadow">
+            <p>some description</p>
+            <ng-template pTemplate="footer">
+                <p-button
+                    label="Export"
+                    icon="pi pi-arrow-circle-down"
+                    (onClick)="interfaceIssues(buttonState5)"
+                    [loading]="buttonState5.isLoading()"
+                    [disabled]="isLoading()"
+                    [styleClass]="buttonState5.getStyleClass()"
+                ></p-button>
+            </ng-template>
+        </p-card>
+    </div>
+</div>
