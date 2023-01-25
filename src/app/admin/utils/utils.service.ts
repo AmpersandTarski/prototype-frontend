@@ -15,4 +15,12 @@ export class UtilsService implements IUtilsService {
   public getRunExecutionEngine(): Observable<Notifications> {
     return this.http.get<Notifications>('admin/execengine/run');
   }
+
+  public getRegenerateAllAtomIds(): Observable<Notifications> {
+    return this.http.get<Notifications>('admin/utils/regenerate-all-atom-ids');
+  }
+
+  public getRegenerateAtom(concept: string): Observable<Notifications> {
+    return this.http.get<Notifications>(`admin/utils/regenerate-all-atom-ids/${concept}`);
+  }
 }

@@ -1,26 +1,7 @@
 import { Component } from '@angular/core';
 import { finalize } from 'rxjs';
+import { ButtonState } from 'src/app/shared/helper/button-state';
 import { PopulationService } from './population.service';
-
-class ButtonState {
-  public loading: boolean = false;
-  public success: boolean = false;
-  public error: boolean = false;
-
-  isLoading(): boolean {
-    return this.loading;
-  }
-
-  getStyleClass(): string {
-    return this.success ? 'p-button-success' : this.error ? 'p-button-danger' : '';
-  }
-
-  init(): void {
-    this.loading = false;
-    this.success = false;
-    this.error = false;
-  }
-}
 
 @Component({
   selector: 'app-population',
@@ -34,7 +15,7 @@ export class PopulationComponent {
   constructor(private populationService: PopulationService) {}
 
   /**
-   * Method to determine if there is a 'installer' call to the backend in progress, triggered by any of the buttons
+   * Method to determine if there is a 'population' call to the backend in progress, triggered by any of the buttons
    * We capture this state in the associated buttonState(s)
    */
   isLoading(): boolean {
