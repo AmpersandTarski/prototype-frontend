@@ -1,13 +1,12 @@
 <div class="flex flex-wrap">
     <div class="flex-1 mb-3 mr-3 min-h-full">
-        <p-card header="With default population" subheader="Application (re)install" styleClass="p-card-shadow">
-            <p>This action will reinstall the application and database and delete all content.</p>
-            <p>If provided, the initial population will be installed.</p>
+        <p-card header="(Re)evaluate all rules" styleClass="p-card-shadow">
+            <p>This action will (re)evaluate all rules.</p>
             <ng-template pTemplate="footer">
                 <p-button
-                    label="Reinstall"
+                    label="Run"
                     icon="pi pi-check"
-                    (onClick)="reinstall(true, false, buttonState1)"
+                    (onClick)="evaluateRules(buttonState1)"
                     [loading]="buttonState1.isLoading()"
                     [disabled]="isLoading()"
                     [styleClass]="buttonState1.getStyleClass()"
@@ -16,14 +15,13 @@
         </p-card>
     </div>
     <div class="flex-1 mb-3 mr-3 min-h-full">
-        <p-card header="Without default population" subheader="Application (re)install" styleClass="p-card-shadow">
-            <p>This action will reinstall the application and database and delete all content.</p>
-            <p><strong>No initial population</strong> will be installed.</p>
+        <p-card header="Run execution engine" styleClass="p-card-shadow">
+            <p>This action will run the execution engine</p>
             <ng-template pTemplate="footer">
                 <p-button
-                    label="Reinstall"
+                    label="Run"
                     icon="pi pi-check"
-                    (onClick)="reinstall(false, false, buttonState2)"
+                    (onClick)="runExecutionEngine(buttonState2)"
                     [loading]="buttonState2.isLoading()"
                     [disabled]="isLoading()"
                     [styleClass]="buttonState2.getStyleClass()"
@@ -32,17 +30,13 @@
         </p-card>
     </div>
     <div class="flex-1 mb-3 mr-3 min-h-full">
-        <p-card header="Ignore invariant violations" subheader="Application (re)install" styleClass="p-card-shadow">
-            <p>This action will reinstall the application and database and delete all content.</p>
-            <p>
-                If provided, the initial population will be installed. Any invariant violations will be ignored and the
-                database transaction will be committed anyway.
-            </p>
+        <p-card header="Regenerate all atom ids" styleClass="p-card-shadow">
+            <p>This action will regenerate all atom ids</p>
             <ng-template pTemplate="footer">
                 <p-button
-                    label="Reinstall"
+                    label="Run"
                     icon="pi pi-check"
-                    (onClick)="reinstall(true, true, buttonState3)"
+                    (onClick)="regenerateAllAtomIds(buttonState3)"
                     [loading]="buttonState3.isLoading()"
                     [disabled]="isLoading()"
                     [styleClass]="buttonState3.getStyleClass()"
@@ -51,13 +45,14 @@
         </p-card>
     </div>
     <div class="flex-1 mb-3 mr-3 min-h-full">
-        <p-card header="Update checksum" subheader="" styleClass="p-card-shadow">
-            <p>This action will update the checksum.</p>
+        <p-card header="Regenerate all atom ids" styleClass="p-card-shadow">
+            <p>This action will regenerate all atoms of a single concept</p>
             <ng-template pTemplate="footer">
+                <!-- TODO: add concept with a select menu -->
                 <p-button
-                    label="Update"
-                    icon="pi pi-refresh"
-                    (onClick)="updateChecksum(buttonState4)"
+                    label="Run"
+                    icon="pi pi-check"
+                    (onClick)="regenerateAtom('test', buttonState4)"
                     [loading]="buttonState4.isLoading()"
                     [disabled]="isLoading()"
                     [styleClass]="buttonState4.getStyleClass()"

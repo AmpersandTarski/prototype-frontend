@@ -1,0 +1,47 @@
+<div class="flex flex-wrap">
+    <div class="flex-1 mb-3 mr-3 min-h-full">
+        <p-card header="Export population" styleClass="p-card-shadow">
+            <p>This action will export the population to a .json file.</p>
+            <ng-template pTemplate="footer">
+                <p-button
+                    label="Export"
+                    icon="pi pi-arrow-circle-down"
+                    (onClick)="exportPopulation(buttonState1)"
+                    [loading]="buttonState1.isLoading()"
+                    [disabled]="isLoading()"
+                    [styleClass]="buttonState1.getStyleClass()"
+                ></p-button>
+            </ng-template>
+        </p-card>
+    </div>
+    <div class="flex-1 mb-3 mr-3 min-h-full">
+        <p-card header="Export population metamodel" styleClass="p-card-shadow">
+            <p>This action will export the population to a .json file as a metamodel.</p>
+            <ng-template pTemplate="footer">
+                <p-button
+                    label="Export"
+                    icon="pi pi-arrow-circle-down"
+                    (onClick)="exportPopulationMetaModel(buttonState2)"
+                    [loading]="buttonState2.isLoading()"
+                    [disabled]="isLoading()"
+                    [styleClass]="buttonState2.getStyleClass()"
+                ></p-button>
+            </ng-template>
+        </p-card>
+    </div>
+    <div class="flex-1 mb-3 mr-3 min-h-full">
+        <p-card header="Import population" styleClass="p-card-shadow">
+            <p>
+                This action will route you to the 'import files' page where you can import and load existing
+                populations.
+            </p>
+            <ng-template pTemplate="footer">
+                <p-button
+                    label="Import"
+                    icon="pi pi-arrow-circle-up"
+                    [routerLink]="'/admin/population/import'"
+                ></p-button>
+            </ng-template>
+        </p-card>
+    </div>
+</div>
