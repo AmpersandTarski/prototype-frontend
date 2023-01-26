@@ -1,4 +1,20 @@
 <!-- Box-FORM.html -->
-<div>$subObjects:{subObj|
-    $subObj.subObjContents$}$
-</div>
+<div $if(isRoot)$*ngIf="data\$ | async as data; else loading"$endif$>
+    <app-box-form [data]="$if(isRoot)$$if(exprIsUni)$[data]$else$data$endif$$else$$if(exprIsUni)$[resource.$ifcName$]$else$resource.$ifcName$$endif$$endif$">
+        <ng-template [boxFormTemplate]="$if(isRoot)$$if(exprIsUni)$[data]$else$data$endif$$else$$if(exprIsUni)$[resource.$ifcName$]$else$resource.$ifcName$$endif$$endif$" let-resource>
+            <div class="formgrid grid">$subObjects:{subObj|
+                <div class="field col-12 box-form-field">
+                    <label class="box-form-label">$subObj.subObjLabel$</label>
+                    <div class="box-form-value">
+                        $subObj.subObjContents$
+                    </div>
+                </div>}$
+            </div>
+        </ng-template>
+    </app-box-form>
+</div>$if(isRoot)$
+
+
+<ng-template #loading>
+    <app-box-form-loading></app-box-form-loading>
+</ng-template>$endif$

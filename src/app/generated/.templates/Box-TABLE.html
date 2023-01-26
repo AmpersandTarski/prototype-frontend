@@ -1,18 +1,18 @@
 <!-- Box-TABLE.html -->
 <div $if(isRoot)$*ngIf="data\$ | async as data; else loading"$endif$>
-    <app-box-table [data]="data" sortable sortBy="Name" order="desc">
+    <app-box-table [data]="$if(isRoot)$$if(exprIsUni)$[data]$else$data$endif$$else$$if(exprIsUni)$[resource.$name$]$else$resource.$name$$endif$$endif$" sortable sortBy="Name" order="desc">
         <ng-template boxTableHeader>$subObjects:{subObj|
             <th>$subObj.subObjLabel$</th>}$
         </ng-template>
-        <ng-template [boxTableRow]="data" let-resource>$subObjects:{subObj|
+        <ng-template [boxTableRow]="$if(isRoot)$$if(exprIsUni)$[data]$else$data$endif$$else$$if(exprIsUni)$[resource.$name$]$else$resource.$name$$endif$$endif$" let-resource>$subObjects:{subObj|
             <td>
                 $subObj.subObjContents$
             </td>}$
         </ng-template>
     </app-box-table>
-</div>
-$if(isRoot)$
+</div>$if(isRoot)$
+
+
 <ng-template #loading>
     <app-box-table-loading [nrOfRows]="10"></app-box-table-loading>
 </ng-template>$endif$
-
