@@ -22,7 +22,11 @@ const routes: Routes = [
     path: 'p',
     component: AppLayoutComponent,
     children: [$ifcs:{ifc|
-      { path: '$ifc.ifcNameKebab$$if(!ifc.isSessionInterface)$/:id$endif$', component: $ifc.ifcNamePascal$Component \},}$
+      {
+        path: '$ifc.ifcNameKebab$$if(!ifc.isSessionInterface)$/:id$endif$',
+        component: $ifc.ifcNamePascal$Component,
+        title: '$ifc.ifcLabel$',
+      \},}$
     ],
   },
 ];
