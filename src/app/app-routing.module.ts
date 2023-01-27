@@ -13,10 +13,8 @@ const routes: Routes = [
     children: [
       { path: '', component: HomeComponent },
       { path: '404', component: NotFoundComponentComponent },
-  //    { path: '**', component: NotFoundComponentComponent },
     ],
   },
-
   {
     path: 'tools',
     component: AppLayoutComponent,
@@ -25,6 +23,7 @@ const routes: Routes = [
       { path: ':componentType/:componentName', component: ToolComponentDetailsComponent },
     ],
   },
+  { path: '**', component: AppLayoutComponent, children: [{ path: '', component: NotFoundComponentComponent }] },
 ];
 
 @NgModule({
