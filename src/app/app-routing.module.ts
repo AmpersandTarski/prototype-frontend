@@ -13,7 +13,7 @@ const routes: Routes = [
     children: [
       { path: '', component: HomeComponent },
       { path: '404', component: NotFoundComponentComponent },
-      { path: '**', component: NotFoundComponentComponent },
+  //    { path: '**', component: NotFoundComponentComponent },
     ],
   },
 
