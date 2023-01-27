@@ -1,7 +1,7 @@
 import { Directive, Input } from '@angular/core';
 
 interface BoxFormTemplateContext<TItem extends object> {
-  $implicit: TItem[];
+  $implicit: TItem;
 }
 
 @Directive({

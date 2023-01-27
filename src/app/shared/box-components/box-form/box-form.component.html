@@ -1,7 +1,7 @@
-<div class="card">
-    <ng-container *ngTemplateOutlet="template || defaultTemplate; context: { $implicit: data }"></ng-container>
+<div class="card" *ngFor="let item of data">
+    <ng-container *ngTemplateOutlet="template || defaultTemplate; context: { $implicit: item }"></ng-container>
 </div>
 
-<ng-template #defaultTemplate let-data>
+<ng-template #defaultTemplate let-item>
     <span>No template provided</span>
 </ng-template>

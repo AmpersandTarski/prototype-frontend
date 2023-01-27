@@ -1,14 +1,14 @@
 <h3>Project</h3>
 <div *ngIf="data$ | async as data; else loading">
-    <app-box-form>
-        <ng-template boxFormTemplate>
-            <h5>{{ data.Name }}</h5>
+    <app-box-form [data]="[data]">
+        <ng-template [boxFormTemplate]="[data]" let-resource>
+            <h5>{{ resource.Name }}</h5>
             <div class="formgrid grid">
                 <div class="field col-12 box-form-field">
                     <label class="box-form-label">Name</label>
                     <div class="box-form-value">
                         <app-atomic-alphanumeric
-                            [property]="data.Name"
+                            [property]="resource.Name"
                             label="Name"
                             isUni
                             isTot
@@ -20,7 +20,7 @@
                     <label class="box-form-label">Description</label>
                     <div class="box-form-value">
                         <app-atomic-bigalphanumeric
-                            [property]="data.Description"
+                            [property]="resource.Description"
                             label="Name"
                             isUni
                             isTot
@@ -32,7 +32,7 @@
                     <label class="box-form-label">(Planned) start date</label>
                     <div class="box-form-value">
                         <app-atomic-date
-                            [property]="data._40_Planned_41__32_start_32_date"
+                            [property]="resource._40_Planned_41__32_start_32_date"
                             label="Name"
                             isUni
                             isTot
@@ -44,7 +44,7 @@
                     <label class="box-form-label">Status</label>
                     <div class="box-form-value">
                         <app-atomic-alphanumeric
-                            [property]="data.Status"
+                            [property]="resource.Status"
                             label="Name"
                             isUni
                             isTot
@@ -56,7 +56,7 @@
                     <label class="box-form-label">Active</label>
                     <div class="box-form-value">
                         <app-atomic-boolean
-                            [property]="data.Active"
+                            [property]="resource.Active"
                             label="Name"
                             isUni
                             isTot
@@ -68,7 +68,7 @@
                     <label class="box-form-label">Current PL</label>
                     <div class="box-form-value">
                         <app-atomic-object
-                            [property]="data.Current_32_PL"
+                            [property]="resource.Current_32_PL"
                             label="Name"
                             isUni
                             isTot
@@ -79,12 +79,12 @@
                 <div class="field col-12 box-form-field">
                     <label class="box-form-label">Project members</label>
                     <div class="box-form-value">
-                        <app-box-table [data]="data.Project_32_members" sortable>
+                        <app-box-table [data]="resource.Project_32_members" sortable>
                             <ng-template boxTableHeader>
                                 <th>Name</th>
                                 <th>Email</th>
                             </ng-template>
-                            <ng-template [boxTableRow]="data.Project_32_members" let-row>
+                            <ng-template [boxTableRow]="resource.Project_32_members" let-row>
                                 <td>
                                     <app-atomic-alphanumeric
                                         [property]="row.Name"

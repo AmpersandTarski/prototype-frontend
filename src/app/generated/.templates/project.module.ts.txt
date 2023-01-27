@@ -13,6 +13,7 @@ import { MenuItem } from 'primeng/api';
 import { BackendService } from './backend.service';
 import { AppLayoutComponent } from '../layout/app.layout.component';
 import { SharedModule } from '../shared/shared.module';
+import { InterfaceRouteMap, INTERFACE_ROUTE_MAPPING_TOKEN } from '../config';
 
 $ifcs:{ifc|import { $ifc.ifcNamePascal$Component \} from './$ifc.ifcNameKebab$/$ifc.ifcNameKebab$.component';
 }$
@@ -22,7 +23,11 @@ const routes: Routes = [
     path: 'p',
     component: AppLayoutComponent,
     children: [$ifcs:{ifc|
-      { path: '$ifc.ifcNameKebab$$if(!ifc.isSessionInterface)$/:id$endif$', component: $ifc.ifcNamePascal$Component \},}$
+      {
+        path: '$ifc.ifcNameKebab$$if(!ifc.isSessionInterface)$/:id$endif$',
+        component: $ifc.ifcNamePascal$Component,
+        title: '$ifc.ifcLabel$',
+      \},}$
     ],
   },
 ];
@@ -42,13 +47,21 @@ export const menuItems: MenuItem[] = [
   },
 ];
 
+// Interface to route mapping
+const INTERFACE_ROUTE_MAP: InterfaceRouteMap = {$ifcs:{ifc|
+  $ifc.ifcName$: '/p/$ifc.ifcNameKebab$',}$
+};
+
 // Module
 @NgModule({
   declarations: [$ifcs:{ifc|
     $ifc.ifcNamePascal$Component,}$
   ],
   imports: [CommonModule, SharedModule, RouterModule.forChild(routes)],
-  providers: [{ provide: BackendService, useClass: BackendService }],
+  providers: [
+    { provide: BackendService, useClass: BackendService },
+    { provide: INTERFACE_ROUTE_MAPPING_TOKEN, useValue: INTERFACE_ROUTE_MAP },
+  ],
 })
 export class ProjectModule {}
 
