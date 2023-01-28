@@ -95,13 +95,13 @@ export class AtomicObjectComponent extends BaseAtomicComponent<ObjectBase> imple
     //TODO connect to delete request
   }
 
-  public navigateToEntity(interfaceName: string, id: string) {
+  public navigateToInterface(interfaceName: string, resourceId: string): Promise<boolean> {
     const routePath = this.interfaceRouteMap[interfaceName];
     if (routePath === undefined) {
       throw new Error(`No route path defined for interface ${interfaceName}`);
     }
 
-    this.router.navigate([routePath, `${id}`]);
+    return this.router.navigate([routePath, `${resourceId}`]);
   }
 
   private toPrimeNgMenuModel(ifcs: Array<InterfaceRefObject>, id: string): Array<MenuItem> {
@@ -110,7 +110,7 @@ export class AtomicObjectComponent extends BaseAtomicComponent<ObjectBase> imple
         <MenuItem>{
           label: ifc.label,
           icon: 'pi pi-refresh',
-          command: () => this.navigateToEntity(ifc.id, id),
+          command: () => this.navigateToInterface(ifc.id, id),
         },
     );
   }
