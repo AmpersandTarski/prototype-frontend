@@ -20,3 +20,9 @@ The required Ampersand compiler with support for generating new frontend module 
 4. To run the project, type `npm start`. This command will execute the `npm serve` command to start up the local instance of the project.
 
 When you already have installed the project and it's dependencies on your computer and want to start it up again, repeat stap 2 and 4 to run the local instance of the project.
+
+## Using the dev container
+
+Inside the dev container, use the dev-container configuration to serve the application: `ng serve -c dev-container`.
+
+This is needed because the dev-container needs a different proxy configuration; forwarding `/api` to `http://host.docker.internal:80` instead of `http://localhost:80`.
