@@ -50,4 +50,19 @@
             </ng-template>
         </p-card>
     </div>
+    <div class="flex-1 mb-3 mr-3 min-h-full">
+        <p-card header="Update checksum" subheader="" styleClass="p-card-shadow">
+            <p>This action will update the checksum.</p>
+            <ng-template pTemplate="footer">
+                <p-button
+                    label="Update"
+                    icon="pi pi-refresh"
+                    (onClick)="updateChecksum(buttonState4)"
+                    [loading]="buttonState4.isLoading()"
+                    [disabled]="isLoading()"
+                    [styleClass]="buttonState4.getStyleClass()"
+                ></p-button>
+            </ng-template>
+        </p-card>
+    </div>
 </div>

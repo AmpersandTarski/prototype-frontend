@@ -1,8 +1,8 @@
 <h3>Project</h3>
 <div *ngIf="data$ | async as data; else loading">
-    <app-box-form>
-        <ng-template boxFormTemplate>
-            <h5>{{ data.Name }}</h5>
+    <app-box-form [data]="[data]">
+        <ng-template [boxFormTemplate]="[data]" let-resource>
+            <h5>{{ resource.Name }}</h5>
             <div class="formgrid grid">
                 <div class="field col-12 box-form-field">
                     <label class="box-form-label">Name</label>
@@ -10,7 +10,7 @@
                         <app-atomic-alphanumeric
                             [resource]="this"
                             propertyName="Name"
-                            [property]="data.Name"
+                            [property]="resource.Name"
                             isUni
                             isTot
                             crud="CRUD"
@@ -23,7 +23,7 @@
                         <app-atomic-bigalphanumeric
                             [resource]="this"
                             propertyName="Description"
-                            [property]="data.Description"
+                            [property]="resource.Description"
                             isUni
                             isTot
                             crud="CRUD"
@@ -36,7 +36,7 @@
                         <app-atomic-date
                             [resource]="this"
                             propertyName="Start_32_date"
-                            [property]="data.Start_32_date"
+                            [property]="resource.Start_32_date"
                             isUni
                             isTot
                             crud="CRUd"
@@ -49,7 +49,7 @@
                         <app-atomic-alphanumeric
                             [resource]="this"
                             propertyName="Status"
-                            [property]="data.Status"
+                            [property]="resource.Status"
                             isUni
                             isTot
                             crud="CRUD"
@@ -62,7 +62,7 @@
                         <app-atomic-boolean
                             [resource]="this"
                             propertyName="Active"
-                            [property]="data.Active"
+                            [property]="resource.Active"
                             isUni
                             isTot
                             crud="CRUD"
@@ -75,7 +75,7 @@
                         <app-atomic-alphanumeric
                             [resource]="this"
                             propertyName="Keywords"
-                            [property]="data.Keywords"
+                            [property]="resource.Keywords"
                             isTot
                             crud="CRUD"
                         ></app-atomic-alphanumeric>
@@ -86,8 +86,9 @@
                     <div class="box-form-value">
                         <app-atomic-object
                             [resource]="this"
-                            [property]="data.Current_32_PL"
+                            [property]="resource.Current_32_PL"
                             propertyName="Current_32_PL"
+                            placeholder="Add Person"
                             isUni
                             isTot
                             crud="cRUd"
@@ -100,7 +101,7 @@
                     <div class="box-form-value">
                         <app-atomic-object
                             [resource]="this"
-                            [property]="data.Project_32_members"
+                            [property]="resource.Project_32_members"
                             propertyName="Project_32_members"
                             placeholder="Add Person"
                             isTot

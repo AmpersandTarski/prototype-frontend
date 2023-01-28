@@ -1,5 +1,6 @@
 import { OnInit } from '@angular/core';
 import { Component } from '@angular/core';
+import { MenuItem } from 'primeng/api';
 import { menuItems as adminMenuItems } from '../admin/admin.module';
 import { menuItems as projectMenuItems } from '../project-administration/project-administration.module';
 import { LayoutService } from './service/app.layout.service';
@@ -9,7 +10,7 @@ import { LayoutService } from './service/app.layout.service';
   templateUrl: './app.menu.component.html',
 })
 export class AppMenuComponent implements OnInit {
-  model: any[] = [];
+  model: MenuItem[] = [];
 
   constructor(public layoutService: LayoutService) {}
 

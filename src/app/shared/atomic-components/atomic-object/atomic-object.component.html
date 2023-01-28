@@ -1,8 +1,8 @@
-<div *ngFor="let object of data">
+<div *ngFor="let object of data; let i = index">
     <div
         *ngIf="canUpdate()"
         class="pi pi-fw pi-minus"
-        (click)="remove(object)"
+        (click)="removeItem(i)"
         pTooltip="Remove"
         tooltipPosition="left"
         style="color: red; padding-bottom: 9px; cursor: pointer"
@@ -21,7 +21,7 @@
     <p-splitButton
         *ngIf="object._ifcs_.length > 1"
         label="{{ object._label_ }}"
-        (onClick)="navigateToEntity(object._ifcs_[0].id, object._id_)"
+        (onClick)="navigateToInterface(object._ifcs_[0].id, object._id_)"
         [model]="menuItems[object._id_]"
         styleClass="p-button-text mr-2 mb-2 flex"
     ></p-splitButton>
@@ -29,7 +29,7 @@
     <button
         pButton
         *ngIf="object._ifcs_.length == 1"
-        (click)="navigateToEntity(object._ifcs_[0].id, object._id_)"
+        (click)="navigateToInterface(object._ifcs_[0].id, object._id_)"
         label="{{ object._label_ }}"
         type="button"
         class="p-button-text"
@@ -45,7 +45,8 @@
     optionLabel="_label_"
     [filter]="true"
     filterBy="_label_"
-    [showClear]="true"
+    [showClear]="false"
     [placeholder]="placeholder"
+    (onChange)="addItem()"
 >
 </p-dropdown>

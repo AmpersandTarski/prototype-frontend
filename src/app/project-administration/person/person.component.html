@@ -1,14 +1,14 @@
 <h3>Person</h3>
 <div *ngIf="data$ | async as data; else loading">
-    <app-box-form>
-        <ng-template boxFormTemplate>
-            <h5>{{ data.First_32_name }} {{ data.Last_32_name }}</h5>
+    <app-box-form [data]="[data]">
+        <ng-template [boxFormTemplate]="[data]" let-resource>
+            <!-- <h5>{{ resource.First_32_name }} {{ resource.Last_32_name }}</h5> -->
             <div class="formgrid grid">
                 <div class="field col-12 box-form-field">
                     <label class="box-form-label">First Name</label>
                     <div class="box-form-value">
                         <app-atomic-alphanumeric
-                            [property]="data.First_32_name"
+                            [property]="resource.First_32_name"
                             label="First Name"
                             isUni
                             isTot
@@ -20,7 +20,7 @@
                     <label class="box-form-label">Last Name</label>
                     <div class="box-form-value">
                         <app-atomic-bigalphanumeric
-                            [property]="data.Last_32_name"
+                            [property]="resource.Last_32_name"
                             label="Last Name"
                             isUni
                             isTot
@@ -32,7 +32,7 @@
                     <label class="box-form-label">Status</label>
                     <div class="box-form-value">
                         <app-atomic-bigalphanumeric
-                            [property]="data.Status!"
+                            [property]="resource.Status!"
                             label="Status"
                             isUni
                             isTot
@@ -44,7 +44,7 @@
                     <label class="box-form-label">Email</label>
                     <div class="box-form-value">
                         <app-atomic-bigalphanumeric
-                            [property]="data.Email"
+                            [property]="resource.Email"
                             label="Email"
                             isUni
                             isTot
@@ -54,7 +54,7 @@
                 </div>
                 <div class="field col-12 box-form-field">
                     <label class="box-form-label">Projects</label>
-                    <app-box-tab [data]="data.Projects" [tabHeaders]="['Active', 'Inactive']">
+                    <app-box-tab [data]="resource.Projects" [tabHeaders]="['Active', 'Inactive']">
                         <ng-template #tabContent let-data="data" let-tabHeader="tabHeader">
                             <app-atomic-object [property]="data[tabHeader]" label="Name" isUni isTot crud="cRud">
                             </app-atomic-object>
@@ -63,7 +63,7 @@
                 </div>
                 <div class="field col-12 box-form-field">
                     <label class="box-form-label">Works with</label>
-                    <app-atomic-object [property]="data.Works_32_with" label="Name" isUni isTot crud="cRud">
+                    <app-atomic-object [property]="resource.Works_32_with" label="Name" isUni isTot crud="cRud">
                     </app-atomic-object>
                 </div>
             </div>

@@ -1,0 +1,12 @@
+/*
+ * Generated code by Ampersand compiler
+ * File:        $targetFilePath$
+ * Template:    $templateFilePath$
+ * Context:     $contextName$
+ */
+
+import * as concepts from '../project.concepts';
+import * as views from '../project.views';
+
+export type $ifcNamePascal$Interface = $contents$;
+

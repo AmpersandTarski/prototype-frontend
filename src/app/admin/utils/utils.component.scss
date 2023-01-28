@@ -1,0 +1,17 @@
+@use "../../../../node_modules/primeflex/primeflex.scss";
+
+::ng-deep .p-card {
+    @extend .flex;
+    @extend .min-h-full;
+    min-width: 360px;
+}
+
+::ng-deep .p-card-body {
+    @extend .flex;
+    @extend .flex-column;
+    @extend .min-h-full;
+}
+
+::ng-deep .p-card-content {
+    @extend .flex-grow-1;
+}

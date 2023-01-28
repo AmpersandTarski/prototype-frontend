@@ -1,0 +1,63 @@
+<div class="flex flex-wrap">
+    <div class="flex-1 mb-3 mr-3 min-h-full">
+        <p-card header="(Re)evaluate all rules" styleClass="p-card-shadow">
+            <p>This action will (re)evaluate all rules.</p>
+            <ng-template pTemplate="footer">
+                <p-button
+                    label="Run"
+                    icon="pi pi-check"
+                    (onClick)="evaluateRules(buttonState1)"
+                    [loading]="buttonState1.isLoading()"
+                    [disabled]="isLoading()"
+                    [styleClass]="buttonState1.getStyleClass()"
+                ></p-button>
+            </ng-template>
+        </p-card>
+    </div>
+    <div class="flex-1 mb-3 mr-3 min-h-full">
+        <p-card header="Run execution engine" styleClass="p-card-shadow">
+            <p>This action will run the execution engine</p>
+            <ng-template pTemplate="footer">
+                <p-button
+                    label="Run"
+                    icon="pi pi-check"
+                    (onClick)="runExecutionEngine(buttonState2)"
+                    [loading]="buttonState2.isLoading()"
+                    [disabled]="isLoading()"
+                    [styleClass]="buttonState2.getStyleClass()"
+                ></p-button>
+            </ng-template>
+        </p-card>
+    </div>
+    <div class="flex-1 mb-3 mr-3 min-h-full">
+        <p-card header="Regenerate all atom ids" styleClass="p-card-shadow">
+            <p>This action will regenerate all atom ids</p>
+            <ng-template pTemplate="footer">
+                <p-button
+                    label="Run"
+                    icon="pi pi-check"
+                    (onClick)="regenerateAllAtomIds(buttonState3)"
+                    [loading]="buttonState3.isLoading()"
+                    [disabled]="isLoading()"
+                    [styleClass]="buttonState3.getStyleClass()"
+                ></p-button>
+            </ng-template>
+        </p-card>
+    </div>
+    <div class="flex-1 mb-3 mr-3 min-h-full">
+        <p-card header="Regenerate all atom ids" styleClass="p-card-shadow">
+            <p>This action will regenerate all atoms of a single concept</p>
+            <ng-template pTemplate="footer">
+                <!-- TODO: add concept with a select menu -->
+                <p-button
+                    label="Run"
+                    icon="pi pi-check"
+                    (onClick)="regenerateAtom('test', buttonState4)"
+                    [loading]="buttonState4.isLoading()"
+                    [disabled]="isLoading()"
+                    [styleClass]="buttonState4.getStyleClass()"
+                ></p-button>
+            </ng-template>
+        </p-card>
+    </div>
+</div>
