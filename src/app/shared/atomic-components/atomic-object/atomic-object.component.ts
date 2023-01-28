@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Inject, Input, OnInit } from '@angular/core';
 import { MenuItem } from 'primeng/api';
 import { BaseAtomicComponent } from '../BaseAtomicComponent.class';
 import { Router } from '@angular/router';
@@ -6,6 +6,7 @@ import { InterfaceRefObject, ObjectBase } from '../../objectBase.interface';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { AtomicComponentType } from '../../models/atomic-component-types';
+import { InterfaceRouteMap, INTERFACE_ROUTE_MAPPING_TOKEN } from 'src/app/config';
 
 @Component({
   selector: 'app-atomic-object',
@@ -18,7 +19,11 @@ export class AtomicObjectComponent extends BaseAtomicComponent<ObjectBase> imple
   @Input() public placeholder!: string;
   @Input() itemsMethod!: Function | null;
 
-  constructor(private router: Router, private http: HttpClient /* required to make property 'itemsMethod' work  */) {
+  constructor(
+    private router: Router,
+    private http: HttpClient, // required to make property 'itemsMethod' work
+    @Inject(INTERFACE_ROUTE_MAPPING_TOKEN) private interfaceRouteMap: InterfaceRouteMap,
+  ) {
     super();
   }
 
@@ -90,8 +95,13 @@ export class AtomicObjectComponent extends BaseAtomicComponent<ObjectBase> imple
     //TODO connect to delete request
   }
 
-  public navigateToEntity(type: string, id: string) {
-    this.router.navigate(['p', type.toLowerCase(), `${id}`]);
+  public navigateToEntity(interfaceName: string, id: string) {
+    const routePath = this.interfaceRouteMap[interfaceName];
+    if (routePath === undefined) {
+      throw new Error(`No route path defined for interface ${interfaceName}`);
+    }
+
+    this.router.navigate([routePath, `${id}`]);
   }
 
   private toPrimeNgMenuModel(ifcs: Array<InterfaceRefObject>, id: string): Array<MenuItem> {
