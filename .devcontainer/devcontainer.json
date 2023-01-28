@@ -10,6 +10,10 @@
 		"ghcr.io/devcontainers-contrib/features/angular-cli:2": {}
 	},
 
+	// Host mapping needed for Linux hosts. Read about it here: https://medium.com/@TimvanBaarsen/how-to-connect-to-the-docker-host-from-inside-a-docker-container-112b4c71bc66
+	// host.docker.internal is used in proxy.conf for dev-container to port forward to host
+	"runArgs": ["--add-host=host.docker.internal:host-gateway"],
+
 	// Use 'forwardPorts' to make a list of ports inside the container available locally.
 	"forwardPorts": [4200],
 
