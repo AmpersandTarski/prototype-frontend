@@ -22,24 +22,20 @@
 <p-divider></p-divider>
 <div class="grid p-fluid">
     <div class="col-3 text-center">
-        <h5>Can Create</h5>
-        <app-atomic-boolean [property]="true" (state)="setCanCreateState($event)" isUni isTot crud="CRUD">
-        </app-atomic-boolean>
+        <h5>Can create</h5>
+        <p-inputSwitch [(ngModel)]="canCreate"></p-inputSwitch>
     </div>
     <div class="col-3 text-center">
-        <h5>Can Read</h5>
-        <app-atomic-boolean [property]="true" (state)="setCanReadState($event)" isUni isTot crud="CRUD">
-        </app-atomic-boolean>
+        <h5>Can read</h5>
+        <p-inputSwitch [(ngModel)]="canRead"></p-inputSwitch>
     </div>
     <div class="col-3 text-center">
-        <h5>Can Update</h5>
-        <app-atomic-boolean [property]="true" (state)="setCanUpdateState($event)" isUni isTot crud="CRUD">
-        </app-atomic-boolean>
+        <h5>Can update</h5>
+        <p-inputSwitch [(ngModel)]="canUpdate"></p-inputSwitch>
     </div>
     <div class="col-3 text-center">
-        <h5>Can Delete</h5>
-        <app-atomic-boolean [property]="true" (state)="setCanDeleteState($event)" isUni isTot crud="CRUD">
-        </app-atomic-boolean>
+        <h5>Can delete</h5>
+        <p-inputSwitch [(ngModel)]="canDelete"></p-inputSwitch>
     </div>
 </div>
 <p-divider></p-divider>

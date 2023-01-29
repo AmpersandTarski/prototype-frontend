@@ -31,22 +31,6 @@ export class ToolComponentDetailsComponent implements OnInit {
     });
   }
 
-  setCanCreateState(canCreate: boolean) {
-    this.canCreate = canCreate;
-  }
-
-  setCanReadState(canRead: boolean) {
-    this.canRead = canRead;
-  }
-
-  setCanUpdateState(canUpdate: boolean) {
-    this.canUpdate = canUpdate;
-  }
-
-  setCanDeleteState(canDelete: boolean) {
-    this.canDelete = canDelete;
-  }
-
   public crudOperationsToText(): string {
     var c = 'c';
     var r = 'r';
