@@ -32,24 +32,11 @@ export class ToolComponentDetailsComponent implements OnInit {
   }
 
   public crudOperationsToText(): string {
-    var c = 'c';
-    var r = 'r';
-    var u = 'u';
-    var d = 'd';
-
-    if (this.canCreate) {
-      c = c.toUpperCase();
-    }
-    if (this.canRead) {
-      r = r.toUpperCase();
-    }
-    if (this.canUpdate) {
-      u = u.toUpperCase();
-    }
-    if (this.canDelete) {
-      d = d.toUpperCase();
-    }
-
-    return c + r + u + d;
+    return [
+      this.canCreate ? 'C' : 'c',
+      this.canRead ? 'R' : 'r',
+      this.canUpdate ? 'U' : 'u',
+      this.canDelete ? 'D' : 'd',
+    ].reduce((str: string, value: string) => str + value, '');
   }
 }
