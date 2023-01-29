@@ -1,3 +1,48 @@
+<h1 class="mb-2">
+    <span class="capitalize">{{ componentName }}</span>
+</h1>
+<h4 class="text-primary mt-0">
+    <span class="capitalize">{{ componentType }}</span> component
+</h4>
+<p>
+    This is the {{ componentType }}-component {{ componentName }}. To see how the component reacts, its possible to
+    toggle the switches below.
+</p>
+<p-divider></p-divider>
+<div class="grid p-fluid">
+    <div class="col-6 text-center">
+        <h5>Expression is univalent</h5>
+        <p-inputSwitch [(ngModel)]="isUni"></p-inputSwitch>
+    </div>
+    <div class="col-6 text-center">
+        <h5>Expression is total</h5>
+        <p-inputSwitch [(ngModel)]="isTot"></p-inputSwitch>
+    </div>
+</div>
+<p-divider></p-divider>
+<div class="grid p-fluid">
+    <div class="col-3 text-center">
+        <h5>Can Create</h5>
+        <app-atomic-boolean [property]="true" (state)="setCanCreateState($event)" isUni isTot crud="CRUD">
+        </app-atomic-boolean>
+    </div>
+    <div class="col-3 text-center">
+        <h5>Can Read</h5>
+        <app-atomic-boolean [property]="true" (state)="setCanReadState($event)" isUni isTot crud="CRUD">
+        </app-atomic-boolean>
+    </div>
+    <div class="col-3 text-center">
+        <h5>Can Update</h5>
+        <app-atomic-boolean [property]="true" (state)="setCanUpdateState($event)" isUni isTot crud="CRUD">
+        </app-atomic-boolean>
+    </div>
+    <div class="col-3 text-center">
+        <h5>Can Delete</h5>
+        <app-atomic-boolean [property]="true" (state)="setCanDeleteState($event)" isUni isTot crud="CRUD">
+        </app-atomic-boolean>
+    </div>
+</div>
+<p-divider></p-divider>
 <div *ngIf="componentType == 'atomic'" class="surface-300 w-100 element-showcase text-center border-round-xl">
     <div *ngIf="componentName == 'alphanumeric'">
         <app-atomic-alphanumeric
@@ -72,46 +117,5 @@
             [crud]="crudOperationsToText()"
         >
         </app-atomic-password>
-    </div>
-</div>
-<h1 class="mb-2">
-    <span class="capitalize">{{ componentName }}</span> component
-</h1>
-<h4 class="text-primary capitalize mt-0">{{ componentType }}</h4>
-<p>
-    This is the {{ componentType }}-component {{ componentName }}. To see how the component reacts, its possible to
-    toggle the switches below.
-</p>
-<div class="grid p-fluid">
-    <div class="col-3 text-center">
-        <h5>Can Create</h5>
-        <app-atomic-boolean [property]="true" (state)="setCanCreateState($event)" isUni isTot crud="CRUD">
-        </app-atomic-boolean>
-    </div>
-    <div class="col-3 text-center">
-        <h5>Can Read</h5>
-        <app-atomic-boolean [property]="true" (state)="setCanReadState($event)" isUni isTot crud="CRUD">
-        </app-atomic-boolean>
-    </div>
-    <div class="col-3 text-center">
-        <h5>Can Update</h5>
-        <app-atomic-boolean [property]="true" (state)="setCanUpdateState($event)" isUni isTot crud="CRUD">
-        </app-atomic-boolean>
-    </div>
-    <div class="col-3 text-center">
-        <h5>Can Delete</h5>
-        <app-atomic-boolean [property]="true" (state)="setCanDeleteState($event)" isUni isTot crud="CRUD">
-        </app-atomic-boolean>
-    </div>
-</div>
-<p-divider></p-divider>
-<div class="grid p-fluid">
-    <div class="col-6 text-center">
-        <h5>Expression is univalent</h5>
-        <p-inputSwitch [(ngModel)]="isUni"></p-inputSwitch>
-    </div>
-    <div class="col-6 text-center">
-        <h5>Expression is total</h5>
-        <p-inputSwitch [(ngModel)]="isTot"></p-inputSwitch>
     </div>
 </div>
