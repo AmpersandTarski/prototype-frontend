@@ -1,7 +1,6 @@
 import { DatePipe } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { AtomicComponentType } from '../../models/atomic-component-types';
 import { BaseAtomicComponent } from '../BaseAtomicComponent.class';
 
 @Component({
@@ -18,7 +17,7 @@ export class AtomicDateComponent extends BaseAtomicComponent<string> implements 
   override ngOnInit(): void {
     super.ngOnInit();
     if (!this.isUni && this.canUpdate()) {
-      this.initNewItemControl(AtomicComponentType.BigAlphanumeric);
+      this.newItemControl = new FormControl<string>('', { nonNullable: true, updateOn: 'change' });
     }
     if (this.isUni) {
       this.initFormControl();

@@ -1,6 +1,5 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { AtomicComponentType } from '../../models/atomic-component-types';
 import { BaseAtomicComponent } from '../BaseAtomicComponent.class';
 
 @Component({
@@ -15,7 +14,7 @@ export class AtomicBooleanComponent extends BaseAtomicComponent<boolean> impleme
   override ngOnInit(): void {
     super.ngOnInit();
     if (!this.isUni) {
-      this.initNewItemControl(AtomicComponentType.Boolean);
+      this.newItemControl = new FormControl<boolean>(false, { nonNullable: true, updateOn: 'blur' });
     }
     if (this.isUni) {
       this.initFormControl();

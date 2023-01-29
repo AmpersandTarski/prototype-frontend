@@ -1,7 +1,6 @@
 import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { Resource } from '../interfacing/resource.interface';
-import { AtomicComponentType } from '../models/atomic-component-types';
 import { ObjectBase } from '../objectBase.interface';
 @Component({
   template: '',
@@ -72,24 +71,6 @@ export abstract class BaseAtomicComponent<T> implements OnInit, OnChanges {
       return [];
     } else {
       return [property];
-    }
-  }
-
-  public initNewItemControl(type: AtomicComponentType) {
-    if (
-      type == AtomicComponentType.Alphanumeric ||
-      type == AtomicComponentType.BigAlphanumeric ||
-      type == AtomicComponentType.Date
-    ) {
-      this.newItemControl = new FormControl<string>('', { nonNullable: true, updateOn: 'change' });
-    }
-
-    if (type == AtomicComponentType.Object) {
-      this.newItemControl = new FormControl<ObjectBase>({} as ObjectBase, { nonNullable: true, updateOn: 'change' });
-    }
-
-    if (type == AtomicComponentType.Boolean) {
-      this.newItemControl = new FormControl<boolean>(false, { nonNullable: true, updateOn: 'blur' });
     }
   }
 

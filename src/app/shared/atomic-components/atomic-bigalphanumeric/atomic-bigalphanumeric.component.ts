@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { map } from 'rxjs';
-import { AtomicComponentType } from '../../models/atomic-component-types';
 import { BaseAtomicComponent } from '../BaseAtomicComponent.class';
 
 @Component({
@@ -15,7 +14,7 @@ export class AtomicBigalphanumericComponent extends BaseAtomicComponent<string> 
   override ngOnInit(): void {
     super.ngOnInit();
     if (!this.isUni && this.canUpdate()) {
-      this.initNewItemControl(AtomicComponentType.BigAlphanumeric);
+      this.newItemControl = new FormControl<string>('', { nonNullable: true, updateOn: 'change' });
     }
     if (this.isUni) {
       this.initFormControl();

@@ -5,8 +5,8 @@ import { Router } from '@angular/router';
 import { InterfaceRefObject, ObjectBase } from '../../objectBase.interface';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
-import { AtomicComponentType } from '../../models/atomic-component-types';
 import { InterfaceRouteMap, INTERFACE_ROUTE_MAPPING_TOKEN } from 'src/app/config';
+import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-atomic-object',
@@ -35,7 +35,7 @@ export class AtomicObjectComponent extends BaseAtomicComponent<ObjectBase> imple
     });
 
     if (this.canUpdate()) {
-      this.initNewItemControl(AtomicComponentType.Object);
+      this.newItemControl = new FormControl<ObjectBase>({} as ObjectBase, { nonNullable: true, updateOn: 'change' });
 
       if (this.isUni && this.data.length > 0) {
         this.newItemControl.disable(); // disables dropdown when univalent and already has a value
