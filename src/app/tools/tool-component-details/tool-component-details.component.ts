@@ -47,14 +47,6 @@ export class ToolComponentDetailsComponent implements OnInit {
     this.canDelete = canDelete;
   }
 
-  setIsUniState(isUni: boolean) {
-    this.isUni = isUni;
-  }
-
-  setIsTotState(isTot: boolean) {
-    this.isTot = isTot;
-  }
-
   public crudOperationsToText(): string {
     var c = 'c';
     var r = 'r';

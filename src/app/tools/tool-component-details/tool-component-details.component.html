@@ -3,8 +3,8 @@
         <app-atomic-alphanumeric
             [property]="'Pre-set value'"
             label="Projects"
-            isUni
-            isTot
+            [isUni]="isUni"
+            [isTot]="isTot"
             [crud]="crudOperationsToText()"
         >
         </app-atomic-alphanumeric>
@@ -13,8 +13,8 @@
         <app-atomic-bigalphanumeric
             [property]="'Pre-set value'"
             label="Projects"
-            isUni
-            isTot
+            [isUni]="isUni"
+            [isTot]="isTot"
             [crud]="crudOperationsToText()"
         >
         </app-atomic-bigalphanumeric>
@@ -23,34 +23,54 @@
         <app-atomic-hugealphanumeric
             [property]="'Pre-set value'"
             label="Projects"
-            isUni
-            isTot
+            [isUni]="isUni"
+            [isTot]="isTot"
             [crud]="crudOperationsToText()"
         >
         </app-atomic-hugealphanumeric>
     </div>
     <div *ngIf="componentName == 'boolean'">
-        <app-atomic-boolean [property]="true" isUni isTot [crud]="crudOperationsToText()"> </app-atomic-boolean>
+        <app-atomic-boolean [property]="true" [isUni]="isUni" [isTot]="isTot" [crud]="crudOperationsToText()">
+        </app-atomic-boolean>
     </div>
     <div *ngIf="componentName == 'date'">
-        <app-atomic-date [property]="'26-11-1999'" [format]="'dd-mm-yy'" isUni isTot [crud]="crudOperationsToText()">
+        <app-atomic-date
+            [property]="'26-11-1999'"
+            [format]="'dd-mm-yy'"
+            [isUni]="isUni"
+            [isTot]="isTot"
+            [crud]="crudOperationsToText()"
+        >
         </app-atomic-date>
     </div>
     <div *ngIf="componentName == 'datetime'">
-        <app-atomic-datetime [property]="'26-11-1999 23:46'" isUni isTot [crud]="crudOperationsToText()">
+        <app-atomic-datetime
+            [property]="'26-11-1999 23:46'"
+            [isUni]="isUni"
+            [isTot]="isTot"
+            [crud]="crudOperationsToText()"
+        >
         </app-atomic-datetime>
     </div>
     <div *ngIf="componentName == 'float'">
-        <app-atomic-float [property]="'9999999'" isUni isTot [crud]="crudOperationsToText()"> </app-atomic-float>
+        <app-atomic-float [property]="'9999999'" [isUni]="isUni" [isTot]="isTot" [crud]="crudOperationsToText()">
+        </app-atomic-float>
     </div>
     <div *ngIf="componentName == 'integer'">
-        <app-atomic-integer [property]="9999999" isUni isTot [crud]="crudOperationsToText()"> </app-atomic-integer>
+        <app-atomic-integer [property]="9999999" [isUni]="isUni" [isTot]="isTot" [crud]="crudOperationsToText()">
+        </app-atomic-integer>
     </div>
     <div *ngIf="componentName == 'object'">
-        <app-atomic-object [property]="activeProjects" isUni isTot [crud]="crudOperationsToText()"> </app-atomic-object>
+        <app-atomic-object [property]="activeProjects" [isUni]="isUni" [isTot]="isTot" [crud]="crudOperationsToText()">
+        </app-atomic-object>
     </div>
     <div *ngIf="componentName == 'password'">
-        <app-atomic-password [property]="'Pre-set value'" isUni isTot [crud]="crudOperationsToText()">
+        <app-atomic-password
+            [property]="'Pre-set value'"
+            [isUni]="isUni"
+            [isTot]="isTot"
+            [crud]="crudOperationsToText()"
+        >
         </app-atomic-password>
     </div>
 </div>
@@ -88,12 +108,10 @@
 <div class="grid p-fluid">
     <div class="col-6 text-center">
         <h5>Expression is univalent</h5>
-        <app-atomic-boolean [property]="true" (state)="setIsUniState($event)" isUni isTot crud="CRUD">
-        </app-atomic-boolean>
+        <p-inputSwitch [(ngModel)]="isUni"></p-inputSwitch>
     </div>
     <div class="col-6 text-center">
         <h5>Expression is total</h5>
-        <app-atomic-boolean [property]="true" (state)="setIsTotState($event)" isUni isTot crud="CRUD">
-        </app-atomic-boolean>
+        <p-inputSwitch [(ngModel)]="isTot"></p-inputSwitch>
     </div>
 </div>
