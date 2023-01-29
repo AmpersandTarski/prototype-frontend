@@ -1,0 +1,7 @@
+{
+  "/api/*": {
+    "target": "http://host.docker.internal:80/api",
+    "secure": false,
+    "pathRewrite": { "^/api": "" }
+  }
+}
