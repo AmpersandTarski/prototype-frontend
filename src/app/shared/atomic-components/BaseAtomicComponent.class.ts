@@ -1,11 +1,11 @@
-import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { Resource } from '../interfacing/resource.interface';
 import { ObjectBase } from '../objectBase.interface';
 @Component({
   template: '',
 })
-export abstract class BaseAtomicComponent<T> implements OnInit, OnChanges {
+export abstract class BaseAtomicComponent<T> implements OnInit {
   // TODO Refactor to combination of parent-propertyName. We need a link to the parent anyway
   @Input() property: T | Array<T> | null = null;
 
@@ -55,13 +55,6 @@ export abstract class BaseAtomicComponent<T> implements OnInit, OnChanges {
 
   ngOnInit(): void {
     this.data = this.requireArray(this.property);
-  }
-
-  // only used for the tools
-  ngOnChanges(changes: SimpleChanges) {
-    if (changes.hasOwnProperty('isUni')) {
-      this.isUni = changes['isUni'].firstChange;
-    }
   }
 
   public requireArray(property: T | Array<T> | null) {
