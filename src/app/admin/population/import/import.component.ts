@@ -8,7 +8,7 @@ import { Component } from '@angular/core';
 export class ImportComponent {
   /**
    * ImportComponent allows the user to upload a .json file containing population data.
-   * Requirements:
+   * TODO:
    * - File uploader/drop zone
    * - File explorer/queue
    *
