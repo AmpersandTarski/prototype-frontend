@@ -14,13 +14,17 @@ import { PopulationComponent } from './population/population.component';
 import { PopulationService } from './population/population.service';
 import { ReportComponent } from './report/report.component';
 import { ReportService } from './report/report.service';
+import { ImportComponent } from './population/import/import.component';
 
 const routes: Routes = [
   {
     path: 'admin',
     component: AppLayoutComponent,
     children: [
-      { path: 'installer', component: InstallerComponent },
+      {
+        path: 'installer',
+        component: InstallerComponent,
+      },
       {
         path: 'utils',
         component: UtilsComponent,
@@ -28,6 +32,10 @@ const routes: Routes = [
       {
         path: 'population',
         component: PopulationComponent,
+      },
+      {
+        path: 'population/import',
+        component: ImportComponent,
       },
       {
         path: 'report',
