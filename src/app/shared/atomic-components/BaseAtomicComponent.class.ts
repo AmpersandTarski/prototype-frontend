@@ -1,11 +1,11 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { Resource } from '../interfacing/resource.interface';
+import { AmpersandInterface } from '../interfacing/ampersand-interface.interface';
 import { ObjectBase } from '../objectBase.interface';
 @Component({
   template: '',
 })
-export abstract class BaseAtomicComponent<T> implements OnInit {
+export abstract class BaseAtomicComponent<T, I> implements OnInit {
   // TODO Refactor to combination of parent-propertyName. We need a link to the parent anyway
   @Input() property: T | Array<T> | null = null;
 
@@ -13,6 +13,8 @@ export abstract class BaseAtomicComponent<T> implements OnInit {
   // We require a Resource, that implements the required methods (like patch)
   // Most likely this is a top-level component for a specific application interface (e.g. ProjectComponent)
   @Input() resource!: Resource<unknown>;
+
+  @Input() interfaceComponent!: AmpersandInterface<I>;
 
   public newItemControl!: FormControl<string | boolean | ObjectBase>;
 
@@ -78,7 +80,7 @@ export abstract class BaseAtomicComponent<T> implements OnInit {
       val = formatValue(val) as unknown as T;
     }
 
-    this.resource
+    this.interfaceComponent
       .patch([
         {
           op: 'add',
@@ -93,7 +95,7 @@ export abstract class BaseAtomicComponent<T> implements OnInit {
 
   // remove for not univalent atomic-components
   public removeItem(index: number) {
-    this.resource
+    this.interfaceComponent
       .patch([
         {
           op: 'remove',

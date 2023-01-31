@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { from, Observable, tap } from 'rxjs';
 import { Patch, PatchValue } from 'src/app/shared/interfacing/patch';
 import { PatchResponse } from 'src/app/shared/interfacing/patch-response.interface';
-import { Resource } from 'src/app/shared/interfacing/resource.interface';
+import { AmpersandInterface } from 'src/app/shared/interfacing/ampersand-interface.interface';
 import { TestDataInterface } from '../test-data.interface';
 import { testdata } from '../testdata';
 import { applyPatch } from 'fast-json-patch';
@@ -12,7 +12,7 @@ import { applyPatch } from 'fast-json-patch';
   templateUrl: './tool-gallery.component.html',
   styleUrls: ['./tool-gallery.component.scss'],
 })
-export class ToolGalleryComponent implements Resource<TestDataInterface> {
+export class ToolGalleryComponent implements AmpersandInterface<TestDataInterface> {
   data: TestDataInterface = JSON.parse(JSON.stringify(testdata[0]));
 
   constructor() {}
