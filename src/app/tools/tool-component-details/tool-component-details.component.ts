@@ -10,7 +10,6 @@ import { testdata } from '../../project-administration/active-projects/testdata'
 export class ToolComponentDetailsComponent implements OnInit {
   public componentType?: string | null;
   public componentName?: string | null;
-  public component?: object | null;
 
   public canCreate: boolean = true;
   public canRead: boolean = true;
