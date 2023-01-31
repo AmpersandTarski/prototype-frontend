@@ -6,19 +6,17 @@ import { ObjectBase } from '../objectBase.interface';
   template: '',
 })
 export abstract class BaseAtomicComponent<T, I> implements OnInit {
-  // TODO Refactor to combination of parent-propertyName. We need a link to the parent anyway
   @Input() property: T | Array<T> | null = null;
 
-  // The type of the T for Resource<T> is not relevant nor to be determined here; therefore unknown
-  // We require a Resource, that implements the required methods (like patch)
-  // Most likely this is a top-level component for a specific application interface (e.g. ProjectComponent)
-  @Input() resource!: Resource<unknown>;
+  @Input() resource!: ObjectBase;
 
+  @Input() propertyName!: string;
+
+  // We require a AmpersandInterface reference that implements the required methods (like patch)
+  // Most likely this is a top-level component for a specific application interface (e.g. ProjectComponent)
   @Input() interfaceComponent!: AmpersandInterface<I>;
 
   public newItemControl!: FormControl<string | boolean | ObjectBase>;
-
-  @Input() propertyName!: string;
 
   public data: Array<T> = [];
 
