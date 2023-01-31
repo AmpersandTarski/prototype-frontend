@@ -48,7 +48,7 @@ export class AtomicObjectComponent<I> extends BaseAtomicComponent<ObjectBase, I>
   public override addItem() {
     let val = this.newItemControl.value as ObjectBase;
 
-    this.resource
+    this.interfaceComponent
       .patch([
         {
           op: 'add',
@@ -67,7 +67,7 @@ export class AtomicObjectComponent<I> extends BaseAtomicComponent<ObjectBase, I>
   }
 
   public override removeItem(index: number) {
-    this.resource
+    this.interfaceComponent
       .patch([
         {
           op: 'remove',

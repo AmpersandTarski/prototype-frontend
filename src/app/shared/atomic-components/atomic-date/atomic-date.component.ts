@@ -34,7 +34,7 @@ export class AtomicDateComponent<I> extends BaseAtomicComponent<string, I> imple
 
     if (this.canUpdate()) {
       this.formControl.valueChanges.subscribe((x) => {
-        this.resource
+        this.interfaceComponent
           .patch([
             {
               op: 'replace',

@@ -33,7 +33,7 @@ export class AtomicBooleanComponent<I> extends BaseAtomicComponent<boolean, I> i
 
     if (this.canUpdate()) {
       this.formControl.valueChanges.subscribe((x) =>
-        this.resource
+        this.interfaceComponent
           .patch([
             {
               op: 'replace',

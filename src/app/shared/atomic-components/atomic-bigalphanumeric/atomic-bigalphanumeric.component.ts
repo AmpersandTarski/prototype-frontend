@@ -28,7 +28,7 @@ export class AtomicBigalphanumericComponent<I> extends BaseAtomicComponent<strin
       this.formControl.valueChanges
         .pipe(map((x) => (x === '' ? null : x))) // transform empty string to null value
         .subscribe((x) =>
-          this.resource
+          this.interfaceComponent
             .patch([
               {
                 op: 'replace',
