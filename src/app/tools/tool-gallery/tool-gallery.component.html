@@ -94,7 +94,14 @@
     <div class="gallery-item">
         <app-tool-gallery-component titleHeader="TODO" subHeader="Date">
             <ng-template #header>
-                <app-atomic-date [property]="'26-11-1999'" [format]="'dd-mm-yy'" isUni isTot crud="CRUD">
+                <app-atomic-date
+                    [resource]="this"
+                    [property]="data.Start"
+                    [format]="'yy-mm-dd'"
+                    isUni
+                    isTot
+                    crud="CRUD"
+                >
                 </app-atomic-date>
             </ng-template>
             <ng-template #body>
