@@ -13,7 +13,7 @@ import { FormControl } from '@angular/forms';
   templateUrl: './atomic-object.component.html',
   styleUrls: ['./atomic-object.component.scss'],
 })
-export class AtomicObjectComponent extends BaseAtomicComponent<ObjectBase> implements OnInit {
+export class AtomicObjectComponent<I> extends BaseAtomicComponent<ObjectBase, I> implements OnInit {
   public menuItems: { [index: string]: Array<MenuItem> } = {};
   public alternativeObjects$!: Observable<ObjectBase[]>;
   @Input() public placeholder!: string;

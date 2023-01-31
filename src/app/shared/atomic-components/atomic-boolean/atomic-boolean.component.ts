@@ -7,7 +7,7 @@ import { BaseAtomicComponent } from '../BaseAtomicComponent.class';
   templateUrl: './atomic-boolean.component.html',
   styleUrls: ['./atomic-boolean.component.css'],
 })
-export class AtomicBooleanComponent extends BaseAtomicComponent<boolean> implements OnInit {
+export class AtomicBooleanComponent<I> extends BaseAtomicComponent<boolean, I> implements OnInit {
   @Output() state = new EventEmitter();
   public formControl!: FormControl<boolean>;
 

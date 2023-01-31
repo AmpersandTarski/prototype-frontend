@@ -8,7 +8,7 @@ import { BaseAtomicComponent } from '../BaseAtomicComponent.class';
   templateUrl: './atomic-bigalphanumeric.component.html',
   styleUrls: ['./atomic-bigalphanumeric.component.css'],
 })
-export class AtomicBigalphanumericComponent extends BaseAtomicComponent<string> implements OnInit {
+export class AtomicBigalphanumericComponent<I> extends BaseAtomicComponent<string, I> implements OnInit {
   public formControl!: FormControl<string>;
 
   override ngOnInit(): void {

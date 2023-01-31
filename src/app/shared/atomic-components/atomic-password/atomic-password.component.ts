@@ -6,4 +6,4 @@ import { BaseAtomicComponent } from '../BaseAtomicComponent.class';
   templateUrl: './atomic-password.component.html',
   styleUrls: ['./atomic-password.component.css'],
 })
-export class AtomicPasswordComponent extends BaseAtomicComponent<string> {}
+export class AtomicPasswordComponent<I> extends BaseAtomicComponent<string, I> {}
