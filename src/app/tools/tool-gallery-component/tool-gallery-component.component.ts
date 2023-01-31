@@ -8,9 +8,9 @@ import { Component, ContentChild, Input, TemplateRef } from '@angular/core';
 export class ToolGalleryComponentComponent {
   @Input() titleHeader: string = '';
   @Input() subHeader: string = '';
-  @ContentChild('header') header: TemplateRef<any> | undefined;
-  @ContentChild('body') body: TemplateRef<any> | undefined;
-  @ContentChild('footer') footer: TemplateRef<any> | undefined;
+  @ContentChild('header') header: TemplateRef<unknown> | undefined;
+  @ContentChild('body') body: TemplateRef<unknown> | undefined;
+  @ContentChild('footer') footer: TemplateRef<unknown> | undefined;
 
   constructor() {}
 }
