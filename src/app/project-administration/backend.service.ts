@@ -43,11 +43,11 @@ export class BackendService implements IBackendService {
     return this.http.get<ListAllInterfacesInterface[]>('resource/SESSION/1/List_32_all_32_interfaces');
   }
 
-  public patchProject(id: string, data: any): Observable<PatchResponse<ProjectEditInterface>> {
+  public patchProject(id: string, data: unknown): Observable<PatchResponse<ProjectEditInterface>> {
     return this.http.patch<PatchResponse<ProjectEditInterface>>(`resource/Project/${id}/New_47_edit_32_project`, data);
   }
 
-  public patchPerson(id: string, data: any): Observable<PersonInterface> {
+  public patchPerson(id: string, data: unknown): Observable<PersonInterface> {
     return this.http.patch<PersonInterface>(`resource/Person/${id}/Person`, data);
   }
 
