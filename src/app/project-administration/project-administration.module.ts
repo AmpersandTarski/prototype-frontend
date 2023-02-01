@@ -26,7 +26,7 @@ const routes: Routes = [
       { path: 'people', component: PeopleComponent },
       { path: 'person/:id', component: PersonComponent },
       { path: 'list-all-interfaces', component: ListAllInterfacesComponent },
-      { path: 'new_47_edit_32_project/:id', component: ProjectEditComponent },
+      { path: 'new-edit-project/:id', component: ProjectEditComponent },
     ],
   },
 ];
