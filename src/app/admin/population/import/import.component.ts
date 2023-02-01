@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { ButtonState } from 'src/app/shared/helper/button-state';
+import { ImportService } from './import.service';
 
 @Component({
   selector: 'app-population-import',
@@ -13,4 +15,27 @@ export class ImportComponent {
    * - File explorer/queue
    *
    */
+  buttonState1: ButtonState = new ButtonState();
+
+  constructor(private importService: ImportService) {}
+
+  /**
+   * Set the buttonState to its initial value
+   */
+  initButtonStates(): void {
+    this.buttonState1.init();
+  }
+
+  /**
+   * Determines whether a file is being chosen to upload.
+   * @returns true while busy
+   */
+  isLoading(): boolean {
+    return true;
+  }
+
+  chooseFileUpload(buttonState: ButtonState) {
+    this.initButtonStates();
+    buttonState.loading = true;
+  }
 }
