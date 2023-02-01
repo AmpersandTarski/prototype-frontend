@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { AmpersandInterface } from 'src/app/shared/interfacing/ampersand-interface.class';
@@ -12,8 +13,8 @@ import { InactiveProjectsInterface } from './inactive-projects.interface';
 export class InactiveProjectsComponent extends AmpersandInterface<InactiveProjectsInterface> implements OnInit {
   data$!: Observable<InactiveProjectsInterface[]>;
 
-  constructor(private service: BackendService) {
-    super();
+  constructor(protected service: BackendService, http: HttpClient) {
+    super(http);
   }
 
   ngOnInit(): void {

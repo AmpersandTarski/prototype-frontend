@@ -6,6 +6,7 @@ import { AmpersandInterface } from 'src/app/shared/interfacing/ampersand-interfa
 import { TestDataInterface } from '../test-data.interface';
 import { testdata } from '../testdata';
 import { applyPatch } from 'fast-json-patch';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-tool-gallery',
@@ -15,8 +16,8 @@ import { applyPatch } from 'fast-json-patch';
 export class ToolGalleryComponent extends AmpersandInterface<TestDataInterface> {
   data: TestDataInterface = JSON.parse(JSON.stringify(testdata[0]));
 
-  constructor() {
-    super();
+  constructor(http: HttpClient) {
+    super(http);
   }
 
   override patch(patches: PatchValue[]): Observable<PatchResponse<TestDataInterface>> {

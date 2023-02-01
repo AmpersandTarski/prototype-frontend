@@ -5,6 +5,7 @@ import { BackendService } from '../backend.service';
 import { ProjectInterface } from './project.interface';
 import { Router, Navigation } from '@angular/router';
 import { AmpersandInterface } from 'src/app/shared/interfacing/ampersand-interface.class';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-project',
@@ -15,8 +16,13 @@ export class ProjectComponent extends AmpersandInterface<ProjectInterface> imple
   public data$!: Observable<ProjectInterface>;
   public projectId?: string;
 
-  constructor(private route: ActivatedRoute, private service: BackendService, private router: Router) {
-    super();
+  constructor(
+    private route: ActivatedRoute,
+    protected service: BackendService,
+    private router: Router,
+    http: HttpClient,
+  ) {
+    super(http);
   }
 
   ngOnInit(): void {

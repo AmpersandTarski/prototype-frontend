@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { Observable, switchMap } from 'rxjs';
@@ -14,8 +15,8 @@ export class PersonComponent extends AmpersandInterface<PersonInterface> impleme
   public data$!: Observable<PersonInterface>;
   private personId!: string;
 
-  constructor(private route: ActivatedRoute, private service: BackendService) {
-    super();
+  constructor(private route: ActivatedRoute, protected service: BackendService, http: HttpClient) {
+    super(http);
   }
 
   ngOnInit(): void {

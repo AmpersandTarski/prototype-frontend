@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
@@ -13,8 +14,8 @@ import { PeopleInterface } from './people.interface';
 export class PeopleComponent extends AmpersandInterface<PeopleInterface> implements OnInit {
   data$!: Observable<PeopleInterface[]>;
 
-  constructor(private service: BackendService, private router: Router) {
-    super();
+  constructor(protected service: BackendService, private router: Router, http: HttpClient) {
+    super(http);
   }
 
   ngOnInit(): void {

@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { Observable, switchMap, tap } from 'rxjs';
@@ -13,8 +14,9 @@ import { ProjectEditInterface } from './project-edit.interface';
 export class ProjectEditComponent extends AmpersandInterface<ProjectEditInterface> implements OnInit {
   public data$!: Observable<ProjectEditInterface>;
   public projectId!: string;
-  constructor(private route: ActivatedRoute, public service: BackendService) {
-    super();
+
+  constructor(private route: ActivatedRoute, protected service: BackendService, http: HttpClient) {
+    super(http);
   }
 
   ngOnInit(): void {
