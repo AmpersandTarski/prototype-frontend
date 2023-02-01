@@ -39,7 +39,7 @@ export class BackendService implements IBackendService {
     return this.http.get<PersonInterface>(`resource/Person/${id}/Person`);
   }
 
-  getAllInterfaces(): Observable<ListAllInterfacesInterface[]> {
+  public getAllInterfaces(): Observable<ListAllInterfacesInterface[]> {
     return this.http.get<ListAllInterfacesInterface[]>('resource/SESSION/1/List_32_all_32_interfaces');
   }
 
