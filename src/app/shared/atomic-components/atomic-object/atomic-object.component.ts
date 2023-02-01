@@ -3,7 +3,7 @@ import { MenuItem } from 'primeng/api';
 import { BaseAtomicComponent } from '../BaseAtomicComponent.class';
 import { Router } from '@angular/router';
 import { InterfaceRefObject, ObjectBase } from '../../objectBase.interface';
-import { Observable } from 'rxjs';
+import { map, Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { AtomicComponentType } from '../../models/atomic-component-types';
 import { InterfaceRouteMap, INTERFACE_ROUTE_MAPPING_TOKEN } from 'src/app/config';
@@ -115,8 +115,16 @@ export class AtomicObjectComponent extends BaseAtomicComponent<ObjectBase> imple
     );
   }
 
+  // Find which entities are able to be added to the dropdown menu
   private getPatchItems(): Observable<ObjectBase[]> | null {
     if (this.itemsMethod == null) return null;
-    return this.itemsMethod();
+
+    let objects: Observable<ObjectBase[]> = this.itemsMethod();
+    // grab only the elements for the dropdown menu when they don't exist yet
+    objects = objects.pipe(
+      map((dropdownobjects) => dropdownobjects.filter((object) => !this.data.map((y) => y._id_).includes(object._id_))),
+    );
+
+    return objects;
   }
 }
