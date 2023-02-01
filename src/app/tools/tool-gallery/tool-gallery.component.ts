@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { from, Observable, tap } from 'rxjs';
-import { Patch, PatchValue } from 'src/app/shared/interfacing/patch';
+import { PatchValue } from 'src/app/shared/interfacing/patch';
 import { PatchResponse } from 'src/app/shared/interfacing/patch-response.interface';
 import { AmpersandInterface } from 'src/app/shared/interfacing/ampersand-interface.class';
 import { TestDataInterface } from '../test-data.interface';
@@ -32,15 +32,21 @@ export class ToolGalleryComponent extends AmpersandInterface<TestDataInterface> 
     content._label_ = content.Name; // Mock rule in backend
 
     return from([
+      // @ts-ignore
       {
         content: content,
         patches: patches,
         isCommitted: true,
+        notifications: {},
+        invariantRulesHold: true,
+        sessionRefreshAdvice: false,
+        navTo: null,
       } as PatchResponse<TestDataInterface>,
     ]).pipe(
       tap((x) => {
         console.log(x);
         if (x.isCommitted) {
+          // @ts-expect-error
           this.data = x.content;
         }
       }),
