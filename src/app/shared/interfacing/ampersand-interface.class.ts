@@ -1,10 +1,14 @@
-import { from, Observable } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { ObjectBase } from '../objectBase.interface';
 import { Patch, PatchValue } from './patch';
 import { PatchResponse } from './patch-response.interface';
 
 export class AmpersandInterface<T> {
-  patch(patches: Array<Patch | PatchValue>): Observable<PatchResponse<T>> {
-    return from([]);
+  constructor(protected http: HttpClient) {}
+
+  public patch<T>(resource: ObjectBase, patches: Array<Patch | PatchValue>): Observable<PatchResponse<T>> {
+    return this.http.patch<PatchResponse<T>>(resource._path_, patches);
 
     // return this.service.patchProject(this.projectId, patches).pipe(
     //   tap((x) => {
