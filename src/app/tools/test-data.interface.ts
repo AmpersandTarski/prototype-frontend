@@ -1,4 +1,6 @@
-export interface TestDataInterface extends ObjectBase {
+import { ObjectBase } from '../shared/objectBase.interface';
+
+export type TestDataInterface = ObjectBase & {
   _id_: string;
   _view_: ProjectNameView;
   Projects: ObjectBase & {
@@ -12,26 +14,14 @@ export interface TestDataInterface extends ObjectBase {
   Start: string | null;
   Status: string;
   Active: boolean;
-}
+};
 
-interface PersonNameView {
+type PersonNameView = {
   firstName: string;
   txt1: string;
   lastName: string;
-}
+};
 
-interface ProjectNameView {
+type ProjectNameView = {
   name: string;
-}
-
-interface ObjectBase {
-  _id_: string;
-  _label_: string;
-  _path_: string;
-  _ifcs_: Array<InterfaceRefObject>;
-}
-
-interface InterfaceRefObject {
-  id: string;
-  label: string;
-}
+};
