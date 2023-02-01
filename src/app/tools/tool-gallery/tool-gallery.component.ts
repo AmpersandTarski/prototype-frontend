@@ -1,12 +1,13 @@
 import { Component } from '@angular/core';
 import { from, Observable, tap } from 'rxjs';
-import { PatchValue } from 'src/app/shared/interfacing/patch';
+import { Patch, PatchValue } from 'src/app/shared/interfacing/patch';
 import { PatchResponse } from 'src/app/shared/interfacing/patch-response.interface';
 import { AmpersandInterface } from 'src/app/shared/interfacing/ampersand-interface.class';
 import { TestDataInterface } from '../test-data.interface';
 import { testdata } from '../testdata';
 import { applyPatch } from 'fast-json-patch';
 import { HttpClient } from '@angular/common/http';
+import { ObjectBase } from 'src/app/shared/objectBase.interface';
 
 @Component({
   selector: 'app-tool-gallery',
@@ -20,7 +21,10 @@ export class ToolGalleryComponent extends AmpersandInterface<TestDataInterface> 
     super(http);
   }
 
-  override patch(patches: PatchValue[]): Observable<PatchResponse<TestDataInterface>> {
+  override patch<TestDataInterface>(
+    resource: ObjectBase,
+    patches: PatchValue[],
+  ): Observable<PatchResponse<TestDataInterface>> {
     // Prepend path of patches with '/', because our backend has a different (probably wrong) implementation
     // of the JSON-Patch (RFC6902) standard. The applyPatch function below requires the '/'.
     patches.forEach((x) => (x.path = `/${x.path}`));

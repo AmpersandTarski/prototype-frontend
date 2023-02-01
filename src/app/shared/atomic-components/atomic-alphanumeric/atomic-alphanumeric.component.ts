@@ -29,7 +29,7 @@ export class AtomicAlphanumericComponent<I> extends BaseAtomicComponent<string, 
         .pipe(map((x) => (x === '' ? null : x))) // transform empty string to null value
         .subscribe((x) =>
           this.interfaceComponent
-            .patch([
+            .patch(this.resource, [
               {
                 op: 'replace',
                 path: this.propertyName, // FIXME: this must be relative to path of this.resource

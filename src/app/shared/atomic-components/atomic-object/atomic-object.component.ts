@@ -49,7 +49,7 @@ export class AtomicObjectComponent<I> extends BaseAtomicComponent<ObjectBase, I>
     let val = this.newItemControl.value as ObjectBase;
 
     this.interfaceComponent
-      .patch([
+      .patch(this.resource, [
         {
           op: 'add',
           path: this.propertyName, // FIXME: this must be relative to path of this.resource
@@ -68,7 +68,7 @@ export class AtomicObjectComponent<I> extends BaseAtomicComponent<ObjectBase, I>
 
   public override removeItem(index: number) {
     this.interfaceComponent
-      .patch([
+      .patch(this.resource, [
         {
           op: 'remove',
           path: `${this.propertyName}/${this.data[index]._id_}`, // FIXME: this must be relative to path of this.resource

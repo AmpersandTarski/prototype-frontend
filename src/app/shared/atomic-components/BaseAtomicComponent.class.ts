@@ -79,7 +79,7 @@ export abstract class BaseAtomicComponent<T, I> implements OnInit {
     }
 
     this.interfaceComponent
-      .patch([
+      .patch(this.resource, [
         {
           op: 'add',
           path: this.propertyName, // FIXME: this must be relative to path of this.resource
@@ -94,7 +94,7 @@ export abstract class BaseAtomicComponent<T, I> implements OnInit {
   // remove for not univalent atomic-components
   public removeItem(index: number) {
     this.interfaceComponent
-      .patch([
+      .patch(this.resource, [
         {
           op: 'remove',
           path: this.propertyName, // FIXME: this must be relative to path of this.resource
