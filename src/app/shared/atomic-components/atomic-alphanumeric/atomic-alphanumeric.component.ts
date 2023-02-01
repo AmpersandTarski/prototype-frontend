@@ -36,11 +36,7 @@ export class AtomicAlphanumericComponent<I> extends BaseAtomicComponent<string, 
                 value: x,
               },
             ])
-            .subscribe((x) => {
-              if (!(x.invariantRulesHold && x.isCommitted)) {
-                // TODO: show warning message of x.notifications.invariants
-              }
-            }),
+            .subscribe(),
         );
     }
   }

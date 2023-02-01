@@ -41,11 +41,7 @@ export class AtomicBooleanComponent<I> extends BaseAtomicComponent<boolean, I> i
               value: x,
             },
           ])
-          .subscribe((x) => {
-            if (!(x.invariantRulesHold && x.isCommitted)) {
-              // TODO: show warning message of x.notifications.invariants
-            }
-          }),
+          .subscribe(),
       );
     }
   }

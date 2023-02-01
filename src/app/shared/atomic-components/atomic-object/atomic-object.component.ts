@@ -74,21 +74,7 @@ export class AtomicObjectComponent<I> extends BaseAtomicComponent<ObjectBase, I>
           path: `${this.propertyName}/${this.data[index]._id_}`, // FIXME: this must be relative to path of this.resource
         },
       ])
-      // Working with generics doesn't work well with this subscribe method due to the types of PatchResponse<T>
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      .subscribe((x: any) => {
-        if (x.invariantRulesHold && x.isCommitted) {
-          if ((!this.isUni && x.content[this.propertyName].length != this.data.length) || this.isUni) {
-            this.data.splice(index, 1); // data is only spliced when change has occurred
-          }
-          if (this.isUni) {
-            // since an element has been removed, the dropdown menu should be enabled again when univalent
-            this.newItemControl.enable();
-          }
-        } else {
-          // TODO: show warning message; isTot requirement has been violated
-        }
-      });
+      .subscribe();
   }
 
   public override deleteItem(index: number) {

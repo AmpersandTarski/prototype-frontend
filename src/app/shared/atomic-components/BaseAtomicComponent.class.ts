@@ -101,12 +101,7 @@ export abstract class BaseAtomicComponent<T, I> implements OnInit {
           value: this.data[index],
         },
       ])
-      .subscribe((x) => {
-        if (x.isCommitted && x.invariantRulesHold) {
-          // TODO: show warning message
-          this.data.splice(index, 1);
-        }
-      });
+      .subscribe();
   }
 
   public deleteItem(index: number) {
