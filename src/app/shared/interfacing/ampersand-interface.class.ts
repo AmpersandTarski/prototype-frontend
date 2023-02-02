@@ -14,6 +14,10 @@ export class AmpersandInterface<T> {
         if (!x.invariantRulesHold) {
           console.log('Invariants do not hold');
         }
+        console.log('Current resource', resource);
+        console.log('Received object from API', x.content);
+        // Update resource data
+        Object.assign(resource, x.content);
       }),
     );
 
