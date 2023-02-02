@@ -18,6 +18,22 @@
                         ></app-atomic-alphanumeric>
                     </div>
                 </div>
+                <!-- Temporary field to test if we can up this form field using API data after patch from Name field above -->
+                <!-- TODO: remove this field when fixed -->
+                <div class="field col-12 box-form-field">
+                    <label class="box-form-label">Name (connected)</label>
+                    <div class="box-form-value">
+                        <app-atomic-alphanumeric
+                            [resource]="resource"
+                            [interfaceComponent]="this"
+                            [property]="resource.Name"
+                            propertyName="Name"
+                            isUni
+                            isTot
+                            crud="CRUD"
+                        ></app-atomic-alphanumeric>
+                    </div>
+                </div>
                 <div class="field col-12 box-form-field">
                     <label class="box-form-label">Description</label>
                     <div class="box-form-value">
