@@ -20,7 +20,6 @@ import { AppLayoutComponent } from './app.layout.component';
 import { HomeComponent } from './home/home.component';
 import { CardModule } from 'primeng/card';
 import { ButtonModule } from 'primeng/button';
-import { MenuModule } from 'primeng/menu';
 import { NotFoundComponentComponent } from './not-found-component/not-found-component.component';
 
 @NgModule({
@@ -49,7 +48,6 @@ import { NotFoundComponentComponent } from './not-found-component/not-found-comp
     RippleModule,
     RouterModule,
     AppConfigModule,
-    MenuModule,
   ],
   exports: [AppLayoutComponent],
 })
