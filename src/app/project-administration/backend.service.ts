@@ -11,6 +11,7 @@ import { PersonInterface } from './person/person.interface';
 import { InactiveProjectsInterface } from './inactive-projects/inactive-projects.interface';
 import { ProjectEditInterface } from './project-edit/project-edit.interface';
 import { Patch } from '../shared/interfacing/patch';
+import { DeleteResponse } from '../shared/interfacing/delete-response.interface';
 
 @Injectable()
 export class BackendService implements IBackendService {
@@ -40,7 +41,7 @@ export class BackendService implements IBackendService {
     return this.http.get<PersonInterface>(`resource/Person/${id}/Person`);
   }
 
-  getAllInterfaces(): Observable<ListAllInterfacesInterface[]> {
+  public getAllInterfaces(): Observable<ListAllInterfacesInterface[]> {
     return this.http.get<ListAllInterfacesInterface[]>('resource/SESSION/1/List_32_all_32_interfaces');
   }
 
@@ -54,5 +55,9 @@ export class BackendService implements IBackendService {
 
   public postPerson(): Observable<{ _id_: string }> {
     return this.http.post<{ _id_: string }>(`resource/Person`, {});
+  }
+
+  public deletePerson(id: string): Observable<DeleteResponse> {
+    return this.http.delete<DeleteResponse>(`resource/SESSION/1/People/${id}`);
   }
 }
