@@ -10,6 +10,7 @@ import { PeopleInterface } from './people/people.interface';
 import { PersonInterface } from './person/person.interface';
 import { InactiveProjectsInterface } from './inactive-projects/inactive-projects.interface';
 import { ProjectEditInterface } from './project-edit/project-edit.interface';
+import { Patch } from '../shared/interfacing/patch';
 
 @Injectable()
 export class BackendService implements IBackendService {
@@ -43,12 +44,12 @@ export class BackendService implements IBackendService {
     return this.http.get<ListAllInterfacesInterface[]>('resource/SESSION/1/List_32_all_32_interfaces');
   }
 
-  public patchProject(id: string, data: any): Observable<PatchResponse<ProjectEditInterface>> {
+  public patchProject(id: string, data: Patch[]): Observable<PatchResponse<ProjectEditInterface>> {
     return this.http.patch<PatchResponse<ProjectEditInterface>>(`resource/Project/${id}/New_47_edit_32_project`, data);
   }
 
-  public patchPerson(id: string, data: any): Observable<PersonInterface> {
-    return this.http.patch<PersonInterface>(`resource/Person/${id}/Person`, data);
+  public patchPerson(id: string, data: Patch[]): Observable<PatchResponse<PersonInterface>> {
+    return this.http.patch<PatchResponse<PersonInterface>>(`resource/Person/${id}/Person`, data);
   }
 
   public postPerson(): Observable<{ _id_: string }> {
