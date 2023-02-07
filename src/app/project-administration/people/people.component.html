@@ -5,6 +5,7 @@
             <th>Person</th>
             <th>Email</th>
             <th>Projects</th>
+            <th *ngIf="canDelete()"></th>
         </ng-template>
         <ng-template [boxTableRow]="data" let-row>
             <td>
@@ -17,6 +18,16 @@
             <td>
                 <app-atomic-object [property]="row.Projects" label="Project" isUni isTot crud="cRud">
                 </app-atomic-object>
+            </td>
+            <td *ngIf="canDelete()">
+                <button
+                    pButton
+                    type="button"
+                    (click)="onDelete(row._id_)"
+                    label=""
+                    class="p-button-danger"
+                    icon="pi pi-trash"
+                ></button>
             </td>
         </ng-template>
     </app-box-table>
