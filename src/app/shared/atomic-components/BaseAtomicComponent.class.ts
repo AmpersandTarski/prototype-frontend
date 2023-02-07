@@ -135,14 +135,6 @@ export abstract class BaseAtomicComponent<T> implements OnInit, OnChanges {
       });
   }
 
-  public deleteItem(index: number) {
-    // TODO: show warning message
-    if (this.isTot && this.data.length == 1) {
-      throw new Error('Must have at least one element');
-    }
-    // TODO: resource delete method
-  }
-
   public isNewItemInputRequired() {
     return this.isTot && this.data.length === 0;
   }

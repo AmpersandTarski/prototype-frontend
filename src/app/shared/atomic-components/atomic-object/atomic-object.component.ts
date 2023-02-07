@@ -7,6 +7,14 @@ import { map, Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { AtomicComponentType } from '../../models/atomic-component-types';
 import { InterfaceRouteMap, INTERFACE_ROUTE_MAPPING_TOKEN } from 'src/app/config';
+import { PatchResponse } from '../../interfacing/patch-response.interface';
+import { Patch, PatchValue } from '../../interfacing/patch.interface';
+import { DeleteResponse } from '../../interfacing/delete-response.interface';
+
+export interface Resource<T> {
+  patch(patches: Array<Patch | PatchValue>): Observable<PatchResponse<T>>;
+  delete(id: string): Observable<DeleteResponse>;
+}
 
 @Component({
   selector: 'app-atomic-object',
@@ -18,6 +26,7 @@ export class AtomicObjectComponent extends BaseAtomicComponent<ObjectBase> imple
   public alternativeObjects$!: Observable<ObjectBase[]>;
   @Input() public placeholder!: string;
   @Input() itemsMethod!: Function | null;
+  @Input() override resource!: Resource<unknown>;
 
   constructor(
     private router: Router,
@@ -91,8 +100,29 @@ export class AtomicObjectComponent extends BaseAtomicComponent<ObjectBase> imple
       });
   }
 
-  public override deleteItem(index: number) {
-    //TODO connect to delete request
+  public deleteItem(index: number) {
+    // TODO: show warning message
+    if (this.isTot && this.data.length == 1) {
+      throw new Error('Must have at least one element');
+    }
+
+    this.resource
+      .delete(this.data[index]._id_)
+      // Working with generics doesn't work well with this subscribe method due to the types of PatchResponse<T>
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      .subscribe((x: any) => {
+        if (x.invariantRulesHold && x.isCommitted) {
+          if ((!this.isUni && x.content[this.propertyName].length != this.data.length) || this.isUni) {
+            this.data.splice(index, 1); // data is only spliced when change has occurred
+          }
+          if (this.isUni) {
+            // since an element has been removed, the dropdown menu should be enabled again when univalent
+            this.newItemControl.enable();
+          }
+        } else {
+          // TODO: show warning message; isTot requirement has been violated
+        }
+      });
   }
 
   public navigateToInterface(interfaceName: string, resourceId: string): Promise<boolean> {

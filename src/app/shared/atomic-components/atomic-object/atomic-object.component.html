@@ -8,15 +8,14 @@
         style="color: red; padding-bottom: 9px; cursor: pointer"
     ></div>
 
-    <!-- TODO: add the delete method -->
-    <!-- <div
+    <div
         *ngIf="canDelete()"
         class="pi pi-fw pi-trash"
-        (click)="deleteItem()"
+        (click)="deleteItem(i)"
         pTooltip="Delete"
         tooltipPosition="left"
         style="color: red; padding-bottom: 9px; cursor: pointer"
-    ></div> -->
+    ></div>
 
     <p-splitButton
         *ngIf="object._ifcs_.length > 1"
