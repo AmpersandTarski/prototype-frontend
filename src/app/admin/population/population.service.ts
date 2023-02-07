@@ -5,6 +5,8 @@ import { IPopulationService } from './population.service.interface';
 
 @Injectable()
 export class PopulationService implements IPopulationService {
+  private importUrl: string = 'admin/import';
+
   constructor(private http: HttpClient) {}
 
   public getExportPopulation(): Observable<Object> {
@@ -30,11 +32,17 @@ export class PopulationService implements IPopulationService {
   }
 
   /* Send files to API. */
-  public importPopulation(files: File[]): void {
+  public importPopulation(files: File[]): Observable<any> {
     console.log('importPopulation() called with files: ');
+
+    const formData = new FormData();
+
     files.forEach((file) => {
       console.log(file.name);
+
+      formData.append('file', file, file.name);
     });
-    // TODO: Implement
+
+    return this.http.post(this.importUrl, formData);
   }
 }

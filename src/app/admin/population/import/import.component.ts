@@ -40,7 +40,9 @@ export class ImportComponent {
     buttonState.loading = true;
 
     // send files to API
-    this.populationService.importPopulation(this.files);
+    let response = this.populationService.importPopulation(this.files);
+
+    response.subscribe((x) => console.log(x));
 
     // when complete, remove files
     this.files.forEach((file) => {
