@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, ParamMap } from '@angular/router';
-import { from, Observable, switchMap, tap } from 'rxjs';
-import { Patch } from 'src/app/shared/interfacing/patch';
+import { EMPTY, from, Observable, switchMap, tap } from 'rxjs';
+import { Patch } from 'src/app/shared/interfacing/patch.interface';
 import { PatchResponse } from 'src/app/shared/interfacing/patch-response.interface';
 import { BackendService } from '../backend.service';
 import { PersonInterface } from './person.interface';
+import { DeleteResponse } from 'src/app/shared/interfacing/delete-response.interface';
 
 @Component({
   selector: 'app-person',
@@ -37,5 +38,10 @@ export class PersonComponent implements OnInit {
         }
       }),
     );
+  }
+
+  delete(id: string): Observable<DeleteResponse> {
+    new Error('delete method called, but should now be able to be reached');
+    return EMPTY;
   }
 }
