@@ -7,6 +7,7 @@ import { ButtonModule } from 'primeng/button';
 import { MenuItem } from 'primeng/api';
 import { InstallerComponent } from './installer/installer.component';
 import { InstallerService } from './installer/installer.service';
+import { NgxDropzoneModule } from 'ngx-dropzone';
 
 import { UtilsComponent } from './utils/utils.component';
 import { UtilsService } from './utils/utils.service';
@@ -15,7 +16,6 @@ import { PopulationService } from './population/population.service';
 import { ReportComponent } from './report/report.component';
 import { ReportService } from './report/report.service';
 import { ImportComponent } from './population/import/import.component';
-import { ImportService } from './population/import/import.service';
 
 const routes: Routes = [
   {
@@ -60,13 +60,12 @@ export const menuItems: MenuItem[] = [
 
 @NgModule({
   declarations: [InstallerComponent, UtilsComponent, PopulationComponent, ReportComponent, ImportComponent],
-  imports: [CommonModule, RouterModule.forChild(routes), CardModule, ButtonModule],
+  imports: [CommonModule, RouterModule.forChild(routes), CardModule, ButtonModule, NgxDropzoneModule],
   providers: [
     { provide: InstallerService, useClass: InstallerService },
     { provide: UtilsService, useClass: UtilsService },
     { provide: PopulationService, useClass: PopulationService },
     { provide: ReportService, useClass: ReportService },
-    { provide: ImportService, useClass: ImportService },
   ],
 })
 export class AdminModule {}

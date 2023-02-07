@@ -28,4 +28,13 @@ export class PopulationService implements IPopulationService {
     element.click(); // simulate click
     document.body.removeChild(element);
   }
+
+  /* Send files to API. */
+  public importPopulation(files: File[]): void {
+    console.log('importPopulation() called with files: ');
+    files.forEach((file) => {
+      console.log(file.name);
+    });
+    // TODO: Implement
+  }
 }

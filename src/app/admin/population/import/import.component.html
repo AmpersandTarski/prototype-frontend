@@ -4,29 +4,34 @@
    - File queue/list
 -->
 <div class="flex flex-wrap">
-  <div class="flex-2 mb-3 mr-3 min-h-full">
-      <p-card header="Upload files" styleClass="p-card-shadow">
-          <p>Drop your .json file(s) here, or use the button to select your file(s).</p>
-          <p>TODO: Add drop zone</p>
-          <ng-template pTemplate="footer">
-              <p-button
-                  label="Upload"
-                  icon="pi pi-arrow-circle-up"
-                  (onClick)="chooseFileUpload(buttonState1)"
-                  [loading]="buttonState1.isLoading()"
-                  [disabled]="isLoading()"
-                  [styleClass]="buttonState1.getStyleClass()"
-              ></p-button>
-          </ng-template>
-      </p-card>
-  </div>
+    <div class="flex-2 mb-3 mr-3 min-h-full">
+        <p-card header="Upload files" styleClass="p-card-shadow">
+            <p>Drop your .json file(s) here, or use the button to select your file(s).</p>
+            <p>TODO: Add drop zone</p>
 
-  <div class="flex-1 mb-3 mr-3 min-h-full">
-    <p-card header="File queue" styleClass="p-card-shadow">
-        <p>TODO: Add table box-component.</p>
-        <ng-template pTemplate="footer">
-        </ng-template>
-    </p-card>
-  </div>
+            <ngx-dropzone [expandable]="true" (change)="onSelect($event)">
+                <ngx-dropzone-label>Drop files here, or click to select files.</ngx-dropzone-label>
+                <ngx-dropzone-preview *ngFor="let f of files" [removable]="true" (removed)="onRemove(f)">
+                    <ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label>
+                </ngx-dropzone-preview>
+            </ngx-dropzone>
+            <ng-template pTemplate="footer">
+                <p-button
+                    label="Upload"
+                    icon="pi pi-arrow-circle-up"
+                    (onClick)="uploadFiles(buttonState1)"
+                    [loading]="buttonState1.isLoading()"
+                    [disabled]="isLoading()"
+                    [styleClass]="buttonState1.getStyleClass()"
+                ></p-button>
+            </ng-template>
+        </p-card>
+    </div>
+
+    <div class="flex-1 mb-3 mr-3 min-h-full">
+        <p-card header="File queue" styleClass="p-card-shadow">
+            <p>TODO: Add table box-component.</p>
+            <ng-template pTemplate="footer"> </ng-template>
+        </p-card>
+    </div>
 </div>
-

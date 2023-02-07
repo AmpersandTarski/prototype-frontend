@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { ButtonState } from 'src/app/shared/helper/button-state';
-import { ImportService } from './import.service';
+import { PopulationService } from '../population.service';
 
 @Component({
   selector: 'app-population-import',
@@ -16,8 +16,9 @@ export class ImportComponent {
    *
    */
   buttonState1: ButtonState = new ButtonState();
+  files: File[] = [];
 
-  constructor(private importService: ImportService) {}
+  constructor(private populationService: PopulationService) {}
 
   /**
    * Set the buttonState to its initial value
@@ -31,11 +32,35 @@ export class ImportComponent {
    * @returns true while busy
    */
   isLoading(): boolean {
-    return true;
+    return this.buttonState1.loading;
   }
 
-  chooseFileUpload(buttonState: ButtonState) {
+  uploadFiles(buttonState: ButtonState) {
     this.initButtonStates();
     buttonState.loading = true;
+
+    // send files to API
+    this.populationService.importPopulation(this.files);
+
+    // when complete, remove files
+    this.files.forEach((file) => {
+      this.onRemove(file);
+    });
+
+    this.buttonState1.loading = false;
+  }
+
+  /**
+   * Uploads file.
+   */
+  onSelect(event: { addedFiles: any }) {
+    console.log(event);
+    this.files.push(...event.addedFiles);
+  }
+
+  /* Removes file */
+  onRemove(event: File) {
+    console.log(event);
+    this.files.splice(this.files.indexOf(event), 1);
   }
 }
