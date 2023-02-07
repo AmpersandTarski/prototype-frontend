@@ -1,5 +1,5 @@
-import { Notifications } from './notifications';
-import { Patch, PatchValue } from './patch';
+import { Notifications } from './notifications.interface';
+import { Patch, PatchValue } from './patch.interface';
 
 export interface DeleteResponse {
   patches: Array<Patch | PatchValue>;

@@ -10,7 +10,7 @@ import { PeopleInterface } from './people/people.interface';
 import { PersonInterface } from './person/person.interface';
 import { InactiveProjectsInterface } from './inactive-projects/inactive-projects.interface';
 import { ProjectEditInterface } from './project-edit/project-edit.interface';
-import { Patch } from '../shared/interfacing/patch';
+import { Patch } from '../shared/interfacing/patch.interface';
 import { DeleteResponse } from '../shared/interfacing/delete-response.interface';
 
 @Injectable()
@@ -35,6 +35,12 @@ export class BackendService implements IBackendService {
 
   public getProjectEdit(id: string): Observable<ProjectEditInterface> {
     return this.http.get<ProjectEditInterface>(`resource/Project/${id}/New_47_edit_32_project`);
+  }
+
+  public deleteProjectMember(projectId: string, projectMemberId: string): Observable<DeleteResponse> {
+    return this.http.delete<DeleteResponse>(
+      `resource/Project/${projectId}/New_47_edit_32_project/Project_32_members/${projectMemberId}`,
+    );
   }
 
   public getPerson(id: string): Observable<PersonInterface> {

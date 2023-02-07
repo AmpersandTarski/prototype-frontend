@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { from, Observable, tap } from 'rxjs';
-import { Patch, PatchValue } from 'src/app/shared/interfacing/patch';
+import { PatchValue } from 'src/app/shared/interfacing/patch.interface';
 import { PatchResponse } from 'src/app/shared/interfacing/patch-response.interface';
 import { Resource } from 'src/app/shared/interfacing/resource.interface';
 import { TestDataInterface } from '../test-data.interface';

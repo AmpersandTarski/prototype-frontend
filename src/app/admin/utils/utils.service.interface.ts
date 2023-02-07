@@ -1,5 +1,5 @@
 import { Observable } from 'rxjs';
-import { Notifications } from 'src/app/shared/interfacing/notifications';
+import { Notifications } from 'src/app/shared/interfacing/notifications.interface';
 
 export interface IUtilsService {
   getEvaluateAllRules(): Observable<Notifications>;
