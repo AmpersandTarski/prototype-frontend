@@ -41,7 +41,7 @@ export class PersonComponent implements OnInit {
   }
 
   delete(id: string): Observable<DeleteResponse> {
-    new Error('delete method called, but should now be able to be reached');
+    new Error('delete method called, but should be unreachable.');
     return EMPTY;
   }
 }
