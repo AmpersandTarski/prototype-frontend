@@ -41,7 +41,7 @@ export class ProjectEditComponent implements OnInit, Resource<ProjectEditInterfa
   }
 
   delete(projectMemberId: string): Observable<DeleteResponse> {
-    return this.service.deletePerson(this.projectId, projectMemberId).pipe(
+    return this.service.deleteProjectMember(this.projectId, projectMemberId).pipe(
       tap((x) => {
         if (x.isCommitted) {
           this.data$ = this.service.getProjectEdit(this.projectId);

@@ -37,11 +37,17 @@ export class BackendService implements IBackendService {
     return this.http.get<ProjectEditInterface>(`resource/Project/${id}/New_47_edit_32_project`);
   }
 
+  public deleteProjectMember(projectId: string, projectMemberId: string): Observable<DeleteResponse> {
+    return this.http.delete<DeleteResponse>(
+      `resource/Project/${projectId}/New_47_edit_32_project/Project_32_members/${projectMemberId}`,
+    );
+  }
+
   public getPerson(id: string): Observable<PersonInterface> {
     return this.http.get<PersonInterface>(`resource/Person/${id}/Person`);
   }
 
-  getAllInterfaces(): Observable<ListAllInterfacesInterface[]> {
+  public getAllInterfaces(): Observable<ListAllInterfacesInterface[]> {
     return this.http.get<ListAllInterfacesInterface[]>('resource/SESSION/1/List_32_all_32_interfaces');
   }
 
@@ -57,9 +63,7 @@ export class BackendService implements IBackendService {
     return this.http.post<{ _id_: string }>(`resource/Person`, {});
   }
 
-  public deletePerson(projectId: string, projectMemberId: string): Observable<DeleteResponse> {
-    return this.http.delete<DeleteResponse>(
-      `resource/Project/${projectId}/New_47_edit_32_project/Project_32_members/${projectMemberId}`,
-    );
+  public deletePerson(id: string): Observable<DeleteResponse> {
+    return this.http.delete<DeleteResponse>(`resource/SESSION/1/People/${id}`);
   }
 }

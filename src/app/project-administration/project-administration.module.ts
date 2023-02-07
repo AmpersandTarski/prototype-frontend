@@ -13,6 +13,7 @@ import { ListAllInterfacesComponent } from './list-all-interfaces/list-all-inter
 import { ProjectEditComponent } from './project-edit/project-edit.component';
 import { PersonComponent } from './person/person.component';
 import { InterfaceRouteMap, INTERFACE_ROUTE_MAPPING_TOKEN } from '../config';
+import { ButtonModule } from 'primeng/button';
 
 const routes: Routes = [
   {
@@ -88,7 +89,7 @@ const INTERFACE_ROUTE_MAP: InterfaceRouteMap = {
     ProjectEditComponent,
     ListAllInterfacesComponent,
   ],
-  imports: [CommonModule, SharedModule, RouterModule.forChild(routes)],
+  imports: [CommonModule, SharedModule, RouterModule.forChild(routes), ButtonModule],
   providers: [
     { provide: BackendService, useClass: BackendService },
     { provide: INTERFACE_ROUTE_MAPPING_TOKEN, useValue: INTERFACE_ROUTE_MAP },
