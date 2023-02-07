@@ -87,10 +87,6 @@ export abstract class BaseAtomicComponent<T> implements OnInit, OnChanges {
     if (type == AtomicComponentType.Object) {
       this.newItemControl = new FormControl<ObjectBase>({} as ObjectBase, { nonNullable: true, updateOn: 'change' });
     }
-
-    if (type == AtomicComponentType.Boolean) {
-      this.newItemControl = new FormControl<boolean>(false, { nonNullable: true, updateOn: 'blur' });
-    }
   }
 
   public addItem(formatValue?: (x: T) => string) {
