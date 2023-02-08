@@ -35,6 +35,10 @@ export class ImportComponent {
     return this.buttonState1.loading;
   }
 
+  hasNoFiles(): boolean {
+    return this.files.length < 1;
+  }
+
   uploadFiles(buttonState: ButtonState) {
     this.initButtonStates();
     buttonState.loading = true;

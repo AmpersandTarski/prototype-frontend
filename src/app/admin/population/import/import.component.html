@@ -21,7 +21,7 @@
                     icon="pi pi-arrow-circle-up"
                     (onClick)="uploadFiles(buttonState1)"
                     [loading]="buttonState1.isLoading()"
-                    [disabled]="isLoading()"
+                    [disabled]="hasNoFiles()"
                     [styleClass]="buttonState1.getStyleClass()"
                 ></p-button>
             </ng-template>
