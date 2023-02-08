@@ -5,16 +5,13 @@
 -->
 <div class="flex flex-wrap">
     <div class="flex-2 mb-3 mr-3 min-h-full">
-        <p-card header="Upload files" styleClass="p-card-shadow">
-            <p>Drop your .json file(s) here, or use the button to select your file(s).</p>
-            <p>TODO: Add drop zone</p>
-
-            <ngx-dropzone [expandable]="true" (change)="onSelect($event)">
-                <ngx-dropzone-label>Drop files here, or click to select files.</ngx-dropzone-label>
+        <p-card header="Upload population file(s)" styleClass="p-card-shadow">
+            <div class="custom-dropzone" ngx-dropzone [expandable]="true" (change)="onSelect($event)">
+                <ngx-dropzone-label>Drag and drop files here, or click to select files.</ngx-dropzone-label>
                 <ngx-dropzone-preview *ngFor="let f of files" [removable]="true" (removed)="onRemove(f)">
                     <ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label>
                 </ngx-dropzone-preview>
-            </ngx-dropzone>
+            </div>
             <ng-template pTemplate="footer">
                 <p-button
                     label="Upload"
