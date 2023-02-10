@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Notifications } from 'src/app/shared/interfacing/notifications';
+import { Notifications } from 'src/app/shared/interfacing/notifications.interface';
 import { IUtilsService } from './utils.service.interface';
 
 @Injectable()

@@ -1,7 +1,5 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
-import { Notifications } from 'src/app/shared/interfacing/notifications';
 import { IReportService } from './report.service.interface';
 
 @Injectable()
