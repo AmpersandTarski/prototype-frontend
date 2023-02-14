@@ -7,5 +7,5 @@ export interface IPopulationService {
 
   exportPopulation(jsonResponse: Object): void;
 
-  importPopulation(files: File[]): void;
+  importPopulation(file: File): void;
 }

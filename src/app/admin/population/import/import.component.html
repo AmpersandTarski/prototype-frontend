@@ -1,8 +1,3 @@
-<!-- 
-  TODO: 
-   - File drop zone
-   - File queue/list
--->
 <div class="flex flex-wrap">
     <div class="flex-2 mb-3 mr-3 min-h-full">
         <p-card header="Upload population file(s)" styleClass="p-card-shadow">
@@ -10,18 +5,18 @@
                 <ngx-dropzone-label>Drag and drop files here, or click to select files.</ngx-dropzone-label>
                 <ngx-dropzone-preview
                     class="custom-dropzone-preview"
-                    *ngFor="let f of files"
+                    *ngFor="let file of files"
                     [removable]="true"
-                    (removed)="onRemove(f)"
+                    (removed)="onRemove(file)"
                 >
-                    <ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label>
+                    <ngx-dropzone-label>{{ file.name }} ({{ file.type }})</ngx-dropzone-label>
                 </ngx-dropzone-preview>
             </div>
             <ng-template pTemplate="footer">
                 <p-button
                     label="Upload"
                     icon="pi pi-arrow-circle-up"
-                    (onClick)="uploadFiles(buttonState1)"
+                    (onClick)="uploadFiles()"
                     [loading]="buttonState1.isLoading()"
                     [disabled]="hasNoFiles()"
                     [styleClass]="buttonState1.getStyleClass()"

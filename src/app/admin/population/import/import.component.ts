@@ -10,10 +10,6 @@ import { PopulationService } from '../population.service';
 export class ImportComponent {
   /**
    * ImportComponent allows the user to upload a .json file containing population data.
-   * TODO:
-   * - File uploader/drop zone
-   * - File explorer/queue
-   *
    */
   buttonState1: ButtonState = new ButtonState();
   files: File[] = [];
@@ -39,19 +35,23 @@ export class ImportComponent {
     return this.files.length < 1;
   }
 
-  uploadFiles(buttonState: ButtonState) {
+  uploadFiles() {
     this.initButtonStates();
-    buttonState.loading = true;
+    this.buttonState1.loading = true;
 
-    // send files to API
-    let response = this.populationService.importPopulation(this.files);
-
-    response.subscribe((x) => console.log(x));
-
-    // when complete, remove files
-    this.files.forEach((file) => {
-      this.onRemove(file);
-    });
+    // send files to API (one by one)
+    let isError = false;
+    while (!isError && !this.hasNoFiles()) {
+      // upload one file
+      this.populationService.importPopulation(this.files.pop()).subscribe({
+        error: (err) => {
+          isError = true; // will terminate loop
+          this.buttonState1.error = true;
+        },
+        complete: () => (this.buttonState1.success = !isError),
+        next: () => {},
+      });
+    }
 
     this.buttonState1.loading = false;
   }
@@ -59,14 +59,12 @@ export class ImportComponent {
   /**
    * Uploads file.
    */
-  onSelect(event: { addedFiles: any }) {
-    console.log(event);
+  onSelect(event: { addedFiles: File[] }) {
     this.files.push(...event.addedFiles);
   }
 
   /* Removes file */
   onRemove(event: File) {
-    console.log(event);
     this.files.splice(this.files.indexOf(event), 1);
   }
 }
