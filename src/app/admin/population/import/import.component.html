@@ -8,7 +8,12 @@
         <p-card header="Upload population file(s)" styleClass="p-card-shadow">
             <div class="custom-dropzone" ngx-dropzone [expandable]="true" (change)="onSelect($event)">
                 <ngx-dropzone-label>Drag and drop files here, or click to select files.</ngx-dropzone-label>
-                <ngx-dropzone-preview *ngFor="let f of files" [removable]="true" (removed)="onRemove(f)">
+                <ngx-dropzone-preview
+                    class="custom-dropzone-preview"
+                    *ngFor="let f of files"
+                    [removable]="true"
+                    (removed)="onRemove(f)"
+                >
                     <ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label>
                 </ngx-dropzone-preview>
             </div>
@@ -22,13 +27,6 @@
                     [styleClass]="buttonState1.getStyleClass()"
                 ></p-button>
             </ng-template>
-        </p-card>
-    </div>
-
-    <div class="flex-1 mb-3 mr-3 min-h-full">
-        <p-card header="File queue" styleClass="p-card-shadow">
-            <p>TODO: Add table box-component.</p>
-            <ng-template pTemplate="footer"> </ng-template>
         </p-card>
     </div>
 </div>
