@@ -1,7 +1,6 @@
 import { HttpClient } from '@angular/common/http';
-import { ReturnStatement } from '@angular/compiler';
 import { Injectable } from '@angular/core';
-import { Observable, throwError } from 'rxjs';
+import { EMPTY, Observable, throwError } from 'rxjs';
 import { IPopulationService } from './population.service.interface';
 
 @Injectable()
@@ -35,7 +34,7 @@ export class PopulationService implements IPopulationService {
   /* Send one file to API. */
   public importPopulation(file: File | undefined): Observable<Object> {
     if (file === undefined) {
-      return new Observable<Object>();
+      return EMPTY;
     }
     var formData;
 

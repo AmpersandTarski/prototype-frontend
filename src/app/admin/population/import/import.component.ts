@@ -40,15 +40,14 @@ export class ImportComponent {
     this.buttonState1.loading = true;
 
     // send files to API (one by one)
-    let isError = false;
-    while (!isError && !this.hasNoFiles()) {
+    while (!this.hasNoFiles()) {
       // upload one file
       this.populationService.importPopulation(this.files.pop()).subscribe({
         error: (err) => {
-          isError = true; // will terminate loop
           this.buttonState1.error = true;
+          this.buttonState1.success = false;
         },
-        complete: () => (this.buttonState1.success = !isError),
+        complete: () => (this.buttonState1.success = true),
         next: () => {},
       });
     }
@@ -57,7 +56,7 @@ export class ImportComponent {
   }
 
   /**
-   * Uploads file.
+   * Adds file(s) to queue.
    */
   onSelect(event: { addedFiles: File[] }) {
     this.files.push(...event.addedFiles);
