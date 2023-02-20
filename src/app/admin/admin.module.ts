@@ -7,13 +7,15 @@ import { ButtonModule } from 'primeng/button';
 import { MenuItem } from 'primeng/api';
 import { InstallerComponent } from './installer/installer.component';
 import { InstallerService } from './installer/installer.service';
-
+import { MenuModule } from 'primeng/menu';
 import { UtilsComponent } from './utils/utils.component';
 import { UtilsService } from './utils/utils.service';
 import { PopulationComponent } from './population/population.component';
 import { PopulationService } from './population/population.service';
 import { ReportComponent } from './report/report.component';
 import { ReportService } from './report/report.service';
+import { RolesComponent } from './roles/roles.component';
+import { RolesService } from './roles/roles.service';
 
 const routes: Routes = [
   {
@@ -50,13 +52,15 @@ export const menuItems: MenuItem[] = [
 ];
 
 @NgModule({
-  declarations: [InstallerComponent, UtilsComponent, PopulationComponent, ReportComponent],
-  imports: [CommonModule, RouterModule.forChild(routes), CardModule, ButtonModule],
+  declarations: [InstallerComponent, UtilsComponent, PopulationComponent, ReportComponent, RolesComponent],
+  imports: [CommonModule, RouterModule.forChild(routes), CardModule, ButtonModule, MenuModule],
   providers: [
     { provide: InstallerService, useClass: InstallerService },
     { provide: UtilsService, useClass: UtilsService },
     { provide: PopulationService, useClass: PopulationService },
     { provide: ReportService, useClass: ReportService },
+    { provide: RolesService, useClass: RolesService },
   ],
+  exports: [RolesComponent],
 })
 export class AdminModule {}
