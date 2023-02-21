@@ -42,16 +42,16 @@ export abstract class BaseAtomicComponent<T> implements OnInit, OnChanges {
   @Input() crud: string = 'cRud';
 
   public canCreate(): boolean {
-    return this.crud.includes('C');
+    return this.crud[0] == 'C';
   }
   public canRead(): boolean {
-    return this.crud.includes('R');
+    return this.crud[1] == 'R';
   }
   public canUpdate(): boolean {
-    return this.crud.includes('U');
+    return this.crud[2] == 'U';
   }
   public canDelete(): boolean {
-    return this.crud.includes('D');
+    return this.crud[3] == 'D';
   }
 
   ngOnInit(): void {
@@ -86,10 +86,6 @@ export abstract class BaseAtomicComponent<T> implements OnInit, OnChanges {
 
     if (type == AtomicComponentType.Object) {
       this.newItemControl = new FormControl<ObjectBase>({} as ObjectBase, { nonNullable: true, updateOn: 'change' });
-    }
-
-    if (type == AtomicComponentType.Boolean) {
-      this.newItemControl = new FormControl<boolean>(false, { nonNullable: true, updateOn: 'blur' });
     }
   }
 
@@ -133,14 +129,6 @@ export abstract class BaseAtomicComponent<T> implements OnInit, OnChanges {
           this.data.splice(index, 1);
         }
       });
-  }
-
-  public deleteItem(index: number) {
-    // TODO: show warning message
-    if (this.isTot && this.data.length == 1) {
-      throw new Error('Must have at least one element');
-    }
-    // TODO: resource delete method
   }
 
   public isNewItemInputRequired() {

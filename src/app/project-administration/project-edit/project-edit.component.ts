@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { from, Observable, switchMap, tap } from 'rxjs';
-import { Patch } from 'src/app/shared/interfacing/patch';
+import { Patch } from 'src/app/shared/interfacing/patch.interface';
 import { PatchResponse } from 'src/app/shared/interfacing/patch-response.interface';
 import { Resource } from 'src/app/shared/interfacing/resource.interface';
 import { BackendService } from '../backend.service';
 import { ProjectEditInterface } from './project-edit.interface';
+import { DeleteResponse } from 'src/app/shared/interfacing/delete-response.interface';
 
 @Component({
   selector: 'app-project-edit',
@@ -34,6 +35,16 @@ export class ProjectEditComponent implements OnInit, Resource<ProjectEditInterfa
       tap((x) => {
         if (x.isCommitted) {
           this.data$ = from([x.content]);
+        }
+      }),
+    );
+  }
+
+  delete(projectMemberId: string): Observable<DeleteResponse> {
+    return this.service.deleteProjectMember(this.projectId, projectMemberId).pipe(
+      tap((x) => {
+        if (x.isCommitted) {
+          this.data$ = this.service.getProjectEdit(this.projectId);
         }
       }),
     );

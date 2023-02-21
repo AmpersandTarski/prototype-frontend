@@ -1,8 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, ParamMap } from '@angular/router';
-import { Observable, switchMap } from 'rxjs';
+import { EMPTY, from, Observable, switchMap, tap } from 'rxjs';
+import { Patch } from 'src/app/shared/interfacing/patch.interface';
+import { PatchResponse } from 'src/app/shared/interfacing/patch-response.interface';
 import { BackendService } from '../backend.service';
 import { PersonInterface } from './person.interface';
+import { DeleteResponse } from 'src/app/shared/interfacing/delete-response.interface';
 
 @Component({
   selector: 'app-person',
@@ -27,17 +30,18 @@ export class PersonComponent implements OnInit {
     );
   }
 
-  patchPerson(property: any, path: string) {
-    let body = [
-      {
-        op: 'replace',
-        path: path,
-        value: property,
-      },
-    ];
+  patch(patches: Patch[]): Observable<PatchResponse<PersonInterface>> {
+    return this.service.patchPerson(this.personId, patches).pipe(
+      tap((x) => {
+        if (x.isCommitted) {
+          this.data$ = from([x.content]);
+        }
+      }),
+    );
+  }
 
-    this.service.patchPerson(this.personId, body).subscribe(() => {
-      this.data$ = this.service.getPerson(this.personId);
-    });
+  delete(id: string): Observable<DeleteResponse> {
+    new Error('delete method called, but should be unreachable.');
+    return EMPTY;
   }
 }

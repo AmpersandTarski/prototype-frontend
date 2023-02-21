@@ -8,7 +8,7 @@ import { MenuItem } from 'primeng/api';
 import { InstallerComponent } from './installer/installer.component';
 import { InstallerService } from './installer/installer.service';
 import { NgxDropzoneModule } from 'ngx-dropzone';
-
+import { MenuModule } from 'primeng/menu';
 import { UtilsComponent } from './utils/utils.component';
 import { UtilsService } from './utils/utils.service';
 import { PopulationComponent } from './population/population.component';
@@ -16,6 +16,8 @@ import { PopulationService } from './population/population.service';
 import { ReportComponent } from './report/report.component';
 import { ReportService } from './report/report.service';
 import { ImportComponent } from './population/import/import.component';
+import { RolesComponent } from './roles/roles.component';
+import { RolesService } from './roles/roles.service';
 
 const routes: Routes = [
   {
@@ -59,13 +61,15 @@ export const menuItems: MenuItem[] = [
 ];
 
 @NgModule({
-  declarations: [InstallerComponent, UtilsComponent, PopulationComponent, ReportComponent, ImportComponent],
-  imports: [CommonModule, RouterModule.forChild(routes), CardModule, ButtonModule, NgxDropzoneModule],
+  declarations: [InstallerComponent, UtilsComponent, PopulationComponent, ReportComponent, ImportComponent, RolesComponent],
+  imports: [CommonModule, RouterModule.forChild(routes), CardModule, ButtonModule, NgxDropzoneModule, MenuModule],
   providers: [
     { provide: InstallerService, useClass: InstallerService },
     { provide: UtilsService, useClass: UtilsService },
     { provide: PopulationService, useClass: PopulationService },
     { provide: ReportService, useClass: ReportService },
+    { provide: RolesService, useClass: RolesService },
   ],
+  exports: [RolesComponent],
 })
 export class AdminModule {}
