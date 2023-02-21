@@ -1,3 +1,4 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { ButtonState } from 'src/app/shared/helper/button-state';
 import { PopulationService } from '../population.service';
@@ -43,9 +44,15 @@ export class ImportComponent {
     while (!this.hasNoFiles()) {
       // upload one file
       this.populationService.importPopulation(this.files.pop()).subscribe({
-        error: (err) => {
+        error: (err: HttpErrorResponse) => {
+          // Change button colour (temporary)
           this.buttonState1.error = true;
           this.buttonState1.success = false;
+
+          // Invoke notification
+          console.log('Error uploading file:');
+          console.log(err.message);
+          // TODO: Replace with Notification component
         },
         complete: () => (this.buttonState1.success = true),
         next: () => {},
