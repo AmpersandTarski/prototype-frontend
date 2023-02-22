@@ -7,6 +7,7 @@ import { ButtonModule } from 'primeng/button';
 import { MenuItem } from 'primeng/api';
 import { InstallerComponent } from './installer/installer.component';
 import { InstallerService } from './installer/installer.service';
+import { NgxDropzoneModule } from 'ngx-dropzone';
 import { MenuModule } from 'primeng/menu';
 import { UtilsComponent } from './utils/utils.component';
 import { UtilsService } from './utils/utils.service';
@@ -14,6 +15,7 @@ import { PopulationComponent } from './population/population.component';
 import { PopulationService } from './population/population.service';
 import { ReportComponent } from './report/report.component';
 import { ReportService } from './report/report.service';
+import { ImportComponent } from './population/import/import.component';
 import { RolesComponent } from './roles/roles.component';
 import { RolesService } from './roles/roles.service';
 
@@ -22,7 +24,10 @@ const routes: Routes = [
     path: 'admin',
     component: AppLayoutComponent,
     children: [
-      { path: 'installer', component: InstallerComponent },
+      {
+        path: 'installer',
+        component: InstallerComponent,
+      },
       {
         path: 'utils',
         component: UtilsComponent,
@@ -30,6 +35,10 @@ const routes: Routes = [
       {
         path: 'population',
         component: PopulationComponent,
+      },
+      {
+        path: 'population/import',
+        component: ImportComponent,
       },
       {
         path: 'report',
@@ -52,8 +61,8 @@ export const menuItems: MenuItem[] = [
 ];
 
 @NgModule({
-  declarations: [InstallerComponent, UtilsComponent, PopulationComponent, ReportComponent, RolesComponent],
-  imports: [CommonModule, RouterModule.forChild(routes), CardModule, ButtonModule, MenuModule],
+  declarations: [InstallerComponent, UtilsComponent, PopulationComponent, ReportComponent, ImportComponent, RolesComponent],
+  imports: [CommonModule, RouterModule.forChild(routes), CardModule, ButtonModule, NgxDropzoneModule, MenuModule],
   providers: [
     { provide: InstallerService, useClass: InstallerService },
     { provide: UtilsService, useClass: UtilsService },

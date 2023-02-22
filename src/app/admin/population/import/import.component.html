@@ -1,0 +1,27 @@
+<div class="flex flex-wrap">
+    <div class="flex-2 mb-3 mr-3 min-h-full">
+        <p-card header="Upload population file(s)" styleClass="p-card-shadow">
+            <div class="custom-dropzone" ngx-dropzone [expandable]="true" (change)="onSelect($event)">
+                <ngx-dropzone-label>Drag and drop files here, or click to select files.</ngx-dropzone-label>
+                <ngx-dropzone-preview
+                    class="custom-dropzone-preview"
+                    *ngFor="let file of files"
+                    [removable]="true"
+                    (removed)="onRemove(file)"
+                >
+                    <ngx-dropzone-label>{{ file.name }} ({{ file.type }})</ngx-dropzone-label>
+                </ngx-dropzone-preview>
+            </div>
+            <ng-template pTemplate="footer">
+                <p-button
+                    label="Upload"
+                    icon="pi pi-arrow-circle-up"
+                    (onClick)="uploadFiles()"
+                    [loading]="buttonState1.isLoading()"
+                    [disabled]="hasNoFiles()"
+                    [styleClass]="buttonState1.getStyleClass()"
+                ></p-button>
+            </ng-template>
+        </p-card>
+    </div>
+</div>
