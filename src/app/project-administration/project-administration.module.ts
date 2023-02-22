@@ -48,7 +48,9 @@ const routes: Routes = [
   },
 ];
 
-export const menuItems: MenuItem[] = [
+export const menuItems: MenuItem[] = [];
+
+/*[
   {
     label: 'Project administration',
     items: [
@@ -74,7 +76,7 @@ export const menuItems: MenuItem[] = [
       },
     ],
   },
-];
+];*/
 
 const INTERFACE_ROUTE_MAP: InterfaceRouteMap = {
   Active_32_projects: '/p/active-projects',

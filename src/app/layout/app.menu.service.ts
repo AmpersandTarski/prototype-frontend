@@ -1,11 +1,17 @@
 import { Injectable } from '@angular/core';
-import { Subject } from 'rxjs';
+import { Subject, map, Observable } from 'rxjs';
+import { Navbar, Navs } from '../shared/interfacing/navbar.interface';
 import { MenuChangeEvent } from './api/menuchangeevent';
+import { HttpClient } from '@angular/common/http';
+import { MenuItem } from 'primeng/api/menuitem';
+import { MenuItemContent } from 'primeng/menu';
 
 @Injectable({
   providedIn: 'root',
 })
 export class MenuService {
+  constructor(private http: HttpClient) {}
+
   private menuSource = new Subject<MenuChangeEvent>();
   private resetSource = new Subject();
 
@@ -18,5 +24,12 @@ export class MenuService {
 
   reset() {
     this.resetSource.next(true);
+  }
+
+  /* Obtain navbar navs and convert them to MenuItems */
+  getMenuItems(): Observable<Array<Navs>> {
+    let navbar = this.http.get<Navbar>('app/navbar');
+    let navs: Observable<Array<Navs>> = navbar.pipe(map((x) => x.navs));
+    return navs;
   }
 }

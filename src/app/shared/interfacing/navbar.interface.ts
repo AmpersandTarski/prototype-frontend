@@ -29,7 +29,7 @@ interface Ext {
   function: Object;
 }
 
-interface Navs {
+export interface Navs {
   id: string;
   ifc: string | null;
   label: string;
