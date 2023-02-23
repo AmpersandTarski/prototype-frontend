@@ -31,10 +31,10 @@ interface Ext {
 
 interface Navs {
   id: string;
-  ifc: string;
+  ifc: string | null;
   label: string;
-  parent: string;
-  seqNr: number;
+  parent: string | null;
+  seqNr: number | null;
   url: string | null;
 }
 
