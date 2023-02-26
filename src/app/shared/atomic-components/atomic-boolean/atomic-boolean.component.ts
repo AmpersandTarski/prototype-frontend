@@ -37,8 +37,8 @@ export class AtomicBooleanComponent<I> extends BaseAtomicComponent<boolean, I> i
     if (this.canUpdate()) {
       this.formControlArray.forEach((x) =>
         x.valueChanges.subscribe((x) =>
-          this.resource
-            .patch([
+          this.interfaceComponent
+            .patch(this.resource, [
               {
                 op: 'replace',
                 path: this.propertyName, // FIXME: this must be relative to path of this.resource

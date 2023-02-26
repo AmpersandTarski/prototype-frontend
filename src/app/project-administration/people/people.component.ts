@@ -13,9 +13,6 @@ import { PeopleInterface } from './people.interface';
 })
 export class PeopleComponent extends AmpersandInterface<PeopleInterface> implements OnInit {
   data$!: Observable<PeopleInterface[]>;
-  constructor(private service: BackendService, private router: Router) {
-    super();
-  }
 
   constructor(protected service: BackendService, private router: Router, http: HttpClient) {
     super(http);
