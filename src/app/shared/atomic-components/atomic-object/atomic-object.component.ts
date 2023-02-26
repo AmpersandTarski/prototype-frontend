@@ -7,13 +7,6 @@ import { map, Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { InterfaceRouteMap, INTERFACE_ROUTE_MAPPING_TOKEN } from 'src/app/config';
 import { FormControl } from '@angular/forms';
-import { PatchResponse } from '../../interfacing/patch-response.interface';
-import { Patch, PatchValue } from '../../interfacing/patch.interface';
-
-export interface Resource<T> {
-  patch(patches: Array<Patch | PatchValue>): Observable<PatchResponse<T>>;
-  delete(id: string): Observable<DeleteResponse>;
-}
 
 @Component({
   selector: 'app-atomic-object',
@@ -25,7 +18,6 @@ export class AtomicObjectComponent<I> extends BaseAtomicComponent<ObjectBase, I>
   public alternativeObjects$!: Observable<ObjectBase[]>;
   @Input() public placeholder!: string;
   @Input() itemsMethod!: Function | null;
-  @Input() override resource!: Resource<unknown>;
 
   constructor(
     private router: Router,
