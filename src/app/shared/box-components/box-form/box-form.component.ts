@@ -1,4 +1,5 @@
 import { Component, ContentChild, Input, TemplateRef } from '@angular/core';
+import { BaseBoxComponent } from '../BaseBoxComponent.class';
 import { BoxFormTemplateDirective } from './box-form-template.directive';
 
 @Component({
@@ -6,7 +7,7 @@ import { BoxFormTemplateDirective } from './box-form-template.directive';
   templateUrl: './box-form.component.html',
   styleUrls: ['./box-form.component.scss'],
 })
-export class BoxFormComponent<TItem extends object> {
+export class BoxFormComponent<TItem extends object> extends BaseBoxComponent {
   @Input() data!: TItem[];
   @ContentChild(BoxFormTemplateDirective, { read: TemplateRef })
   template?: TemplateRef<unknown>;

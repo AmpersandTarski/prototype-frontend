@@ -1,11 +1,12 @@
 import { Component, ContentChild, Input, TemplateRef } from '@angular/core';
+import { BaseBoxComponent } from '../BaseBoxComponent.class';
 
 @Component({
   selector: 'app-box-tab',
   templateUrl: './box-tab.component.html',
   styleUrls: ['./box-tab.component.scss'],
 })
-export class BoxTabComponent {
+export class BoxTabComponent extends BaseBoxComponent {
   @Input() data: any;
   @Input() tabHeaders: string[] = [];
   @ContentChild('tabContent') tabContent!: TemplateRef<any>;
