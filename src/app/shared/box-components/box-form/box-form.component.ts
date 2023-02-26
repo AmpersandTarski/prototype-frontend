@@ -7,8 +7,7 @@ import { BoxFormTemplateDirective } from './box-form-template.directive';
   templateUrl: './box-form.component.html',
   styleUrls: ['./box-form.component.scss'],
 })
-export class BoxFormComponent<TItem extends object, I> extends BaseBoxComponent<I> {
-  @Input() data!: TItem[];
+export class BoxFormComponent<TItem extends object, I> extends BaseBoxComponent<TItem, I> {
   @ContentChild(BoxFormTemplateDirective, { read: TemplateRef })
   template?: TemplateRef<unknown>;
 }

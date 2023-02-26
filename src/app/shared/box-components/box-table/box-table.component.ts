@@ -8,8 +8,7 @@ import { BoxTableRowTemplateDirective } from './box-table-row-template.directive
   templateUrl: './box-table.component.html',
   styleUrls: ['./box-table.component.css'],
 })
-export class BoxTableComponent<TItem extends object, I> extends BaseBoxComponent<I> {
-  @Input() data!: TItem[];
+export class BoxTableComponent<TItem extends object, I> extends BaseBoxComponent<TItem, I> {
   @ContentChild(BoxTableHeaderTemplateDirective, { read: TemplateRef })
   headers?: TemplateRef<unknown>;
   @ContentChild(BoxTableRowTemplateDirective, { read: TemplateRef })

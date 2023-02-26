@@ -5,7 +5,8 @@ import { ObjectBase } from '../objectBase.interface';
 @Component({
   template: '',
 })
-export abstract class BaseBoxComponent<I> {
+export abstract class BaseBoxComponent<TItem, I> {
+  @Input() data!: TItem[];
   @Input() interfaceComponent!: AmpersandInterface<I>;
 
   @Input() crud: string = 'cRud';
