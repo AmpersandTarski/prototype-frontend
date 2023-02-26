@@ -33,14 +33,4 @@ export class PersonComponent extends AmpersandInterface<PersonInterface> impleme
       }),
     );
   }
-
-  patch(patches: Patch[]): Observable<PatchResponse<PersonInterface>> {
-    return this.service.patchPerson(this.personId, patches).pipe(
-      tap((x) => {
-        if (x.isCommitted) {
-          this.data$ = from([x.content]);
-        }
-      }),
-    );
-  }
 }
