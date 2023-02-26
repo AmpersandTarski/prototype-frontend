@@ -27,7 +27,11 @@ export abstract class BaseBoxComponent<TItem, I> {
   public deleteItem(resource: ObjectBase): void {
     this.interfaceComponent.delete(resource).subscribe((x) => {
       if (x.isCommitted) {
-        // TODO
+        this.data.forEach((item, index) => {
+          if (item === resource) this.data.splice(index, 1);
+        });
+      } else {
+        // TODO: notify about why resource is not deleted
       }
     });
   }
