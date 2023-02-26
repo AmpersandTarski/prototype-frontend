@@ -2,7 +2,7 @@
 <div *ngIf="data$ | async as data; else loading">
     <app-box-form [data]="[data]">
         <ng-template [boxFormTemplate]="[data]" let-resource>
-            <!-- <h5>{{ resource.First_32_name }} {{ resource.Last_32_name }}</h5> -->
+            <h5>{{ resource.First_32_name }} {{ resource.Last_32_name }}</h5>
             <div class="formgrid grid">
                 <div class="field col-12 box-form-field">
                     <label class="box-form-label">First Name</label>

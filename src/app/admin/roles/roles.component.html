@@ -1,0 +1,5 @@
+<button class="p-link layout-topbar-button" label="Show" (click)="menu.toggle($event)">
+    <i class="pi pi-user"></i>
+    <span>Roles</span>
+</button>
+<p-menu #menu [popup]="true" [model]="this.menuItems"></p-menu>

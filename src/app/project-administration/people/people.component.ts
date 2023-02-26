@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { AmpersandInterface } from 'src/app/shared/interfacing/ampersand-interface.class';
 import { BackendService } from '../backend.service';
+import { BaseInterfaceComponent } from '../BaseInterfaceComponent';
 import { PeopleInterface } from './people.interface';
 
 @Component({
@@ -13,6 +14,10 @@ import { PeopleInterface } from './people.interface';
 })
 export class PeopleComponent extends AmpersandInterface<PeopleInterface> implements OnInit {
   data$!: Observable<PeopleInterface[]>;
+  public override crud: string = 'CRuD';
+  constructor(private service: BackendService, private router: Router) {
+    super();
+  }
 
   constructor(protected service: BackendService, private router: Router, http: HttpClient) {
     super(http);
@@ -26,6 +31,14 @@ export class PeopleComponent extends AmpersandInterface<PeopleInterface> impleme
     const newPersonId = this.service.postPerson();
     newPersonId.subscribe((person) => {
       this.router.navigate(['p', 'person', `${person._id_}`]);
+    });
+  }
+
+  public onDelete(id: string): void {
+    this.service.deletePerson(id).subscribe((x) => {
+      if (x.isCommitted) {
+        this.data$ = this.service.getPeople();
+      }
     });
   }
 }

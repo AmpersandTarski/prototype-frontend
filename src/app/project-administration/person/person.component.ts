@@ -1,10 +1,13 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, ParamMap } from '@angular/router';
-import { Observable, switchMap } from 'rxjs';
 import { AmpersandInterface } from 'src/app/shared/interfacing/ampersand-interface.class';
+import { EMPTY, from, Observable, switchMap, tap } from 'rxjs';
+import { Patch } from 'src/app/shared/interfacing/patch.interface';
+import { PatchResponse } from 'src/app/shared/interfacing/patch-response.interface';
 import { BackendService } from '../backend.service';
 import { PersonInterface } from './person.interface';
+import { DeleteResponse } from 'src/app/shared/interfacing/delete-response.interface';
 
 @Component({
   selector: 'app-person',
@@ -29,5 +32,20 @@ export class PersonComponent extends AmpersandInterface<PersonInterface> impleme
         return this.service.getPerson(this.personId);
       }),
     );
+  }
+
+  patch(patches: Patch[]): Observable<PatchResponse<PersonInterface>> {
+    return this.service.patchPerson(this.personId, patches).pipe(
+      tap((x) => {
+        if (x.isCommitted) {
+          this.data$ = from([x.content]);
+        }
+      }),
+    );
+  }
+
+  delete(id: string): Observable<DeleteResponse> {
+    new Error('delete method called, but should be unreachable.');
+    return EMPTY;
   }
 }

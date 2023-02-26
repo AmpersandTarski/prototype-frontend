@@ -13,6 +13,9 @@ import { ListAllInterfacesComponent } from './list-all-interfaces/list-all-inter
 import { ProjectEditComponent } from './project-edit/project-edit.component';
 import { PersonComponent } from './person/person.component';
 import { InterfaceRouteMap, INTERFACE_ROUTE_MAPPING_TOKEN } from '../config';
+import { ButtonModule } from 'primeng/button';
+import { RolesGuard } from '../admin/roles/roles.guard';
+import { Role } from '../shared/models/roles';
 
 const routes: Routes = [
   {
@@ -20,10 +23,24 @@ const routes: Routes = [
     component: AppLayoutComponent,
     children: [
       { path: 'active-projects', component: ActiveProjectsComponent },
-      { path: 'inactive-projects', component: InactiveProjectsComponent },
+      {
+        path: 'inactive-projects',
+        component: InactiveProjectsComponent,
+        canActivate: [RolesGuard],
+        data: {
+          role: Role.Planner,
+        },
+      },
       { path: 'project', component: ProjectComponent },
       { path: 'project/:id', component: ProjectComponent },
-      { path: 'people', component: PeopleComponent },
+      {
+        path: 'people',
+        component: PeopleComponent,
+        canActivate: [RolesGuard],
+        data: {
+          role: Role.Planner,
+        },
+      },
       { path: 'person/:id', component: PersonComponent },
       { path: 'list-all-interfaces', component: ListAllInterfacesComponent },
       { path: 'new-edit-project/:id', component: ProjectEditComponent },
@@ -88,7 +105,7 @@ const INTERFACE_ROUTE_MAP: InterfaceRouteMap = {
     ProjectEditComponent,
     ListAllInterfacesComponent,
   ],
-  imports: [CommonModule, SharedModule, RouterModule.forChild(routes)],
+  imports: [CommonModule, SharedModule, RouterModule.forChild(routes), ButtonModule],
   providers: [
     { provide: BackendService, useClass: BackendService },
     { provide: INTERFACE_ROUTE_MAPPING_TOKEN, useValue: INTERFACE_ROUTE_MAP },

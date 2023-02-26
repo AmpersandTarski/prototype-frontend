@@ -1,0 +1,43 @@
+@use "../../../../../node_modules/primeflex/primeflex.scss";
+
+::ng-deep .p-card {
+    @extend .flex;
+    @extend .min-h-full;
+    min-width: 360px;
+}
+
+::ng-deep .p-card-body {
+    @extend .flex;
+    @extend .flex-column;
+    @extend .min-h-full;
+}
+
+::ng-deep .p-card-content {
+    @extend .flex-grow-1;
+}
+
+// Drop zone
+:host {
+    .custom-dropzone { 
+        border: 1px dashed;
+    }
+    
+    // Drop zone file preview
+    .custom-dropzone-preview {
+        background-image: none;
+        background-color: var(--surface-ground);
+        border: 1px dashed;
+        margin:auto;
+        word-wrap: normal;
+        height: fit-content !important;
+        min-height: 5px !important;
+        min-width: 5px !important;
+        max-width: inherit !important;
+    }
+
+    ::ng-deep ngx-dropzone-label {
+        padding: 10px;
+        overflow-wrap: normal !important;
+        width:auto;
+    }
+}

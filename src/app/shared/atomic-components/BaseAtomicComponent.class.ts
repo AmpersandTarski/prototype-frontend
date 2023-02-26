@@ -41,16 +41,16 @@ export abstract class BaseAtomicComponent<T, I> implements OnInit {
   @Input() crud: string = 'cRud';
 
   public canCreate(): boolean {
-    return this.crud.includes('C');
+    return this.crud[0] == 'C';
   }
   public canRead(): boolean {
-    return this.crud.includes('R');
+    return this.crud[1] == 'R';
   }
   public canUpdate(): boolean {
-    return this.crud.includes('U');
+    return this.crud[2] == 'U';
   }
   public canDelete(): boolean {
-    return this.crud.includes('D');
+    return this.crud[3] == 'D';
   }
 
   ngOnInit(): void {
@@ -102,14 +102,6 @@ export abstract class BaseAtomicComponent<T, I> implements OnInit {
         },
       ])
       .subscribe();
-  }
-
-  public deleteItem(index: number) {
-    // TODO: show warning message
-    if (this.isTot && this.data.length == 1) {
-      throw new Error('Must have at least one element');
-    }
-    // TODO: resource delete method
   }
 
   public isNewItemInputRequired() {
