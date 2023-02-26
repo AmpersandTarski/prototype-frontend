@@ -1,11 +1,11 @@
 <h3>People</h3>
 <div *ngIf="data$ | async as data; else loading">
-    <app-box-table [data]="data">
+    <app-box-table [data]="data" crud="CRuD" #box>
         <ng-template boxTableHeader>
             <th>Person</th>
             <th>Email</th>
             <th>Projects</th>
-            <th *ngIf="canDelete()"></th>
+            <th *ngIf="box.canDelete()"></th>
         </ng-template>
         <ng-template [boxTableRow]="data" let-row>
             <td>
@@ -47,7 +47,7 @@
                 >
                 </app-atomic-object>
             </td>
-            <td *ngIf="canDelete()">
+            <td *ngIf="box.canDelete()">
                 <button
                     pButton
                     type="button"

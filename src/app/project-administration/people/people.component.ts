@@ -4,7 +4,6 @@ import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { AmpersandInterface } from 'src/app/shared/interfacing/ampersand-interface.class';
 import { BackendService } from '../backend.service';
-import { BaseInterfaceComponent } from '../BaseInterfaceComponent';
 import { PeopleInterface } from './people.interface';
 
 @Component({
@@ -14,7 +13,6 @@ import { PeopleInterface } from './people.interface';
 })
 export class PeopleComponent extends AmpersandInterface<PeopleInterface> implements OnInit {
   data$!: Observable<PeopleInterface[]>;
-  public override crud: string = 'CRuD';
   constructor(private service: BackendService, private router: Router) {
     super();
   }
