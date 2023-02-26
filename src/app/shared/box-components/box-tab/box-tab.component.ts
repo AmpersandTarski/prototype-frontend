@@ -6,10 +6,12 @@ import { BaseBoxComponent } from '../BaseBoxComponent.class';
   templateUrl: './box-tab.component.html',
   styleUrls: ['./box-tab.component.scss'],
 })
-export class BoxTabComponent extends BaseBoxComponent {
+export class BoxTabComponent<I> extends BaseBoxComponent<I> {
   @Input() data: any;
   @Input() tabHeaders: string[] = [];
   @ContentChild('tabContent') tabContent!: TemplateRef<any>;
 
-  constructor() {}
+  constructor() {
+    super();
+  }
 }

@@ -1,9 +1,13 @@
 import { Component, Input } from '@angular/core';
+import { AmpersandInterface } from '../interfacing/ampersand-interface.class';
+import { ObjectBase } from '../objectBase.interface';
 
 @Component({
   template: '',
 })
-export abstract class BaseBoxComponent {
+export abstract class BaseBoxComponent<I> {
+  @Input() interfaceComponent!: AmpersandInterface<I>;
+
   @Input() crud: string = 'cRud';
 
   public canCreate(): boolean {

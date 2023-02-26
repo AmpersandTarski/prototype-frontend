@@ -1,6 +1,6 @@
 <h3>People</h3>
 <div *ngIf="data$ | async as data; else loading">
-    <app-box-table [data]="data" crud="CRuD" #box>
+    <app-box-table [data]="data" crud="CRuD" #box [interfaceComponent]="this">
         <ng-template boxTableHeader>
             <th>Person</th>
             <th>Email</th>
