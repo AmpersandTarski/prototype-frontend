@@ -1,8 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Observable, tap } from 'rxjs';
 import { ObjectBase } from '../objectBase.interface';
-import { Patch, PatchValue } from './patch';
+import { Patch, PatchValue } from './patch.interface';
 import { PatchResponse } from './patch-response.interface';
+import { DeleteResponse } from './delete-response.interface';
 
 export class AmpersandInterface<T> {
   constructor(protected http: HttpClient) {}
@@ -28,5 +29,9 @@ export class AmpersandInterface<T> {
     //     }
     //   }),
     // );
+  }
+
+  public delete(resource: ObjectBase): Observable<DeleteResponse> {
+    return this.http.delete<DeleteResponse>(resource._path_);
   }
 }

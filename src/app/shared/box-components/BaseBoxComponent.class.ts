@@ -22,4 +22,12 @@ export abstract class BaseBoxComponent<I> {
   public canDelete(): boolean {
     return this.crud[3] == 'D';
   }
+
+  public deleteItem(resource: ObjectBase): void {
+    this.interfaceComponent.delete(resource).subscribe((x) => {
+      if (x.isCommitted) {
+        // TODO
+      }
+    });
+  }
 }

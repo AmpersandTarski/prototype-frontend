@@ -7,7 +7,6 @@ import { Patch } from 'src/app/shared/interfacing/patch.interface';
 import { PatchResponse } from 'src/app/shared/interfacing/patch-response.interface';
 import { BackendService } from '../backend.service';
 import { ProjectEditInterface } from './project-edit.interface';
-import { DeleteResponse } from 'src/app/shared/interfacing/delete-response.interface';
 
 @Component({
   selector: 'app-project-edit',
@@ -39,16 +38,6 @@ export class ProjectEditComponent extends AmpersandInterface<ProjectEditInterfac
       tap((x) => {
         if (x.isCommitted) {
           this.data$ = from([x.content]);
-        }
-      }),
-    );
-  }
-
-  delete(projectMemberId: string): Observable<DeleteResponse> {
-    return this.service.deleteProjectMember(this.projectId, projectMemberId).pipe(
-      tap((x) => {
-        if (x.isCommitted) {
-          this.data$ = this.service.getProjectEdit(this.projectId);
         }
       }),
     );

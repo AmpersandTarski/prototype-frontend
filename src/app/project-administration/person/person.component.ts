@@ -43,9 +43,4 @@ export class PersonComponent extends AmpersandInterface<PersonInterface> impleme
       }),
     );
   }
-
-  delete(id: string): Observable<DeleteResponse> {
-    new Error('delete method called, but should be unreachable.');
-    return EMPTY;
-  }
 }

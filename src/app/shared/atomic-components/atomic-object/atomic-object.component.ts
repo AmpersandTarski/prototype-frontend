@@ -9,7 +9,6 @@ import { InterfaceRouteMap, INTERFACE_ROUTE_MAPPING_TOKEN } from 'src/app/config
 import { FormControl } from '@angular/forms';
 import { PatchResponse } from '../../interfacing/patch-response.interface';
 import { Patch, PatchValue } from '../../interfacing/patch.interface';
-import { DeleteResponse } from '../../interfacing/delete-response.interface';
 
 export interface Resource<T> {
   patch(patches: Array<Patch | PatchValue>): Observable<PatchResponse<T>>;
@@ -86,29 +85,8 @@ export class AtomicObjectComponent<I> extends BaseAtomicComponent<ObjectBase, I>
       .subscribe();
   }
 
-  public deleteItem(index: number) {
-    // TODO: show warning message
-    if (this.isTot && this.data.length == 1) {
-      throw new Error('Must have at least one element');
-    }
-
-    this.resource
-      .delete(this.data[index]._id_)
-      // Working with generics doesn't work well with this subscribe method due to the types of PatchResponse<T>
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      .subscribe((x: any) => {
-        if (x.invariantRulesHold && x.isCommitted) {
-          if ((!this.isUni && x.content[this.propertyName].length != this.data.length) || this.isUni) {
-            this.data.splice(index, 1); // data is only spliced when change has occurred
-          }
-          if (this.isUni) {
-            // since an element has been removed, the dropdown menu should be enabled again when univalent
-            this.newItemControl.enable();
-          }
-        } else {
-          // TODO: show warning message; isTot requirement has been violated
-        }
-      });
+  public deleteItem() {
+    this.interfaceComponent.delete(this.resource).subscribe();
   }
 
   public navigateToInterface(interfaceName: string, resourceId: string): Promise<boolean> {

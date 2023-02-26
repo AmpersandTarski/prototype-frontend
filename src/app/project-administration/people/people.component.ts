@@ -28,12 +28,4 @@ export class PeopleComponent extends AmpersandInterface<PeopleInterface> impleme
       this.router.navigate(['p', 'person', `${person._id_}`]);
     });
   }
-
-  public onDelete(id: string): void {
-    this.service.deletePerson(id).subscribe((x) => {
-      if (x.isCommitted) {
-        this.data$ = this.service.getPeople();
-      }
-    });
-  }
 }
