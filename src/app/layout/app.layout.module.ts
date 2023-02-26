@@ -21,6 +21,7 @@ import { HomeComponent } from './home/home.component';
 import { CardModule } from 'primeng/card';
 import { ButtonModule } from 'primeng/button';
 import { NotFoundComponentComponent } from './not-found-component/not-found-component.component';
+import { AdminModule } from '../admin/admin.module';
 
 @NgModule({
   declarations: [
@@ -48,6 +49,7 @@ import { NotFoundComponentComponent } from './not-found-component/not-found-comp
     RippleModule,
     RouterModule,
     AppConfigModule,
+    AdminModule,
   ],
   exports: [AppLayoutComponent],
 })

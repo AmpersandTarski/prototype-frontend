@@ -6,4 +6,6 @@ export interface IPopulationService {
   getExportPopulationMetaModel(): Observable<Object>;
 
   exportPopulation(jsonResponse: Object): void;
+
+  importPopulation(file: File): void;
 }

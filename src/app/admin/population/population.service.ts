@@ -1,10 +1,12 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { EMPTY, Observable, throwError } from 'rxjs';
 import { IPopulationService } from './population.service.interface';
 
 @Injectable()
 export class PopulationService implements IPopulationService {
+  private importUrl: string = 'admin/import';
+
   constructor(private http: HttpClient) {}
 
   public getExportPopulation(): Observable<Object> {
@@ -27,5 +29,17 @@ export class PopulationService implements IPopulationService {
     document.body.appendChild(element);
     element.click(); // simulate click
     document.body.removeChild(element);
+  }
+
+  /* Send one file to API. */
+  public importPopulation(file: File | undefined): Observable<Object> {
+    if (file === undefined) {
+      return EMPTY;
+    }
+    var formData;
+
+    formData = new FormData();
+    formData.append('file', file, file.name);
+    return this.http.post<Object>(this.importUrl, formData);
   }
 }
