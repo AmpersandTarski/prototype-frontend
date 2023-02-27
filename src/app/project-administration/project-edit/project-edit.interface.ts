@@ -1,4 +1,4 @@
-export interface ProjectEditInterface extends ObjectBase {
+export type ProjectEditInterface = ObjectBase & {
   _view_: ProjectNameView;
   Name: string;
   Description: string;
@@ -16,26 +16,26 @@ export interface ProjectEditInterface extends ObjectBase {
       Email: string;
     }
   >;
-}
+};
 
-interface PersonNameView {
+type PersonNameView = {
   firstName: string;
   txt1: string;
   lastName: string;
-}
+};
 
-interface ProjectNameView {
+type ProjectNameView = {
   name: string;
-}
+};
 
-interface ObjectBase {
+type ObjectBase = {
   _id_: string;
   _label_: string;
   _path_: string;
   _ifcs_: Array<InterfaceRefObject>;
-}
+};
 
-interface InterfaceRefObject {
+type InterfaceRefObject = {
   id: string;
   label: string;
-}
+};
