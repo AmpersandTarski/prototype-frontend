@@ -11,8 +11,6 @@ import { ListAllInterfacesInterface } from './list-all-interfaces.interface';
   styleUrls: ['./list-all-interfaces.component.css'],
 })
 export class ListAllInterfacesComponent extends AmpersandInterface<ListAllInterfacesInterface> implements OnInit {
-  data$!: Observable<ListAllInterfacesInterface>;
-
   constructor(protected service: BackendService, http: HttpClient) {
     super(http);
   }

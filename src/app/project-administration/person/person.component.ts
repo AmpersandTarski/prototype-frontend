@@ -15,7 +15,6 @@ import { DeleteResponse } from 'src/app/shared/interfacing/delete-response.inter
   styleUrls: ['./person.component.scss'],
 })
 export class PersonComponent extends AmpersandInterface<PersonInterface> implements OnInit {
-  public data$!: Observable<PersonInterface>;
   private personId!: string;
 
   constructor(private route: ActivatedRoute, protected service: BackendService, http: HttpClient) {

@@ -6,6 +6,8 @@ import { PatchResponse } from './patch-response.interface';
 import { DeleteResponse } from './delete-response.interface';
 
 export class AmpersandInterface<T> {
+  public data$!: Observable<T>;
+
   constructor(protected http: HttpClient) {}
 
   public patch<T>(resource: ObjectBase, patches: Array<Patch | PatchValue>): Observable<PatchResponse<T>> {

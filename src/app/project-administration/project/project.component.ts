@@ -13,7 +13,6 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./project.component.scss'],
 })
 export class ProjectComponent extends AmpersandInterface<ProjectInterface> implements OnInit {
-  public data$!: Observable<ProjectInterface>;
   public projectId?: string;
 
   constructor(
