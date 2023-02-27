@@ -12,7 +12,6 @@ import { ProjectEditInterface } from './project-edit.interface';
   styleUrls: ['./project-edit.component.scss'],
 })
 export class ProjectEditComponent extends AmpersandInterface<ProjectEditInterface> implements OnInit {
-  public data$!: Observable<ProjectEditInterface>;
   public projectId!: string;
 
   constructor(private route: ActivatedRoute, protected service: BackendService, http: HttpClient) {
