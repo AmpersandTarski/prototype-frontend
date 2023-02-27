@@ -1,6 +1,6 @@
 import { PersonInterface } from '../person/person.interface';
 
-export const testdata: Array<PersonInterface> = [
+export const testdata: PersonInterface = [
   {
     _id_: 'p10001',
     _label_: 'A. Arends',

@@ -25,8 +25,8 @@ export class BackendService implements IBackendService {
     return this.http.get<InactiveProjectsInterface>('resource/SESSION/1/Inactive_32_projects');
   }
 
-  public getPeople(): Observable<PeopleInterface[]> {
-    return this.http.get<PeopleInterface[]>('resource/SESSION/1/People');
+  public getPeople(): Observable<PeopleInterface> {
+    return this.http.get<PeopleInterface>('resource/SESSION/1/People');
   }
 
   public getProject(id: string): Observable<ProjectInterface> {
