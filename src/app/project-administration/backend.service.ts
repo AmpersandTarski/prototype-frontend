@@ -17,8 +17,8 @@ import { DeleteResponse } from '../shared/interfacing/delete-response.interface'
 export class BackendService implements IBackendService {
   constructor(private http: HttpClient) {}
 
-  public getActiveProjects(): Observable<ActiveProjectsInterface[]> {
-    return this.http.get<ActiveProjectsInterface[]>('resource/SESSION/1/Active_32_projects');
+  public getActiveProjects(): Observable<ActiveProjectsInterface> {
+    return this.http.get<ActiveProjectsInterface>('resource/SESSION/1/Active_32_projects');
   }
 
   public getInactiveProjects(): Observable<InactiveProjectsInterface[]> {

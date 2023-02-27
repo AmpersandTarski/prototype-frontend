@@ -6,7 +6,7 @@ import { ProjectInterface } from './project/project.interface';
 
 export interface IBackendService {
   // Returns observable that resolves to list of objects according to ActiveProjects interface
-  getActiveProjects(): Observable<ActiveProjectsInterface[]>;
+  getActiveProjects(): Observable<ActiveProjectsInterface>;
 
   getInactiveProjects(): Observable<InactiveProjectsInterface[]>;
 

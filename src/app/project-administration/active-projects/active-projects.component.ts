@@ -11,7 +11,7 @@ import { ActiveProjectsInterface } from './active-projects.interface';
   styleUrls: ['./active-projects.component.css'],
 })
 export class ActiveProjectsComponent extends AmpersandInterface<ActiveProjectsInterface> implements OnInit {
-  data$!: Observable<ActiveProjectsInterface[]>;
+  data$!: Observable<ActiveProjectsInterface>;
 
   constructor(protected service: BackendService, http: HttpClient) {
     super(http);
