@@ -8,7 +8,7 @@ export interface IBackendService {
   // Returns observable that resolves to list of objects according to ActiveProjects interface
   getActiveProjects(): Observable<ActiveProjectsInterface>;
 
-  getInactiveProjects(): Observable<InactiveProjectsInterface[]>;
+  getInactiveProjects(): Observable<InactiveProjectsInterface>;
 
   getProject(id: string): Observable<ProjectInterface | undefined>;
 

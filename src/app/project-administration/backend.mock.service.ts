@@ -16,7 +16,7 @@ export class BackendMockService implements IBackendService {
     return of(ACTIVE_PROJECTS_TEST_DATA);
   }
 
-  getInactiveProjects(): Observable<InactiveProjectsInterface[]> {
+  getInactiveProjects(): Observable<InactiveProjectsInterface> {
     return of(INACTIVE_PROJECTS_TEST_DATA);
   }
 

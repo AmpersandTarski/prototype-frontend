@@ -1,34 +1,36 @@
-export interface InactiveProjectsInterface extends ObjectBase {
-  _view_: ProjectNameView;
-  Name: ObjectBase & {
+export type InactiveProjectsInterface = Array<
+  ObjectBase & {
     _view_: ProjectNameView;
-  };
-  Description: string;
-  Projectleider: ObjectBase & {
-    _view_: PersonNameView;
-  };
-  Status: string;
-  Active: boolean;
-}
+    Name: ObjectBase & {
+      _view_: ProjectNameView;
+    };
+    Description: string;
+    Projectleider: ObjectBase & {
+      _view_: PersonNameView;
+    };
+    Status: string;
+    Active: boolean;
+  }
+>;
 
-interface ObjectBase {
+type ObjectBase = {
   _id_: string;
   _label_: string;
   _path_: string;
   _ifcs_: Array<InterfaceRefObject>;
-}
+};
 
-interface PersonNameView {
+type PersonNameView = {
   firstName: string;
   txt1: string;
   lastName: string;
-}
+};
 
-interface ProjectNameView {
+type ProjectNameView = {
   name: string;
-}
+};
 
-interface InterfaceRefObject {
+type InterfaceRefObject = {
   id: string;
   label: string;
-}
+};
