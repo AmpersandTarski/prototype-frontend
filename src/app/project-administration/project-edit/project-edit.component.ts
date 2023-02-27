@@ -1,22 +1,23 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, ParamMap } from '@angular/router';
-import { from, Observable, switchMap, tap } from 'rxjs';
-import { Patch } from 'src/app/shared/interfacing/patch.interface';
-import { PatchResponse } from 'src/app/shared/interfacing/patch-response.interface';
-import { Resource } from 'src/app/shared/interfacing/resource.interface';
+import { AmpersandInterface } from 'src/app/shared/interfacing/ampersand-interface.class';
+import { Observable, switchMap, tap } from 'rxjs';
 import { BackendService } from '../backend.service';
 import { ProjectEditInterface } from './project-edit.interface';
-import { DeleteResponse } from 'src/app/shared/interfacing/delete-response.interface';
 
 @Component({
   selector: 'app-project-edit',
   templateUrl: './project-edit.component.html',
   styleUrls: ['./project-edit.component.scss'],
 })
-export class ProjectEditComponent implements OnInit, Resource<ProjectEditInterface> {
+export class ProjectEditComponent extends AmpersandInterface<ProjectEditInterface> implements OnInit {
   public data$!: Observable<ProjectEditInterface>;
   public projectId!: string;
-  constructor(private route: ActivatedRoute, public service: BackendService) {}
+
+  constructor(private route: ActivatedRoute, protected service: BackendService, http: HttpClient) {
+    super(http);
+  }
 
   ngOnInit(): void {
     this.data$ = this.route.paramMap.pipe(
@@ -26,26 +27,6 @@ export class ProjectEditComponent implements OnInit, Resource<ProjectEditInterfa
           throw new Error('id does not exist');
         }
         return this.service.getProjectEdit(this.projectId);
-      }),
-    );
-  }
-
-  patch(patches: Patch[]): Observable<PatchResponse<ProjectEditInterface>> {
-    return this.service.patchProject(this.projectId, patches).pipe(
-      tap((x) => {
-        if (x.isCommitted) {
-          this.data$ = from([x.content]);
-        }
-      }),
-    );
-  }
-
-  delete(projectMemberId: string): Observable<DeleteResponse> {
-    return this.service.deleteProjectMember(this.projectId, projectMemberId).pipe(
-      tap((x) => {
-        if (x.isCommitted) {
-          this.data$ = this.service.getProjectEdit(this.projectId);
-        }
       }),
     );
   }

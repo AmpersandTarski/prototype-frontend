@@ -8,9 +8,10 @@
                     <label class="box-form-label">First Name</label>
                     <div class="box-form-value">
                         <app-atomic-alphanumeric
-                            [resource]="this"
-                            propertyName="First_32_name"
+                            [resource]="resource"
+                            [interfaceComponent]="this"
                             [property]="resource.First_32_name"
+                            propertyName="First_32_name"
                             label="First Name"
                             isUni
                             isTot
@@ -22,9 +23,10 @@
                     <label class="box-form-label">Last Name</label>
                     <div class="box-form-value">
                         <app-atomic-bigalphanumeric
-                            [resource]="this"
-                            propertyName="Last_32_name"
+                            [resource]="resource"
+                            [interfaceComponent]="this"
                             [property]="resource.Last_32_name"
+                            propertyName="Last_32_name"
                             label="Last Name"
                             isUni
                             isTot
@@ -36,9 +38,10 @@
                     <label class="box-form-label">Status</label>
                     <div class="box-form-value">
                         <app-atomic-bigalphanumeric
-                            [resource]="this"
-                            propertyName="Status"
+                            [resource]="resource"
+                            [interfaceComponent]="this"
                             [property]="resource.Status"
+                            propertyName="Status"
                             label="Status"
                             isUni
                             isTot
@@ -50,9 +53,10 @@
                     <label class="box-form-label">Email</label>
                     <div class="box-form-value">
                         <app-atomic-bigalphanumeric
-                            [resource]="this"
-                            propertyName="Email"
+                            [resource]="resource"
+                            [interfaceComponent]="this"
                             [property]="resource.Email"
+                            propertyName="Email"
                             label="Email"
                             isUni
                             isTot
@@ -62,12 +66,13 @@
                 </div>
                 <div class="field col-12 box-form-field">
                     <label class="box-form-label">Projects</label>
-                    <app-box-tab [data]="resource.Projects" [tabHeaders]="['Active', 'Inactive']">
+                    <app-box-tab [data]="[resource.Projects]" [tabHeaders]="['Active', 'Inactive']">
                         <ng-template #tabContent let-data="data" let-tabHeader="tabHeader">
-                            <!-- if it only has Read rights, no propertyName is required -->
                             <app-atomic-object
-                                [resource]="this"
+                                [resource]="data"
+                                [interfaceComponent]="this"
                                 [property]="data[tabHeader]"
+                                propertyName="Name"
                                 label="Name"
                                 isUni
                                 isTot
@@ -79,10 +84,11 @@
                 </div>
                 <div class="field col-12 box-form-field">
                     <label class="box-form-label">Works with</label>
-                    <!-- if it only has Read rights, no propertyName is required -->
                     <app-atomic-object
-                        [resource]="this"
+                        [resource]="resource"
+                        [interfaceComponent]="this"
                         [property]="resource.Works_32_with"
+                        propertyName="Works_32_with"
                         label="Name"
                         isUni
                         isTot

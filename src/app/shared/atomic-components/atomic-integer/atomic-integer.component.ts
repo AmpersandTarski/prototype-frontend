@@ -6,4 +6,4 @@ import { BaseAtomicComponent } from '../BaseAtomicComponent.class';
   templateUrl: './atomic-integer.component.html',
   styleUrls: ['./atomic-integer.component.css'],
 })
-export class AtomicIntegerComponent extends BaseAtomicComponent<number> {}
+export class AtomicIntegerComponent<I> extends BaseAtomicComponent<number, I> {}

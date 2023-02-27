@@ -26,38 +26,12 @@ export const testdata: TestDataInterface[] = [
         },
       ],
     },
-    _sortValues_: {
-      Projects: 'Apollo 13',
-      Name: 'Apollo 13',
-      Description: 'Joosten, get us back to earth please!',
-      Projectleider: 'J. Lovell',
-      _64_: 'J. Lovell',
-      Start: '1970-04-17',
-      Status: 'Succes',
-      Active: true,
-    },
     Name: 'Apollo 13',
     Description: 'Joosten, get us back to earth please!',
     Projectleider: {
       _id_: 'p10008',
       _label_: 'J. Lovell',
       _path_: 'resource/SESSION/1/Active_32_projects/1970_13/Projectleider/p10008',
-      _view_: {
-        firstName: 'J.',
-        txt1: ' ',
-        lastName: 'Lovell',
-      },
-      _ifcs_: [
-        {
-          id: 'Person',
-          label: 'Person',
-        },
-      ],
-    },
-    _64_: {
-      _id_: 'p10008',
-      _label_: 'J. Lovell',
-      _path_: 'resource/SESSION/1/Active_32_projects/1970_13/_64_/p10008',
       _view_: {
         firstName: 'J.',
         txt1: ' ',
@@ -109,38 +83,12 @@ export const testdata: TestDataInterface[] = [
         },
       ],
     },
-    _sortValues_: {
-      Projects: 'Alfa board',
-      Name: 'Alfa board',
-      Description: 'Create an Alpha board for the customer',
-      Projectleider: 'P. Leider',
-      _64_: 'P. Leider',
-      Start: '2013-12-31',
-      Status: 'Completed',
-      Active: true,
-    },
     Name: 'Alfa board',
     Description: 'Create an Alpha board for the customer',
     Projectleider: {
       _id_: 'p10012',
       _label_: 'P. Leider',
       _path_: 'resource/SESSION/1/Active_32_projects/2013_01/Projectleider/p10012',
-      _view_: {
-        firstName: 'P.',
-        txt1: ' ',
-        lastName: 'Leider',
-      },
-      _ifcs_: [
-        {
-          id: 'Person',
-          label: 'Person',
-        },
-      ],
-    },
-    _64_: {
-      _id_: 'p10012',
-      _label_: 'P. Leider',
-      _path_: 'resource/SESSION/1/Active_32_projects/2013_01/_64_/p10012',
       _view_: {
         firstName: 'P.',
         txt1: ' ',
@@ -192,38 +140,12 @@ export const testdata: TestDataInterface[] = [
         },
       ],
     },
-    _sortValues_: {
-      Projects: 'Beta board',
-      Name: 'Beta board',
-      Description: 'further development of the board to Beta',
-      Projectleider: 'P. Leider',
-      _64_: 'P. Leider',
-      Start: '2014-02-15',
-      Status: 'Under way',
-      Active: true,
-    },
     Name: 'Beta board',
     Description: 'further development of the board to Beta',
     Projectleider: {
       _id_: 'p10012',
       _label_: 'P. Leider',
       _path_: 'resource/SESSION/1/Active_32_projects/2014_01/Projectleider/p10012',
-      _view_: {
-        firstName: 'P.',
-        txt1: ' ',
-        lastName: 'Leider',
-      },
-      _ifcs_: [
-        {
-          id: 'Person',
-          label: 'Person',
-        },
-      ],
-    },
-    _64_: {
-      _id_: 'p10012',
-      _label_: 'P. Leider',
-      _path_: 'resource/SESSION/1/Active_32_projects/2014_01/_64_/p10012',
       _view_: {
         firstName: 'P.',
         txt1: ' ',
@@ -275,38 +197,12 @@ export const testdata: TestDataInterface[] = [
         },
       ],
     },
-    _sortValues_: {
-      Projects: 'Argos',
-      Name: 'Argos',
-      Description: 'get the Golden Fleece',
-      Projectleider: 'J. Ason',
-      _64_: 'J. Ason',
-      Start: null,
-      Status: 'Completed',
-      Active: true,
-    },
     Name: 'Argos',
     Description: 'get the Golden Fleece',
     Projectleider: {
       _id_: 'p10007',
       _label_: 'J. Ason',
       _path_: 'resource/SESSION/1/Active_32_projects/2014_05/Projectleider/p10007',
-      _view_: {
-        firstName: 'J.',
-        txt1: ' ',
-        lastName: 'Ason',
-      },
-      _ifcs_: [
-        {
-          id: 'Person',
-          label: 'Person',
-        },
-      ],
-    },
-    _64_: {
-      _id_: 'p10007',
-      _label_: 'J. Ason',
-      _path_: 'resource/SESSION/1/Active_32_projects/2014_05/_64_/p10007',
       _view_: {
         firstName: 'J.',
         txt1: ' ',

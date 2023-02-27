@@ -8,7 +8,10 @@
                     <label class="box-form-label">Name</label>
                     <div class="box-form-value">
                         <app-atomic-alphanumeric
+                            [resource]="resource"
+                            [interfaceComponent]="this"
                             [property]="resource.Name"
+                            propertyName="Name"
                             label="Name"
                             isUni
                             isTot
@@ -20,8 +23,11 @@
                     <label class="box-form-label">Description</label>
                     <div class="box-form-value">
                         <app-atomic-bigalphanumeric
+                            [resource]="resource"
+                            [interfaceComponent]="this"
                             [property]="resource.Description"
-                            label="Name"
+                            propertyName="Description"
+                            label="Description"
                             isUni
                             isTot
                             crud="cRud"
@@ -32,8 +38,11 @@
                     <label class="box-form-label">(Planned) start date</label>
                     <div class="box-form-value">
                         <app-atomic-date
+                            [resource]="resource"
+                            [interfaceComponent]="this"
                             [property]="resource._40_Planned_41__32_start_32_date"
-                            label="Name"
+                            propertyName="_40_Planned_41__32_start_32_date"
+                            label="(Planned) start date"
                             isUni
                             isTot
                             crud="cRud"
@@ -44,8 +53,11 @@
                     <label class="box-form-label">Status</label>
                     <div class="box-form-value">
                         <app-atomic-alphanumeric
+                            [resource]="resource"
+                            [interfaceComponent]="this"
                             [property]="resource.Status"
-                            label="Name"
+                            propertyName="Status"
+                            label="Status"
                             isUni
                             isTot
                             crud="cRud"
@@ -56,8 +68,11 @@
                     <label class="box-form-label">Active</label>
                     <div class="box-form-value">
                         <app-atomic-boolean
+                            [resource]="resource"
+                            [interfaceComponent]="this"
                             [property]="resource.Active"
-                            label="Name"
+                            propertyName="Active"
+                            label="Active"
                             isUni
                             isTot
                             crud="cRud"
@@ -68,8 +83,11 @@
                     <label class="box-form-label">Current PL</label>
                     <div class="box-form-value">
                         <app-atomic-object
+                            [resource]="resource"
+                            [interfaceComponent]="this"
                             [property]="resource.Current_32_PL"
-                            label="Name"
+                            propertyName="Current_32_PL"
+                            label="Current PL"
                             isUni
                             isTot
                             crud="cRud"
@@ -87,7 +105,10 @@
                             <ng-template [boxTableRow]="resource.Project_32_members" let-row>
                                 <td>
                                     <app-atomic-alphanumeric
+                                        [resource]="row"
+                                        [interfaceComponent]="this"
                                         [property]="row.Name"
+                                        propertyName="Name"
                                         label="Name"
                                         isUni
                                         isTot
@@ -96,8 +117,11 @@
                                 </td>
                                 <td>
                                     <app-atomic-alphanumeric
+                                        [resource]="row"
+                                        [interfaceComponent]="this"
                                         [property]="row.Email"
-                                        label="Name"
+                                        propertyName="Email"
+                                        label="Email"
                                         isUni
                                         isTot
                                         crud="cRud"

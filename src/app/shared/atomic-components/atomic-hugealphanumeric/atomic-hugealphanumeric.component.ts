@@ -6,4 +6,4 @@ import { BaseAtomicComponent } from '../BaseAtomicComponent.class';
   templateUrl: './atomic-hugealphanumeric.component.html',
   styleUrls: ['./atomic-hugealphanumeric.component.css'],
 })
-export class AtomicHugealphanumericComponent extends BaseAtomicComponent<string> {}
+export class AtomicHugealphanumericComponent<I> extends BaseAtomicComponent<string, I> {}

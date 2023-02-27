@@ -1,23 +1,22 @@
-import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { Resource } from '../interfacing/resource.interface';
-import { AtomicComponentType } from '../models/atomic-component-types';
+import { AmpersandInterface } from '../interfacing/ampersand-interface.class';
 import { ObjectBase } from '../objectBase.interface';
 @Component({
   template: '',
 })
-export abstract class BaseAtomicComponent<T> implements OnInit, OnChanges {
-  // TODO Refactor to combination of parent-propertyName. We need a link to the parent anyway
+export abstract class BaseAtomicComponent<T, I> implements OnInit {
   @Input() property: T | Array<T> | null = null;
 
-  // The type of the T for Resource<T> is not relevant nor to be determined here; therefore unknown
-  // We require a Resource, that implements the required methods (like patch)
-  // Most likely this is a top-level component for a specific application interface (e.g. ProjectComponent)
-  @Input() resource!: Resource<unknown>;
-
-  public newItemControl!: FormControl<string | boolean | ObjectBase>;
+  @Input() resource!: ObjectBase;
 
   @Input() propertyName!: string;
+
+  // We require a AmpersandInterface reference that implements the required methods (like patch)
+  // Most likely this is a top-level component for a specific application interface (e.g. ProjectComponent)
+  @Input() interfaceComponent!: AmpersandInterface<I>;
+
+  public newItemControl!: FormControl<string | boolean | ObjectBase>;
 
   public data: Array<T> = [];
 
@@ -58,13 +57,6 @@ export abstract class BaseAtomicComponent<T> implements OnInit, OnChanges {
     this.data = this.requireArray(this.property);
   }
 
-  // only used for the tools
-  ngOnChanges(changes: SimpleChanges) {
-    if (changes.hasOwnProperty('isUni')) {
-      this.isUni = changes['isUni'].firstChange;
-    }
-  }
-
   public requireArray(property: T | Array<T> | null) {
     if (Array.isArray(property)) {
       return property;
@@ -72,20 +64,6 @@ export abstract class BaseAtomicComponent<T> implements OnInit, OnChanges {
       return [];
     } else {
       return [property];
-    }
-  }
-
-  public initNewItemControl(type: AtomicComponentType) {
-    if (
-      type == AtomicComponentType.Alphanumeric ||
-      type == AtomicComponentType.BigAlphanumeric ||
-      type == AtomicComponentType.Date
-    ) {
-      this.newItemControl = new FormControl<string>('', { nonNullable: true, updateOn: 'change' });
-    }
-
-    if (type == AtomicComponentType.Object) {
-      this.newItemControl = new FormControl<ObjectBase>({} as ObjectBase, { nonNullable: true, updateOn: 'change' });
     }
   }
 
@@ -100,8 +78,8 @@ export abstract class BaseAtomicComponent<T> implements OnInit, OnChanges {
       val = formatValue(val) as unknown as T;
     }
 
-    this.resource
-      .patch([
+    this.interfaceComponent
+      .patch(this.resource, [
         {
           op: 'add',
           path: this.propertyName, // FIXME: this must be relative to path of this.resource
@@ -115,20 +93,15 @@ export abstract class BaseAtomicComponent<T> implements OnInit, OnChanges {
 
   // remove for not univalent atomic-components
   public removeItem(index: number) {
-    this.resource
-      .patch([
+    this.interfaceComponent
+      .patch(this.resource, [
         {
           op: 'remove',
           path: this.propertyName, // FIXME: this must be relative to path of this.resource
           value: this.data[index],
         },
       ])
-      .subscribe((x) => {
-        if (x.isCommitted && x.invariantRulesHold) {
-          // TODO: show warning message
-          this.data.splice(index, 1);
-        }
-      });
+      .subscribe();
   }
 
   public isNewItemInputRequired() {

@@ -9,6 +9,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { from, map, Observable, switchMap, tap } from 'rxjs';
+import { AmpersandInterface } from 'src/app/shared/interfacing/ampersand-interface.interface';
 import { BackendService } from '../backend.service';
 
 import { $ifcNamePascal$Interface } from './$ifcNameKebab$.interface';
@@ -18,7 +19,7 @@ import { $ifcNamePascal$Interface } from './$ifcNameKebab$.interface';
   templateUrl: './$ifcNameKebab$.component.html',
   // styleUrls: ['./$ifcNameKebab$.component.scss'],
 })
-export class $ifcNamePascal$Component implements OnInit {
+export class $ifcNamePascal$Component implements OnInit, AmpersandInterface<$ifcNamePascal$Interface> {
   public data\$!: Observable<$ifcNamePascal$Interface>;
 
   constructor(private route: ActivatedRoute, private service: BackendService) {}

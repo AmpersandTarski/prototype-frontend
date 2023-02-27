@@ -1,7 +1,6 @@
 import { DatePipe } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { AtomicComponentType } from '../../models/atomic-component-types';
 import { BaseAtomicComponent } from '../BaseAtomicComponent.class';
 
 @Component({
@@ -9,7 +8,7 @@ import { BaseAtomicComponent } from '../BaseAtomicComponent.class';
   templateUrl: './atomic-date.component.html',
   styleUrls: ['./atomic-date.component.css'],
 })
-export class AtomicDateComponent extends BaseAtomicComponent<string> implements OnInit {
+export class AtomicDateComponent<I> extends BaseAtomicComponent<string, I> implements OnInit {
   // Possible formats can be found at https://www.primefaces.org/primeng/calendar.
   // Scroll down to DateFormat for the documentation
   @Input() format: string = 'yy-mm-dd';
@@ -18,7 +17,7 @@ export class AtomicDateComponent extends BaseAtomicComponent<string> implements 
   override ngOnInit(): void {
     super.ngOnInit();
     if (!this.isUni && this.canUpdate()) {
-      this.initNewItemControl(AtomicComponentType.BigAlphanumeric);
+      this.newItemControl = new FormControl<string>('', { nonNullable: true, updateOn: 'change' });
     }
     if (this.isUni) {
       this.initFormControl();
@@ -35,8 +34,8 @@ export class AtomicDateComponent extends BaseAtomicComponent<string> implements 
 
     if (this.canUpdate()) {
       this.formControl.valueChanges.subscribe((x) => {
-        this.resource
-          .patch([
+        this.interfaceComponent
+          .patch(this.resource, [
             {
               op: 'replace',
               path: this.propertyName, // FIXME: this must be relative to path of this.resource

@@ -7,7 +7,7 @@ import { BaseAtomicComponent } from '../BaseAtomicComponent.class';
   templateUrl: './atomic-datetime.component.html',
   styleUrls: ['./atomic-datetime.component.css'],
 })
-export class AtomicDatetimeComponent extends BaseAtomicComponent<string> {
+export class AtomicDatetimeComponent<I> extends BaseAtomicComponent<string, I> {
   // Possible formats can be found at https://www.primefaces.org/primeng/calendar.
   // Scroll down to DateFormat for the documentation
   @Input() format: string = 'yy-mm-dd';

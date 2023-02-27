@@ -19,10 +19,11 @@
         <app-tool-gallery-component [titleHeader]="data.Name" subHeader="Alphanumeric">
             <ng-template #header>
                 <app-atomic-alphanumeric
-                    [resource]="this"
-                    propertyName="Name"
+                    [resource]="data"
+                    [interfaceComponent]="this"
                     [property]="data.Name"
-                    label="Projects"
+                    propertyName="Name"
+                    label="Name"
                     isUni
                     isTot
                     crud="CRUD"
@@ -45,7 +46,16 @@
     <div class="gallery-item">
         <app-tool-gallery-component [titleHeader]="data.Name" subHeader="Bigalphanumeric">
             <ng-template #header>
-                <app-atomic-bigalphanumeric [property]="data.Name" label="Projects" isUni isTot crud="CRUD">
+                <app-atomic-bigalphanumeric
+                    [resource]="data"
+                    [interfaceComponent]="this"
+                    [property]="data.Name"
+                    propertyName="Name"
+                    label="Name"
+                    isUni
+                    isTot
+                    crud="CRUD"
+                >
                 </app-atomic-bigalphanumeric>
             </ng-template>
             <ng-template #body>
@@ -63,7 +73,15 @@
     <div class="gallery-item">
         <app-tool-gallery-component [titleHeader]="data.Name" subHeader="Hugealphanumeric">
             <ng-template #header>
-                <app-atomic-hugealphanumeric [property]="data.Name" label="Projects" isUni isTot crud="CRUD">
+                <app-atomic-hugealphanumeric
+                    [resource]="data"
+                    [interfaceComponent]="this"
+                    [property]="data.Name"
+                    propertyName="Name"
+                    isUni
+                    isTot
+                    crud="CRUD"
+                >
                 </app-atomic-hugealphanumeric>
             </ng-template>
             <ng-template #body>
@@ -78,7 +96,15 @@
     <div class="gallery-item">
         <app-tool-gallery-component titleHeader="TODO" subHeader="Boolean">
             <ng-template #header>
-                <app-atomic-boolean [property]="true" isUni isTot crud="CRUD"></app-atomic-boolean>
+                <app-atomic-boolean
+                    [resource]="data"
+                    [interfaceComponent]="this"
+                    [property]="data.Active"
+                    propertyName="Active"
+                    isUni
+                    isTot
+                    crud="CRUD"
+                ></app-atomic-boolean>
             </ng-template>
             <ng-template #body>
                 <p>
@@ -94,7 +120,16 @@
     <div class="gallery-item">
         <app-tool-gallery-component titleHeader="TODO" subHeader="Date">
             <ng-template #header>
-                <app-atomic-date [property]="'26-11-1999'" [format]="'dd-mm-yy'" isUni isTot crud="CRUD">
+                <app-atomic-date
+                    [resource]="data"
+                    [interfaceComponent]="this"
+                    [property]="data.Start"
+                    propertyName="Start"
+                    [format]="'yy-mm-dd'"
+                    isUni
+                    isTot
+                    crud="CRUD"
+                >
                 </app-atomic-date>
             </ng-template>
             <ng-template #body>
@@ -171,3 +206,6 @@
         </app-tool-gallery-component>
     </div>
 </div>
+<pre>
+    {{ data | json }}
+</pre>

@@ -63,11 +63,6 @@ export const menuItems: MenuItem[] = [
         routerLink: ['/p/inactive-projects'],
       },
       {
-        label: 'Project details',
-        icon: 'pi pi-fw pi-id-card',
-        routerLink: ['/p/project'],
-      },
-      {
         label: 'People',
         icon: 'pi pi-fw pi-bars',
         routerLink: ['/p/people'],

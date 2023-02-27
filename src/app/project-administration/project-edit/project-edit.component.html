@@ -8,9 +8,26 @@
                     <label class="box-form-label">Name</label>
                     <div class="box-form-value">
                         <app-atomic-alphanumeric
-                            [resource]="this"
-                            propertyName="Name"
+                            [resource]="resource"
+                            [interfaceComponent]="this"
                             [property]="resource.Name"
+                            propertyName="Name"
+                            isUni
+                            isTot
+                            crud="CRUD"
+                        ></app-atomic-alphanumeric>
+                    </div>
+                </div>
+                <!-- Temporary field to test if we can up this form field using API data after patch from Name field above -->
+                <!-- TODO: remove this field when fixed -->
+                <div class="field col-12 box-form-field">
+                    <label class="box-form-label">Name (connected)</label>
+                    <div class="box-form-value">
+                        <app-atomic-alphanumeric
+                            [resource]="resource"
+                            [interfaceComponent]="this"
+                            [property]="resource.Name"
+                            propertyName="Name"
                             isUni
                             isTot
                             crud="CRUD"
@@ -21,9 +38,10 @@
                     <label class="box-form-label">Description</label>
                     <div class="box-form-value">
                         <app-atomic-bigalphanumeric
-                            [resource]="this"
-                            propertyName="Description"
+                            [resource]="resource"
+                            [interfaceComponent]="this"
                             [property]="resource.Description"
+                            propertyName="Description"
                             isUni
                             isTot
                             crud="CRUD"
@@ -34,9 +52,10 @@
                     <label class="box-form-label">Start date</label>
                     <div class="box-form-value">
                         <app-atomic-date
-                            [resource]="this"
-                            propertyName="Start_32_date"
+                            [resource]="resource"
+                            [interfaceComponent]="this"
                             [property]="resource.Start_32_date"
+                            propertyName="Start_32_date"
                             isUni
                             isTot
                             crud="CRUd"
@@ -47,9 +66,10 @@
                     <label class="box-form-label">Status</label>
                     <div class="box-form-value">
                         <app-atomic-alphanumeric
-                            [resource]="this"
-                            propertyName="Status"
+                            [resource]="resource"
+                            [interfaceComponent]="this"
                             [property]="resource.Status"
+                            propertyName="Status"
                             isUni
                             isTot
                             crud="CRUD"
@@ -60,9 +80,10 @@
                     <label class="box-form-label">Active</label>
                     <div class="box-form-value">
                         <app-atomic-boolean
-                            [resource]="this"
-                            propertyName="Active"
+                            [resource]="resource"
+                            [interfaceComponent]="this"
                             [property]="resource.Active"
+                            propertyName="Active"
                             isUni
                             isTot
                             crud="CRUD"
@@ -73,9 +94,10 @@
                     <label class="box-form-label">Keywords</label>
                     <div class="box-form-value">
                         <app-atomic-alphanumeric
-                            [resource]="this"
-                            propertyName="Keywords"
+                            [resource]="resource"
+                            [interfaceComponent]="this"
                             [property]="resource.Keywords"
+                            propertyName="Keywords"
                             isTot
                             crud="CRUD"
                         ></app-atomic-alphanumeric>
@@ -85,7 +107,8 @@
                     <label class="box-form-label">Current PL</label>
                     <div class="box-form-value">
                         <app-atomic-object
-                            [resource]="this"
+                            [resource]="resource"
+                            [interfaceComponent]="this"
                             [property]="resource.Current_32_PL"
                             propertyName="Current_32_PL"
                             placeholder="Add Person"
@@ -100,7 +123,8 @@
                     <label class="box-form-label">Project members</label>
                     <div class="box-form-value">
                         <app-atomic-object
-                            [resource]="this"
+                            [resource]="resource"
+                            [interfaceComponent]="this"
                             [property]="resource.Project_32_members"
                             propertyName="Project_32_members"
                             placeholder="Add Person"

@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { map } from 'rxjs';
-import { AtomicComponentType } from '../../models/atomic-component-types';
 import { BaseAtomicComponent } from '../BaseAtomicComponent.class';
 
 @Component({
@@ -9,13 +8,13 @@ import { BaseAtomicComponent } from '../BaseAtomicComponent.class';
   templateUrl: './atomic-alphanumeric.component.html',
   styleUrls: ['./atomic-alphanumeric.component.css'],
 })
-export class AtomicAlphanumericComponent extends BaseAtomicComponent<string> implements OnInit {
+export class AtomicAlphanumericComponent<I> extends BaseAtomicComponent<string, I> implements OnInit {
   public formControl!: FormControl<string>;
 
   override ngOnInit(): void {
     super.ngOnInit();
     if (!this.isUni && this.canUpdate()) {
-      this.initNewItemControl(AtomicComponentType.Alphanumeric);
+      this.newItemControl = new FormControl<string>('', { nonNullable: true, updateOn: 'change' });
     }
     if (this.isUni) {
       this.initFormControl();
@@ -29,19 +28,15 @@ export class AtomicAlphanumericComponent extends BaseAtomicComponent<string> imp
       this.formControl.valueChanges
         .pipe(map((x) => (x === '' ? null : x))) // transform empty string to null value
         .subscribe((x) =>
-          this.resource
-            .patch([
+          this.interfaceComponent
+            .patch(this.resource, [
               {
                 op: 'replace',
                 path: this.propertyName, // FIXME: this must be relative to path of this.resource
                 value: x,
               },
             ])
-            .subscribe((x) => {
-              if (!(x.invariantRulesHold && x.isCommitted)) {
-                // TODO: show warning message of x.notifications.invariants
-              }
-            }),
+            .subscribe(),
         );
     }
   }
