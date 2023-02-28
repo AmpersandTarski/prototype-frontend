@@ -81,10 +81,18 @@ export class AppMenuComponent implements OnInit {
         }
       });
 
+      // Loop through childItems until they are all added to the menu.
+      while (childItems.length > 0) {
+        let childItem = childItems.pop() ?? {};
+        let parentItem = this.model.find((item) => item.id == childItem.fragment);
+        parentItem == null ? childItems.push(childItem) : parentItem.items?.push(childItem);
+      }
+      /*
       childItems.forEach((child) => {
         let parentItem = this.model.find((item) => item.id == child.fragment);
         parentItem == null ? this.model.push(child) : parentItem.items?.push(child);
       });
+      */
     });
   }
 
