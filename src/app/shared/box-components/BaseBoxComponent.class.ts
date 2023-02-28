@@ -5,7 +5,7 @@ import { ObjectBase } from '../objectBase.interface';
 @Component({
   template: '',
 })
-export abstract class BaseBoxComponent<TItem, I> {
+export abstract class BaseBoxComponent<TItem extends ObjectBase, I> {
   @Input() data!: TItem[];
   @Input() interfaceComponent!: AmpersandInterface<I>;
 
@@ -24,7 +24,7 @@ export abstract class BaseBoxComponent<TItem, I> {
     return this.crud[3] == 'D';
   }
 
-  public deleteItem(resource: ObjectBase): void {
+  public deleteItem(resource: TItem): void {
     this.interfaceComponent.delete(resource).subscribe((x) => {
       if (x.isCommitted) {
         this.data.forEach((item, index) => {
