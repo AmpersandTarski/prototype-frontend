@@ -87,12 +87,6 @@ export class AppMenuComponent implements OnInit {
         let parentItem = this.model.find((item) => item.id == childItem.fragment);
         parentItem == null ? childItems.push(childItem) : parentItem.items?.push(childItem);
       }
-      /*
-      childItems.forEach((child) => {
-        let parentItem = this.model.find((item) => item.id == child.fragment);
-        parentItem == null ? this.model.push(child) : parentItem.items?.push(child);
-      });
-      */
     });
   }
 

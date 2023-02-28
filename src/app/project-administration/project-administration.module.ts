@@ -50,34 +50,6 @@ const routes: Routes = [
 
 export const menuItems: MenuItem[] = [];
 
-/*[
-  {
-    label: 'Project administration',
-    items: [
-      {
-        label: 'Active projects',
-        icon: 'pi pi-fw pi-bars',
-        routerLink: ['/p/active-projects'],
-      },
-      {
-        label: 'Inactive projects',
-        icon: 'pi pi-fw pi-bars',
-        routerLink: ['/p/inactive-projects'],
-      },
-      {
-        label: 'People',
-        icon: 'pi pi-fw pi-bars',
-        routerLink: ['/p/people'],
-      },
-      {
-        label: 'List all interfaces',
-        icon: 'pi pi-fw pi-bars',
-        routerLink: ['/p/list-all-interfaces'],
-      },
-    ],
-  },
-];*/
-
 export const INTERFACE_ROUTE_MAP: InterfaceRouteMap = {
   Active_32_projects: '/p/active-projects',
   Edit_32_interface: '/p/edit-interface',
