@@ -4,6 +4,8 @@ import { MenuItem } from 'primeng/api';
 import { menuItems as adminMenuItems } from '../admin/admin.module';
 import { LayoutService } from './service/app.layout.service';
 import { MenuService } from './app.menu.service';
+import { INTERFACE_ROUTE_MAP } from '../project-administration/project-administration.module';
+import { INTERFACE_ROUTE_MAPPING_TOKEN } from '../config';
 
 @Component({
   selector: 'app-menu',
@@ -58,7 +60,7 @@ export class AppMenuComponent implements OnInit {
             id: nav.id,
             label: nav.label,
             icon: 'pi pi-fw pi-bars',
-            routerLink: [nav.url],
+            routerLink: [INTERFACE_ROUTE_MAP[nav.ifc]],
           };
 
           // If item has a parent, add it to the parent items.
