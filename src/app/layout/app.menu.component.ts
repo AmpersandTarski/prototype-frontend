@@ -5,7 +5,6 @@ import { menuItems as adminMenuItems } from '../admin/admin.module';
 import { LayoutService } from './service/app.layout.service';
 import { MenuService } from './app.menu.service';
 import { INTERFACE_ROUTE_MAP } from '../project-administration/project-administration.module';
-import { INTERFACE_ROUTE_MAPPING_TOKEN } from '../config';
 
 @Component({
   selector: 'app-menu',
