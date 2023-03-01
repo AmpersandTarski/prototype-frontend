@@ -34,5 +34,6 @@ export class ProjectComponent extends AmpersandInterface<ProjectInterface> imple
         return this.service.getProject(this.projectId);
       }),
     );
+    this.data$.subscribe((x) => console.log(x));
   }
 }

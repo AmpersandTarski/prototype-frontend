@@ -6,4 +6,4 @@ import { BaseAtomicComponent } from '../BaseAtomicComponent.class';
   templateUrl: './atomic-float.component.html',
   styleUrls: ['./atomic-float.component.css'],
 })
-export class AtomicFloatComponent<I> extends BaseAtomicComponent<string, I> {}
+export class AtomicFloatComponent<I> extends BaseAtomicComponent<number, I> {}

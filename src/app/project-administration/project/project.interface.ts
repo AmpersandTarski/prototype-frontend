@@ -16,6 +16,27 @@ export type ProjectInterface = ObjectBase & {
       Email: string;
     }
   >;
+
+  Alphanumeric_32_uni: string | null;
+  Bigalphanumeric_32_uni: string | null;
+  HugeAlphanumeric_32_uni: string | null;
+  Password_32_uni: string | null;
+  Date_32_uni: string | null;
+  DateTime_32_uni: string | null;
+  Integer_32_uni: number | null;
+  Float_32_uni: number | null;
+  Object_32_uni: ObjectBase & {
+    _view_: PersonNameView;
+  };
+  Alphanumeric: Array<string> | null;
+  Bigalphanumeric: Array<string> | null;
+  HugeAlphanumeric: Array<string> | null;
+  Password: Array<string> | null;
+  Date: Array<string> | null;
+  DateTime: Array<string> | null;
+  Integer: Array<number> | null;
+  Float: Array<number> | null;
+  Object: Array<number> | null;
 };
 
 type PersonNameView = {
