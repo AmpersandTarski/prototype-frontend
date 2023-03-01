@@ -8,7 +8,6 @@ import { PeopleComponent } from './people/people.component';
 import { BackendService } from './backend.service';
 import { RouterModule, Routes } from '@angular/router';
 import { AppLayoutComponent } from '../layout/app.layout.component';
-import { MenuItem } from 'primeng/api';
 import { ListAllInterfacesComponent } from './list-all-interfaces/list-all-interfaces.component';
 import { ProjectEditComponent } from './project-edit/project-edit.component';
 import { PersonComponent } from './person/person.component';
@@ -47,8 +46,6 @@ const routes: Routes = [
     ],
   },
 ];
-
-export const menuItems: MenuItem[] = [];
 
 export const INTERFACE_ROUTE_MAP: InterfaceRouteMap = {
   Active_32_projects: '/p/active-projects',

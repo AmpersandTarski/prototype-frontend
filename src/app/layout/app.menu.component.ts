@@ -21,16 +21,16 @@ export class AppMenuComponent implements OnInit {
     // Add admin menu items
     adminMenuItems.forEach((item) => this.model.push(item));
 
-    this.fetchMenuItems();
+    this.addMenuItems();
   }
 
   /* Adds MenuItems to the navigation menu */
-  fetchMenuItems() {
+  addMenuItems() {
     let childItems = new Array<MenuItem>(); // Storage for child items where parent is not added yet.
     this.menuService.getMenuItems().subscribe((navs) => {
       // Add fetched menu items
       navs.forEach((nav) => {
-        var menuItem: MenuItem;
+        let menuItem: MenuItem;
         if (nav.ifc == null) {
           if (nav.url == null) {
             // A root/parent item

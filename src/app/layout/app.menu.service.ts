@@ -3,8 +3,6 @@ import { Subject, map, Observable } from 'rxjs';
 import { Navbar, Navs } from '../shared/interfacing/navbar.interface';
 import { MenuChangeEvent } from './api/menuchangeevent';
 import { HttpClient } from '@angular/common/http';
-import { MenuItem } from 'primeng/api/menuitem';
-import { MenuItemContent } from 'primeng/menu';
 
 @Injectable({
   providedIn: 'root',
