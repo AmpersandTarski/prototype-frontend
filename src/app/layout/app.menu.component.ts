@@ -31,8 +31,11 @@ export class AppMenuComponent implements OnInit {
       // Add fetched menu items
       navs.forEach((nav) => {
         let menuItem: MenuItem;
-        if (nav.ifc == null) {
-          if (nav.url == null) {
+
+        /* Create a variable to determine the type of menu item */
+        let itemType = 2 * Number(nav.ifc != null) + Number(nav.url != null);
+        switch (itemType) {
+          case 0: {
             // A root/parent item
             menuItem = {
               id: nav.id,
@@ -43,39 +46,44 @@ export class AppMenuComponent implements OnInit {
             };
 
             this.model.push(menuItem);
-          } else {
+            break;
+          }
+          case 1: {
             // External URL
             menuItem = {
               label: nav.label,
               icon: 'pi pi-fw pi-bars',
-              url: nav.url,
+              url: nav.url ?? undefined,
             };
 
             this.model.push(menuItem);
+            break;
           }
-        } else {
-          // Direct link to interface
-          menuItem = {
-            id: nav.id,
-            label: nav.label,
-            icon: 'pi pi-fw pi-bars',
-            routerLink: [INTERFACE_ROUTE_MAP[nav.ifc]],
-          };
+          default: {
+            // Direct link to interface
+            menuItem = {
+              id: nav.id,
+              label: nav.label,
+              icon: 'pi pi-fw pi-bars',
+              routerLink: [INTERFACE_ROUTE_MAP[nav.ifc ?? 'undefined']],
+            };
 
-          // If item has a parent, add it to the parent items.
-          // Else try adding it at the end.
-          if (nav.parent != null) {
-            menuItem.fragment = nav.parent;
-            let parentItem = this.model.find((item) => item.id == nav.parent);
-            if (parentItem == null) {
-              childItems.push(menuItem);
-            } else if (parentItem.items == null) {
-              // items was still undefined
-              parentItem.items = [menuItem];
-            } else {
-              // items has been defined. Add to array
-              parentItem.items.push(menuItem);
+            // If item has a parent, add it to the parent items.
+            // Else try adding it at the end.
+            if (nav.parent != null) {
+              menuItem.fragment = nav.parent;
+              let parentItem = this.model.find((item) => item.id == nav.parent);
+              if (parentItem == null) {
+                childItems.push(menuItem);
+              } else if (parentItem.items == null) {
+                // items was still undefined
+                parentItem.items = [menuItem];
+              } else {
+                // items has been defined. Add to array
+                parentItem.items.push(menuItem);
+              }
             }
+            break;
           }
         }
       });
