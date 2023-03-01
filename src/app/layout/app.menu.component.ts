@@ -70,18 +70,15 @@ export class AppMenuComponent implements OnInit {
 
             // If item has a parent, add it to the parent items.
             // Else try adding it at the end.
-            if (nav.parent != null) {
-              menuItem.fragment = nav.parent;
-              let parentItem = this.model.find((item) => item.id == nav.parent);
-              if (parentItem == null) {
-                childItems.push(menuItem);
-              } else if (parentItem.items == null) {
-                // items was still undefined
-                parentItem.items = [menuItem];
-              } else {
-                // items has been defined. Add to array
-                parentItem.items.push(menuItem);
-              }
+            if (nav.parent == null) {
+              break;
+            }
+            menuItem.fragment = nav.parent;
+            let parentItem = this.model.find((item) => item.id == nav.parent);
+            if (parentItem == null) {
+              childItems.push(menuItem);
+            } else {
+              this.addItemToParent(parentItem, menuItem);
             }
             break;
           }
@@ -95,6 +92,16 @@ export class AppMenuComponent implements OnInit {
         parentItem == null ? childItems.push(childItem) : parentItem.items?.push(childItem);
       }
     });
+  }
+
+  addItemToParent(parentItem: MenuItem, menuItem: MenuItem) {
+    if (parentItem.items == null) {
+      // items was still undefined
+      parentItem.items = [menuItem];
+    } else {
+      // items has been defined. Add to array
+      parentItem.items.push(menuItem);
+    }
   }
 
   addPrototypeItems() {
