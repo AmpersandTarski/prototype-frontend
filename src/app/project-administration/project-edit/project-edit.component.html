@@ -134,6 +134,289 @@
                         ></app-atomic-object>
                     </div>
                 </div>
+
+                <!-- univalent atoms -->
+                <div class="field col-12 box-form-field">
+                    <label class="box-form-label">some alphanumeric</label>
+                    <div class="box-form-value">
+                        <app-atomic-alphanumeric
+                            [resource]="resource"
+                            [interfaceComponent]="this"
+                            [property]="resource.Alphanumeric_32_uni"
+                            propertyName="Alphanumeric_32_uni"
+                            label="some alphanumeric"
+                            isUni
+                            isTot
+                            crud="cRUd"
+                        ></app-atomic-alphanumeric>
+                    </div>
+                </div>
+
+                <div class="field col-12 box-form-field">
+                    <label class="box-form-label">some big alphanumeric</label>
+                    <div class="box-form-value">
+                        <app-atomic-bigalphanumeric
+                            [resource]="resource"
+                            [interfaceComponent]="this"
+                            [property]="resource.Bigalphanumeric_32_uni"
+                            propertyName="Bigalphanumeric_32_uni"
+                            label="some big alphanumeric"
+                            isUni
+                            isTot
+                            crud="cRUd"
+                        ></app-atomic-bigalphanumeric>
+                    </div>
+                </div>
+
+                <div class="field col-12 box-form-field">
+                    <label class="box-form-label">some huge alphanumeric</label>
+                    <div class="box-form-value">
+                        <app-atomic-bigalphanumeric
+                            [resource]="resource"
+                            [interfaceComponent]="this"
+                            [property]="resource.HugeAlphanumeric_32_uni"
+                            propertyName="HugeAlphanumeric_32_uni"
+                            label="some huge alphanumeric"
+                            isUni
+                            isTot
+                            crud="cRUd"
+                        ></app-atomic-bigalphanumeric>
+                    </div>
+                </div>
+
+                <div class="field col-12 box-form-field">
+                    <label class="box-form-label">some password</label>
+                    <div class="box-form-value">
+                        <app-atomic-password
+                            [resource]="resource"
+                            [interfaceComponent]="this"
+                            [property]="resource.Password_32_uni"
+                            propertyName="Password_32_uni"
+                            label="some password"
+                            isUni
+                            isTot
+                            crud="cRUd"
+                        ></app-atomic-password>
+                    </div>
+                </div>
+
+                <div class="field col-12 box-form-field">
+                    <label class="box-form-label">some date</label>
+                    <div class="box-form-value">
+                        <app-atomic-date
+                            [resource]="resource"
+                            [interfaceComponent]="this"
+                            [property]="resource.Date_32_uni"
+                            propertyName="Date_32_uni"
+                            label="some date"
+                            isUni
+                            isTot
+                            crud="cRUd"
+                        ></app-atomic-date>
+                    </div>
+                </div>
+
+                <div class="field col-12 box-form-field">
+                    <label class="box-form-label">some datetime</label>
+                    <div class="box-form-value">
+                        <app-atomic-datetime
+                            [resource]="resource"
+                            [interfaceComponent]="this"
+                            [property]="resource.DateTime_32_uni"
+                            propertyName="DateTime_32_uni"
+                            label="some datetime"
+                            isUni
+                            isTot
+                            crud="cRUd"
+                        ></app-atomic-datetime>
+                    </div>
+                </div>
+
+                <div class="field col-12 box-form-field">
+                    <label class="box-form-label">some integer</label>
+                    <div class="box-form-value">
+                        <app-atomic-integer
+                            [resource]="resource"
+                            [interfaceComponent]="this"
+                            [property]="resource.Integer_32_uni"
+                            propertyName="Integer_32_uni"
+                            label="some integer"
+                            isUni
+                            isTot
+                            crud="cRUd"
+                        ></app-atomic-integer>
+                    </div>
+                </div>
+
+                <div class="field col-12 box-form-field">
+                    <label class="box-form-label">some float</label>
+                    <div class="box-form-value">
+                        <app-atomic-float
+                            [resource]="resource"
+                            [interfaceComponent]="this"
+                            [property]="resource.Float_32_uni"
+                            propertyName="Float_32_uni"
+                            label="some float"
+                            isUni
+                            isTot
+                            crud="cRUd"
+                        ></app-atomic-float>
+                    </div>
+                </div>
+
+                <div class="field col-12 box-form-field">
+                    <label class="box-form-label">some object</label>
+                    <div class="box-form-value">
+                        <app-atomic-object
+                            [resource]="resource"
+                            [interfaceComponent]="this"
+                            [property]="resource.Object_32_uni"
+                            propertyName="Object_32_uni"
+                            label="some object"
+                            isUni
+                            isTot
+                            crud="cRUd"
+                        ></app-atomic-object>
+                    </div>
+                </div>
+
+                <!-- not univalent atoms-->
+                <div class="field col-12 box-form-field">
+                    <label class="box-form-label">some alphanumeric</label>
+                    <div class="box-form-value">
+                        <app-atomic-alphanumeric
+                            [resource]="resource"
+                            [interfaceComponent]="this"
+                            [property]="resource.Alphanumeric"
+                            propertyName="Alphanumeric"
+                            label="some alphanumeric"
+                            isTot
+                            crud="cRUd"
+                        ></app-atomic-alphanumeric>
+                    </div>
+                </div>
+
+                <div class="field col-12 box-form-field">
+                    <label class="box-form-label">some big alphanumeric</label>
+                    <div class="box-form-value">
+                        <app-atomic-bigalphanumeric
+                            [resource]="resource"
+                            [interfaceComponent]="this"
+                            [property]="resource.Bigalphanumeric"
+                            propertyName="Bigalphanumeric_32_uni"
+                            label="some big alphanumeric"
+                            isTot
+                            crud="cRUd"
+                        ></app-atomic-bigalphanumeric>
+                    </div>
+                </div>
+
+                <div class="field col-12 box-form-field">
+                    <label class="box-form-label">some huge alphanumeric</label>
+                    <div class="box-form-value">
+                        <app-atomic-hugealphanumeric
+                            [resource]="resource"
+                            [interfaceComponent]="this"
+                            [property]="resource.HugeAlphanumeric"
+                            propertyName="HugeAlphanumeric"
+                            label="some huge alphanumeric"
+                            isTot
+                            crud="cRUd"
+                        ></app-atomic-hugealphanumeric>
+                    </div>
+                </div>
+
+                <div class="field col-12 box-form-field">
+                    <label class="box-form-label">some password</label>
+                    <div class="box-form-value">
+                        <app-atomic-hugealphanumeric
+                            [resource]="resource"
+                            [interfaceComponent]="this"
+                            [property]="resource.Password"
+                            propertyName="Password"
+                            label="some password"
+                            isTot
+                            crud="cRUd"
+                        ></app-atomic-hugealphanumeric>
+                    </div>
+                </div>
+
+                <div class="field col-12 box-form-field">
+                    <label class="box-form-label">some date</label>
+                    <div class="box-form-value">
+                        <app-atomic-date
+                            [resource]="resource"
+                            [interfaceComponent]="this"
+                            [property]="resource.Date"
+                            propertyName="Date"
+                            label="some date"
+                            isTot
+                            crud="cRUd"
+                        ></app-atomic-date>
+                    </div>
+                </div>
+
+                <div class="field col-12 box-form-field">
+                    <label class="box-form-label">some datetime</label>
+                    <div class="box-form-value">
+                        <app-atomic-datetime
+                            [resource]="resource"
+                            [interfaceComponent]="this"
+                            [property]="resource.DateTime"
+                            propertyName="DateTime"
+                            label="some datetime"
+                            isTot
+                            crud="cRUd"
+                        ></app-atomic-datetime>
+                    </div>
+                </div>
+
+                <div class="field col-12 box-form-field">
+                    <label class="box-form-label">some integer</label>
+                    <div class="box-form-value">
+                        <app-atomic-integer
+                            [resource]="resource"
+                            [interfaceComponent]="this"
+                            [property]="resource.Integer"
+                            propertyName="Integer"
+                            label="some integer"
+                            isTot
+                            crud="cRUd"
+                        ></app-atomic-integer>
+                    </div>
+                </div>
+
+                <div class="field col-12 box-form-field">
+                    <label class="box-form-label">some float</label>
+                    <div class="box-form-value">
+                        <app-atomic-float
+                            [resource]="resource"
+                            [interfaceComponent]="this"
+                            [property]="resource.Float"
+                            propertyName="Float"
+                            label="some float"
+                            isTot
+                            crud="cRUd"
+                        ></app-atomic-float>
+                    </div>
+                </div>
+
+                <!-- object not univalent -->
+                <!-- <div class="field col-12 box-form-field">
+                    <label class="box-form-label">some object</label>
+                    <div class="box-form-value">
+                        <app-atomic-object
+                            [resource]="resource"
+                            [interfaceComponent]="this"
+                            [property]="resource.Object"
+                            propertyName="Object"
+                            label="some object"
+                            isUni
+                            isTot
+                            crud="cRud"
+                        ></app-atomic-object>
+                    </div>
+                </div> -->
             </div>
         </ng-template>
     </app-box-form>
