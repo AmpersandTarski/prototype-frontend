@@ -1,10 +1,10 @@
-import { OnInit } from '@angular/core';
+import { Inject, inject, OnInit } from '@angular/core';
 import { Component } from '@angular/core';
 import { MenuItem } from 'primeng/api';
 import { menuItems as adminMenuItems } from '../admin/admin.module';
 import { LayoutService } from './service/app.layout.service';
 import { MenuService } from './app.menu.service';
-import { INTERFACE_ROUTE_MAP } from '../project-administration/project-administration.module';
+import { InterfaceRouteMap, INTERFACE_ROUTE_MAPPING_TOKEN } from '../config';
 
 @Component({
   selector: 'app-menu',
@@ -13,7 +13,11 @@ import { INTERFACE_ROUTE_MAP } from '../project-administration/project-administr
 export class AppMenuComponent implements OnInit {
   model: MenuItem[] = [];
 
-  constructor(public layoutService: LayoutService, public menuService: MenuService) {}
+  constructor(
+    public layoutService: LayoutService,
+    public menuService: MenuService,
+    @Inject(INTERFACE_ROUTE_MAPPING_TOKEN) private interfaceRouteMap: InterfaceRouteMap,
+  ) {}
 
   ngOnInit() {
     // Add prototype menu items
@@ -65,7 +69,7 @@ export class AppMenuComponent implements OnInit {
               id: nav.id,
               label: nav.label,
               icon: 'pi pi-fw pi-bars',
-              routerLink: [INTERFACE_ROUTE_MAP[nav.ifc ?? 'undefined']],
+              routerLink: [this.interfaceRouteMap[nav.ifc ?? 'undefined']],
             };
 
             // If item has a parent, add it to the parent items.

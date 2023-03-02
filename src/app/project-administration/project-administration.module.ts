@@ -47,7 +47,7 @@ const routes: Routes = [
   },
 ];
 
-export const INTERFACE_ROUTE_MAP: InterfaceRouteMap = {
+const INTERFACE_ROUTE_MAP: InterfaceRouteMap = {
   Active_32_projects: '/p/active-projects',
   Edit_32_interface: '/p/edit-interface',
   Edit_32_menu_32_item: '/p/edit-menu-item',
