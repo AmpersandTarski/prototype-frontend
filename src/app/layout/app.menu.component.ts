@@ -29,7 +29,7 @@ export class AppMenuComponent implements OnInit {
   }
 
   /* Adds MenuItems to the navigation menu */
-  addMenuItems() {
+  private addMenuItems() {
     let childItems = new Array<MenuItem>(); // Storage for child items where parent is not added yet.
     this.menuService.getMenuItems().subscribe((navs) => {
       // Add fetched menu items
@@ -108,7 +108,7 @@ export class AppMenuComponent implements OnInit {
     }
   }
 
-  addPrototypeItems() {
+  private addPrototypeItems() {
     let prototypeItems: MenuItem = {
       label: 'Prototype',
       items: [
