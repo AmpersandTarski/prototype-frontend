@@ -1,4 +1,4 @@
-import { Inject, inject, OnInit } from '@angular/core';
+import { Inject, OnInit } from '@angular/core';
 import { Component } from '@angular/core';
 import { MenuItem } from 'primeng/api';
 import { menuItems as adminMenuItems } from '../admin/admin.module';
