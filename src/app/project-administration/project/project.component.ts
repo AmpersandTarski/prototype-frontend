@@ -6,6 +6,7 @@ import { ProjectInterface } from './project.interface';
 import { Router, Navigation } from '@angular/router';
 import { AmpersandInterface } from 'src/app/shared/interfacing/ampersand-interface.class';
 import { HttpClient } from '@angular/common/http';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-project',
@@ -20,8 +21,9 @@ export class ProjectComponent extends AmpersandInterface<ProjectInterface> imple
     protected service: BackendService,
     private router: Router,
     http: HttpClient,
+    messageService: MessageService,
   ) {
-    super(http);
+    super(http, messageService);
   }
 
   ngOnInit(): void {

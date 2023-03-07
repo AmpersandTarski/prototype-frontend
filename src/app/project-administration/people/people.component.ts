@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { MessageService } from 'primeng/api';
 import { Observable } from 'rxjs';
 import { AmpersandInterface } from 'src/app/shared/interfacing/ampersand-interface.class';
 import { BackendService } from '../backend.service';
@@ -12,8 +13,13 @@ import { PeopleInterface } from './people.interface';
   styleUrls: ['./people.component.scss'],
 })
 export class PeopleComponent extends AmpersandInterface<PeopleInterface> implements OnInit {
-  constructor(protected service: BackendService, private router: Router, http: HttpClient) {
-    super(http);
+  constructor(
+    protected service: BackendService,
+    private router: Router,
+    http: HttpClient,
+    messageService: MessageService,
+  ) {
+    super(http, messageService);
   }
 
   ngOnInit(): void {

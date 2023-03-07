@@ -1,5 +1,5 @@
 import { Component, Inject, Input, OnInit } from '@angular/core';
-import { MenuItem } from 'primeng/api';
+import { MenuItem, MessageService } from 'primeng/api';
 import { BaseAtomicComponent } from '../BaseAtomicComponent.class';
 import { Router } from '@angular/router';
 import { InterfaceRefObject, ObjectBase } from '../../objectBase.interface';
@@ -23,8 +23,9 @@ export class AtomicObjectComponent<I> extends BaseAtomicComponent<ObjectBase, I>
     private router: Router,
     private http: HttpClient, // required to make property 'itemsMethod' work
     @Inject(INTERFACE_ROUTE_MAPPING_TOKEN) private interfaceRouteMap: InterfaceRouteMap,
+    protected override messageService: MessageService,
   ) {
-    super();
+    super(messageService);
   }
 
   override ngOnInit(): void {
