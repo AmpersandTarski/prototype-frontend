@@ -67,16 +67,13 @@ export abstract class BaseAtomicComponent<T, I> implements OnInit {
     }
   }
 
-  public addItem(formatValue?: (x: T) => string) {
+  public addItem() {
     // TODO: show warning message when item already exists?
     // if (this.data.some((x: T) => x == (this.newItemControl.value as unknown))) {
     //   // the warning message
     // }
 
     let val: T = this.newItemControl.value as unknown as T;
-    if (typeof formatValue != 'undefined') {
-      val = formatValue(val) as unknown as T;
-    }
 
     this.interfaceComponent
       .patch(this.resource, [
