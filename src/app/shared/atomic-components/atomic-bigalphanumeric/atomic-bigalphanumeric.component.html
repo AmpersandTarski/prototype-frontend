@@ -14,20 +14,6 @@
     <ng-container *ngTemplateOutlet="crud"> </ng-container>
 </div>
 
-<!-- <div *ngIf="canRead(); else notReadable">
-    <div *ngIf="canUpdate(); else notUpdatable">
-        <div class="w-full" *ngIf="isUni; else isNotUni">
-            <textarea
-                pInputTextarea
-                [formControl]="formControl"
-                [required]="isTot"
-                maxlength="64000"
-                class="w-full min-w-10rem"
-            ></textarea>
-        </div>
-    </div>
-</div> -->
-
 <ng-template #cRUdUni>
     <div class="w-full">
         <textarea

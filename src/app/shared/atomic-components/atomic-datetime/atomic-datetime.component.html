@@ -1,20 +1,62 @@
-<div *ngIf="canRead(); else notReadable">
-    <p-calendar
-        *ngIf="canUpdate(); else notUpdatable"
-        [(ngModel)]="property"
-        [showIcon]="true"
-        [showClear]="true"
-        [dateFormat]="format"
-        [readonlyInput]="true"
-        [showTime]="true"
-        (ngModelChange)="onDateChange($event)"
-    ></p-calendar>
+<div *ngIf="canRead() && !canUpdate()">
+    <ng-container *ngTemplateOutlet="cRud"> </ng-container>
 </div>
 
-<ng-template #notUpdatable>
-    <div class="wordwrap">{{ property }}</div>
+<div *ngIf="canRead() && canUpdate() && isUni">
+    <ng-container *ngTemplateOutlet="cRUdUni"> </ng-container>
+</div>
+
+<div *ngIf="canRead() && canUpdate() && !isUni">
+    <ng-container *ngTemplateOutlet="cRUd"> </ng-container>
+</div>
+
+<div *ngIf="!canRead()">
+    <ng-container *ngTemplateOutlet="crud"> </ng-container>
+</div>
+
+<ng-template #cRUdUni>
+    <p-calendar
+        [showClear]="!isTot"
+        [readonlyInput]="true"
+        [dateFormat]="format"
+        [formControl]="formControl"
+        [showTime]="true"
+        (onClose)="patchDate()"
+    ></p-calendar>
 </ng-template>
 
-<ng-template #notReadable>
-    <span><i>DateTime is not readable</i></span>
+<ng-template #cRUd>
+    <div *ngFor="let date of dates; let i = index">
+        <div
+            class="pi pi-fw pi-minus"
+            (click)="removeItem(i)"
+            pTooltip="Remove"
+            tooltipPosition="left"
+            style="color: red; padding-bottom: 9px; cursor: pointer"
+        ></div>
+
+        <span style="padding-left: 9px">
+            {{ date }}
+        </span>
+    </div>
+
+    <div class="p-inputgroup">
+        <p-calendar
+            [showClear]="!isTot"
+            [readonlyInput]="true"
+            [dateFormat]="format"
+            [formControl]="newItemControl"
+            [showTime]="true"
+            [required]="isNewItemInputRequired()"
+            (onClose)="addItem()"
+        ></p-calendar>
+    </div>
+</ng-template>
+
+<ng-template #cRud>
+    <div *ngFor="let date of dates" class="wordwrap">{{ date }}</div>
+</ng-template>
+
+<ng-template #crud>
+    <span><i>Date is not readable</i></span>
 </ng-template>

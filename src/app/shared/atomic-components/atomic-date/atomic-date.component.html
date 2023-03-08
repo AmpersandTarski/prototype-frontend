@@ -16,7 +16,6 @@
 
 <ng-template #cRUdUni>
     <p-calendar
-        *ngIf="isUni"
         [showClear]="!isTot"
         [readonlyInput]="true"
         [dateFormat]="format"
@@ -28,7 +27,6 @@
 <ng-template #cRUd>
     <div *ngFor="let date of dates; let i = index">
         <div
-            *ngIf="canUpdate() && !isUni"
             class="pi pi-fw pi-minus"
             (click)="removeItem(i)"
             pTooltip="Remove"
