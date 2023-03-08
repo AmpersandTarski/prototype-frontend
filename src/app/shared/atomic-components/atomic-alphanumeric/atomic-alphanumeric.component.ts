@@ -1,5 +1,7 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
+import { MessageService } from 'primeng/api';
 import { map } from 'rxjs';
 import { BaseAtomicComponent } from '../BaseAtomicComponent.class';
 
@@ -28,18 +30,34 @@ export class AtomicAlphanumericComponent<I> extends BaseAtomicComponent<string, 
   private initFormControl(): void {
     this.formControl = new FormControl<string>(this.data[0], { nonNullable: true, updateOn: `blur` });
 
-    this.formControl.valueChanges
-      .pipe(map((x) => (x === '' ? null : x))) // transform empty string to null value
-      .subscribe((x) =>
-        this.interfaceComponent
-          .patch(this.resource, [
-            {
-              op: 'replace',
-              path: this.propertyName, // FIXME: this must be relative to path of this.resource
-              value: x,
-            },
-          ])
-          .subscribe(),
-      );
+    if (this.canUpdate()) {
+      this.formControl.valueChanges
+        .pipe(map((x) => (x === '' ? null : x))) // transform empty string to null value
+        .subscribe((x) =>
+          this.interfaceComponent
+            .patch(this.resource, [
+              {
+                op: 'replace',
+                path: this.propertyName, // FIXME: this must be relative to path of this.resource
+                value: x,
+              },
+            ])
+            .subscribe({
+              error: (err: HttpErrorResponse) => {
+                super.addMessage({
+                  severity: 'error',
+                  summary: err.status.toString(),
+                  detail: err.message,
+                });
+              },
+              complete: () => {
+                super.addMessage({
+                  severity: 'success',
+                  summary: 'Successfully updated form.',
+                });
+              },
+            }),
+        );
+    }
   }
 }

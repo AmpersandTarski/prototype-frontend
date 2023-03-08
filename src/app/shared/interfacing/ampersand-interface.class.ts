@@ -4,18 +4,30 @@ import { ObjectBase } from '../objectBase.interface';
 import { Patch, PatchValue } from './patch.interface';
 import { PatchResponse } from './patch-response.interface';
 import { DeleteResponse } from './delete-response.interface';
+import { MessageService } from 'primeng/api';
+import { Invariant } from './notifications.interface';
 
 export class AmpersandInterface<T> {
   public data$!: Observable<T>;
 
-  constructor(protected http: HttpClient) {}
+  constructor(protected http: HttpClient, private messageService: MessageService) {}
 
   public patch(resource: ObjectBase, patches: Array<Patch | PatchValue>): Observable<PatchResponse<T>> {
     return this.http.patch<PatchResponse<T>>(resource._path_, patches).pipe(
       tap((x) => {
         // TODO: show warning message of x.notifications.invariants
         if (!x.invariantRulesHold) {
-          console.log('Invariants do not hold');
+          //console.log('Invariants do not hold');
+          let invariants: string = '';
+          x.notifications.invariants.forEach((inv) => {
+            invariants += inv.ruleMessage;
+            invariants += '\n';
+          });
+          this.messageService.add({
+            severity: 'warn',
+            summary: 'Invariants do not hold',
+            detail: invariants,
+          });
         }
 
         // console.log('Current resource', resource);

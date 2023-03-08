@@ -5,6 +5,7 @@ import { AmpersandInterface } from 'src/app/shared/interfacing/ampersand-interfa
 import { Observable, switchMap, tap } from 'rxjs';
 import { BackendService } from '../backend.service';
 import { ProjectEditInterface } from './project-edit.interface';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-project-edit',
@@ -14,8 +15,13 @@ import { ProjectEditInterface } from './project-edit.interface';
 export class ProjectEditComponent extends AmpersandInterface<ProjectEditInterface> implements OnInit {
   public projectId!: string;
 
-  constructor(private route: ActivatedRoute, protected service: BackendService, http: HttpClient) {
-    super(http);
+  constructor(
+    private route: ActivatedRoute,
+    protected service: BackendService,
+    http: HttpClient,
+    messageService: MessageService,
+  ) {
+    super(http, messageService);
   }
 
   ngOnInit(): void {

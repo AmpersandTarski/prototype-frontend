@@ -8,6 +8,7 @@ import { PatchResponse } from 'src/app/shared/interfacing/patch-response.interfa
 import { BackendService } from '../backend.service';
 import { PersonInterface } from './person.interface';
 import { DeleteResponse } from 'src/app/shared/interfacing/delete-response.interface';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-person',
@@ -17,8 +18,13 @@ import { DeleteResponse } from 'src/app/shared/interfacing/delete-response.inter
 export class PersonComponent extends AmpersandInterface<PersonInterface> implements OnInit {
   private personId!: string;
 
-  constructor(private route: ActivatedRoute, protected service: BackendService, http: HttpClient) {
-    super(http);
+  constructor(
+    private route: ActivatedRoute,
+    protected service: BackendService,
+    http: HttpClient,
+    messageService: MessageService,
+  ) {
+    super(http, messageService);
   }
 
   ngOnInit(): void {
