@@ -1,17 +1,32 @@
-<div *ngIf="canRead(); else notReadable">
-    <div *ngIf="canUpdate(); else notUpdatable">
-        <p-calendar
-            *ngIf="isUni; else isNotUni"
-            [showClear]="!isTot"
-            [readonlyInput]="true"
-            [dateFormat]="format"
-            [formControl]="formControl"
-        ></p-calendar>
-    </div>
+<div *ngIf="canRead() && !canUpdate()">
+    <ng-container *ngTemplateOutlet="cRud"> </ng-container>
 </div>
 
-<ng-template #isNotUni>
-    <div *ngFor="let name of data; let i = index">
+<div *ngIf="canRead() && canUpdate() && isUni">
+    <ng-container *ngTemplateOutlet="cRUdUni"> </ng-container>
+</div>
+
+<div *ngIf="canRead() && canUpdate() && !isUni">
+    <ng-container *ngTemplateOutlet="cRUd"> </ng-container>
+</div>
+
+<div *ngIf="!canRead()">
+    <ng-container *ngTemplateOutlet="crud"> </ng-container>
+</div>
+
+<ng-template #cRUdUni>
+    <p-calendar
+        *ngIf="isUni"
+        [showClear]="!isTot"
+        [readonlyInput]="true"
+        [dateFormat]="format"
+        [formControl]="formControl"
+        (onClose)="patchDate()"
+    ></p-calendar>
+</ng-template>
+
+<ng-template #cRUd>
+    <div *ngFor="let date of dates; let i = index">
         <div
             *ngIf="canUpdate() && !isUni"
             class="pi pi-fw pi-minus"
@@ -21,17 +36,8 @@
             style="color: red; padding-bottom: 9px; cursor: pointer"
         ></div>
 
-        <!-- TODO: add the delete method -->
-        <!-- <div
-            *ngIf="canDelete() && !isUni"
-            class="pi pi-fw pi-trash"
-            pTooltip="Delete"
-            tooltipPosition="left"
-            style="color: red; cursor: pointer"
-        ></div> -->
-
         <span style="padding-left: 9px">
-            {{ name }}
+            {{ date }}
         </span>
     </div>
 
@@ -42,15 +48,15 @@
             [dateFormat]="format"
             [formControl]="newItemControl"
             [required]="isNewItemInputRequired()"
-            (onSelect)="addItem(formatDate)"
+            (onClose)="addItem()"
         ></p-calendar>
     </div>
 </ng-template>
 
-<ng-template #notUpdatable>
-    <div *ngFor="let row of data" class="wordwrap">{{ row }}</div>
+<ng-template #cRud>
+    <div *ngFor="let date of dates" class="wordwrap">{{ date }}</div>
 </ng-template>
 
-<ng-template #notReadable>
+<ng-template #crud>
     <span><i>Date is not readable</i></span>
 </ng-template>
