@@ -1,4 +1,20 @@
-<div *ngIf="canRead(); else notReadable">
+<div *ngIf="canRead() && !canUpdate()">
+    <ng-container *ngTemplateOutlet="cRud"> </ng-container>
+</div>
+
+<div *ngIf="canRead() && canUpdate() && isUni">
+    <ng-container *ngTemplateOutlet="cRUdUni"> </ng-container>
+</div>
+
+<div *ngIf="canRead() && canUpdate() && !isUni">
+    <ng-container *ngTemplateOutlet="cRUd"> </ng-container>
+</div>
+
+<div *ngIf="!canRead()">
+    <ng-container *ngTemplateOutlet="crud"> </ng-container>
+</div>
+
+<!-- <div *ngIf="canRead(); else notReadable">
     <div *ngIf="canUpdate(); else notUpdatable">
         <div class="w-full" *ngIf="isUni; else isNotUni">
             <textarea
@@ -10,12 +26,23 @@
             ></textarea>
         </div>
     </div>
-</div>
+</div> -->
 
-<ng-template #isNotUni>
+<ng-template #cRUdUni>
+    <div class="w-full">
+        <textarea
+            pInputTextarea
+            [formControl]="formControl"
+            [required]="isTot"
+            maxlength="64000"
+            class="w-full min-w-10rem"
+        ></textarea>
+    </div>
+</ng-template>
+
+<ng-template #cRUd>
     <div *ngFor="let name of data; let i = index">
         <div
-            *ngIf="canUpdate() && !isUni"
             class="pi pi-fw pi-minus"
             (click)="removeItem(i)"
             pTooltip="Remove"
@@ -48,10 +75,10 @@
     </div>
 </ng-template>
 
-<ng-template #notUpdatable>
+<ng-template #cRud>
     <div *ngFor="let row of data" class="wordwrap">{{ row }}</div>
 </ng-template>
 
-<ng-template #notReadable>
+<ng-template #crud>
     <span><i>Bigalphanumeric is not readable</i></span>
 </ng-template>
