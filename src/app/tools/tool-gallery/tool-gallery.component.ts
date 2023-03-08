@@ -8,6 +8,7 @@ import { testdata } from '../testdata';
 import { applyPatch } from 'fast-json-patch';
 import { HttpClient } from '@angular/common/http';
 import { ObjectBase } from 'src/app/shared/objectBase.interface';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-tool-gallery',
@@ -17,8 +18,8 @@ import { ObjectBase } from 'src/app/shared/objectBase.interface';
 export class ToolGalleryComponent extends AmpersandInterface<TestDataInterface> {
   data: TestDataInterface = JSON.parse(JSON.stringify(testdata[0]));
 
-  constructor(http: HttpClient) {
-    super(http);
+  constructor(http: HttpClient, messageService: MessageService) {
+    super(http, messageService);
   }
 
   override patch<TestDataInterface>(

@@ -1,5 +1,7 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
+import { MessageService } from 'primeng/api';
 import { map } from 'rxjs';
 import { BaseAtomicComponent } from '../BaseAtomicComponent.class';
 
@@ -36,7 +38,21 @@ export class AtomicAlphanumericComponent<I> extends BaseAtomicComponent<string, 
                 value: x,
               },
             ])
-            .subscribe(),
+            .subscribe({
+              error: (err: HttpErrorResponse) => {
+                super.addMessage({
+                  severity: 'error',
+                  summary: err.status.toString(),
+                  detail: err.message,
+                });
+              },
+              complete: () => {
+                super.addMessage({
+                  severity: 'success',
+                  summary: 'Successfully updated form.',
+                });
+              },
+            }),
         );
     }
   }
