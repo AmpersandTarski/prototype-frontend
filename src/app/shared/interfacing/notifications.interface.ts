@@ -1,7 +1,7 @@
 import { InterfaceName } from './navbar.interface';
 
 export type Notifications = {
-  errors: Array<Message>;
+  errors: Array<Error>;
   warnings: Array<Warning>;
   infos: Array<Message>;
   successes: Array<Message>;
