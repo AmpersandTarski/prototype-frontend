@@ -24,11 +24,6 @@ type DefaultSettings = {
   notify_showWarnings: boolean;
 };
 
-type Ext = {
-  url: string;
-  function: Object;
-};
-
 export type Navs = {
   id: MenuItemId;
   ifc: string | null;
