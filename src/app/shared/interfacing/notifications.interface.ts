@@ -1,10 +1,14 @@
 export interface Notifications {
-  errors: Array<unknown>;
-  warnings: Array<unknown>;
-  infos: Array<unknown>;
-  successes: Array<unknown>;
+  errors: Array<Info>;
+  warnings: Array<Info>;
+  infos: Array<Info>;
+  successes: Array<Info>;
   invariants: Array<Invariant>;
-  signals: Array<unknown>;
+  signals: Array<Info>;
+}
+
+export interface Info {
+  message: string;
 }
 
 export interface Invariant {
