@@ -14,11 +14,23 @@ $ifcs:{ifc|import { $ifc.ifcNamePascal$Interface \} from './$ifc.ifcNameKebab$/$
 @Injectable()
 export class BackendService {
   constructor(private http: HttpClient) {}
-$ifcs:{ifc|
+  
+  /********************************************************
+   * API calls for components that have a UI component
+   ********************************************************/$uis:{ifc|
   public get$ifc.ifcNamePascal$($if(!ifc.isSessionInterface)$id: string$endif$): Observable<$ifc.ifcNamePascal$Interface> {
     return this.http.get<$ifc.ifcNamePascal$Interface>(
       `resource/$if(ifc.isSessionInterface)$SESSION/1$else$$ifc.srcConcept$/\${id\}$endif$/$ifc.ifcName$`,
     );
   \}
+}$
+  /********************************************************
+   * API calls for components that DON'T have a UI component
+   ********************************************************/$apis:{ifc|
+  public get$ifc.ifcNamePascal$($if(!ifc.isSessionInterface)$id: string$endif$): Observable<$ifc.ifcNamePascal$Interface> {
+    return this.http.get<$ifc.ifcNamePascal$Interface>(
+      `resource/$if(ifc.isSessionInterface)$SESSION/1$else$$ifc.srcConcept$/\${id\}$endif$/$ifc.ifcName$`,
+      { params: { metaData: false, navIfc: false \} \},
+    );
+  \}
 }$}
-
