@@ -2,15 +2,15 @@ import { Notifications } from './notifications.interface';
 
 export interface Navbar {
   defaultSetting: DefaultSettings;
-  ext: Array<Ext>;
   home: string;
-  navs: Array<Navs>;
-  new: Array<New>;
-  notifications: Notifications;
-  role: [];
   session: Session;
   sessionRoles: Array<SessionRole>;
-  sessionVars: boolean;
+  sessionVars: false | { [key: string]: unknown };
+  notifications: Notifications;
+  navs: Array<Navs>;
+  new: Array<New>;
+  ext: Array<unknown>; // ignore; not reusing in new frontend
+  role: Array<unknown>; // ignore; not reusing in new frontend. This was structure for additional items in the role menu
 }
 
 interface DefaultSettings {
@@ -30,17 +30,19 @@ interface Ext {
 }
 
 export interface Navs {
-  id: string;
+  id: MenuItemId;
   ifc: string | null;
   label: string;
-  parent: string | null;
+  parent: MenuItemId | null;
   seqNr: number | null;
   url: string | null;
 }
 
+type MenuItemId = string;
+
 interface New {
-  ifcs: Array<Ifcs>;
   label: string;
+  ifcs: Array<Ifcs>;
 }
 
 interface Ifcs {
