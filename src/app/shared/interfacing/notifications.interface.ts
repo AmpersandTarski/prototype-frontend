@@ -1,17 +1,17 @@
-export interface Notifications {
+export type Notifications = {
   errors: Array<Info>;
   warnings: Array<Info>;
   infos: Array<Info>;
   successes: Array<Info>;
   invariants: Array<Invariant>;
   signals: Array<Info>;
-}
+};
 
-export interface Info {
+type Info = {
   message: string;
-}
+};
 
-export interface Invariant {
+type Invariant = {
   ruleMessage: string;
   tuples: Array<string>;
-}
+};
