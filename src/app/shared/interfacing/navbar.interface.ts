@@ -57,3 +57,5 @@ export type SessionRole = {
   label: string;
   active: boolean;
 };
+
+export type InterfaceName = string;

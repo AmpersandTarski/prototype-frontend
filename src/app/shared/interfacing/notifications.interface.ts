@@ -1,17 +1,44 @@
+import { InterfaceName } from './navbar.interface';
+
 export type Notifications = {
-  errors: Array<Info>;
-  warnings: Array<Info>;
-  infos: Array<Info>;
-  successes: Array<Info>;
+  errors: Array<Message>;
+  warnings: Array<Warning>;
+  infos: Array<Message>;
+  successes: Array<Message>;
   invariants: Array<Invariant>;
-  signals: Array<Info>;
+  signals: Array<Signal>;
 };
 
-type Info = {
+type Message = {
   message: string;
+};
+
+type Warning = {
+  message: string;
+  count: number;
+};
+
+type Error = {
+  message: string;
+  count: number;
+  details?: string;
 };
 
 type Invariant = {
   ruleMessage: string;
-  tuples: Array<string>;
+  tuples: Array<{
+    violationMessage: string;
+  }>;
+};
+
+type Signal = {
+  message: string;
+  violations: Array<{
+    message: string;
+    ifcs: Array<{
+      id: InterfaceName;
+      label: string;
+      link: string;
+    }>;
+  }>;
 };
