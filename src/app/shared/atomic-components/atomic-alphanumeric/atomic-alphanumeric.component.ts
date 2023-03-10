@@ -15,11 +15,15 @@ export class AtomicAlphanumericComponent<I> extends BaseAtomicComponent<string, 
 
   override ngOnInit(): void {
     super.ngOnInit();
+
+    // univalent
+    if (this.isUni && this.canUpdate()) {
+      this.initFormControl();
+    }
+
+    // not univalent
     if (!this.isUni && this.canUpdate()) {
       this.newItemControl = new FormControl<string>('', { nonNullable: true, updateOn: 'change' });
-    }
-    if (this.isUni) {
-      this.initFormControl();
     }
   }
 

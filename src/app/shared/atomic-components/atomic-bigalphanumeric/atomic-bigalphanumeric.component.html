@@ -1,21 +1,35 @@
-<div *ngIf="canRead(); else notReadable">
-    <div *ngIf="canUpdate(); else notUpdatable">
-        <div class="w-full" *ngIf="isUni; else isNotUni">
-            <textarea
-                pInputTextarea
-                [formControl]="formControl"
-                [required]="isTot"
-                maxlength="64000"
-                class="w-full min-w-10rem"
-            ></textarea>
-        </div>
-    </div>
+<div *ngIf="canRead() && !canUpdate()">
+    <ng-container *ngTemplateOutlet="cRud"> </ng-container>
 </div>
 
-<ng-template #isNotUni>
+<div *ngIf="canRead() && canUpdate() && isUni">
+    <ng-container *ngTemplateOutlet="cRUdUni"> </ng-container>
+</div>
+
+<div *ngIf="canRead() && canUpdate() && !isUni">
+    <ng-container *ngTemplateOutlet="cRUd"> </ng-container>
+</div>
+
+<div *ngIf="!canRead()">
+    <ng-container *ngTemplateOutlet="crud"> </ng-container>
+</div>
+
+<ng-template #cRUdUni>
+    <div class="w-full">
+        <textarea
+            pInputTextarea
+            [formControl]="formControl"
+            [required]="isTot"
+            maxlength="64000"
+            rows="6"
+            class="w-full min-w-10rem"
+        ></textarea>
+    </div>
+</ng-template>
+
+<ng-template #cRUd>
     <div *ngFor="let name of data; let i = index">
         <div
-            *ngIf="canUpdate() && !isUni"
             class="pi pi-fw pi-minus"
             (click)="removeItem(i)"
             pTooltip="Remove"
@@ -23,28 +37,19 @@
             style="color: red; padding-bottom: 9px; cursor: pointer"
         ></div>
 
-        <!-- TODO: add the delete method -->
-        <!-- <div
-            *ngIf="canDelete() && !isUni"
-            class="pi pi-fw pi-trash"
-            pTooltip="Delete"
-            tooltipPosition="left"
-            style="color: red; cursor: pointer"
-        ></div> -->
-
         <span style="padding-left: 9px">
             {{ name }}
         </span>
     </div>
     <div class="p-inputgroup">
         <textarea
-            type="text"
+            pInputTextarea
             class="min-w-10rem w-full"
-            pInputText
+            maxlength="64000"
+            rows="6"
             [formControl]="newItemControl"
             [placeholder]="'Add value'"
             [required]="isNewItemInputRequired()"
-            (keyup.enter)="addItem()"
         ></textarea>
         <button
             type="button"
@@ -57,10 +62,10 @@
     </div>
 </ng-template>
 
-<ng-template #notUpdatable>
+<ng-template #cRud>
     <div *ngFor="let row of data" class="wordwrap">{{ row }}</div>
 </ng-template>
 
-<ng-template #notReadable>
+<ng-template #crud>
     <span><i>Bigalphanumeric is not readable</i></span>
 </ng-template>

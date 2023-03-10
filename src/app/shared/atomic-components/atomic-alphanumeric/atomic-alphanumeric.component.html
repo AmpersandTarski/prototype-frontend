@@ -1,30 +1,32 @@
-<div *ngIf="canRead(); else notReadable">
-    <div *ngIf="canUpdate(); else notUpdatable">
-        <div *ngIf="isUni; else isNotUni">
-            <input type="text" class="min-w-10rem w-full" pInputText [formControl]="formControl" [required]="isTot" />
-        </div>
-    </div>
+<div *ngIf="canRead() && !canUpdate()">
+    <ng-container *ngTemplateOutlet="cRud"> </ng-container>
 </div>
 
-<ng-template #isNotUni>
+<div *ngIf="canRead() && canUpdate() && isUni">
+    <ng-container *ngTemplateOutlet="cRUdUni"> </ng-container>
+</div>
+
+<div *ngIf="canRead() && canUpdate() && !isUni">
+    <ng-container *ngTemplateOutlet="cRUd"> </ng-container>
+</div>
+
+<div *ngIf="!canRead()">
+    <ng-container *ngTemplateOutlet="crud"> </ng-container>
+</div>
+
+<ng-template #cRUdUni>
+    <input type="text" class="min-w-10rem w-full" pInputText [formControl]="formControl" [required]="isTot" />
+</ng-template>
+
+<ng-template #cRUd>
     <div *ngFor="let name of data; let i = index">
         <div
-            *ngIf="canUpdate() && !isUni"
             class="pi pi-fw pi-minus"
             (click)="removeItem(i)"
             pTooltip="Remove"
             tooltipPosition="left"
             style="color: red; padding-bottom: 9px; cursor: pointer"
         ></div>
-
-        <!-- TODO: add the delete method -->
-        <!-- <div
-            *ngIf="canDelete() && !isUni"
-            class="pi pi-fw pi-trash"
-            pTooltip="Delete"
-            tooltipPosition="left"
-            style="color: red; cursor: pointer"
-        ></div> -->
 
         <span style="padding-left: 9px">
             {{ name }}
@@ -51,10 +53,10 @@
     </div>
 </ng-template>
 
-<ng-template #notUpdatable>
+<ng-template #cRud>
     <div *ngFor="let row of data" class="wordwrap">{{ row }}</div>
 </ng-template>
 
-<ng-template #notReadable>
+<ng-template #crud>
     <span><i>Alphanumeric is not readable</i></span>
 </ng-template>

@@ -13,11 +13,15 @@ export class AtomicBigalphanumericComponent<I> extends BaseAtomicComponent<strin
 
   override ngOnInit(): void {
     super.ngOnInit();
-    if (!this.isUni && this.canUpdate()) {
-      this.newItemControl = new FormControl<string>('', { nonNullable: true, updateOn: 'change' });
-    }
+
+    // univalent
     if (this.isUni) {
       this.initFormControl();
+    }
+
+    // not univalent
+    if (!this.isUni && this.canUpdate()) {
+      this.newItemControl = new FormControl<string>('', { nonNullable: true, updateOn: 'change' });
     }
   }
 
