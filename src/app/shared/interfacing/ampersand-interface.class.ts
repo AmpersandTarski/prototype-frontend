@@ -5,7 +5,6 @@ import { Patch, PatchValue } from './patch.interface';
 import { PatchResponse } from './patch-response.interface';
 import { DeleteResponse } from './delete-response.interface';
 import { MessageService } from 'primeng/api';
-import { Invariant } from './notifications.interface';
 
 export class AmpersandInterface<T> {
   public data$!: Observable<T>;
