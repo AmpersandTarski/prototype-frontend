@@ -93,12 +93,13 @@ export class AppMenuComponent implements OnInit {
       while (childItems.length > 0) {
         let childItem = childItems.pop() ?? {};
         let parentItem = this.model.find((item) => item.id == childItem.fragment);
-        parentItem == null ? childItems.push(childItem) : parentItem.items?.push(childItem);
+        parentItem == null ? childItems.push(childItem) : this.addItemToParent(parentItem, childItem);
       }
     });
   }
 
   addItemToParent(parentItem: MenuItem, menuItem: MenuItem) {
+    menuItem.fragment = undefined; // removes temporary fragment
     if (parentItem.items == null) {
       // items was still undefined
       parentItem.items = [menuItem];
