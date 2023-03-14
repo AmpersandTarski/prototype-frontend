@@ -17,7 +17,7 @@ export abstract class BaseAtomicComponent<T, I> implements OnInit {
   // Most likely this is a top-level component for a specific application interface (e.g. ProjectComponent)
   @Input() interfaceComponent!: AmpersandInterface<I>;
 
-  public newItemControl!: FormControl<string | boolean | ObjectBase>;
+  public newItemControl!: FormControl<string | boolean | number | ObjectBase>;
 
   public data: Array<T> = [];
 
