@@ -31,9 +31,6 @@ export class AppMenuComponent implements OnInit {
       adminMenuItems.forEach((item) => this.model.push(item));
       // Add menu items from API
       this.addMenuItems();
-
-      // Store menu items in session storage
-      sessionStorage.setItem('menuItems', JSON.stringify(this.model));
     }
   }
 
@@ -104,6 +101,9 @@ export class AppMenuComponent implements OnInit {
         let parentItem = this.model.find((item) => item.id == childItem.fragment);
         parentItem == null ? childItems.push(childItem) : this.addItemToParent(parentItem, childItem);
       }
+
+      // Store menu items in session storage
+      sessionStorage.setItem('menuItems', JSON.stringify(this.model));
     });
   }
 
