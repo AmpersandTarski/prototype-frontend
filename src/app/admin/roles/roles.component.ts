@@ -14,14 +14,22 @@ export class RolesComponent implements OnInit {
   constructor(private rolesService: RolesService) {}
 
   ngOnInit() {
-    this.rolesService.getRoles().subscribe((roles) => {
-      // maps the roles into menuItems
-      this.menuItems = roles.map((role, index) => ({
-        label: role.label,
-        icon: role.active ? 'pi pi-check-circle' : 'pi pi-circle-off',
-        command: () => this.patchRole(roles, index),
-      }));
-    });
+    let menuCache = sessionStorage.getItem('roleMenuItems');
+    if (menuCache != null) {
+      // Using menu items in session storage.
+      this.menuItems = JSON.parse(menuCache);
+    } else {
+      this.rolesService.getRoles().subscribe((roles) => {
+        // maps the roles into menuItems
+        this.menuItems = roles.map((role, index) => ({
+          label: role.label,
+          icon: role.active ? 'pi pi-check-circle' : 'pi pi-circle-off',
+          command: () => this.patchRole(roles, index),
+        }));
+        // Store menu items in session storage
+        sessionStorage.setItem('roleMenuItems', JSON.stringify(this.menuItems));
+      });
+    }
   }
 
   private patchRole(roles: Array<SessionRole>, index: number): void {

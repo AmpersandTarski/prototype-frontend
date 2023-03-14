@@ -20,12 +20,21 @@ export class AppMenuComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    // Add prototype menu items
-    this.addPrototypeItems();
-    // Add admin menu items
-    adminMenuItems.forEach((item) => this.model.push(item));
+    let navbarCache = sessionStorage.getItem('menuItems');
+    if (navbarCache != null) {
+      // Using menu items in session storage
+      this.model = JSON.parse(navbarCache) as Array<MenuItem>;
+    } else {
+      // Add prototype menu items
+      this.addPrototypeItems();
+      // Add admin menu items
+      adminMenuItems.forEach((item) => this.model.push(item));
+      // Add menu items from API
+      this.addMenuItems();
 
-    this.addMenuItems();
+      // Store menu items in session storage
+      sessionStorage.setItem('menuItems', JSON.stringify(this.model));
+    }
   }
 
   /* Adds MenuItems to the navigation menu */
