@@ -14,10 +14,14 @@ export class RolesComponent implements OnInit {
   constructor(private rolesService: RolesService) {}
 
   ngOnInit() {
-    let menuCache = sessionStorage.getItem('roleMenuItems');
-    if (menuCache != null) {
+    this.loadOrCreateMenu();
+  }
+
+  private loadOrCreateMenu() {
+    let rolesMenu = sessionStorage.getItem('rolesMenuItems');
+    if (rolesMenu != null) {
       // Using menu items in session storage.
-      this.menuItems = JSON.parse(menuCache);
+      this.menuItems = JSON.parse(rolesMenu);
     } else {
       this.rolesService.getRoles().subscribe((roles) => {
         // maps the roles into menuItems
@@ -27,7 +31,7 @@ export class RolesComponent implements OnInit {
           command: () => this.patchRole(roles, index),
         }));
         // Store menu items in session storage
-        sessionStorage.setItem('roleMenuItems', JSON.stringify(this.menuItems));
+        this.rolesService.setSessionStorageItem('rolesMenuItems', JSON.stringify(this.menuItems));
       });
     }
   }

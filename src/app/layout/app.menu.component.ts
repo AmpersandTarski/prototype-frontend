@@ -20,6 +20,11 @@ export class AppMenuComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    this.loadOrCreateMenu();
+  }
+
+  /* Creates the menuItems from API data, or load from session storage when it already exists. */
+  private loadOrCreateMenu() {
     let navbarCache = sessionStorage.getItem('menuItems');
     if (navbarCache != null) {
       // Using menu items in session storage
@@ -103,7 +108,7 @@ export class AppMenuComponent implements OnInit {
       }
 
       // Store menu items in session storage
-      sessionStorage.setItem('menuItems', JSON.stringify(this.model));
+      this.menuService.setSessionStorageItem('menuItems', JSON.stringify(this.model));
     });
   }
 
