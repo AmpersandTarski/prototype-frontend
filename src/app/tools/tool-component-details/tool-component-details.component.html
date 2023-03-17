@@ -1,10 +1,51 @@
+<h1 class="mb-2">
+    <span class="capitalize">{{ componentName }}</span>
+</h1>
+<h4 class="text-primary mt-0">
+    <span class="capitalize">{{ componentType }}</span> component
+</h4>
+<p>
+    This is the {{ componentType }}-component {{ componentName }}. To see how the component reacts, its possible to
+    toggle the switches below.
+</p>
+<p-divider></p-divider>
+<div class="grid p-fluid">
+    <div class="col-6 text-center">
+        <h5>Expression is univalent</h5>
+        <p-inputSwitch [(ngModel)]="isUni"></p-inputSwitch>
+    </div>
+    <div class="col-6 text-center">
+        <h5>Expression is total</h5>
+        <p-inputSwitch [(ngModel)]="isTot"></p-inputSwitch>
+    </div>
+</div>
+<p-divider></p-divider>
+<div class="grid p-fluid">
+    <div class="col-3 text-center">
+        <h5>Can create</h5>
+        <p-inputSwitch [(ngModel)]="canCreate"></p-inputSwitch>
+    </div>
+    <div class="col-3 text-center">
+        <h5>Can read</h5>
+        <p-inputSwitch [(ngModel)]="canRead"></p-inputSwitch>
+    </div>
+    <div class="col-3 text-center">
+        <h5>Can update</h5>
+        <p-inputSwitch [(ngModel)]="canUpdate"></p-inputSwitch>
+    </div>
+    <div class="col-3 text-center">
+        <h5>Can delete</h5>
+        <p-inputSwitch [(ngModel)]="canDelete"></p-inputSwitch>
+    </div>
+</div>
+<p-divider></p-divider>
 <div *ngIf="componentType == 'atomic'" class="surface-300 w-100 element-showcase text-center border-round-xl">
     <div *ngIf="componentName == 'alphanumeric'">
         <app-atomic-alphanumeric
             [property]="'Pre-set value'"
             label="Projects"
-            isUni
-            isTot
+            [isUni]="isUni"
+            [isTot]="isTot"
             [crud]="crudOperationsToText()"
         >
         </app-atomic-alphanumeric>
@@ -13,8 +54,8 @@
         <app-atomic-bigalphanumeric
             [property]="'Pre-set value'"
             label="Projects"
-            isUni
-            isTot
+            [isUni]="isUni"
+            [isTot]="isTot"
             [crud]="crudOperationsToText()"
         >
         </app-atomic-bigalphanumeric>
@@ -23,77 +64,54 @@
         <app-atomic-hugealphanumeric
             [property]="'Pre-set value'"
             label="Projects"
-            isUni
-            isTot
+            [isUni]="isUni"
+            [isTot]="isTot"
             [crud]="crudOperationsToText()"
         >
         </app-atomic-hugealphanumeric>
     </div>
     <div *ngIf="componentName == 'boolean'">
-        <app-atomic-boolean [property]="true" isUni isTot [crud]="crudOperationsToText()"> </app-atomic-boolean>
+        <app-atomic-boolean [property]="true" [isUni]="isUni" [isTot]="isTot" [crud]="crudOperationsToText()">
+        </app-atomic-boolean>
     </div>
     <div *ngIf="componentName == 'date'">
-        <app-atomic-date [property]="'26-11-1999'" [format]="'dd-mm-yy'" isUni isTot [crud]="crudOperationsToText()">
+        <app-atomic-date
+            [property]="'26-11-1999'"
+            [format]="'dd-mm-yy'"
+            [isUni]="isUni"
+            [isTot]="isTot"
+            [crud]="crudOperationsToText()"
+        >
         </app-atomic-date>
     </div>
     <div *ngIf="componentName == 'datetime'">
-        <app-atomic-datetime [property]="'26-11-1999 23:46'" isUni isTot [crud]="crudOperationsToText()">
+        <app-atomic-datetime
+            [property]="'26-11-1999 23:46'"
+            [isUni]="isUni"
+            [isTot]="isTot"
+            [crud]="crudOperationsToText()"
+        >
         </app-atomic-datetime>
     </div>
     <div *ngIf="componentName == 'float'">
-        <app-atomic-float [property]="'9999999'" isUni isTot [crud]="crudOperationsToText()"> </app-atomic-float>
+        <app-atomic-float [property]="9999999.1" [isUni]="isUni" [isTot]="isTot" [crud]="crudOperationsToText()">
+        </app-atomic-float>
     </div>
     <div *ngIf="componentName == 'integer'">
-        <app-atomic-integer [property]="9999999" isUni isTot [crud]="crudOperationsToText()"> </app-atomic-integer>
+        <app-atomic-integer [property]="9999999" [isUni]="isUni" [isTot]="isTot" [crud]="crudOperationsToText()">
+        </app-atomic-integer>
     </div>
     <div *ngIf="componentName == 'object'">
-        <app-atomic-object [property]="activeProjects" isUni isTot [crud]="crudOperationsToText()"> </app-atomic-object>
+        <app-atomic-object [property]="activeProjects" [isUni]="isUni" [isTot]="isTot" [crud]="crudOperationsToText()">
+        </app-atomic-object>
     </div>
     <div *ngIf="componentName == 'password'">
-        <app-atomic-password [property]="'Pre-set value'" isUni isTot [crud]="crudOperationsToText()">
+        <app-atomic-password
+            [property]="'Pre-set value'"
+            [isUni]="isUni"
+            [isTot]="isTot"
+            [crud]="crudOperationsToText()"
+        >
         </app-atomic-password>
-    </div>
-</div>
-<h1 class="mb-2">
-    <span class="capitalize">{{ componentName }}</span> component
-</h1>
-<h4 class="text-primary capitalize mt-0">{{ componentType }}</h4>
-<p>
-    This is the {{ componentType }}-component {{ componentName }}. To see how the component reacts, its possible to
-    toggle the switches below.
-</p>
-<div class="grid p-fluid">
-    <div class="col-3 text-center">
-        <h5>Can Create</h5>
-        <app-atomic-boolean [property]="true" (state)="setCanCreateState($event)" isUni isTot crud="CRUD">
-        </app-atomic-boolean>
-    </div>
-    <div class="col-3 text-center">
-        <h5>Can Read</h5>
-        <app-atomic-boolean [property]="true" (state)="setCanReadState($event)" isUni isTot crud="CRUD">
-        </app-atomic-boolean>
-    </div>
-    <div class="col-3 text-center">
-        <h5>Can Update</h5>
-        <app-atomic-boolean [property]="true" (state)="setCanUpdateState($event)" isUni isTot crud="CRUD">
-        </app-atomic-boolean>
-    </div>
-    <div class="col-3 text-center">
-        <h5>Can Delete</h5>
-        <app-atomic-boolean [property]="true" (state)="setCanDeleteState($event)" isUni isTot crud="CRUD">
-        </app-atomic-boolean>
-    </div>
-</div>
-<p-divider></p-divider>
-<div class="grid p-fluid">
-    <div class="col-6 text-center">
-        <h5>Expression is univalent</h5>
-        <app-atomic-boolean [property]="true" (state)="setIsUniState($event)" isUni isTot crud="CRUD">
-        </app-atomic-boolean>
-    </div>
-    <div class="col-6 text-center">
-        <h5>Expression is total</h5>
-        <app-atomic-boolean [property]="true" (state)="setIsTotState($event)" isUni isTot crud="CRUD">
-        </app-atomic-boolean>
     </div>
 </div>

@@ -15,14 +15,14 @@ import { AppLayoutComponent } from '../layout/app.layout.component';
 import { SharedModule } from '../shared/shared.module';
 import { InterfaceRouteMap, INTERFACE_ROUTE_MAPPING_TOKEN } from '../config';
 
-$ifcs:{ifc|import { $ifc.ifcNamePascal$Component \} from './$ifc.ifcNameKebab$/$ifc.ifcNameKebab$.component';
+$uis:{ifc|import { $ifc.ifcNamePascal$Component \} from './$ifc.ifcNameKebab$/$ifc.ifcNameKebab$.component';
 }$
 // Routes
 const routes: Routes = [
   {
     path: 'p',
     component: AppLayoutComponent,
-    children: [$ifcs:{ifc|
+    children: [$uis:{ifc|
       {
         path: '$ifc.ifcNameKebab$$if(!ifc.isSessionInterface)$/:id$endif$',
         component: $ifc.ifcNamePascal$Component,
@@ -36,7 +36,7 @@ const routes: Routes = [
 export const menuItems: MenuItem[] = [
   {
     label: 'Project',
-    items: [$ifcs:{ifc|$if(ifc.isSessionInterface)$
+    items: [$uis:{ifc|$if(ifc.isSessionInterface)$
 
       {
         label: '$ifc.ifcLabel$',
@@ -48,13 +48,13 @@ export const menuItems: MenuItem[] = [
 ];
 
 // Interface to route mapping
-const INTERFACE_ROUTE_MAP: InterfaceRouteMap = {$ifcs:{ifc|
+const INTERFACE_ROUTE_MAP: InterfaceRouteMap = {$uis:{ifc|
   $ifc.ifcName$: '/p/$ifc.ifcNameKebab$',}$
 };
 
 // Module
 @NgModule({
-  declarations: [$ifcs:{ifc|
+  declarations: [$uis:{ifc|
     $ifc.ifcNamePascal$Component,}$
   ],
   imports: [CommonModule, SharedModule, RouterModule.forChild(routes)],

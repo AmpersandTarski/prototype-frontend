@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { map } from 'rxjs';
-import { AtomicComponentType } from '../../models/atomic-component-types';
 import { BaseAtomicComponent } from '../BaseAtomicComponent.class';
 
 @Component({
@@ -9,16 +8,20 @@ import { BaseAtomicComponent } from '../BaseAtomicComponent.class';
   templateUrl: './atomic-bigalphanumeric.component.html',
   styleUrls: ['./atomic-bigalphanumeric.component.css'],
 })
-export class AtomicBigalphanumericComponent extends BaseAtomicComponent<string> implements OnInit {
+export class AtomicBigalphanumericComponent<I> extends BaseAtomicComponent<string, I> implements OnInit {
   public formControl!: FormControl<string>;
 
   override ngOnInit(): void {
     super.ngOnInit();
-    if (!this.isUni && this.canUpdate()) {
-      this.initNewItemControl(AtomicComponentType.BigAlphanumeric);
-    }
+
+    // univalent
     if (this.isUni) {
       this.initFormControl();
+    }
+
+    // not univalent
+    if (!this.isUni && this.canUpdate()) {
+      this.newItemControl = new FormControl<string>('', { nonNullable: true, updateOn: 'change' });
     }
   }
 
@@ -29,19 +32,15 @@ export class AtomicBigalphanumericComponent extends BaseAtomicComponent<string> 
       this.formControl.valueChanges
         .pipe(map((x) => (x === '' ? null : x))) // transform empty string to null value
         .subscribe((x) =>
-          this.resource
-            .patch([
+          this.interfaceComponent
+            .patch(this.resource, [
               {
                 op: 'replace',
                 path: this.propertyName, // FIXME: this must be relative to path of this.resource
                 value: x,
               },
             ])
-            .subscribe((x) => {
-              if (!(x.invariantRulesHold && x.isCommitted)) {
-                // TODO: show warning message of x.notifications.invariants
-              }
-            }),
+            .subscribe(),
         );
     }
   }

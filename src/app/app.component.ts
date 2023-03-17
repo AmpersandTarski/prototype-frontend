@@ -1,12 +1,13 @@
 import { OnInit } from '@angular/core';
 import { Component } from '@angular/core';
-import { PrimeNGConfig } from 'primeng/api';
+import { MessageService, PrimeNGConfig } from 'primeng/api';
 import { LayoutService } from './layout/service/app.layout.service';
 
 @Component({
   selector: 'app-root',
-  template: '<router-outlet></router-outlet>',
-  styleUrls: ['./app.component.scss'],
+  templateUrl: './app.component.html',
+  styleUrls: ['app.component.scss'],
+  providers: [MessageService],
 })
 export class AppComponent implements OnInit {
   title = 'prototype-frontend';

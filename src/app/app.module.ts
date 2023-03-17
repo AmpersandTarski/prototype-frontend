@@ -10,6 +10,7 @@ import { AppLayoutModule } from './layout/app.layout.module';
 import { ProjectAdministrationModule } from './project-administration/project-administration.module';
 import { SharedModule } from './shared/shared.module';
 import { ToolsModule } from './tools/tools.module';
+import { ToastModule } from 'primeng/toast';
 
 @NgModule({
   declarations: [AppComponent],
@@ -23,6 +24,7 @@ import { ToolsModule } from './tools/tools.module';
     ToolsModule,
     AdminModule,
     AppRoutingModule,
+    ToastModule,
   ],
   providers: [httpInterceptorProviders],
   bootstrap: [AppComponent],

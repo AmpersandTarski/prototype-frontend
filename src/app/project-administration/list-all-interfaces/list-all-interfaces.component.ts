@@ -1,6 +1,8 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { MessageService } from 'primeng/api';
 import { Observable } from 'rxjs';
-import { testdata } from '../active-projects/testdata';
+import { AmpersandInterface } from 'src/app/shared/interfacing/ampersand-interface.class';
 import { BackendService } from '../backend.service';
 import { ListAllInterfacesInterface } from './list-all-interfaces.interface';
 
@@ -9,10 +11,10 @@ import { ListAllInterfacesInterface } from './list-all-interfaces.interface';
   templateUrl: './list-all-interfaces.component.html',
   styleUrls: ['./list-all-interfaces.component.css'],
 })
-export class ListAllInterfacesComponent implements OnInit {
-  data$!: Observable<ListAllInterfacesInterface[]>;
-
-  constructor(private service: BackendService) {}
+export class ListAllInterfacesComponent extends AmpersandInterface<ListAllInterfacesInterface> implements OnInit {
+  constructor(protected service: BackendService, http: HttpClient, messageService: MessageService) {
+    super(http, messageService);
+  }
 
   ngOnInit(): void {
     this.data$ = this.service.getAllInterfaces();

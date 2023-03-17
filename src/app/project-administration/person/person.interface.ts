@@ -1,4 +1,4 @@
-export interface PersonInterface extends ObjectBase {
+export type PersonInterface = ObjectBase & {
   _view_: PersonNameView;
   First_32_name: string;
   Last_32_name: string;
@@ -22,26 +22,26 @@ export interface PersonInterface extends ObjectBase {
       _view_: PersonNameView;
     }
   >;
-}
+};
 
-interface PersonNameView {
+type PersonNameView = {
   firstName: string;
   txt1: string;
   lastName: string;
-}
+};
 
-interface ProjectNameView {
+type ProjectNameView = {
   name: string;
-}
+};
 
-interface ObjectBase {
+type ObjectBase = {
   _id_: string;
   _label_: string;
   _path_: string;
   _ifcs_: Array<InterfaceRefObject>;
-}
+};
 
-interface InterfaceRefObject {
+type InterfaceRefObject = {
   id: string;
   label: string;
-}
+};

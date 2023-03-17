@@ -1,29 +1,57 @@
 <h3>People</h3>
 <div *ngIf="data$ | async as data; else loading">
-    <app-box-table [data]="data">
+    <app-box-table [data]="data" crud="CRuD" #box [interfaceComponent]="this">
         <ng-template boxTableHeader>
             <th>Person</th>
             <th>Email</th>
             <th>Projects</th>
-            <th *ngIf="canDelete()"></th>
+            <th *ngIf="box.canDelete()"></th>
         </ng-template>
         <ng-template [boxTableRow]="data" let-row>
             <td>
-                <app-atomic-object [property]="row" label="Person" isUni isTot crud="cRud"> </app-atomic-object>
+                <app-atomic-object
+                    [resource]="row"
+                    [interfaceComponent]="this"
+                    [property]="row.Person"
+                    propertyName="Person"
+                    label="Person"
+                    isUni
+                    isTot
+                    crud="cRud"
+                >
+                </app-atomic-object>
             </td>
             <td>
-                <app-atomic-alphanumeric [property]="row.Email" label="Email" isUni isTot crud="cRud">
+                <app-atomic-alphanumeric
+                    [resource]="row"
+                    [interfaceComponent]="this"
+                    [property]="row.Email"
+                    propertyName="Email"
+                    label="Email"
+                    isUni
+                    isTot
+                    crud="cRud"
+                >
                 </app-atomic-alphanumeric>
             </td>
             <td>
-                <app-atomic-object [property]="row.Projects" label="Project" isUni isTot crud="cRud">
+                <app-atomic-object
+                    [resource]="row"
+                    [interfaceComponent]="this"
+                    [property]="row.Projects"
+                    propertyName="Projects"
+                    label="Project"
+                    isUni
+                    isTot
+                    crud="cRud"
+                >
                 </app-atomic-object>
             </td>
-            <td *ngIf="canDelete()">
+            <td *ngIf="box.canDelete()">
                 <button
                     pButton
                     type="button"
-                    (click)="onDelete(row._id_)"
+                    (click)="box.deleteItem(row)"
                     label=""
                     class="p-button-danger"
                     icon="pi pi-trash"

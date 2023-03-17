@@ -12,11 +12,11 @@ import { InactiveProjectsInterface } from './inactive-projects/inactive-projects
 
 @Injectable()
 export class BackendMockService implements IBackendService {
-  getActiveProjects(): Observable<ActiveProjectsInterface[]> {
+  getActiveProjects(): Observable<ActiveProjectsInterface> {
     return of(ACTIVE_PROJECTS_TEST_DATA);
   }
 
-  getInactiveProjects(): Observable<InactiveProjectsInterface[]> {
+  getInactiveProjects(): Observable<InactiveProjectsInterface> {
     return of(INACTIVE_PROJECTS_TEST_DATA);
   }
 

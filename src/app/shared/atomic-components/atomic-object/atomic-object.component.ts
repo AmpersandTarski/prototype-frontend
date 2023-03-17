@@ -1,39 +1,31 @@
 import { Component, Inject, Input, OnInit } from '@angular/core';
-import { MenuItem } from 'primeng/api';
+import { MenuItem, MessageService } from 'primeng/api';
 import { BaseAtomicComponent } from '../BaseAtomicComponent.class';
 import { Router } from '@angular/router';
 import { InterfaceRefObject, ObjectBase } from '../../objectBase.interface';
 import { map, Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
-import { AtomicComponentType } from '../../models/atomic-component-types';
 import { InterfaceRouteMap, INTERFACE_ROUTE_MAPPING_TOKEN } from 'src/app/config';
-import { PatchResponse } from '../../interfacing/patch-response.interface';
-import { Patch, PatchValue } from '../../interfacing/patch.interface';
-import { DeleteResponse } from '../../interfacing/delete-response.interface';
-
-export interface Resource<T> {
-  patch(patches: Array<Patch | PatchValue>): Observable<PatchResponse<T>>;
-  delete(id: string): Observable<DeleteResponse>;
-}
+import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-atomic-object',
   templateUrl: './atomic-object.component.html',
   styleUrls: ['./atomic-object.component.scss'],
 })
-export class AtomicObjectComponent extends BaseAtomicComponent<ObjectBase> implements OnInit {
+export class AtomicObjectComponent<I> extends BaseAtomicComponent<ObjectBase, I> implements OnInit {
   public menuItems: { [index: string]: Array<MenuItem> } = {};
   public alternativeObjects$!: Observable<ObjectBase[]>;
   @Input() public placeholder!: string;
   @Input() itemsMethod!: Function | null;
-  @Input() override resource!: Resource<unknown>;
 
   constructor(
     private router: Router,
     private http: HttpClient, // required to make property 'itemsMethod' work
     @Inject(INTERFACE_ROUTE_MAPPING_TOKEN) private interfaceRouteMap: InterfaceRouteMap,
+    protected override messageService: MessageService,
   ) {
-    super();
+    super(messageService);
   }
 
   override ngOnInit(): void {
@@ -44,7 +36,7 @@ export class AtomicObjectComponent extends BaseAtomicComponent<ObjectBase> imple
     });
 
     if (this.canUpdate()) {
-      this.initNewItemControl(AtomicComponentType.Object);
+      this.newItemControl = new FormControl<ObjectBase>({} as ObjectBase, { nonNullable: true, updateOn: 'change' });
 
       if (this.isUni && this.data.length > 0) {
         this.newItemControl.disable(); // disables dropdown when univalent and already has a value
@@ -57,8 +49,8 @@ export class AtomicObjectComponent extends BaseAtomicComponent<ObjectBase> imple
   public override addItem() {
     let val = this.newItemControl.value as ObjectBase;
 
-    this.resource
-      .patch([
+    this.interfaceComponent
+      .patch(this.resource, [
         {
           op: 'add',
           path: this.propertyName, // FIXME: this must be relative to path of this.resource
@@ -76,53 +68,18 @@ export class AtomicObjectComponent extends BaseAtomicComponent<ObjectBase> imple
   }
 
   public override removeItem(index: number) {
-    this.resource
-      .patch([
+    this.interfaceComponent
+      .patch(this.resource, [
         {
           op: 'remove',
           path: `${this.propertyName}/${this.data[index]._id_}`, // FIXME: this must be relative to path of this.resource
         },
       ])
-      // Working with generics doesn't work well with this subscribe method due to the types of PatchResponse<T>
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      .subscribe((x: any) => {
-        if (x.invariantRulesHold && x.isCommitted) {
-          if ((!this.isUni && x.content[this.propertyName].length != this.data.length) || this.isUni) {
-            this.data.splice(index, 1); // data is only spliced when change has occurred
-          }
-          if (this.isUni) {
-            // since an element has been removed, the dropdown menu should be enabled again when univalent
-            this.newItemControl.enable();
-          }
-        } else {
-          // TODO: show warning message; isTot requirement has been violated
-        }
-      });
+      .subscribe();
   }
 
-  public deleteItem(index: number) {
-    // TODO: show warning message
-    if (this.isTot && this.data.length == 1) {
-      throw new Error('Must have at least one element');
-    }
-
-    this.resource
-      .delete(this.data[index]._id_)
-      // Working with generics doesn't work well with this subscribe method due to the types of PatchResponse<T>
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      .subscribe((x: any) => {
-        if (x.invariantRulesHold && x.isCommitted) {
-          if ((!this.isUni && x.content[this.propertyName].length != this.data.length) || this.isUni) {
-            this.data.splice(index, 1); // data is only spliced when change has occurred
-          }
-          if (this.isUni) {
-            // since an element has been removed, the dropdown menu should be enabled again when univalent
-            this.newItemControl.enable();
-          }
-        } else {
-          // TODO: show warning message; isTot requirement has been violated
-        }
-      });
+  public deleteItem() {
+    this.interfaceComponent.delete(this.resource).subscribe();
   }
 
   public navigateToInterface(interfaceName: string, resourceId: string): Promise<boolean> {

@@ -1,6 +1,6 @@
 import { ActiveProjectsInterface } from './active-projects.interface';
 
-export const testdata: ActiveProjectsInterface[] = [
+export const testdata: ActiveProjectsInterface = [
   {
     _id_: '1970_13',
     _label_: 'Apollo 13',

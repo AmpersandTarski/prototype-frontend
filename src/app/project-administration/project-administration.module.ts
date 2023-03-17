@@ -8,7 +8,6 @@ import { PeopleComponent } from './people/people.component';
 import { BackendService } from './backend.service';
 import { RouterModule, Routes } from '@angular/router';
 import { AppLayoutComponent } from '../layout/app.layout.component';
-import { MenuItem } from 'primeng/api';
 import { ListAllInterfacesComponent } from './list-all-interfaces/list-all-interfaces.component';
 import { ProjectEditComponent } from './project-edit/project-edit.component';
 import { PersonComponent } from './person/person.component';
@@ -44,39 +43,6 @@ const routes: Routes = [
       { path: 'person/:id', component: PersonComponent },
       { path: 'list-all-interfaces', component: ListAllInterfacesComponent },
       { path: 'new-edit-project/:id', component: ProjectEditComponent },
-    ],
-  },
-];
-
-export const menuItems: MenuItem[] = [
-  {
-    label: 'Project administration',
-    items: [
-      {
-        label: 'Active projects',
-        icon: 'pi pi-fw pi-bars',
-        routerLink: ['/p/active-projects'],
-      },
-      {
-        label: 'Inactive projects',
-        icon: 'pi pi-fw pi-bars',
-        routerLink: ['/p/inactive-projects'],
-      },
-      {
-        label: 'Project details',
-        icon: 'pi pi-fw pi-id-card',
-        routerLink: ['/p/project'],
-      },
-      {
-        label: 'People',
-        icon: 'pi pi-fw pi-bars',
-        routerLink: ['/p/people'],
-      },
-      {
-        label: 'List all interfaces',
-        icon: 'pi pi-fw pi-bars',
-        routerLink: ['/p/list-all-interfaces'],
-      },
     ],
   },
 ];

@@ -1,3 +1,4 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { BaseAtomicComponent } from '../BaseAtomicComponent.class';
@@ -7,7 +8,7 @@ import { BaseAtomicComponent } from '../BaseAtomicComponent.class';
   templateUrl: './atomic-boolean.component.html',
   styleUrls: ['./atomic-boolean.component.css'],
 })
-export class AtomicBooleanComponent extends BaseAtomicComponent<boolean> implements OnInit {
+export class AtomicBooleanComponent<I> extends BaseAtomicComponent<boolean, I> implements OnInit {
   @Output() state = new EventEmitter();
   public formControl!: FormControl<boolean>;
   public formControlArray!: Array<FormControl<boolean>>; // only used for !isUni
@@ -37,8 +38,8 @@ export class AtomicBooleanComponent extends BaseAtomicComponent<boolean> impleme
     if (this.canUpdate()) {
       this.formControlArray.forEach((x) =>
         x.valueChanges.subscribe((x) =>
-          this.resource
-            .patch([
+          this.interfaceComponent
+            .patch(this.resource, [
               {
                 op: 'replace',
                 path: this.propertyName, // FIXME: this must be relative to path of this.resource
@@ -64,18 +65,21 @@ export class AtomicBooleanComponent extends BaseAtomicComponent<boolean> impleme
 
     if (this.canUpdate()) {
       this.formControl.valueChanges.subscribe((x) =>
-        this.resource
-          .patch([
+        this.interfaceComponent
+          .patch(this.resource, [
             {
               op: 'replace',
               path: this.propertyName, // FIXME: this must be relative to path of this.resource
               value: x,
             },
           ])
-          .subscribe((x) => {
-            if (!(x.invariantRulesHold && x.isCommitted)) {
-              // TODO: show warning message of x.notifications.invariants
-            }
+          .subscribe({
+            error: (err: HttpErrorResponse) => {
+              super.addMessage({ severity: 'error', summary: 'Error updating value.', detail: err.message });
+            },
+            complete: () => {
+              super.addMessage({ severity: 'success', summary: 'Value updated.' });
+            },
           }),
       );
     }

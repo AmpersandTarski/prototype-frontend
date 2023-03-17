@@ -1,1 +1,71 @@
-<textarea rows="5" cols="30" pInputTextarea></textarea>
+<div *ngIf="canRead() && !canUpdate()">
+    <ng-container *ngTemplateOutlet="cRud"> </ng-container>
+</div>
+
+<div *ngIf="canRead() && canUpdate() && isUni">
+    <ng-container *ngTemplateOutlet="cRUdUni"> </ng-container>
+</div>
+
+<div *ngIf="canRead() && canUpdate() && !isUni">
+    <ng-container *ngTemplateOutlet="cRUd"> </ng-container>
+</div>
+
+<div *ngIf="!canRead()">
+    <ng-container *ngTemplateOutlet="crud"> </ng-container>
+</div>
+
+<ng-template #cRUdUni>
+    <div class="w-full">
+        <textarea
+            pInputTextarea
+            [formControl]="formControl"
+            [required]="isTot"
+            maxlength="64000"
+            rows="20"
+            class="w-full min-w-10rem"
+        ></textarea>
+    </div>
+</ng-template>
+
+<ng-template #cRUd>
+    <div *ngFor="let name of data; let i = index">
+        <div
+            class="pi pi-fw pi-minus"
+            (click)="removeItem(i)"
+            pTooltip="Remove"
+            tooltipPosition="left"
+            style="color: red; padding-bottom: 9px; cursor: pointer"
+        ></div>
+
+        <span style="padding-left: 9px">
+            {{ name }}
+        </span>
+    </div>
+    <div class="p-inputgroup">
+        <textarea
+            pInputTextarea
+            class="min-w-10rem w-full"
+            maxlength="64000"
+            rows="20"
+            [formControl]="newItemControl"
+            [placeholder]="'Add value'"
+            [required]="isNewItemInputRequired()"
+        ></textarea>
+        <button
+            type="button"
+            pButton
+            pRipple
+            icon="pi pi-plus"
+            styleClass="p-button-success"
+            (click)="addItem()"
+        ></button>
+    </div>
+</ng-template>
+
+<ng-template #cRud>
+    <div *ngFor="let row of data" class="wordwrap">{{ row }}</div>
+</ng-template>
+
+<ng-template #crud>
+    <span><i>Hugealphanumeric is not readable</i></span>
+</ng-template>

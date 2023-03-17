@@ -61,7 +61,14 @@ export const menuItems: MenuItem[] = [
 ];
 
 @NgModule({
-  declarations: [InstallerComponent, UtilsComponent, PopulationComponent, ReportComponent, ImportComponent, RolesComponent],
+  declarations: [
+    InstallerComponent,
+    UtilsComponent,
+    PopulationComponent,
+    ReportComponent,
+    ImportComponent,
+    RolesComponent,
+  ],
   imports: [CommonModule, RouterModule.forChild(routes), CardModule, ButtonModule, NgxDropzoneModule, MenuModule],
   providers: [
     { provide: InstallerService, useClass: InstallerService },

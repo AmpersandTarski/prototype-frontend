@@ -17,16 +17,16 @@ import { DeleteResponse } from '../shared/interfacing/delete-response.interface'
 export class BackendService implements IBackendService {
   constructor(private http: HttpClient) {}
 
-  public getActiveProjects(): Observable<ActiveProjectsInterface[]> {
-    return this.http.get<ActiveProjectsInterface[]>('resource/SESSION/1/Active_32_projects');
+  public getActiveProjects(): Observable<ActiveProjectsInterface> {
+    return this.http.get<ActiveProjectsInterface>('resource/SESSION/1/Active_32_projects');
   }
 
-  public getInactiveProjects(): Observable<InactiveProjectsInterface[]> {
-    return this.http.get<InactiveProjectsInterface[]>('resource/SESSION/1/Inactive_32_projects');
+  public getInactiveProjects(): Observable<InactiveProjectsInterface> {
+    return this.http.get<InactiveProjectsInterface>('resource/SESSION/1/Inactive_32_projects');
   }
 
-  public getPeople(): Observable<PeopleInterface[]> {
-    return this.http.get<PeopleInterface[]>('resource/SESSION/1/People');
+  public getPeople(): Observable<PeopleInterface> {
+    return this.http.get<PeopleInterface>('resource/SESSION/1/People');
   }
 
   public getProject(id: string): Observable<ProjectInterface> {
@@ -47,8 +47,8 @@ export class BackendService implements IBackendService {
     return this.http.get<PersonInterface>(`resource/Person/${id}/Person`);
   }
 
-  public getAllInterfaces(): Observable<ListAllInterfacesInterface[]> {
-    return this.http.get<ListAllInterfacesInterface[]>('resource/SESSION/1/List_32_all_32_interfaces');
+  public getAllInterfaces(): Observable<ListAllInterfacesInterface> {
+    return this.http.get<ListAllInterfacesInterface>('resource/SESSION/1/List_32_all_32_interfaces');
   }
 
   public patchProject(id: string, data: Patch[]): Observable<PatchResponse<ProjectEditInterface>> {

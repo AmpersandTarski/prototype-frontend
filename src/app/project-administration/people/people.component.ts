@@ -1,8 +1,10 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { MessageService } from 'primeng/api';
 import { Observable } from 'rxjs';
+import { AmpersandInterface } from 'src/app/shared/interfacing/ampersand-interface.class';
 import { BackendService } from '../backend.service';
-import { BaseInterfaceComponent } from '../BaseInterfaceComponent';
 import { PeopleInterface } from './people.interface';
 
 @Component({
@@ -10,11 +12,14 @@ import { PeopleInterface } from './people.interface';
   templateUrl: './people.component.html',
   styleUrls: ['./people.component.scss'],
 })
-export class PeopleComponent extends BaseInterfaceComponent implements OnInit {
-  data$!: Observable<PeopleInterface[]>;
-  public override crud: string = 'CRuD';
-  constructor(private service: BackendService, private router: Router) {
-    super();
+export class PeopleComponent extends AmpersandInterface<PeopleInterface> implements OnInit {
+  constructor(
+    protected service: BackendService,
+    private router: Router,
+    http: HttpClient,
+    messageService: MessageService,
+  ) {
+    super(http, messageService);
   }
 
   ngOnInit(): void {
@@ -25,14 +30,6 @@ export class PeopleComponent extends BaseInterfaceComponent implements OnInit {
     const newPersonId = this.service.postPerson();
     newPersonId.subscribe((person) => {
       this.router.navigate(['p', 'person', `${person._id_}`]);
-    });
-  }
-
-  public onDelete(id: string): void {
-    this.service.deletePerson(id).subscribe((x) => {
-      if (x.isCommitted) {
-        this.data$ = this.service.getPeople();
-      }
     });
   }
 }

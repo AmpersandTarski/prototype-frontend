@@ -4,17 +4,27 @@ import { Observable, switchMap } from 'rxjs';
 import { BackendService } from '../backend.service';
 import { ProjectInterface } from './project.interface';
 import { Router, Navigation } from '@angular/router';
+import { AmpersandInterface } from 'src/app/shared/interfacing/ampersand-interface.class';
+import { HttpClient } from '@angular/common/http';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-project',
   templateUrl: './project.component.html',
   styleUrls: ['./project.component.scss'],
 })
-export class ProjectComponent implements OnInit {
-  public data$!: Observable<ProjectInterface>;
+export class ProjectComponent extends AmpersandInterface<ProjectInterface> implements OnInit {
   public projectId?: string;
 
-  constructor(private route: ActivatedRoute, private service: BackendService, private router: Router) {}
+  constructor(
+    private route: ActivatedRoute,
+    protected service: BackendService,
+    private router: Router,
+    http: HttpClient,
+    messageService: MessageService,
+  ) {
+    super(http, messageService);
+  }
 
   ngOnInit(): void {
     this.data$ = this.route.paramMap.pipe(
