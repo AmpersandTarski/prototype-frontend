@@ -25,10 +25,10 @@ export class AppMenuComponent implements OnInit {
 
   /* Creates the menuItems from API data, or load from session storage when it already exists. */
   private loadOrCreateMenu() {
-    let navbarCache = sessionStorage.getItem('menuItems');
-    if (navbarCache != null) {
+    let navbarItems = sessionStorage.getItem('menuItems');
+    if (navbarItems != null) {
       // Using menu items in session storage
-      this.model = JSON.parse(navbarCache) as Array<MenuItem>;
+      this.model = JSON.parse(navbarItems) as Array<MenuItem>;
     } else {
       // Add prototype menu items
       this.addPrototypeItems();
