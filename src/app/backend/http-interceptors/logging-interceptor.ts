@@ -6,7 +6,7 @@ import { finalize, tap } from 'rxjs/operators';
 export class LoggingInterceptor implements HttpInterceptor {
   constructor() {}
 
-  intercept(req: HttpRequest<any>, next: HttpHandler) {
+  intercept(req: HttpRequest<unknown>, next: HttpHandler) {
     const started: number = Date.now();
     let ok: string;
 
