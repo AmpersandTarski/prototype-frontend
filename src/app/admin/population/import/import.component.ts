@@ -45,22 +45,22 @@ export class ImportComponent {
     while (!this.hasNoFiles()) {
       // upload one file
       this.populationService.importPopulation(this.files.pop()).subscribe({
-        error: (err: HttpErrorResponse) => {
-          // Invoke notification
-          this.messageService.add({
-            severity: 'error',
-            summary: 'Error while uploading file',
-            detail: err.message,
-            life: 10000,
-          });
-        },
-        complete: () =>
-          this.messageService.add({
-            severity: 'success',
-            summary: 'File upload complete',
-            life: 5000,
-          }),
-        next: () => {},
+        // error: (err: HttpErrorResponse) => {
+        //   // Invoke notification
+        //   this.messageService.add({
+        //     severity: 'error',
+        //     summary: 'Error while uploading file',
+        //     detail: err.message,
+        //     life: 10000,
+        //   });
+        // },
+        // complete: () =>
+        //   this.messageService.add({
+        //     severity: 'success',
+        //     summary: 'File upload complete',
+        //     life: 5000,
+        //   }),
+        // next: () => {},
       });
     }
 
