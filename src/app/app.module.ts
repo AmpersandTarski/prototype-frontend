@@ -11,6 +11,8 @@ import { ProjectAdministrationModule } from './project-administration/project-ad
 import { SharedModule } from './shared/shared.module';
 import { ToolsModule } from './tools/tools.module';
 import { ToastModule } from 'primeng/toast';
+import { CoreModule } from './core/core.module';
+import { MessageService } from 'primeng/api';
 
 @NgModule({
   declarations: [AppComponent],
@@ -20,13 +22,14 @@ import { ToastModule } from 'primeng/toast';
     HttpClientModule,
     AppLayoutModule,
     SharedModule,
+    CoreModule,
     ProjectAdministrationModule,
     ToolsModule,
     AdminModule,
     AppRoutingModule,
     ToastModule,
   ],
-  providers: [httpInterceptorProviders],
+  providers: [httpInterceptorProviders, MessageService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
