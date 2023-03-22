@@ -2,8 +2,7 @@
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { BackendInterceptor } from './backend-interceptor';
 import { LoggingInterceptor } from './logging-interceptor';
-import { NotFoundInterceptor} from './not-found-interceptor';
-
+import { NotFoundInterceptor } from './not-found-interceptor';
 
 /** Http interceptor providers in outside-in order */
 export const httpInterceptorProviders = [
