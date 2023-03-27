@@ -6,13 +6,18 @@ import { MessageService } from 'primeng/api';
 export class GlobalErrorHandler implements ErrorHandler {
   constructor(private messageService: MessageService, private zone: NgZone) {}
 
-  handleError(error: any) {
+  handleError(error: Error | HttpErrorResponse) {
     let messageSummary: string = '';
     let messageDetail: string = '';
 
     // Assign message content
-    messageSummary = error.status ? error.status.toString() : 'Error';
-    messageDetail = error.message ? error.message : '';
+    if (error instanceof HttpErrorResponse) {
+      messageSummary = error.status ? error.status.toString() : 'Error';
+      messageDetail = error.message ? error.message : '';
+    } else {
+      messageSummary = error.name;
+      messageDetail = error.message;
+    }
 
     // Send message toast
     this.zone.run(() =>
@@ -20,6 +25,7 @@ export class GlobalErrorHandler implements ErrorHandler {
         severity: 'error',
         summary: messageSummary,
         detail: messageDetail,
+        sticky: true,
       }),
     );
 

@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { EMPTY, Observable, throwError } from 'rxjs';
+import { PatchResponse } from 'src/app/shared/interfacing/patch-response.interface';
 import { IPopulationService } from './population.service.interface';
 
 @Injectable()
@@ -32,7 +33,7 @@ export class PopulationService implements IPopulationService {
   }
 
   /* Send one file to API. */
-  public importPopulation(file: File | undefined): Observable<Object> {
+  public importPopulation(file: File | undefined): Observable<PatchResponse<JSON>> {
     if (file === undefined) {
       return EMPTY;
     }
@@ -40,6 +41,6 @@ export class PopulationService implements IPopulationService {
 
     formData = new FormData();
     formData.append('file', file, file.name);
-    return this.http.post<Object>(this.importUrl, formData);
+    return this.http.post<PatchResponse<JSON>>(this.importUrl, formData);
   }
 }

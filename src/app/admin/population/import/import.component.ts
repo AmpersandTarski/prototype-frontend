@@ -1,7 +1,7 @@
-import { HttpErrorResponse } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { MessageService } from 'primeng/api';
 import { ButtonState } from 'src/app/shared/helper/button-state';
+import { PatchResponse } from 'src/app/shared/interfacing/patch-response.interface';
 import { PopulationService } from '../population.service';
 
 @Component({
@@ -45,22 +45,12 @@ export class ImportComponent {
     while (!this.hasNoFiles()) {
       // upload one file
       this.populationService.importPopulation(this.files.pop()).subscribe({
-        // error: (err: HttpErrorResponse) => {
-        //   // Invoke notification
-        //   this.messageService.add({
-        //     severity: 'error',
-        //     summary: 'Error while uploading file',
-        //     detail: err.message,
-        //     life: 10000,
-        //   });
-        // },
-        // complete: () =>
-        //   this.messageService.add({
-        //     severity: 'success',
-        //     summary: 'File upload complete',
-        //     life: 5000,
-        //   }),
-        // next: () => {},
+        next: (x: PatchResponse<JSON>) =>
+          this.messageService.add({
+            severity: x.notifications.successes[0] ? 'success' : 'error',
+            summary: x.notifications.successes[0] ? x.notifications.successes[0].message : '',
+            life: 5000,
+          }),
       });
     }
 
