@@ -5,9 +5,8 @@ import { Router } from '@angular/router';
 import { catchError } from 'rxjs';
 import { MessageService } from 'primeng/api';
 
-// TODO Rename
 @Injectable()
-export class NotFoundInterceptor implements HttpInterceptor {
+export class HttpErrorInterceptor implements HttpInterceptor {
   constructor(private router: Router, private messageService: MessageService) {}
 
   /** HttpErrorResponses are intercepted here. Behaviour depends on the `error.status` of the caught error. */

@@ -19,4 +19,8 @@ export class ActiveProjectsComponent extends AmpersandInterface<ActiveProjectsIn
   ngOnInit(): void {
     this.data$ = this.service.getActiveProjects();
   }
+
+  ngAfterViewInit(): void {
+    throw new Error('Error in active projects: test!!');
+  }
 }

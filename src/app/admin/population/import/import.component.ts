@@ -44,14 +44,7 @@ export class ImportComponent {
     // send files to API (one by one)
     while (!this.hasNoFiles()) {
       // upload one file
-      this.populationService.importPopulation(this.files.pop()).subscribe({
-        next: (x: PatchResponse<JSON>) =>
-          this.messageService.add({
-            severity: x.notifications.successes[0] ? 'success' : 'error',
-            summary: x.notifications.successes[0] ? x.notifications.successes[0].message : '',
-            life: 5000,
-          }),
-      });
+      this.populationService.importPopulation(this.files.pop()).subscribe();
     }
 
     this.buttonState1.loading = false;

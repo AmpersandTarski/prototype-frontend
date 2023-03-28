@@ -1,28 +1,84 @@
 import { HttpHandler, HttpInterceptor, HttpRequest, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { MessageService } from 'primeng/api';
 import { finalize, tap } from 'rxjs/operators';
+import { Notifications } from 'src/app/shared/interfacing/notifications.interface';
+import { PatchResponse } from 'src/app/shared/interfacing/patch-response.interface';
 
 @Injectable()
 export class LoggingInterceptor implements HttpInterceptor {
-  constructor() {}
+  constructor(private messageService: MessageService) {}
 
-  /* Requests are logged in the console including the response time. */
+  /**
+   * Logs requests in the console including the response time.
+   * If a PatchResponse is returned with notifications, the notifications are shown to the user.
+   */
   intercept(req: HttpRequest<unknown>, next: HttpHandler) {
     const started: number = Date.now();
-    let ok: boolean;
+    let responseIsOk: boolean;
     let messageSummary: string;
+    let patchResponse: PatchResponse<JSON>;
 
     return next.handle(req).pipe(
       tap({
-        next: (event) => (ok = event instanceof HttpResponse),
+        next: (response) => {
+          if (response instanceof HttpResponse) {
+            responseIsOk = true;
+            patchResponse = response.body as PatchResponse<JSON>;
+            console.log(response.body);
+            console.log(patchResponse.sessionRefreshAdvice ? true : false);
+          }
+        },
       }),
       finalize(() => {
-        if (ok) {
+        if (responseIsOk) {
           const elapsed = Date.now() - started;
-          messageSummary = `${req.method} "${req.urlWithParams}" ${ok} in ${elapsed} ms.`;
+          messageSummary = `${req.method} "${req.urlWithParams}" ${
+            responseIsOk ? 'finished' : 'failed'
+          } in ${elapsed} ms.`;
           console.log(messageSummary);
+
+          if (patchResponse) this.sendMessagesFromNotifications(patchResponse.notifications);
+          if (patchResponse.sessionRefreshAdvice) {
+            sessionStorage.clear();
+            // TODO Reload page (with delay maybe?)
+          }
         }
       }),
     );
+  }
+
+  private sendMessagesFromNotifications(notifications: Notifications) {
+    notifications.errors.forEach((field) => this.sendMessage('error', field.message, field.details));
+    notifications.warnings.forEach((field) => this.sendMessage('warn', field.message));
+    notifications.infos.forEach((field) => this.sendMessage('info', field.message));
+    notifications.successes.forEach((field) => this.sendMessage('success', field.message));
+
+    notifications.invariants.forEach((field) => {
+      let violationMessages = '';
+      field.tuples.forEach((tuple) => {
+        violationMessages += tuple.violationMessage + '\n';
+      });
+      this.sendMessage('warn', field.ruleMessage, violationMessages);
+    });
+
+    notifications.signals.forEach((field) => {
+      let violationMessages = '';
+      field.violations.forEach((violation) => {
+        violationMessages += violation.message + '\n';
+        // TODO: Add ifcs?
+      });
+      this.sendMessage('info', field.message);
+    });
+  }
+
+  private sendMessage(severity: string, message: string, details?: string) {
+    console.log('sendMessage called with message: ' + message);
+    this.messageService.add({
+      severity: severity,
+      summary: message,
+      detail: details,
+      life: 7000,
+    });
   }
 }
