@@ -25,12 +25,10 @@ export class LoggingInterceptor implements HttpInterceptor {
           if (response instanceof HttpResponse) {
             responseIsOk = true;
             patchResponse = response.body as PatchResponse<JSON>;
-            console.log(response.body);
-            console.log(patchResponse.sessionRefreshAdvice ? true : false);
           }
         },
       }),
-      finalize(() => {
+      finalize(async () => {
         if (responseIsOk) {
           const elapsed = Date.now() - started;
           messageSummary = `${req.method} "${req.urlWithParams}" ${
@@ -38,10 +36,12 @@ export class LoggingInterceptor implements HttpInterceptor {
           } in ${elapsed} ms.`;
           console.log(messageSummary);
 
-          if (patchResponse) this.sendMessagesFromNotifications(patchResponse.notifications);
+          if (patchResponse.notifications) this.sendMessagesFromNotifications(patchResponse.notifications);
           if (patchResponse.sessionRefreshAdvice) {
+            // clear session storage and reload page
             sessionStorage.clear();
-            // TODO Reload page (with delay maybe?)
+            await new Promise((f) => setTimeout(f, 4000));
+            window.location.reload();
           }
         }
       }),
