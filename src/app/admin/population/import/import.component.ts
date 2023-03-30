@@ -1,7 +1,5 @@
 import { Component } from '@angular/core';
-import { MessageService } from 'primeng/api';
 import { ButtonState } from 'src/app/shared/helper/button-state';
-import { PatchResponse } from 'src/app/shared/interfacing/patch-response.interface';
 import { PopulationService } from '../population.service';
 
 @Component({
@@ -16,7 +14,7 @@ export class ImportComponent {
   buttonState1: ButtonState = new ButtonState();
   files: File[] = [];
 
-  constructor(private populationService: PopulationService, private messageService: MessageService) {}
+  constructor(private populationService: PopulationService) {}
 
   /**
    * Set the buttonState to its initial value
