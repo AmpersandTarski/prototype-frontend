@@ -30,4 +30,8 @@ export class MenuService {
     let navs: Observable<Array<Navs>> = navbar.pipe(map((x) => x.navs));
     return navs;
   }
+
+  public setSessionStorageItem(name: string, data: string) {
+    sessionStorage.setItem(name, data);
+  }
 }
