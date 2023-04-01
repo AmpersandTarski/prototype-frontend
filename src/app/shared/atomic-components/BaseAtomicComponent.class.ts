@@ -1,6 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { Message, MessageService } from 'primeng/api';
 import { AmpersandInterface } from '../interfacing/ampersand-interface.class';
 import { ObjectBase } from '../objectBase.interface';
 @Component({
@@ -41,7 +40,7 @@ export abstract class BaseAtomicComponent<T, I> implements OnInit {
 
   @Input() crud: string = 'cRud';
 
-  constructor(protected messageService: MessageService) {}
+  constructor() {}
 
   public canCreate(): boolean {
     return this.crud[0] == 'C';
@@ -106,9 +105,5 @@ export abstract class BaseAtomicComponent<T, I> implements OnInit {
 
   public isNewItemInputRequired() {
     return this.isTot && this.data.length === 0;
-  }
-
-  public addMessage(message: Message) {
-    this.messageService.add(message);
   }
 }
