@@ -1,4 +1,3 @@
-import { HttpErrorResponse } from '@angular/common/http';
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { BaseAtomicComponent } from '../BaseAtomicComponent.class';
@@ -73,14 +72,7 @@ export class AtomicBooleanComponent<I> extends BaseAtomicComponent<boolean, I> i
               value: x,
             },
           ])
-          .subscribe({
-            error: (err: HttpErrorResponse) => {
-              super.addMessage({ severity: 'error', summary: 'Error updating value.', detail: err.message });
-            },
-            complete: () => {
-              super.addMessage({ severity: 'success', summary: 'Value updated.' });
-            },
-          }),
+          .subscribe(),
       );
     }
   }

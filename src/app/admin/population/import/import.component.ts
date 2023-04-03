@@ -1,6 +1,4 @@
-import { HttpErrorResponse } from '@angular/common/http';
 import { Component } from '@angular/core';
-import { MessageService } from 'primeng/api';
 import { ButtonState } from 'src/app/shared/helper/button-state';
 import { PopulationService } from '../population.service';
 
@@ -16,7 +14,7 @@ export class ImportComponent {
   buttonState1: ButtonState = new ButtonState();
   files: File[] = [];
 
-  constructor(private populationService: PopulationService, private messageService: MessageService) {}
+  constructor(private populationService: PopulationService) {}
 
   /**
    * Set the buttonState to its initial value
@@ -44,24 +42,7 @@ export class ImportComponent {
     // send files to API (one by one)
     while (!this.hasNoFiles()) {
       // upload one file
-      this.populationService.importPopulation(this.files.pop()).subscribe({
-        error: (err: HttpErrorResponse) => {
-          // Invoke notification
-          this.messageService.add({
-            severity: 'error',
-            summary: 'Error while uploading file',
-            detail: err.message,
-            life: 10000,
-          });
-        },
-        complete: () =>
-          this.messageService.add({
-            severity: 'success',
-            summary: 'File upload complete',
-            life: 5000,
-          }),
-        next: () => {},
-      });
+      this.populationService.importPopulation(this.files.pop()).subscribe();
     }
 
     this.buttonState1.loading = false;

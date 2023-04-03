@@ -22,4 +22,8 @@ export class RolesService {
   public isRole(role: Role): Observable<boolean> {
     return this.getRoles().pipe(map((x) => x[role].active));
   }
+
+  public setSessionStorageItem(name: string, data: string) {
+    sessionStorage.setItem(name, data);
+  }
 }

@@ -20,12 +20,23 @@ export class AppMenuComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    // Add prototype menu items
-    this.addPrototypeItems();
-    // Add admin menu items
-    adminMenuItems.forEach((item) => this.model.push(item));
+    this.loadOrCreateMenu();
+  }
 
-    this.addMenuItems();
+  /* Creates the menuItems from API data, or load from session storage when it already exists. */
+  private loadOrCreateMenu() {
+    let navbarItems = sessionStorage.getItem('menuItems');
+    if (navbarItems != null) {
+      // Using menu items in session storage
+      this.model = JSON.parse(navbarItems) as Array<MenuItem>;
+    } else {
+      // Add prototype menu items
+      this.addPrototypeItems();
+      // Add admin menu items
+      adminMenuItems.forEach((item) => this.model.push(item));
+      // Add menu items from API
+      this.addMenuItems();
+    }
   }
 
   /* Adds MenuItems to the navigation menu */
@@ -95,6 +106,9 @@ export class AppMenuComponent implements OnInit {
         let parentItem = this.model.find((item) => item.id == childItem.fragment);
         parentItem == null ? childItems.push(childItem) : this.addItemToParent(parentItem, childItem);
       }
+
+      // Store menu items in session storage
+      this.menuService.setSessionStorageItem('menuItems', JSON.stringify(this.model));
     });
   }
 
