@@ -1,4 +1,4 @@
-import { Component, ContentChild, Input, TemplateRef } from '@angular/core';
+import { Component, ContentChild, TemplateRef } from '@angular/core';
 import { ObjectBase } from '../../objectBase.interface';
 import { BaseBoxComponent } from '../BaseBoxComponent.class';
 import { BoxTableHeaderTemplateDirective } from './box-table-header-template.directive';
