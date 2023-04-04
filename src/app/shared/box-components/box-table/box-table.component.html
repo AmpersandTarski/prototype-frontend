@@ -4,11 +4,31 @@
             <ng-container
                 *ngTemplateOutlet="headers || defaultHeaderTemplate; context: { $implicit: data }"
             ></ng-container>
+            <th *ngIf="canCreate()">
+                <span
+                    class="pi pi-fw pi-plus"
+                    pTooltip="Add"
+                    tooltipPosition="left"
+                    style="color: green; cursor: pointer"
+                    (click)="this.createItem()"
+                ></span>
+            </th>
+            <th *ngIf="canDelete() && !canCreate()"></th>
         </tr>
     </ng-template>
     <ng-template pTemplate="body" let-data>
         <tr>
             <ng-container *ngTemplateOutlet="rows || defaultRowTemplate; context: { $implicit: data }"></ng-container>
+            <td *ngIf="canDelete()">
+                <span
+                    class="pi pi-fw pi-trash"
+                    pTooltip="Delete"
+                    tooltipPosition="left"
+                    style="color: red; cursor: pointer"
+                    (click)="this.deleteItem(data)"
+                ></span>
+            </td>
+            <td *ngIf="canCreate() && !canDelete()"></td>
         </tr>
     </ng-template>
 </p-table>

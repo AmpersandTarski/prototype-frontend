@@ -1,4 +1,6 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, Input } from '@angular/core';
+import { Observable } from 'rxjs';
 import { AmpersandInterface } from '../interfacing/ampersand-interface.class';
 import { ObjectBase } from '../objectBase.interface';
 
@@ -11,6 +13,10 @@ export abstract class BaseBoxComponent<TItem extends ObjectBase, I> {
 
   @Input() crud: string = 'cRud';
 
+  @Input() postMethod!: Observable<unknown>;
+
+  constructor(private http: HttpClient) {}
+
   public canCreate(): boolean {
     return this.crud[0] == 'C';
   }
@@ -22,6 +28,10 @@ export abstract class BaseBoxComponent<TItem extends ObjectBase, I> {
   }
   public canDelete(): boolean {
     return this.crud[3] == 'D';
+  }
+
+  public createItem(): void {
+    this.postMethod.subscribe();
   }
 
   public deleteItem(resource: TItem): void {

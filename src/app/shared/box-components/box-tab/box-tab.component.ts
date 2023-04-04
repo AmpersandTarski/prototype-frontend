@@ -10,8 +10,4 @@ import { BaseBoxComponent } from '../BaseBoxComponent.class';
 export class BoxTabComponent<TItem extends ObjectBase, I> extends BaseBoxComponent<TItem, I> {
   @Input() tabHeaders: string[] = [];
   @ContentChild('tabContent') tabContent!: TemplateRef<any>;
-
-  constructor() {
-    super();
-  }
 }

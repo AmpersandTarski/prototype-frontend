@@ -1,6 +1,14 @@
 <h3>Active Projects</h3>
 <div *ngIf="data$ | async as data; else loading">
-    <app-box-table [data]="data" sortable sortBy="Name" order="desc">
+    <app-box-table
+        [data]="data"
+        sortable
+        sortBy="Name"
+        order="desc"
+        crud="CRUD"
+        [interfaceComponent]="this"
+        [postMethod]="this.service.postProject()"
+    >
         <ng-template boxTableHeader>
             <ng-container *ngTemplateOutlet="header"></ng-container>
         </ng-template>

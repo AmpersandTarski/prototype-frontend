@@ -29,6 +29,10 @@ export class BackendService implements IBackendService {
     return this.http.get<PeopleInterface>('resource/SESSION/1/People');
   }
 
+  public postPeople(): Observable<{ _id_: string }> {
+    return this.http.post<{ _id_: string }>(`resource/SESSION/1/People`, {});
+  }
+
   public getProject(id: string): Observable<ProjectInterface> {
     return this.http.get<ProjectInterface>(`resource/Project/${id}/Project`);
   }
@@ -53,6 +57,10 @@ export class BackendService implements IBackendService {
 
   public patchProject(id: string, data: Patch[]): Observable<PatchResponse<ProjectEditInterface>> {
     return this.http.patch<PatchResponse<ProjectEditInterface>>(`resource/Project/${id}/New_47_edit_32_project`, data);
+  }
+
+  public postProject(): Observable<PatchResponse<PeopleInterface>> {
+    return this.http.post<PatchResponse<PeopleInterface>>('resource/SESSION/1/Active_32_projects', {});
   }
 
   public patchPerson(id: string, data: Patch[]): Observable<PatchResponse<PersonInterface>> {
