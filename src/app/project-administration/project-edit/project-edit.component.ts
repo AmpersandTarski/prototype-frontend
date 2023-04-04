@@ -15,13 +15,8 @@ import { MessageService } from 'primeng/api';
 export class ProjectEditComponent extends AmpersandInterface<ProjectEditInterface> implements OnInit {
   public projectId!: string;
 
-  constructor(
-    private route: ActivatedRoute,
-    protected service: BackendService,
-    http: HttpClient,
-    messageService: MessageService,
-  ) {
-    super(http, messageService);
+  constructor(private route: ActivatedRoute, protected service: BackendService, http: HttpClient) {
+    super(http);
   }
 
   ngOnInit(): void {

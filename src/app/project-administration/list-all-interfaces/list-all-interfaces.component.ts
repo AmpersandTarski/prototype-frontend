@@ -12,8 +12,8 @@ import { ListAllInterfacesInterface } from './list-all-interfaces.interface';
   styleUrls: ['./list-all-interfaces.component.css'],
 })
 export class ListAllInterfacesComponent extends AmpersandInterface<ListAllInterfacesInterface> implements OnInit {
-  constructor(protected service: BackendService, http: HttpClient, messageService: MessageService) {
-    super(http, messageService);
+  constructor(protected service: BackendService, http: HttpClient) {
+    super(http);
   }
 
   ngOnInit(): void {

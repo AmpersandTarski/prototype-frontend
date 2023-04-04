@@ -13,13 +13,8 @@ import { PeopleInterface } from './people.interface';
   styleUrls: ['./people.component.scss'],
 })
 export class PeopleComponent extends AmpersandInterface<PeopleInterface> implements OnInit {
-  constructor(
-    protected service: BackendService,
-    private router: Router,
-    http: HttpClient,
-    messageService: MessageService,
-  ) {
-    super(http, messageService);
+  constructor(protected service: BackendService, private router: Router, http: HttpClient) {
+    super(http);
   }
 
   ngOnInit(): void {
