@@ -15,8 +15,15 @@ for the Ampersand system. The prototye consists of
 The scope of this test strategy an plan is the prototype frontend. 
 
 
-## In Scope 
+### In scope 
 
-* 
+* System test, to establish that the frontend prototype is operational.
+* User Interface test, to test user interface components
+
+### Out of scope
+
+* Ampersand compiler and API
+* Component unit tests
+* Performance test
 
 # Test Plan
