@@ -1,4 +1,4 @@
-# Test Strategy
+# Test Strategy & Plan
 
 ## Analysis
 
@@ -18,6 +18,7 @@ The scope of this test strategy an plan is the prototype frontend.
 ### In scope 
 
 * System test, to establish that the frontend prototype is operational.
+* Integration test
 * User Interface test, to test user interface components
 
 ### Out of scope
@@ -26,4 +27,13 @@ The scope of this test strategy an plan is the prototype frontend.
 * Component unit tests
 * Performance test
 
-# Test Plan
+## Risks & Issues
+
+* ; Probability High, Impact High
+* Insufficient resources to implement required tests; Probability High, Impact Medium
+
+| Risk                | Probability | Impact | 
+| ------------------- | ----------- | -------| 
+| Tester leaves team  | High        | High   | 
+
+
