@@ -49,3 +49,30 @@ When refining the test plan it might turn out that the planned tests do not fit 
 Also, when test capacity leaves the team, this may also impact the plan.
 
 To mitigate this, tests should be provided with a priority.
+
+## Test objective
+
+__features to test__
+
+## Test criteria
+
+__later__
+
+## Resource planning
+
+__Kinda dependent on resources provided or taken by Ordina__
+
+
+## Test environment
+
+Tests are executed on tester machine. No shared testing environment foreseen at the moment.
+
+## Test deliverables
+
+### Planning
+
+* Separate test issues, labeled Ready to Test
+
+###
+
+*                                                                                           
