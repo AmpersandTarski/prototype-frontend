@@ -30,10 +30,11 @@ The scope of this test strategy an plan is the prototype frontend.
 ## Risks & Issues
 
 * ; Probability High, Impact High
-* Insufficient resources to implement required tests; Probability High, Impact Medium
+* ; Probability High, Impact Medium
 
-| Risk                | Probability | Impact | 
-| ------------------- | ----------- | -------| 
-| Tester leaves team  | High        | High   | 
+| Risk                         | Probability | Impact | 
+| -------------------          | ----------- | -------| 
+| Tester leaves team           | High        | High   | 
+| Insufficient test resources  | High        | High   | 
 
 
