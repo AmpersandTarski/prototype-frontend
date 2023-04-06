@@ -18,13 +18,8 @@ import { MessageService } from 'primeng/api';
 export class PersonComponent extends AmpersandInterface<PersonInterface> implements OnInit {
   private personId!: string;
 
-  constructor(
-    private route: ActivatedRoute,
-    protected service: BackendService,
-    http: HttpClient,
-    messageService: MessageService,
-  ) {
-    super(http, messageService);
+  constructor(private route: ActivatedRoute, protected service: BackendService, http: HttpClient) {
+    super(http);
   }
 
   ngOnInit(): void {

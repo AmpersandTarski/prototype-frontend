@@ -21,9 +21,8 @@ export class ProjectComponent extends AmpersandInterface<ProjectInterface> imple
     protected service: BackendService,
     private router: Router,
     http: HttpClient,
-    messageService: MessageService,
   ) {
-    super(http, messageService);
+    super(http);
   }
 
   ngOnInit(): void {

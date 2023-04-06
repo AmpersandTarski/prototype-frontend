@@ -59,7 +59,7 @@ export class LoggingInterceptor implements HttpInterceptor {
       field.tuples.forEach((tuple) => {
         violationMessages += tuple.violationMessage + '\n';
       });
-      this.sendMessage('warn', field.ruleMessage, violationMessages);
+      this.sendMessage('error', field.ruleMessage, violationMessages);
     });
 
     notifications.signals.forEach((field) => {

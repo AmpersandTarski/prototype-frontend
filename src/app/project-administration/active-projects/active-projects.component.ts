@@ -11,8 +11,8 @@ import { ActiveProjectsInterface } from './active-projects.interface';
   styleUrls: ['./active-projects.component.css'],
 })
 export class ActiveProjectsComponent extends AmpersandInterface<ActiveProjectsInterface> implements OnInit {
-  constructor(protected service: BackendService, http: HttpClient, messageService: MessageService) {
-    super(http, messageService);
+  constructor(protected service: BackendService, http: HttpClient) {
+    super(http);
   }
 
   ngOnInit(): void {

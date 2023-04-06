@@ -18,8 +18,8 @@ import { MessageService } from 'primeng/api';
 export class ToolGalleryComponent extends AmpersandInterface<TestDataInterface> {
   data: TestDataInterface = JSON.parse(JSON.stringify(testdata[0]));
 
-  constructor(http: HttpClient, messageService: MessageService) {
-    super(http, messageService);
+  constructor(http: HttpClient) {
+    super(http);
   }
 
   override patch<TestDataInterface>(

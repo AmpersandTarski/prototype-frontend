@@ -9,26 +9,11 @@ import { MessageService } from 'primeng/api';
 export class AmpersandInterface<T> {
   public data$!: Observable<T>;
 
-  constructor(protected http: HttpClient, private messageService: MessageService) {}
+  constructor(protected http: HttpClient) {}
 
   public patch(resource: ObjectBase, patches: Array<Patch | PatchValue>): Observable<PatchResponse<T>> {
     return this.http.patch<PatchResponse<T>>(resource._path_, patches).pipe(
       tap((x) => {
-        // TODO: show warning message of x.notifications.invariants
-        if (!x.invariantRulesHold) {
-          //console.log('Invariants do not hold');
-          let invariants: string = '';
-          x.notifications.invariants.forEach((inv) => {
-            invariants += inv.ruleMessage;
-            invariants += '\n';
-          });
-          this.messageService.add({
-            severity: 'warn',
-            summary: 'Invariants do not hold',
-            detail: invariants,
-          });
-        }
-
         // console.log('Current resource', resource);
         // console.log('Received object from API', x.content);
 
