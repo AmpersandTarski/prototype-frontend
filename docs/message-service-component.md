@@ -1,10 +1,12 @@
-### Main Toast module
+There are two main scripts that utilize the messageService. This is set up in a way that they intercept any notifications or errors and prompt the user with a message. This document explains how to use the messageService in a special case where a custom message needs to be displayed.
+
+## Main Toast module
 
 A `MessageService` has been added to the main app component. This way, the service covers all other components, having only one `<p-toast>` object to be present at all times. This reduces the number of imports per component from roughly four to one, and reduces the number of `<p-toast>` objects on the page.
 
 To use this service in a component, simply add `private messageService: MessageService` to the component constructor. Then, to send a message, add `this.messageService.add( {YOUR_MESSAGE} );` to the code.
 
-Here is an example (from admin/population/import/import.component.ts):
+Here is a (deprecated) example (from admin/population/import/import.component.ts):
 ![image](https://user-images.githubusercontent.com/58219126/223455745-38c1c1b7-1d74-4f97-ac14-a131067dcf2e.png)
 
 A message has the following fields (I added comments to clarify the more important fields):
@@ -26,8 +28,4 @@ export interface Message {
 }
 ```
 
-(click [here](https://www.primefaces.org/primeng-v13/toast) for more specific information).
-
-### Atomic Components
-
-The abstract `BaseAtomicComponent` also has message functionality. This way each atomic component automatically has message service support. Just call the `super.addMessage( {YOUR_MESSAGE} );` method.
+(click [here](https://www.primefaces.org/primeng-v13/toast) for more specific information on the toast module).
