@@ -6,7 +6,7 @@ This document describes the necessary setup to run the **prototype-frontend** ap
 
 1. Install [Docker Desktop](https://www.docker.com/products/docker-desktop/)
 2. Install [NPM](https://nodejs.org/en/download/)
-3. Install [VSCode](https://code.visualstudio.com/)
+3. (For developers) Install [VSCode](https://code.visualstudio.com/)
 
 ## Project setup:
 
@@ -14,7 +14,7 @@ This document describes the necessary setup to run the **prototype-frontend** ap
 2. Install **NPM packages** through the terminal: `npm install`. This requires you to be in the **prototype-frontend** folder.
 3. Clone the repository [project-administration](https://github.com/Michiel-s/Project-administration).
 4. Within the **project-administration** folder, change the name of the file `.env.example` to `.env`.
-5. Inside the **project-administration** folder, run the docker command `docker compose up -d`. This installs the environment into **Docker Desktop**.
+5. Inside the **project-administration** folder, run the docker command `docker compose up -d --build`. This installs the environment into **Docker Desktop**.
 6. Install the database. [Run the application](#running-the-application) and go to the _Installer_ page. In here, you can install the database.
 
 ## VSCode Setup
