@@ -1,7 +1,30 @@
 <div class="card" *ngFor="let item of data">
+    <span
+        *ngIf="canCreate()"
+        class="pi pi-fw pi-plus"
+        pTooltip="Add"
+        tooltipPosition="left"
+        style="color: green; cursor: pointer"
+        (click)="this.createItem()"
+    ></span>
+    <span
+        *ngIf="canUpdate()"
+        class="pi pi-fw pi-minus"
+        (click)="this.removeItem(item)"
+        pTooltip="Remove"
+        tooltipPosition="left"
+        style="color: red; padding-bottom: 9px; cursor: pointer"
+    ></span>
+    <span
+        *ngIf="canDelete()"
+        class="pi pi-fw pi-trash"
+        pTooltip="Delete"
+        tooltipPosition="left"
+        style="color: red; cursor: pointer"
+        (click)="this.deleteItem(item)"
+    ></span>
     <ng-container *ngTemplateOutlet="template || defaultTemplate; context: { $implicit: item }"></ng-container>
 </div>
-
 <ng-template #defaultTemplate let-item>
     <span>No template provided</span>
 </ng-template>
