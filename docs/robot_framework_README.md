@@ -4,7 +4,9 @@ Testing [prototype-frontend](https://github.com/AmpersandTarski/prototype-fronte
 
 ## Prerequisites
 
-It is assumed you have installed Visual Studio Code on your desktop and have a working knowledge of it.  
+It is assumed you have:
+- installed Visual Studio Code on your desktop and have a working knowledge of it, and
+- cloned repository [prototype-frontend](https://github.com/AmpersandTarski/prototype-frontend) to your developer desktop.
 
 ## Install Python
 
@@ -21,22 +23,34 @@ C:\Users\fte23680>
 
 ## Install Robot Framework
 
+Installing the framework should be easy, using the pip installation manager that comes with Python.
+
 ```
 C:\WINDOWS\system32>pip install robotframework
-WARNING: Ignoring invalid distribution ~obotframework (C:\Python311\Lib\site-packages)
 Collecting robotframework
   Using cached robotframework-6.0.2-py3-none-any.whl (658 kB)
-WARNING: Ignoring invalid distribution ~obotframework (C:\Python311\Lib\site-packages)
 Installing collected packages: robotframework
 Successfully installed robotframework-6.0.2
 ```
 
+If needed, more information can be found on the [Robot Framework](https://robotframework.org/) website and in the [Installation instructions](https://github.com/robotframework/robotframework/blob/master/INSTALL.rst).
 
 ---
+
+## About test code in the repository
+
+## Running the test
+
+- Open a command prompt.
+- Execute run_robot_tests.bat
+
+
+
+## Old PyCharm stuff
+
 Welcome to the installation guide for the Robot Framework tests, I have made an installation guide to get everything up and running in no-time. 
 Before even cloning the [test repository](https://github.com/Sharvin1/Ampersand_test) it is important that you install the following: 
 
-1. Install the latest version of Python, you can do this by going to the [website](https://www.python.org/) and download Python for your OS. PIP should be installed too, you can check if this happened by typing `pip3 --version` into your terminal.
 2.  Open the terminal and install homebrew, because we are going to use this later on to install the chromedriver.  `/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"`
 3. Install Robot Framework 
    `pip3 install robotframework`
