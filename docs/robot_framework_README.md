@@ -1,5 +1,21 @@
 # Robot Framework Installation Guide
 
+Testing [prototype-frontend](https://github.com/AmpersandTarski/prototype-frontend) is done by manual execution of a suite of Robot Framework tests on a developer desktop. This installation guide helps developers in performing this test.
+
+## Install Python
+
+Robot Framework is developed in Python. Therefore you should have installed a recent version of Python on your developer desktop. Current version at time of writing is Python 3.11.3. You do not actually have to develop in Python; you only need the framework installed.
+
+For installing, visit [Python.org](https://www.python.org/downloads/) and choose your favourate way of installing Python.
+
+To check the installation, execute a command in a command shell.
+
+> C:\Users\fte23680>python --version
+> Python 3.11.3
+> 
+> C:\Users\fte23680>
+
+---
 Welcome to the installation guide for the Robot Framework tests, I have made an installation guide to get everything up and running in no-time. 
 Before even cloning the [test repository](https://github.com/Sharvin1/Ampersand_test) it is important that you install the following: 
 
