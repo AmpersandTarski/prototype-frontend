@@ -2,18 +2,35 @@
 
 Testing [prototype-frontend](https://github.com/AmpersandTarski/prototype-frontend) is done by manual execution of a suite of Robot Framework tests on a developer desktop. This installation guide helps developers in performing this test.
 
+## Prerequisites
+
+It is assumed you have installed Visual Studio Code on your desktop and have a working knowledge of it.  
+
 ## Install Python
 
 Robot Framework is developed in Python. Therefore you should have installed a recent version of Python on your developer desktop. Current version at time of writing is Python 3.11.3. You do not actually have to develop in Python; you only need the framework installed.
 
-For installing, visit [Python.org](https://www.python.org/downloads/) and choose your favourate way of installing Python.
+For installing, visit [Python.org](https://www.python.org/downloads/) and choose your favourate way of installing Python. Make sure Python is added to PATH, so that it can be found from the commmand shell.
 
 To check the installation, execute a command in a command shell.
+```
+C:\Users\fte23680>python --version
+Python 3.11.3
+C:\Users\fte23680>
+```
 
-> C:\Users\fte23680>python --version
-> Python 3.11.3
-> 
-> C:\Users\fte23680>
+## Install Robot Framework
+
+```
+C:\WINDOWS\system32>pip install robotframework
+WARNING: Ignoring invalid distribution ~obotframework (C:\Python311\Lib\site-packages)
+Collecting robotframework
+  Using cached robotframework-6.0.2-py3-none-any.whl (658 kB)
+WARNING: Ignoring invalid distribution ~obotframework (C:\Python311\Lib\site-packages)
+Installing collected packages: robotframework
+Successfully installed robotframework-6.0.2
+```
+
 
 ---
 Welcome to the installation guide for the Robot Framework tests, I have made an installation guide to get everything up and running in no-time. 
