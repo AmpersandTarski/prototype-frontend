@@ -35,16 +35,24 @@ Successfully installed robotframework-6.0.2
 
 If needed, more information can be found on the [Robot Framework](https://robotframework.org/) website and in the [Installation instructions](https://github.com/robotframework/robotframework/blob/master/INSTALL.rst).
 
----
+The [Robot Framework](https://robotframework.org/) website is a usefull starting point to learn more. Note also the [User Guide](https://robotframework.org/robotframework/latest/RobotFrameworkUserGuide.html).
 
 ## About test code in the repository
+
+Test code can be found in [/testing/robot_framework](https://github.com/AmpersandTarski/prototype-frontend/tree/main/testing/robot_framework). _Note: for now, go to feature branch /feature/robot_framework_installation_.
+
+_explain a bit on folder structure_
+
+In the root of the repository there is also a script run_robot_tests.bat. This script calls Robot Framework from the right subdirectory.
 
 ## Running the test
 
 - Open a command prompt.
 - Execute run_robot_tests.bat
 
-
+_todo: redirect output to proper output folders_
+_todo: add git_ignore patterns to avoid getting output in GIT_
+---
 
 ## Old PyCharm stuff
 
