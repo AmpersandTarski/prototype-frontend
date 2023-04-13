@@ -18,6 +18,7 @@ export class LoggingInterceptor implements HttpInterceptor {
     let responseIsOk: boolean;
     let messageSummary: string;
     let patchResponse: PatchResponse<JSON>;
+    let notifications: Notifications;
 
     return next.handle(req).pipe(
       tap({
@@ -25,6 +26,7 @@ export class LoggingInterceptor implements HttpInterceptor {
           if (response instanceof HttpResponse) {
             responseIsOk = true;
             patchResponse = response.body as PatchResponse<JSON>;
+            notifications = patchResponse.notifications ? patchResponse.notifications : response.body;
           }
         },
       }),
@@ -36,7 +38,8 @@ export class LoggingInterceptor implements HttpInterceptor {
           } in ${elapsed} ms.`;
           console.log(messageSummary);
 
-          if (patchResponse.notifications) this.sendMessagesFromNotifications(patchResponse.notifications);
+          // If notifications have been found, the error field exists (possibly with empty array, but it exists)
+          if (notifications.errors) this.sendMessagesFromNotifications(notifications);
           if (patchResponse.sessionRefreshAdvice) {
             // clear session storage and reload page
             sessionStorage.clear();
