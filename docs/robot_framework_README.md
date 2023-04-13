@@ -41,7 +41,7 @@ The [Robot Framework](https://robotframework.org/) website is a usefull starting
 
 Test code can be found in [/testing/robot_framework](https://github.com/AmpersandTarski/prototype-frontend/tree/main/testing/robot_framework). _Note: for now, go to feature branch /feature/robot_framework_installation_.
 
-_explain a bit on folder structure_
+_todo: explain a bit on folder structure_
 
 In the root of the repository there is also a script run_robot_tests.bat. This script calls Robot Framework from the right subdirectory.
 
