@@ -43,6 +43,7 @@ export class RolesComponent implements OnInit {
         ? (this.menuItems[index].icon = 'pi pi-check-circle')
         : (this.menuItems[index].icon = 'pi pi-circle-off'),
     );
-    this.rolesService.setSessionStorageItem('rolesMenuItems', JSON.stringify(this.menuItems));
+    sessionStorage.clear();
+    location.reload();
   }
 }
