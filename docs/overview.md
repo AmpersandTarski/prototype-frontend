@@ -1,3 +1,5 @@
+This page explains in general the structure of this project and how to navigate through it.
+
 # Angular and the file structure
 
 This frontend uses the angular framework. This is clearly visible from the file structure. Each component consists of a `.ts`, `.scss`, and a `.html` file, and each component is part of a module, which can be found in the parent folder as a `*.module.ts`. Sometimes a `*.service.ts` service is used for very specific functionality. For more information on the angular file structure, click [here](https://angular.io/guide/architecture).
