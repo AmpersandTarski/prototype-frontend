@@ -41,9 +41,14 @@ The [Robot Framework](https://robotframework.org/) website is a usefull starting
 
 Test code can be found in [/testing/robot_framework](/testing/robot_framework).
 
-_todo: explain a bit on folder structure_
+* /testing/robot_framework
+* * keywords: re-usable keywords modules for use in tests.
+* * output: output files.
+* * resources: test configuration and technical keywords for use in keyword modules and tests.
+* * tests: the actual tests themselves.
 
-In the root of the repository there is also a script [run_robot_tests.bat](/run_robot_tests.bat). This script calls Robot Framework from the right subdirectory.
+Additionaly, the root of the repository contains
+* a script `run_robot_tests.bat`. This script calls Robot Framework with some options.
 
 ## Running the test
 
