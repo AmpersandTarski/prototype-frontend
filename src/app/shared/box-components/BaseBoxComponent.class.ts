@@ -45,4 +45,16 @@ export abstract class BaseBoxComponent<TItem extends ObjectBase, I> {
       }
     });
   }
+
+  public removeItem(resource: TItem): void {
+    // this.interfaceComponent
+    //   .patch(resource, [
+    //     {
+    //       op: 'remove',
+    //       path: resource._id_,
+    //       value: resource,
+    //     },
+    //   ])
+    //   .subscribe();
+  }
 }

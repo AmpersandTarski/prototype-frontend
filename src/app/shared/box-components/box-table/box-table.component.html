@@ -19,8 +19,17 @@
     <ng-template pTemplate="body" let-data>
         <tr>
             <ng-container *ngTemplateOutlet="rows || defaultRowTemplate; context: { $implicit: data }"></ng-container>
-            <td *ngIf="canDelete()">
+            <td>
                 <span
+                    *ngIf="canUpdate()"
+                    class="pi pi-fw pi-minus"
+                    (click)="this.removeItem(data)"
+                    pTooltip="Remove"
+                    tooltipPosition="left"
+                    style="color: red; padding-bottom: 9px; cursor: pointer"
+                ></span>
+                <span
+                    *ngIf="canDelete()"
                     class="pi pi-fw pi-trash"
                     pTooltip="Delete"
                     tooltipPosition="left"
