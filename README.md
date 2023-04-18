@@ -26,4 +26,4 @@ To have a backend running at port 80 for the frontend to connect to, deploy an [
 
 ## Testing
 
-The [Testing Readme](/docs/robot_framework_README.md) contains instructions for installing and running Robot Framework.
+The [Robot Framework Install & Run Guide](/docs/robot_framework_README.md) contains instructions for installing and running Robot Framework.
