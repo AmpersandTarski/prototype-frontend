@@ -3,7 +3,7 @@ import { MenuItem } from 'primeng/api';
 import { BaseAtomicComponent } from '../BaseAtomicComponent.class';
 import { Router } from '@angular/router';
 import { InterfaceRefObject, ObjectBase } from '../../objectBase.interface';
-import { map, Observable } from 'rxjs';
+import { map, Observable, of } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { InterfaceRouteMap, INTERFACE_ROUTE_MAPPING_TOKEN } from 'src/app/config';
 import { FormControl } from '@angular/forms';
@@ -41,7 +41,7 @@ export class AtomicObjectComponent<I> extends BaseAtomicComponent<ObjectBase, I>
         this.newItemControl.disable(); // disables dropdown when univalent and already has a value
       }
 
-      this.alternativeObjects$ = this.getPatchItems()!;
+      this.alternativeObjects$ = this.getItemsDropdownMenu();
     }
   }
 
@@ -56,13 +56,15 @@ export class AtomicObjectComponent<I> extends BaseAtomicComponent<ObjectBase, I>
           value: val._id_,
         },
       ])
-      .subscribe(() => {
-        if (this.isUni) {
-          // since an element has been added, the dropdown menu should be disabled again when univalent
-          this.newItemControl.disable();
+      .subscribe((x) => {
+        if (x.isCommitted && x.invariantRulesHold) {
+          if (this.isUni) {
+            this.newItemControl.disable(); // disables dropdown when univalent and already has a value
+          }
+          this.data.push(val);
+          this.alternativeObjects$ = this.getItemsDropdownMenu()!;
+          this.newItemControl.setValue({} as ObjectBase);
         }
-        this.data.push(val);
-        this.newItemControl.setValue({} as ObjectBase);
       });
   }
 
@@ -74,11 +76,20 @@ export class AtomicObjectComponent<I> extends BaseAtomicComponent<ObjectBase, I>
           path: `${this.propertyName}/${this.data[index]._id_}`, // FIXME: this must be relative to path of this.resource
         },
       ])
-      .subscribe();
+      .subscribe((x) => {
+        if (x.isCommitted && x.invariantRulesHold) {
+          this.data.splice(index, 1);
+          this.alternativeObjects$ = this.getItemsDropdownMenu()!;
+        }
+      });
   }
 
-  public deleteItem() {
-    this.interfaceComponent.delete(this.resource).subscribe();
+  public deleteItem(index: number) {
+    this.interfaceComponent.delete(this.resource, `${this.propertyName}/${this.data[index]._id_}`).subscribe((x) => {
+      if (x.isCommitted && x.invariantRulesHold) {
+        this.data.splice(index, 1);
+      }
+    });
   }
 
   public navigateToInterface(interfaceName: string, resourceId: string): Promise<boolean> {
@@ -102,8 +113,8 @@ export class AtomicObjectComponent<I> extends BaseAtomicComponent<ObjectBase, I>
   }
 
   // Find which entities are able to be added to the dropdown menu
-  private getPatchItems(): Observable<ObjectBase[]> | null {
-    if (this.itemsMethod == null) return null;
+  private getItemsDropdownMenu(): Observable<ObjectBase[]> {
+    if (this.itemsMethod == null) return of();
 
     let objects: Observable<ObjectBase[]> = this.itemsMethod();
     // grab only the elements for the dropdown menu when they don't exist yet
