@@ -1,1 +1,1 @@
-robot testing\robot_framework\tests --outputdir .\testing\robot_framework
+robot --outputdir .\testing\robot_framework\output testing\robot_framework\tests 
