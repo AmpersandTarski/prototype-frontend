@@ -1,4 +1,4 @@
-# Test Strategy & Plan
+# Prototype-Frontend Test Plan
 
 ## Analysis
 
