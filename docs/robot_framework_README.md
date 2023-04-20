@@ -55,5 +55,4 @@ Additionaly, the root of the repository contains
 - Open a command prompt.
 - Execute `run_robot_tests.bat`
 
-_todo: redirect output to proper output folders_
-_todo: add git_ignore patterns to avoid getting output in GIT_
+_Note: using the script ensures that output is sent to an output folder that is git-ignored and that test ouput has no extra test suite layers_
