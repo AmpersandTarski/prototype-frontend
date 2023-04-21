@@ -6,10 +6,11 @@
  */
 
 // Imports
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, ParamMap } from '@angular/router';
+import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { from, map, Observable, switchMap, tap } from 'rxjs';
-import { AmpersandInterface } from 'src/app/shared/interfacing/ampersand-interface.interface';
+import { AmpersandInterface } from 'src/app/shared/interfacing/ampersand-interface.class';
 import { BackendService } from '../backend.service';
 
 import { $ifcNamePascal$Interface } from './$ifcNameKebab$.interface';
@@ -19,17 +20,22 @@ import { $ifcNamePascal$Interface } from './$ifcNameKebab$.interface';
   templateUrl: './$ifcNameKebab$.component.html',
   // styleUrls: ['./$ifcNameKebab$.component.scss'],
 })
-export class $ifcNamePascal$Component implements OnInit, AmpersandInterface<$ifcNamePascal$Interface> {
-  public data\$!: Observable<$ifcNamePascal$Interface>;
-
-  constructor(private route: ActivatedRoute, private service: BackendService) {}
+export class $ifcNamePascal$Component extends AmpersandInterface<$ifcNamePascal$Interface> implements OnInit {
+  constructor(
+    private route: ActivatedRoute,
+    protected service: BackendService,
+    private router: Router,
+    http: HttpClient
+  ) {
+    super(http);
+  }
 
   ngOnInit(): void {
     $if(isSessionInterface)$this.data\$ = this.service.get$ifcNamePascal$();$else$this.data\$ = this.route.paramMap.pipe(
       switchMap((params: ParamMap) => {
         let resourceId = params.get('id')!;
         if (resourceId === null) {
-          throw new Error('id does not exist');
+          this.router.navigate(['/404'], { skipLocationChange: true });
         }
         return this.service.get$ifcNamePascal$(resourceId);
       }),
