@@ -37,6 +37,14 @@ If needed, more information can be found on the [Robot Framework](https://robotf
 
 The [Robot Framework](https://robotframework.org/) website is a usefull starting point to learn more. Note also the [User Guide](https://robotframework.org/robotframework/latest/RobotFrameworkUserGuide.html).
 
+## Install SeleniumLibrary
+
+The project uses SeleniumLibrary for its test.
+This needs to be installed seperately by running the following command.
+
+`pip install robotframework-seleniumlibrary`
+
+
 ## About test code in the repository
 
 Test code can be found in [/testing/robot_framework](/testing/robot_framework).
