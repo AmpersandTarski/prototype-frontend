@@ -23,7 +23,7 @@ import { MessageService } from 'primeng/api';
     AppLayoutModule,
     SharedModule,
     CoreModule,
-    ProjectAdministrationModule,
+    // ProjectAdministrationModule,
     ToolsModule,
     AdminModule,
     AppRoutingModule,
