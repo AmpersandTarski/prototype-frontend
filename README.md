@@ -23,3 +23,7 @@ Inside the dev container, use the dev-container configuration to serve the appli
 This is needed because the dev-container needs a different proxy configuration; forwarding `/api` to `http://host.docker.internal:80` instead of `http://localhost:80`.
 
 To have a backend running at port 80 for the frontend to connect to, deploy an [Ampersand prototype application](https://github.com/AmpersandTarski/prototype). E.g. the [Project Administration application](https://github.com/Michiel-s/Project-administration).
+
+## Testing
+
+The [Robot Framework Install & Run Guide](/docs/robot_framework_README.md) contains instructions for installing and running Robot Framework.
