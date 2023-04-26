@@ -1,12 +1,15 @@
 # Definition of Done
 
+Here we define our Definition of Done. Both for the now, and our ambitions for the future.
+
 ## Now
 
 These are the activities that have been completed when an issue is moved to Done.
+Copy them into the issues that are taken into progress, and check the activities that are done.
 
 - [ ] Agreed ready for implementation.
 - [ ] Coding finished and checked in.
-- [ ] Developer tested.
+- [ ] Manually tested.
 - [ ] Documentation partially updated.
 - [ ] Peer review performed.
 - [ ] Merged to main branch.
@@ -18,9 +21,9 @@ It should be checked during sprint planning
 
 This activity acts as an alternative for the more formally defined Definition of Ready, as we currently have no Definition of Ready.
 
-## Developer tested
+## Manually tested
 
-This means that the developer has performed his/her own testing, manually. Optionally the peer reviewer(s) can also have performed tests.
+This means that the developer has performed his/her own testing manually. Optionally the peer reviewer(s) can also have performed such tests.
 
 ### Documentation partially updated means that existing documentation has been updated
 
