@@ -31,7 +31,7 @@ This means that existing documentation has been updated
 
 ## Future
 
-There are some activities we would like to start including in our Definition of Done, but that require preparation.
+There are some activities we would like to include in our Definition of Done, but that require some preparation.
 
 ### Documentation fully updated
 
