@@ -85,9 +85,15 @@ export abstract class BaseAtomicComponent<T, I> implements OnInit {
           value: val,
         },
       ])
-      .subscribe();
-    this.data.push(val);
-    this.newItemControl.setValue('');
+      .subscribe((x) => {
+        if (x.isCommitted && x.invariantRulesHold) {
+          if (this.isUni) {
+            this.newItemControl.disable();
+          }
+          this.data.push(val);
+          this.newItemControl.setValue('');
+        }
+      });
   }
 
   // remove for not univalent atomic-components
@@ -100,7 +106,11 @@ export abstract class BaseAtomicComponent<T, I> implements OnInit {
           value: this.data[index],
         },
       ])
-      .subscribe();
+      .subscribe((x) => {
+        if (x.isCommitted && x.invariantRulesHold) {
+          this.data.splice(index, 1);
+        }
+      });
   }
 
   public isNewItemInputRequired() {
