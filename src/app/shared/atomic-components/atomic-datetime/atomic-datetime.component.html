@@ -22,6 +22,7 @@
         [formControl]="formControl"
         [showTime]="true"
         (onClose)="patchDate()"
+        (onClear)="patchDate()"
     ></p-calendar>
 </ng-template>
 
@@ -42,7 +43,6 @@
 
     <div class="p-inputgroup">
         <p-calendar
-            [showClear]="!isTot"
             [readonlyInput]="true"
             [dateFormat]="format"
             [formControl]="newItemControl"
