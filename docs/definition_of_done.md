@@ -21,12 +21,13 @@ It should be checked during sprint planning
 
 This activity acts as an alternative for the more formally defined Definition of Ready, as we currently have no Definition of Ready.
 
-## Manually tested
+### Manually tested
 
 This means that the developer has performed his/her own testing manually. Optionally the peer reviewer(s) can also have performed such tests.
 
-### Documentation partially updated means that existing documentation has been updated
+### Documentation partially updated 
 
+This means that existing documentation has been updated
 
 ## Future
 
