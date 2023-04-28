@@ -1,6 +1,6 @@
 # Definition of Done
 
-Here we define our Definition of Done. Both for the now, and our ambitions for the future.
+This is our Definition of Done. Both for the now, and our ambitions for the future.
 
 ## Now
 
@@ -17,9 +17,9 @@ Copy them into the issues that are taken into progress, and check the activities
 ### Agreed ready for implementation
 
 This means that at least one or (preferably) two developers understand the requirements sufficiently to start implementation. 
-It should be checked during sprint planning
+It should be checked during sprint planning.
 
-This activity acts as an alternative for the more formally defined Definition of Ready, as we currently have no Definition of Ready.
+This activity acts as an alternative for the more formally defined Definition of Ready for issues.
 
 ### Manually tested
 
@@ -35,14 +35,18 @@ There are some activities we would like to include in our Definition of Done, bu
 
 ### Documentation fully updated
 
-Documentation should be fully updated as part of an issue being done. But for that to work we need to update and complete current documentation.
+Documentation should be fully updated as part of an issue being done. 
+
+But for that to work we need to update and complete current documentation.
 
 ### Unit tests implemented and completed sucessfully
 
-There should be a unit testing framework in place. With that we should implement unit tests as part of our Definition of Done. These unit 
+There should be a unit testing framework in place. With that we should implement unit tests as part of our Definition of Done.  
 
 ### Functional tests implemented and completed sucessfully
 
-The initial implementation for a the functional testing framework has just been finished. Before we can integrate functional tests in the DoD we need to gain some experience.
+Functional tests implemented means that required functional tests have been identified, built and run succesfully.
 
-- Functional tests implemented means that required functional tests have been identified and have 
+The initial implementation for a the functional testing framework has just been finished. We need to gain some experience with it, 
+define a test plan and set up the basic required tests.
+
