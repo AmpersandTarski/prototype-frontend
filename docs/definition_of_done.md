@@ -13,6 +13,7 @@ Copy them into the issues that are taken into progress, and check the activities
 - [ ] Documentation partially updated.
 - [ ] Peer review performed.
 - [ ] Merged to main branch.
+- [ ] Promote found problems, future work, to issues.
 
 ### Agreed ready for implementation
 
