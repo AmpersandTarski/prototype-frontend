@@ -1,6 +1,6 @@
 <!-- Box-FORM.html -->
 <div $if(isRoot)$*ngIf="data\$ | async as data; else loading"$endif$>
-    <app-box-form [data]="$if(isRoot)$$if(exprIsUni)$[data]$else$data$endif$$else$$if(exprIsUni)$[resource.$name$]$else$resource.$name$$endif$$endif$">
+    <app-box-form crud="$crud$" [interfaceComponent]="this" [data]="$if(isRoot)$$if(exprIsUni)$[data]$else$data$endif$$else$$if(exprIsUni)$[resource.$name$]$else$resource.$name$$endif$$endif$">
         <ng-template [boxFormTemplate]="$if(isRoot)$$if(exprIsUni)$[data]$else$data$endif$$else$$if(exprIsUni)$[resource.$name$]$else$resource.$name$$endif$$endif$" let-resource>
             <div class="formgrid grid">$subObjects:{subObj|
                 <div class="field col-12 box-form-field">

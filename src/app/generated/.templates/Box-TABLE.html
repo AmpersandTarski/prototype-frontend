@@ -1,6 +1,6 @@
 <!-- Box-TABLE.html -->
 <div $if(isRoot)$*ngIf="data\$ | async as data; else loading"$endif$>
-    <app-box-table [data]="$if(isRoot)$$if(exprIsUni)$[data]$else$data$endif$$else$$if(exprIsUni)$[resource.$name$]$else$resource.$name$$endif$$endif$" sortable sortBy="Name" order="desc">
+    <app-box-table crud="$crud$" [interfaceComponent]="this" [data]="$if(isRoot)$$if(exprIsUni)$[data]$else$data$endif$$else$$if(exprIsUni)$[resource.$name$]$else$resource.$name$$endif$$endif$" sortable sortBy="Name" order="desc">
         <ng-template boxTableHeader>$subObjects:{subObj|
             <th>$subObj.subObjLabel$</th>}$
         </ng-template>
