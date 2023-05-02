@@ -78,7 +78,7 @@ export abstract class BaseAtomicComponent<T, I> implements OnInit {
     let val: T = this.newItemControl.value as unknown as T;
 
     this.interfaceComponent
-      .patch(this.resource, [
+      .patch(this.resource._path_, [
         {
           op: 'add',
           path: this.propertyName, // FIXME: this must be relative to path of this.resource
@@ -99,7 +99,7 @@ export abstract class BaseAtomicComponent<T, I> implements OnInit {
   // remove for not univalent atomic-components
   public removeItem(index: number) {
     this.interfaceComponent
-      .patch(this.resource, [
+      .patch(this.resource._path_, [
         {
           op: 'remove',
           path: this.propertyName, // FIXME: this must be relative to path of this.resource

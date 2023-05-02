@@ -49,7 +49,7 @@ export class AtomicObjectComponent<I> extends BaseAtomicComponent<ObjectBase, I>
     let val = this.newItemControl.value as ObjectBase;
 
     this.interfaceComponent
-      .patch(this.resource, [
+      .patch(this.resource._path_, [
         {
           op: 'add',
           path: this.propertyName, // FIXME: this must be relative to path of this.resource
@@ -70,7 +70,7 @@ export class AtomicObjectComponent<I> extends BaseAtomicComponent<ObjectBase, I>
 
   public override removeItem(index: number) {
     this.interfaceComponent
-      .patch(this.resource, [
+      .patch(this.resource._path_, [
         {
           op: 'remove',
           path: `${this.propertyName}/${this.data[index]._id_}`, // FIXME: this must be relative to path of this.resource
@@ -85,11 +85,13 @@ export class AtomicObjectComponent<I> extends BaseAtomicComponent<ObjectBase, I>
   }
 
   public deleteItem(index: number) {
-    this.interfaceComponent.delete(this.resource, `${this.propertyName}/${this.data[index]._id_}`).subscribe((x) => {
-      if (x.isCommitted && x.invariantRulesHold) {
-        this.data.splice(index, 1);
-      }
-    });
+    this.interfaceComponent
+      .delete(this.resource._path_, `${this.propertyName}/${this.data[index]._id_}`)
+      .subscribe((x) => {
+        if (x.isCommitted && x.invariantRulesHold) {
+          this.data.splice(index, 1);
+        }
+      });
   }
 
   public navigateToInterface(interfaceName: string, resourceId: string): Promise<boolean> {

@@ -11,4 +11,17 @@ import { BoxFormTemplateDirective } from './box-form-template.directive';
 export class BoxFormComponent<TItem extends ObjectBase, I> extends BaseBoxComponent<TItem, I> {
   @ContentChild(BoxFormTemplateDirective, { read: TemplateRef })
   template?: TemplateRef<unknown>;
+
+  public createItem(): void {
+    const str = this.data[0]._path_;
+    const lastIndex = str.lastIndexOf('/');
+    // removes the section after the last "/"
+    const formattedStr = str.substring(0, lastIndex);
+
+    this.interfaceComponent.post(formattedStr).subscribe((x) => {
+      if (x.isCommitted && x.invariantRulesHold) {
+        this.data.unshift(x.content as TItem);
+      }
+    });
+  }
 }
