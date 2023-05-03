@@ -8,9 +8,13 @@ Significant amount of code is generated using the [Ampersand compiler](https://g
 
 To update the generated application, when ADL model files have changed or when changes are made to [template](./src/app/generated/.templates), you can run the following command:
 
-> `./ampersand proto --no-backend --frontend-version Angular <path-to-application-entry-script>.adl --proto-dir ./src/app/generated`
+> `./ampersand proto --no-backend --frontend-version Angular --proto-dir ./src/app/generated --crud-defaults cRud <path-to-application-entry-script>.adl`
 
-The required Ampersand compiler with support for generating new frontend module is still work in progress. You can build a compiler yourself using this [feature branch](https://github.com/AmpersandTarski/Ampersand/tree/feature/angularGenerator) or request a distribution at the Ampersand team.
+E.g. to generate an application for the ProjectAdministration project (which is available as test asset), run:
+
+> `./ampersand proto --no-backend --frontend-version Angular <path-to-application-entry-script>.adl --proto-dir ./src/app/generated --crud-defaults cRud .\test\assets\project-administration\model\ProjectAdministration.adl`
+
+The required Ampersand compiler with support for generating new frontend module is still work in progress. You can download a compiler version from [Github here](https://github.com/AmpersandTarski/Ampersand/releases). Use a version >= v4.7.6.
 
 ## How to install and start up the local instance?
 

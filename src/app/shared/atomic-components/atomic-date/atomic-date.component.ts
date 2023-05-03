@@ -38,21 +38,51 @@ export class AtomicDateComponent<I> extends BaseAtomicComponent<string, I> imple
     }
   }
 
+  public override addItem() {
+    // TODO: show warning message when item already exists?
+    // if (this.data.some((x: T) => x == (this.newItemControl.value as unknown))) {
+    //   // the warning message
+    // }
+
+    let val: string = this.newItemControl.value as string;
+
+    if (val) {
+      this.interfaceComponent
+        .patch(this.resource, [
+          {
+            op: 'add',
+            path: this.propertyName, // FIXME: this must be relative to path of this.resource
+            value: val,
+          },
+        ])
+        .subscribe((x) => {
+          if (x.isCommitted && x.invariantRulesHold) {
+            if (this.isUni) {
+              this.newItemControl.disable();
+            }
+            this.dates.push(new Date(val).toLocaleDateString());
+            this.newItemControl.setValue('');
+          }
+        });
+    }
+  }
+
   public patchDate(): void {
-    let date: Date = this.formControl.value as Date;
+    if (this.formControl.value != '') {
+      let date: Date = this.formControl.value as Date;
+      // the date isn't formatting correctly due to a wrong timezone so use this fix
+      let timezoneOffset = date.getTimezoneOffset() * 60000;
+      let formattedDate: Date = new Date(date.getTime() - timezoneOffset);
 
-    // the date isn't formatting correctly due to a wrong timezone so use this fix
-    let timezoneOffset = date.getTimezoneOffset() * 60000;
-    let formattedDate: Date = new Date(date.getTime() - timezoneOffset);
-
-    this.interfaceComponent
-      .patch(this.resource, [
-        {
-          op: 'replace',
-          path: this.propertyName, // FIXME: this must be relative to path of this.resource
-          value: formattedDate,
-        },
-      ])
-      .subscribe();
+      this.interfaceComponent
+        .patch(this.resource, [
+          {
+            op: 'replace',
+            path: this.propertyName, // FIXME: this must be relative to path of this.resource
+            value: formattedDate,
+          },
+        ])
+        .subscribe();
+    }
   }
 }

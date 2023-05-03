@@ -1,0 +1,42 @@
+CONTEXT ProjectAdministration IN ENGLISH
+
+--[ Interfaces for project leader ]--------------------------------------------
+  INTERFACE "My projects" FOR "Projectleader" : V[SESSION*Project];pl BOX <TABLE>
+    [ "Projectleader"       : I
+    , "Projects"            : pl~
+    ]
+    
+  INTERFACE "New/edit project" FOR "Projectleader" : I[Project] CRuD BOX
+    [ "Name"                : projectName RU
+    , "Description"         : projectDescription RU
+    , "Start date"          : projectStartDate RU
+    , "Status"              : projectStatus RU
+    , "Active"              : projectActive RU
+    , "Keywords"            : projectKeyword RU
+    , "Current PL"          : pl RU
+    , "Project members"     : member RU
+
+    , "Alphanumeric uni"      : someAlphanumeric RU
+    , "Bigalphanumeric uni"   : someBigalphanumeric RU
+    , "HugeAlphanumeric uni"  : someHugeAlphanumeric RU
+    , "Password uni"          : somePassword RU
+    , "Date uni"              : someDate RU
+    , "DateTime uni"          : someDateTime RU
+    , "Boolean uni"           : someBoolean RU
+    , "Integer uni"           : someInteger RU
+    , "Float uni"             : someFloat RU
+    , "Object uni"            : someObject RU
+
+    , "Alphanumeric"          : someAlphanumericX RU
+    , "Bigalphanumeric"       : someBigalphanumericX RU
+    , "HugeAlphanumeric"      : someHugeAlphanumericX RU
+    , "Password"              : somePasswordX RU
+    , "Date"                  : someDateX RU
+    , "DateTime"              : someDateTimeX RU
+    , "Boolean"               : someBooleanX RU
+    , "Integer"               : someIntegerX RU
+    , "Float"                 : someFloatX RU
+    , "Object"                : someObjectX RU
+    ]
+
+ENDCONTEXT

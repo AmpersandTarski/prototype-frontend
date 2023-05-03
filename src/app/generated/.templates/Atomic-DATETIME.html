@@ -1,1 +1,10 @@
-<!-- Atomic-DATETIME.html -->
+<app-atomic-datetime
+    [resource]="resource"
+    [interfaceComponent]="this"
+    [property]="resource.$name$"
+    propertyName="$name$"
+    label="$label$"
+    crud="$crud$"
+    $if(exprIsUni)$isUni$endif$
+    $if(exprIsTot)$isTot$endif$
+></app-atomic-datetime>

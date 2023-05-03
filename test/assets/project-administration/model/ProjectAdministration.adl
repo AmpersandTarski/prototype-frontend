@@ -1,0 +1,170 @@
+CONTEXT "ProjectAdministration" IN ENGLISH
+  INCLUDE "ProjectAdministration.xlsx"
+  
+  INCLUDE "ProjectLeader.ifc"
+
+--[ Conceptual model (including concepts and relations) ]----------------------
+  CONCEPT Project "Planned set of interrelated tasks"
+    projectName           :: Project * ProjectName [UNI,TOT]
+    projectStatus         :: Project * ProjectStatus [UNI,TOT] DEFAULT TGT VALUE "In preparation"
+    projectDescription    :: Project * Description [UNI]
+    projectStartDate      :: Project * Date [UNI]
+    projectActive         :: Project * Project [PROP]
+    projectKeyword        :: Project * Keyword
+    pl                    :: Project * Person [UNI]
+    member                :: Project * Person
+
+    someAlphanumeric      :: Project * SomeAlphanumeric [UNI]
+    someBigalphanumeric   :: Project * SomeBigalphanumeric [UNI]
+    someHugeAlphanumeric  :: Project * SomeHugeAlphanumeric [UNI]
+    somePassword          :: Project * SomePassword [UNI]
+    someDate              :: Project * SomeDate [UNI]
+    someDateTime          :: Project * SomeDateTime [UNI]
+    someBoolean           :: Project * SomeBoolean [UNI]
+    someInteger           :: Project * SomeInteger [UNI]
+    someFloat             :: Project * SomeFloat [UNI]
+    someObject            :: Project * Person [UNI]
+
+    someAlphanumericX      :: Project * SomeAlphanumeric
+    someBigalphanumericX   :: Project * SomeBigalphanumeric
+    someHugeAlphanumericX  :: Project * SomeHugeAlphanumeric
+    somePasswordX          :: Project * SomePassword
+    someDateX              :: Project * SomeDate
+    someDateTimeX          :: Project * SomeDateTime
+    someBooleanX           :: Project * SomeBoolean
+    someIntegerX           :: Project * SomeInteger
+    someFloatX             :: Project * SomeFloat
+    someObjectX            :: Project * Person
+
+  CONCEPT Person "Person"
+    personFirstName       :: Person * FirstName [UNI]
+    personLastName        :: Person * LastName [UNI]
+    personStatus          :: Person * PersonStatus [UNI] DEFAULT TGT VALUE "Test"
+    personEmail           :: Person * Email [UNI]
+    workswith             :: Person * Person [IRF,SYM]
+  
+  REPRESENT Date TYPE DATE
+  REPRESENT ProjectName, ProjectStatus, Keyword TYPE ALPHANUMERIC
+  REPRESENT FirstName, LastName, PersonStatus, Email TYPE ALPHANUMERIC
+
+  REPRESENT SomeAlphanumeric, SomeAlphanumericX TYPE ALPHANUMERIC
+  REPRESENT SomeBigalphanumeric, SomeBigalphanumericX TYPE BIGALPHANUMERIC
+  REPRESENT SomeHugeAlphanumeric, SomeHugeAlphanumericX TYPE HUGEALPHANUMERIC
+  REPRESENT SomePassword, SomePasswordX TYPE PASSWORD
+  REPRESENT SomeDate, SomeDateX TYPE DATE
+  REPRESENT SomeDateTime, SomeDateTimeX TYPE DATETIME
+  REPRESENT SomeBoolean, SomeBooleanX TYPE BOOLEAN
+  REPRESENT SomeInteger, SomeIntegerX TYPE INTEGER
+  REPRESENT SomeFloat, SomeFloatX TYPE FLOAT
+
+--[ Invariant rules ]----------------------------------------------------------
+  RULE "r1" : I[Project] |- projectName;projectName~
+  MEANING "Every project MUST have a name"
+  MESSAGE "There are projects that don't have a name"
+  VIOLATION ( TXT "Project "
+            , SRC I
+            , TXT " does not have a name"
+            )
+  ROLE "Planner" MAINTAINS "r1"
+
+  RULE "Active projects must have a projectleader" : projectActive |- I /\ pl;pl~
+  
+  ROLE "ExecEngine" MAINTAINS "Every projectleader is also projectmember"
+  RULE "Every projectleader is also projectmember" : pl |- member
+  VIOLATION (TXT "{EX}InsPair;member;Project;", SRC I, TXT ";Person;", TGT I)
+  
+
+--[ Public interfaces ]--------------------------------------------------------
+  INTERFACE "Active projects" : V[SESSION*Project];projectActive BOX <FORM>
+    [ "Projects"      : I[Project]
+    , "Members FORM"  : member CRUD BOX <FORM> -- <<-- this is the CRUD functionality we need for FORMS
+      [ "ID"          : I cRud <PersonNoView>
+      , "First name"  : personFirstName CRUD
+      , "Last name"   : personLastName CRUD
+      ]
+    , "Members TABLE" : member CRUD BOX <TABLE> -- <<-- this is the CRUD functionality we need for TABLES
+      [ "ID"          : I cRud <PersonNoView>
+      , "First name"  : personFirstName CRUD
+      , "Last name"   : personLastName CRUD
+      ]
+    , "Members TABS"  : member CRUD BOX <TABS> -- <<-- this is the CRUD functionality we need for TABS
+      [ "Person details" : I BOX <FORM>
+        [ "ID"         : I cRud <PersonNoView>
+        , "First name" : personFirstName CRUD
+        , "Last name"  : personLastName CRUD
+        ]
+      , "Contact details" : I BOX <FORM>
+        [ "ID"         : I cRud <PersonNoView>
+        , "Email"      : personEmail CRUD
+        ]
+      ]
+    ]
+  
+  INTERFACE "Project" : I[Project] cRud BOX <FORM title="Project form" showNavMenu>
+    [ "Name"                 : projectName
+    , "Description"           : projectDescription
+    , "(Planned) start date"  : projectStartDate
+    , "Status"                : projectStatus
+    , "Active"                : projectActive
+    , "Current PL"            : pl
+    , "Project members"       : member BOX <TABLE title="Project members">
+      [ "Name"                : personFirstName
+      , "Email"               : personEmail
+      ]
+
+    , "Alphanumeric uni"      : someAlphanumeric
+    , "Bigalphanumeric uni"   : someBigalphanumeric
+    , "HugeAlphanumeric uni"  : someHugeAlphanumeric
+    , "Password uni"          : somePassword
+    , "Date uni"              : someDate
+    , "DateTime uni"          : someDateTime
+    , "Boolean uni"           : someBoolean
+    , "Integer uni"           : someInteger
+    , "Float uni"             : someFloat
+    , "Object uni"            : someObject
+
+    , "Alphanumeric"          : someAlphanumericX
+    , "Bigalphanumeric"       : someBigalphanumericX
+    , "HugeAlphanumeric"      : someHugeAlphanumericX
+    , "Password"              : somePasswordX
+    , "Date"                  : someDateX
+    , "DateTime"              : someDateTimeX
+    , "Boolean"               : someBooleanX
+    , "Integer"               : someIntegerX
+    , "Float"                 : someFloatX
+    , "Object"                : someObjectX
+
+    ]
+    
+  INTERFACE "Person"    : I[Person] CRuD BOX <FORM>
+    [ "First name"      : personFirstName RU
+    , "Last name"       : personLastName RU
+    , "Status"          : personStatus RU
+    , "Email"           : personEmail RU
+    , "Projects"        : I BOX <TABS>
+      [ "Active"        : (member~ \/ pl~);projectActive
+      , "Inactive"      : (member~ \/ pl~);(-projectActive)
+      ]
+    , "Works with"      : workswith
+    ]
+  
+--[ Interfaces for planner ]---------------------------------------------------
+  INTERFACE "Inactive projects" FOR "Planner" : V[SESSION*Project];(-(projectActive) /\ I) BOX <TABLE noHeader noRootTitle>
+    [ "Name"            : I
+    , "Description"     : projectDescription
+    , "Projectleider"   : pl RU
+    , "Status"          : projectStatus
+    , "Active"          : projectActive RU
+    ]
+  
+  INTERFACE "People"  FOR "Planner" : V[SESSION*Person]   CRUD BOX
+    [ "Person"          : I[Person]
+    , "Email"           : personEmail
+    , "Projects"        : member~ 
+    ]
+  
+  VIEW "ProjectName" : Project DEFAULT { name : projectName } ENDVIEW
+  VIEW "PersonName"     : Person DEFAULT { firstName : personFirstName, txt1: TXT " ", lastName : personLastName } ENDVIEW
+  VIEW "PersonNoView" : Person {} ENDVIEW
+  
+ENDCONTEXT

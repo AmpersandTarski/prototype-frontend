@@ -1,4 +1,3 @@
-import { DatePipe } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { BaseAtomicComponent } from '../BaseAtomicComponent.class';
@@ -36,6 +35,35 @@ export class AtomicDatetimeComponent<I> extends BaseAtomicComponent<string, I> i
     if (!this.isUni && this.canUpdate()) {
       this.dates = this.data.map((x) => new Date(x).toLocaleString());
       this.newItemControl = new FormControl<string>('', { nonNullable: true, updateOn: 'change' });
+    }
+  }
+
+  public override addItem() {
+    // TODO: show warning message when item already exists?
+    // if (this.data.some((x: T) => x == (this.newItemControl.value as unknown))) {
+    //   // the warning message
+    // }
+
+    let val: string = this.newItemControl.value as string;
+
+    if (val) {
+      this.interfaceComponent
+        .patch(this.resource, [
+          {
+            op: 'add',
+            path: this.propertyName, // FIXME: this must be relative to path of this.resource
+            value: val,
+          },
+        ])
+        .subscribe((x) => {
+          if (x.isCommitted && x.invariantRulesHold) {
+            if (this.isUni) {
+              this.newItemControl.disable();
+            }
+            this.dates.push(new Date(val).toLocaleString());
+            this.newItemControl.setValue('');
+          }
+        });
     }
   }
 
