@@ -38,21 +38,11 @@ export abstract class BaseBoxComponent<TItem extends ObjectBase, I> {
   }
 
   public removeItem(index: number): void {
-    const str: string = this.data[index]._path_;
-
-    // finds the index to be split by finding the correct "/"
-    const lastIndex = str.lastIndexOf('/');
-    const formattedStr = str.substring(0, lastIndex);
-    const splitIndex = formattedStr.lastIndexOf('/');
-
-    const resourcePath = str.substring(0, splitIndex);
-    const itemPath = str.substring(splitIndex);
-
     this.interfaceComponent
-      .patch(resourcePath, [
+      .patch(this.resource._path_, [
         {
           op: 'remove',
-          path: itemPath, // TODO: see atomic-object's way
+          path: `${this.propertyName}/${this.data[index]._id_}`, // TODO: see atomic-object's way
         },
       ])
       .subscribe((x) => {
