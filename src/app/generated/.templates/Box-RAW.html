@@ -1,4 +1,15 @@
 <!-- Box-RAW.html -->
-<div>$subObjects:{subObj|
-    $subObj.subObjContents$}$
-</div>
+<div $if(isRoot)$*ngIf="data\$ | async as data; else loading"$endif$>
+    <app-box-raw crud="$crud$" [interfaceComponent]="this" [data]="$if(isRoot)$$if(exprIsUni)$[data]$else$data$endif$$else$$if(exprIsUni)$[resource.$name$]$else$resource.$name$$endif$$endif$">
+        <ng-template [boxRawTemplate]="$if(isRoot)$$if(exprIsUni)$[data]$else$data$endif$$else$$if(exprIsUni)$[resource.$name$]$else$resource.$name$$endif$$endif$" let-resource>
+            <div>
+                $subObjects:{subObj| $subObj.subObjContents$}$
+            </div>
+        </ng-template>
+    </app-box-raw>
+</div>$if(isRoot)$
+
+
+<ng-template #loading>
+    <app-box-form-loading></app-box-form-loading>
+</ng-template>$endif$
