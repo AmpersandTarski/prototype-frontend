@@ -7,6 +7,8 @@ import { ObjectBase } from '../objectBase.interface';
   template: '',
 })
 export abstract class BaseBoxComponent<TItem extends ObjectBase, I> {
+  @Input() resource!: ObjectBase;
+  @Input() propertyName!: string;
   @Input() data!: TItem[];
   @Input() interfaceComponent!: AmpersandInterface<I>;
   @Input() crud: string = 'cRud';
@@ -24,6 +26,15 @@ export abstract class BaseBoxComponent<TItem extends ObjectBase, I> {
   }
   public canDelete(): boolean {
     return this.crud[3] == 'D';
+  }
+
+  public createItem(): void {
+    const path: string = `${this.resource._path_}/${this.propertyName}`;
+    this.interfaceComponent.post(path).subscribe((x) => {
+      if (x.isCommitted && x.invariantRulesHold) {
+        this.data.unshift(x.content as TItem);
+      }
+    });
   }
 
   public removeItem(index: number): void {
