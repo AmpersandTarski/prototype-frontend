@@ -10,20 +10,20 @@
                     pTooltip="Add"
                     tooltipPosition="left"
                     style="color: green; cursor: pointer"
-                    (click)="this.createItem()"
+                    (click)="createItem()"
                 ></span>
             </th>
             <th *ngIf="canDelete() && !canCreate()"></th>
         </tr>
     </ng-template>
-    <ng-template pTemplate="body" let-data>
+    <ng-template pTemplate="body" let-data let-i="rowIndex">
         <tr>
             <ng-container *ngTemplateOutlet="rows || defaultRowTemplate; context: { $implicit: data }"></ng-container>
             <td>
                 <span
                     *ngIf="canUpdate()"
                     class="pi pi-fw pi-minus"
-                    (click)="this.removeItem(data)"
+                    (click)="removeItem(i)"
                     pTooltip="Remove"
                     tooltipPosition="left"
                     style="color: red; padding-bottom: 9px; cursor: pointer"
@@ -34,7 +34,7 @@
                     pTooltip="Delete"
                     tooltipPosition="left"
                     style="color: red; cursor: pointer"
-                    (click)="this.deleteItem(data)"
+                    (click)="deleteItem(i)"
                 ></span>
             </td>
             <td *ngIf="canCreate() && !canDelete()"></td>

@@ -5,14 +5,19 @@ import { Patch, PatchValue } from './patch.interface';
 import { PatchResponse } from './patch-response.interface';
 import { DeleteResponse } from './delete-response.interface';
 import { MessageService } from 'primeng/api';
+import { CreateResponse } from './create-response.interface';
 
 export class AmpersandInterface<T> {
   public data$!: Observable<T>;
 
   constructor(protected http: HttpClient) {}
 
-  public patch(resource: ObjectBase, patches: Array<Patch | PatchValue>): Observable<PatchResponse<T>> {
-    return this.http.patch<PatchResponse<T>>(resource._path_, patches);
+  public post(path: string): Observable<CreateResponse> {
+    return this.http.post<CreateResponse>(path, {});
+  }
+
+  public patch(path: string, patches: Array<Patch | PatchValue>): Observable<PatchResponse<T>> {
+    return this.http.patch<PatchResponse<T>>(path, patches);
 
     // return this.http.patch<PatchResponse<T>>(resource._path_, patches).pipe(
     //   tap((x) => {
@@ -35,7 +40,8 @@ export class AmpersandInterface<T> {
     // );
   }
 
-  public delete(resource: ObjectBase, path?: string): Observable<DeleteResponse> {
-    return this.http.delete<DeleteResponse>(`${resource._path_}/${path}`);
+  public delete(resourcePath: string, path?: string): Observable<DeleteResponse> {
+    const fullPath: string = path ? `${resourcePath}/${path}` : resourcePath;
+    return this.http.delete<DeleteResponse>(fullPath);
   }
 }

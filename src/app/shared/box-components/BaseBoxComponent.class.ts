@@ -1,6 +1,5 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, Input } from '@angular/core';
-import { Observable } from 'rxjs';
 import { AmpersandInterface } from '../interfacing/ampersand-interface.class';
 import { ObjectBase } from '../objectBase.interface';
 
@@ -8,12 +7,11 @@ import { ObjectBase } from '../objectBase.interface';
   template: '',
 })
 export abstract class BaseBoxComponent<TItem extends ObjectBase, I> {
+  @Input() resource!: ObjectBase;
+  @Input() propertyName!: string;
   @Input() data!: TItem[];
   @Input() interfaceComponent!: AmpersandInterface<I>;
-
   @Input() crud: string = 'cRud';
-
-  @Input() postMethod!: Observable<unknown>;
 
   constructor(private http: HttpClient) {}
 
@@ -31,30 +29,34 @@ export abstract class BaseBoxComponent<TItem extends ObjectBase, I> {
   }
 
   public createItem(): void {
-    this.postMethod.subscribe();
-  }
-
-  public deleteItem(resource: TItem): void {
-    this.interfaceComponent.delete(resource).subscribe((x) => {
-      if (x.isCommitted) {
-        this.data.forEach((item, index) => {
-          if (item === resource) this.data.splice(index, 1);
-        });
-      } else {
-        // TODO: notify about why resource is not deleted
+    const path: string = `${this.resource._path_}/${this.propertyName}`;
+    this.interfaceComponent.post(path).subscribe((x) => {
+      if (x.isCommitted && x.invariantRulesHold) {
+        this.data.unshift(x.content as TItem);
       }
     });
   }
 
-  public removeItem(resource: TItem): void {
-    // this.interfaceComponent
-    //   .patch(resource, [
-    //     {
-    //       op: 'remove',
-    //       path: resource._id_,
-    //       value: resource,
-    //     },
-    //   ])
-    //   .subscribe();
+  public removeItem(index: number): void {
+    this.interfaceComponent
+      .patch(this.resource._path_, [
+        {
+          op: 'remove',
+          path: `${this.propertyName}/${this.data[index]._id_}`, // TODO: see atomic-object's way
+        },
+      ])
+      .subscribe((x) => {
+        if (x.isCommitted && x.invariantRulesHold) {
+          this.data.splice(index, 1);
+        }
+      });
+  }
+
+  public deleteItem(index: number): void {
+    this.interfaceComponent.delete(this.data[index]._path_).subscribe((x) => {
+      if (x.isCommitted && x.invariantRulesHold) {
+        this.data.splice(index, 1);
+      }
+    });
   }
 }

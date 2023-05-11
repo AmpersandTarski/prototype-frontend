@@ -48,7 +48,7 @@ export class AtomicDateComponent<I> extends BaseAtomicComponent<string, I> imple
 
     if (val) {
       this.interfaceComponent
-        .patch(this.resource, [
+        .patch(this.resource._path_, [
           {
             op: 'add',
             path: this.propertyName, // FIXME: this must be relative to path of this.resource
@@ -75,7 +75,7 @@ export class AtomicDateComponent<I> extends BaseAtomicComponent<string, I> imple
       let formattedDate: Date = new Date(date.getTime() - timezoneOffset);
 
       this.interfaceComponent
-        .patch(this.resource, [
+        .patch(this.resource._path_, [
           {
             op: 'replace',
             path: this.propertyName, // FIXME: this must be relative to path of this.resource
