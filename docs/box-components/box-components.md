@@ -64,7 +64,7 @@ The `deleteitem()` function allows items to be **deleted** from the Box-Componen
 
 The **Box-Form** creates a layout as a form.
 
-This is an example of the form. This takes is on a project page, where the project members are viewed in the format of a form. ![example box form](box-form-example.png)
+This is an example of the form. This is on a project page, where the project members are viewed in the format of a form. ![example box form](box-form-example.png)
 
 The generated Box-Form consists of an `<app-box-form></app-box-form>` selector with an `<ng-template></ng-template>`. The `ng-template` contains other components that are viewed inside the Box-Form. To see how this works, you can watch [this video](https://www.youtube.com/watch?v=dau7kQMdH4A).
 
@@ -97,9 +97,9 @@ The generated Box-Form consists of an `<app-box-form></app-box-form>` selector w
 
 The **Box-Table** creates a layout as a table.
 
-This is an example of the table. This takes is on a project page, where the project members are viewed in the format of a table. ![example box table](box-table-example.png)
+This is an example of the table. This is on a project page, where the project members are viewed in the format of a table. ![example box table](box-table-example.png)
 
-The generated Box-Table consists of an `<app-box-table></app-box-table>` selector with two `<ng-template></ng-template>`. The first `ng-template` contains the names of the table headers, whereas the second `ng-template` contains the components that are viewed inside the Box-Table. To see how this works, you can watch [this video](https://www.youtube.com/watch?v=dau7kQMdH4A).
+The generated Box-Table consists of an `<app-box-table></app-box-table>` selector with two `<ng-template></ng-template>`. The `ng-template` contains other components that are viewed inside the Box-Raw. To see how this works, you can watch [this video](https://www.youtube.com/watch?v=dau7kQMdH4A).
 
 ```html
 <!-- Box-TABLE.html -->
@@ -131,3 +131,32 @@ The generated Box-Table consists of an `<app-box-table></app-box-table>` selecto
 ## Box-Tabs
 
 ## Box-Raw
+
+The **Box-Raw** creates a layout as a raw view. It is simply wrapped in a `<div>` tag with no special properties.
+
+This is an example of the raw. This is on a project page, where the project members are viewed in the format of a raw view. ![example box raw](box-raw-example.png)
+
+The generated Box-Raw consists of an `<app-box-raw></app-box-raw>` selector with an `<ng-template></ng-template>`. The first `ng-template` contains the names of the table headers, whereas the second `ng-template` contains the components that are viewed inside the Box-Table. To see how this works, you can watch [this video](https://www.youtube.com/watch?v=dau7kQMdH4A).
+
+```html
+<!-- Box-RAW.html -->
+<div>
+  <app-box-raw crud="CRUD" [interfaceComponent]="this" [data]="resource.Members_32_RAW">
+    <ng-template [boxRawTemplate]="resource.Members_32_RAW" let-resource>
+      <div>
+        <app-atomic-object
+          [resource]="resource"
+          [interfaceComponent]="this"
+          [property]="resource.ID"
+          propertyName="ID"
+          label="ID"
+          crud="cRud"
+          isUni
+          isTot
+        ></app-atomic-object>
+        <!-- some other components... -->
+      </div>
+    </ng-template>
+  </app-box-raw>
+</div>
+```

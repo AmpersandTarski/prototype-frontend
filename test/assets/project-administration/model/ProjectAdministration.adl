@@ -77,6 +77,11 @@ CONTEXT "ProjectAdministration" IN ENGLISH
 --[ Public interfaces ]--------------------------------------------------------
   INTERFACE "Active projects" : V[SESSION*Project];projectActive BOX <FORM>
     [ "Projects"      : I[Project]
+    , "Members RAW"  : member CRUD BOX <RAW> -- <<-- this is the CRUD functionality we need for FORMS
+      [ "ID"          : I cRud <PersonNoView>
+      , "First name"  : personFirstName CRUD
+      , "Last name"   : personLastName CRUD
+      ]
     , "Members FORM"  : member CRUD BOX <FORM> -- <<-- this is the CRUD functionality we need for FORMS
       [ "ID"          : I cRud <PersonNoView>
       , "First name"  : personFirstName CRUD
