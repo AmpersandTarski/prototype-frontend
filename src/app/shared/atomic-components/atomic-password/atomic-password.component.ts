@@ -28,7 +28,7 @@ export class AtomicPasswordComponent<I> extends BaseAtomicComponent<string, I> i
     let password: string = this.formControl.value;
 
     this.interfaceComponent
-      .patch(this.resource, [
+      .patch(this.resource._path_, [
         {
           op: 'replace',
           path: this.propertyName, // FIXME: this must be relative to path of this.resource

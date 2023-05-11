@@ -48,7 +48,7 @@ export class AtomicDatetimeComponent<I> extends BaseAtomicComponent<string, I> i
 
     if (val) {
       this.interfaceComponent
-        .patch(this.resource, [
+        .patch(this.resource._path_, [
           {
             op: 'add',
             path: this.propertyName, // FIXME: this must be relative to path of this.resource
@@ -70,7 +70,7 @@ export class AtomicDatetimeComponent<I> extends BaseAtomicComponent<string, I> i
   public patchDate(): void {
     let date: Date = this.formControl.value as Date;
     this.interfaceComponent
-      .patch(this.resource, [
+      .patch(this.resource._path_, [
         {
           op: 'replace',
           path: this.propertyName, // FIXME: this must be relative to path of this.resource

@@ -1,4 +1,4 @@
-<div class="card" *ngFor="let item of data">
+<div class="card" *ngFor="let item of data; let i = index">
     <div style="float: right">
         <span
             *ngIf="canCreate()"
@@ -6,12 +6,12 @@
             pTooltip="Add"
             tooltipPosition="left"
             style="color: green; cursor: pointer"
-            (click)="this.createItem()"
+            (click)="createItem()"
         ></span>
         <span
             *ngIf="canUpdate()"
             class="pi pi-fw pi-minus"
-            (click)="this.removeItem(item)"
+            (click)="removeItem(i)"
             pTooltip="Remove"
             tooltipPosition="left"
             style="color: red; padding-bottom: 9px; cursor: pointer"
@@ -22,7 +22,7 @@
             pTooltip="Delete"
             tooltipPosition="left"
             style="color: red; cursor: pointer"
-            (click)="this.deleteItem(item)"
+            (click)="deleteItem(i)"
         ></span>
     </div>
     <ng-container *ngTemplateOutlet="template || defaultTemplate; context: { $implicit: item }"></ng-container>

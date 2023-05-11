@@ -29,7 +29,7 @@ export class AtomicFloatComponent<I> extends BaseAtomicComponent<number, I> impl
 
     this.formControl.valueChanges.subscribe((x) =>
       this.interfaceComponent
-        .patch(this.resource, [
+        .patch(this.resource._path_, [
           {
             op: 'replace',
             path: this.propertyName, // FIXME
