@@ -10,15 +10,15 @@ Project page
 |   Description
 |   Start date
 └───Project members
-    |   Name
-    |   └───Member1 name
-    |   └───Member2 name
-    |   └───Member3 name
-    |   Email
-    |   └───Member1 email
-    |   └───Member2 email
-    |   └───Member3 email
-
+    |   Member1
+    |   └───Name
+    |   └───Email
+    |   Member2
+    |   └───Name
+    |   └───Email
+    |   Member3
+    |   └───Name
+    |   └───Email
 ```
 
 This corresponds to the following structure:
@@ -31,7 +31,6 @@ Box-Form
 └───Box-Table
     │   Atomic-Alphanumeric
     |   Atomic-Alphanumeric
-
 ```
 
 ## BaseBoxComponent
