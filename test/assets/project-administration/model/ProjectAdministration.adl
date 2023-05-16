@@ -54,6 +54,7 @@ CONTEXT "ProjectAdministration" IN ENGLISH
   REPRESENT SomeDate, SomeDateX TYPE DATE
   REPRESENT SomeDateTime, SomeDateTimeX TYPE DATETIME
   REPRESENT SomeBoolean, SomeBooleanX TYPE BOOLEAN
+  VIEW SomeBooleanX : SomeBooleanX HTML TEMPLATE "View-PROPERTY.html" ENDVIEW
   REPRESENT SomeInteger, SomeIntegerX TYPE INTEGER
   REPRESENT SomeFloat, SomeFloatX TYPE FLOAT
 
@@ -110,13 +111,13 @@ CONTEXT "ProjectAdministration" IN ENGLISH
     , "Description"           : projectDescription
     , "(Planned) start date"  : projectStartDate
     , "Status"                : projectStatus
-    , "Active"                : projectActive
+    , "Active"                : projectActive 
     , "Current PL"            : pl
     , "Project members"       : member BOX <TABLE title="Project members">
       [ "Name"                : personFirstName
       , "Email"               : personEmail
       ]
-
+      
     , "Alphanumeric uni"      : someAlphanumeric
     , "Bigalphanumeric uni"   : someBigalphanumeric
     , "HugeAlphanumeric uni"  : someHugeAlphanumeric
@@ -146,8 +147,10 @@ CONTEXT "ProjectAdministration" IN ENGLISH
     , "Last name"       : personLastName RU
     , "Status"          : personStatus RU
     , "Email"           : personEmail RU
-    , "Projects"        : I BOX <TABS>
-      [ "Active"        : (member~ \/ pl~);projectActive
+    , "Projects TABLE"        : I BOX <TABLE>
+      [ "Active"            : (member~ \/ pl~);projectActive
+      , "Active IFC"        : (member~ \/ pl~);projectActive INTERFACE Project
+      , "Active LINKTO IFC" : (member~ \/ pl~);projectActive LINKTO INTERFACE Project
       , "Inactive"      : (member~ \/ pl~);(-projectActive)
       ]
     , "Works with"      : workswith
@@ -165,11 +168,11 @@ CONTEXT "ProjectAdministration" IN ENGLISH
   INTERFACE "People"  FOR "Planner" : V[SESSION*Person]   CRUD BOX
     [ "Person"          : I[Person]
     , "Email"           : personEmail
-    , "Projects"        : member~ 
+    , "Projects"        : member~
     ]
   
   VIEW "ProjectName" : Project DEFAULT { name : projectName } ENDVIEW
   VIEW "PersonName"     : Person DEFAULT { firstName : personFirstName, txt1: TXT " ", lastName : personLastName } ENDVIEW
   VIEW "PersonNoView" : Person {} ENDVIEW
-  
+
 ENDCONTEXT
