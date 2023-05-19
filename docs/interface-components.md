@@ -290,3 +290,9 @@ The different attributes that the front-end component accepts are listed in the 
 # Box
 
 Box components are used as a shell, to keep its contents within one window.
+
+# View-Components
+
+## Property
+
+The View-Property serves as a boolean that refers to itself. It uses the Atomic-Boolean under the hood, as it has the same functionality. Therefore, the templates for both `Atomic-BOOLEAN.html` and `View-LINKTO.html` are the same.
