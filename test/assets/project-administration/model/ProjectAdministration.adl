@@ -146,8 +146,10 @@ CONTEXT "ProjectAdministration" IN ENGLISH
     , "Last name"       : personLastName RU
     , "Status"          : personStatus RU
     , "Email"           : personEmail RU
-    , "Projects"        : I BOX <TABS>
-      [ "Active"        : (member~ \/ pl~);projectActive
+    , "Projects TABLE"        : I BOX <TABLE>
+      [ "Active"            : (member~ \/ pl~);projectActive
+      , "Active IFC"        : (member~ \/ pl~);projectActive INTERFACE Project
+      , "Active LINKTO IFC" : (member~ \/ pl~);projectActive LINKTO INTERFACE Project
       , "Inactive"      : (member~ \/ pl~);(-projectActive)
       ]
     , "Works with"      : workswith

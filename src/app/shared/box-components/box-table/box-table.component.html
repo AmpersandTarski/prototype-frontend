@@ -17,7 +17,7 @@
         </tr>
     </ng-template>
     <ng-template pTemplate="body" let-data let-i="rowIndex">
-        <tr>
+        <tr style="vertical-align: top">
             <ng-container *ngTemplateOutlet="rows || defaultRowTemplate; context: { $implicit: data }"></ng-container>
             <td>
                 <span
