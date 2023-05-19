@@ -5,6 +5,7 @@ interface BoxFormTemplateContext<TItem extends object> {
 }
 
 @Directive({
+  // eslint-disable-next-line @angular-eslint/directive-selector
   selector: 'ng-template[boxFormTemplate]',
 })
 export class BoxFormTemplateDirective<TItem extends object> {

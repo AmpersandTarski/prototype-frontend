@@ -1,5 +1,6 @@
-<p-tabView>
-    <p-tabPanel *ngFor="let tabHeader of tabHeaders" header="{{ tabHeader }}">
-        <ng-container *ngTemplateOutlet="tabContent; context: { data: data, tabHeader: tabHeader }"> </ng-container>
+<p-tabView *ngFor="let item of data">
+    <p-tabPanel *ngFor="let tab of tabs" header="{{ tab.name }}">
+        <ng-container *ngTemplateOutlet="tab.template; context: { $implicit: asObjectBase(item, tab.tab) }">
+        </ng-container>
     </p-tabPanel>
 </p-tabView>
