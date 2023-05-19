@@ -1,5 +1,31 @@
-<p-tabView *ngFor="let item of data">
+<p-tabView *ngFor="let item of data; let i = index">
     <p-tabPanel *ngFor="let tab of tabs" header="{{ tab.name }}">
+        <div style="float: right">
+            <span
+                *ngIf="canCreate()"
+                class="pi pi-fw pi-plus"
+                pTooltip="Add"
+                tooltipPosition="left"
+                style="color: green; cursor: pointer"
+                (click)="createItem()"
+            ></span>
+            <span
+                *ngIf="canUpdate()"
+                class="pi pi-fw pi-minus"
+                (click)="removeItem(i)"
+                pTooltip="Remove"
+                tooltipPosition="left"
+                style="color: red; padding-bottom: 9px; cursor: pointer"
+            ></span>
+            <span
+                *ngIf="canDelete()"
+                class="pi pi-fw pi-trash"
+                pTooltip="Delete"
+                tooltipPosition="left"
+                style="color: red; cursor: pointer"
+                (click)="deleteItem(i)"
+            ></span>
+        </div>
         <ng-container *ngTemplateOutlet="tab.template; context: { $implicit: asObjectBase(item, tab.tab) }">
         </ng-container>
     </p-tabPanel>
