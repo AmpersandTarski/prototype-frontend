@@ -5,6 +5,7 @@ interface BoxTableRowTemplateContext<TItem extends object> {
 }
 
 @Directive({
+  // eslint-disable-next-line @angular-eslint/directive-selector
   selector: 'ng-template[boxTableRow]',
 })
 export class BoxTableRowTemplateDirective<TItem extends object> {
