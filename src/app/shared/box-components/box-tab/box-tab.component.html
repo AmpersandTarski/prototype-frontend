@@ -32,7 +32,7 @@
 </p-tabView>
 
 <p-dropdown
-    *ngIf="canUpdate() && (dropdownMenuObjects$ | async) as dropdownMenuObjects"
+    *ngIf="canUpdate() && (dropdownMenuObjects$ | async) as dropdownMenuObjects; else defaultDropdownMenu"
     [options]="dropdownMenuObjects"
     [formControl]="newItemControl"
     optionLabel="_label_"
@@ -42,12 +42,6 @@
 >
 </p-dropdown>
 
-<!-- case when no dropdownMenuObjects found -->
-<p-dropdown
-    *ngIf="canUpdate() && !(dropdownMenuObjects$ | async) as dropdownMenuObjects"
-    [options]="[]"
-    [formControl]="newItemControl"
-    [showClear]="false"
-    [placeholder]="placeholder"
->
-</p-dropdown>
+<ng-template #defaultDropdownMenu>
+    <p-dropdown *ngIf="canUpdate()" [options]="[]" [showClear]="false" [placeholder]="placeholder"> </p-dropdown>
+</ng-template>

@@ -15,7 +15,7 @@ export abstract class BaseBoxComponent<TItem extends ObjectBase, I> implements O
   @Input() interfaceComponent!: AmpersandInterface<I>;
   @Input() crud: string = 'cRud';
   @Input() getPath!: string;
-  @Input() placeholder!: string;
+  @Input() placeholder: string = '';
   dropdownMenuObjects$: Observable<ObjectBase[]> = of();
   newItemControl!: FormControl<string | boolean | number | ObjectBase>;
 
