@@ -54,6 +54,7 @@ CONTEXT "ProjectAdministration" IN ENGLISH
   REPRESENT SomeDate, SomeDateX TYPE DATE
   REPRESENT SomeDateTime, SomeDateTimeX TYPE DATETIME
   REPRESENT SomeBoolean, SomeBooleanX TYPE BOOLEAN
+  VIEW SomeBooleanX : SomeBooleanX HTML TEMPLATE "View-PROPERTY.html" ENDVIEW
   REPRESENT SomeInteger, SomeIntegerX TYPE INTEGER
   REPRESENT SomeFloat, SomeFloatX TYPE FLOAT
 
@@ -116,7 +117,6 @@ CONTEXT "ProjectAdministration" IN ENGLISH
       [ "Name"                : personFirstName
       , "Email"               : personEmail
       ]
-
     , "Alphanumeric uni"      : someAlphanumeric
     , "Bigalphanumeric uni"   : someBigalphanumeric
     , "HugeAlphanumeric uni"  : someHugeAlphanumeric
@@ -173,5 +173,5 @@ CONTEXT "ProjectAdministration" IN ENGLISH
   VIEW "ProjectName" : Project DEFAULT { name : projectName } ENDVIEW
   VIEW "PersonName"     : Person DEFAULT { firstName : personFirstName, txt1: TXT " ", lastName : personLastName } ENDVIEW
   VIEW "PersonNoView" : Person {} ENDVIEW
-  
+
 ENDCONTEXT
