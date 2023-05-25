@@ -30,3 +30,18 @@
         </ng-container>
     </p-tabPanel>
 </p-tabView>
+
+<p-dropdown
+    *ngIf="canUpdate() && (dropdownMenuObjects$ | async) as dropdownMenuObjects; else defaultDropdownMenu"
+    [options]="dropdownMenuObjects"
+    [formControl]="newItemControl"
+    optionLabel="_label_"
+    [showClear]="false"
+    [placeholder]="placeholder"
+    (onChange)="addItem()"
+>
+</p-dropdown>
+
+<ng-template #defaultDropdownMenu>
+    <p-dropdown *ngIf="canUpdate()" [options]="[]" [showClear]="false" [placeholder]="placeholder"> </p-dropdown>
+</ng-template>

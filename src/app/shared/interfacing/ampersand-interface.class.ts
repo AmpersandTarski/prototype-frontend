@@ -1,16 +1,19 @@
 import { HttpClient } from '@angular/common/http';
-import { from, Observable, tap } from 'rxjs';
+import { Observable } from 'rxjs';
 import { ObjectBase } from '../objectBase.interface';
 import { Patch, PatchValue } from './patch.interface';
 import { PatchResponse } from './patch-response.interface';
 import { DeleteResponse } from './delete-response.interface';
-import { MessageService } from 'primeng/api';
 import { CreateResponse } from './create-response.interface';
 
 export class AmpersandInterface<T> {
   public data$!: Observable<T>;
 
   constructor(protected http: HttpClient) {}
+
+  public get(path: string): Observable<ObjectBase[]> {
+    return this.http.get<ObjectBase[]>(path);
+  }
 
   public post(path: string): Observable<CreateResponse> {
     return this.http.post<CreateResponse>(path, {});

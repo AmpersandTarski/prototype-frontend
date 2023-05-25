@@ -42,6 +42,21 @@
     </ng-template>
 </p-table>
 
+<p-dropdown
+    *ngIf="canUpdate() && (dropdownMenuObjects$ | async) as dropdownMenuObjects; else defaultDropdownMenu"
+    [options]="dropdownMenuObjects"
+    [formControl]="newItemControl"
+    optionLabel="_label_"
+    [showClear]="false"
+    [placeholder]="placeholder"
+    (onChange)="addItem()"
+>
+</p-dropdown>
+
+<ng-template #defaultDropdownMenu>
+    <p-dropdown *ngIf="canUpdate()" [options]="[]" [showClear]="false" [placeholder]="placeholder"> </p-dropdown>
+</ng-template>
+
 <ng-template #defaultHeaderTemplate let-data>
     <th *ngFor="let header of data[0] | keyvalue">{{ header.key }}</th>
 </ng-template>
