@@ -7,23 +7,20 @@
 - `test/some-test-name` for writing tests
 - `docs/some-doc-name` for writing documentation
 
+Optionally, place the issue number in the branch name, e.g. `feat/36/create-box-tabs`.
+
 ## Gitflow
 
-The Gitflow consists of two main branches:
+The Gitflow consists of one main branch called `main`. The `main` branch will be updated through _feature branches_.
 
-1. `main`
-2. `dev`
-
-The `main` branch stores the release history whereas the `dev` branch serves as an integration branch for e.g. features. The `main` branch will be updated each sprint through a pull request from the `dev` branch. The `dev` branch will be updated through **feature branches**.
-
-For each new feature, there must be a `feat` branch created. Whenever that feature is finished, a pull request must be created into `dev`.
+For each new feature, there must be a `feat` branch created. Whenever that feature is finished, a pull request must be created into `main`.
 
 ### Quickstart Git: Creating a new feature
 
-1. Whenever a new feature is implemented, you must go to the `dev` branch and pull the latest results:
+1. Whenever a new feature is implemented, you must go to the `main` branch and pull the latest results:
    ```
-   // goes to the dev branch
-   git checkout dev
+   // goes to the main branch
+   git checkout main
    // pulls the latest version
    git pull
    ```
@@ -46,5 +43,5 @@ For each new feature, there must be a `feat` branch created. Whenever that featu
    1. Go to the `prototype-frontend` repository
    2. Click on _Pull requests_
    3. Click on _New pull request_
-   4. Set the **base** to `dev` and the _compare_ to `feat/your-feature`
+   4. Set the **base** to `main` and the _compare_ to `feat/your-feature`
    5. Create the pull request
