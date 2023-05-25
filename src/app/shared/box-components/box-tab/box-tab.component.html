@@ -41,3 +41,13 @@
     (onChange)="addItem()"
 >
 </p-dropdown>
+
+<!-- case when no dropdownMenuObjects found -->
+<p-dropdown
+    *ngIf="canUpdate() && !(dropdownMenuObjects$ | async) as dropdownMenuObjects"
+    [options]="[]"
+    [formControl]="newItemControl"
+    [showClear]="false"
+    [placeholder]="placeholder"
+>
+</p-dropdown>

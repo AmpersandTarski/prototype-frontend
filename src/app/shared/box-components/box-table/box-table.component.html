@@ -53,6 +53,16 @@
 >
 </p-dropdown>
 
+<!-- case when no dropdownMenuObjects found -->
+<p-dropdown
+    *ngIf="canUpdate() && !(dropdownMenuObjects$ | async) as dropdownMenuObjects"
+    [options]="[]"
+    [formControl]="newItemControl"
+    [showClear]="false"
+    [placeholder]="placeholder"
+>
+</p-dropdown>
+
 <ng-template #defaultHeaderTemplate let-data>
     <th *ngFor="let header of data[0] | keyvalue">{{ header.key }}</th>
 </ng-template>
