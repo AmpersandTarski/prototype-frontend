@@ -111,13 +111,12 @@ CONTEXT "ProjectAdministration" IN ENGLISH
     , "Description"           : projectDescription
     , "(Planned) start date"  : projectStartDate
     , "Status"                : projectStatus
-    , "Active"                : projectActive 
+    , "Active"                : projectActive
     , "Current PL"            : pl
     , "Project members"       : member BOX <TABLE title="Project members">
       [ "Name"                : personFirstName
       , "Email"               : personEmail
       ]
-      
     , "Alphanumeric uni"      : someAlphanumeric
     , "Bigalphanumeric uni"   : someBigalphanumeric
     , "HugeAlphanumeric uni"  : someHugeAlphanumeric
@@ -168,7 +167,7 @@ CONTEXT "ProjectAdministration" IN ENGLISH
   INTERFACE "People"  FOR "Planner" : V[SESSION*Person]   CRUD BOX
     [ "Person"          : I[Person]
     , "Email"           : personEmail
-    , "Projects"        : member~
+    , "Projects"        : member~ 
     ]
   
   VIEW "ProjectName" : Project DEFAULT { name : projectName } ENDVIEW

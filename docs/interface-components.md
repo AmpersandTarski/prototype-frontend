@@ -10,7 +10,7 @@ Every component features a couple of default options in the form of attributes. 
 | isTot     | boolean | If this attribute is added to the element, the element's data is total. This means that for any `a` in `A` there must be at least one `b` in `B` in the population of `r`.                                                                                                                                                                                                                                                                                                                |
 | crud      | string  | The CRUD-annotation specifies `Create`, `Read`, `Update`, and `Delete` rights for the term it follows. Capital = allowed, Non-capital = not allowed. CRUD is the default, so if you specify nothing, everything is allowed.                                                                                                                                                                                                                                                               |
 
-# Atomic
+# Atomic-Components
 
 Atomic components (also known as atoms) provide a way to get user input or let the user change the input. The way to bind a concept to a atomic component in an ampersand script, works as follows:
 
@@ -287,7 +287,7 @@ The different attributes that the front-end component accepts are listed in the 
 | --------- | ------ | -------------------------------------------------------------------------------------------------- |
 | property  | string | Sets the current value that is pre-filled in the password field. You might never want to use this. |
 
-# Box
+# Box-Components
 
 Box components are used as a shell, to keep its contents within one window.
 
@@ -296,3 +296,7 @@ Box components are used as a shell, to keep its contents within one window.
 ## Property
 
 The View-Property serves as a boolean that refers to itself. It uses the Atomic-Boolean under the hood, as it has the same functionality. Therefore, the templates for both `Atomic-BOOLEAN.html` and `View-LINKTO.html` are the same.
+
+## Linkto
+
+The View-Linkto is similar to the Atomic-Object (in fact, it is the same). It aims to link an object to an interface. It uses the Atomic-Object under the hood, as it has the same functionality. Therefore, the templates for both `Atomic-OBJECT.html` and `View-LINKTO.html` are the same.
