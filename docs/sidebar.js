@@ -8,7 +8,7 @@ module.exports = {
         // This is for all documentation from the prototype-frontend repo that should go in the `Reference material` part of the menu.
         {
             type: 'category',
-            label: 'Prototype frontend',
+            label: 'Frontend reference',
             items: [
                 'prototype-frontend/reference-material/the-prototype-frontend',
                 ]
