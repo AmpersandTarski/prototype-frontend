@@ -259,7 +259,7 @@ The different attributes that the front-end component accepts are listed in the 
 
 | attribute | value       | description                                                                                            |
 | --------- | ----------- | ------------------------------------------------------------------------------------------------------ |
-| property  | Array\<any> | Display's the name of the object and adds links to desired actions, like editing or viewing the entity |
+| property  | Array\<any\> | Display's the name of the object and adds links to desired actions, like editing or viewing the entity |
 
 ## Password Component
 
