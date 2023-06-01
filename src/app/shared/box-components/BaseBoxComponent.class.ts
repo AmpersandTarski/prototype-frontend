@@ -16,7 +16,7 @@ export abstract class BaseBoxComponent<TItem extends ObjectBase, I> implements O
   @Input() crud: string = 'cRud';
   @Input() getPath!: string;
   @Input() placeholder: string = '';
-  dropdownMenuObjects$: Observable<ObjectBase[]> = of();
+  dropdownMenuObjects$: Observable<Array<ObjectBase>> = of();
   newItemControl!: FormControl<string | boolean | number | ObjectBase>;
 
   constructor(private http: HttpClient) {}
@@ -87,13 +87,16 @@ export abstract class BaseBoxComponent<TItem extends ObjectBase, I> implements O
       .patch(this.resource._path_, [
         {
           op: 'remove',
-          path: `${this.propertyName}/${this.data[index]._id_}`, // TODO: see atomic-object's way
+          path: `${this.propertyName}/${this.data[index]._id_}`,
         },
       ])
       .subscribe((x) => {
         if (x.isCommitted && x.invariantRulesHold) {
-          this.data.splice(index, 1);
-          this.dropdownMenuObjects$ = this.dropdownMenuObjects$.pipe(tap((objects) => objects.push(this.data[index])));
+          // TODO: fix ugly any type
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+          this.data = (x.content as any)[this.propertyName] as TItem[];
+
+          this.dropdownMenuObjects$ = this.getDropdownMenuItems(this.getPath);
         }
       });
   }
@@ -106,8 +109,8 @@ export abstract class BaseBoxComponent<TItem extends ObjectBase, I> implements O
     });
   }
 
-  private getDropdownMenuItems(path: string): Observable<ObjectBase[]> {
-    let objects: Observable<ObjectBase[]> = this.interfaceComponent.get(path);
+  private getDropdownMenuItems(path: string): Observable<Array<ObjectBase>> {
+    let objects: Observable<Array<ObjectBase>> = this.interfaceComponent.fetchDropdownMenuData(path);
     objects = objects.pipe(
       map((dropdownobjects) => dropdownobjects.filter((object) => !this.data.map((y) => y._id_).includes(object._id_))),
     );
