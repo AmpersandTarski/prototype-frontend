@@ -38,7 +38,7 @@
 </div>
 
 <p-dropdown
-    *ngIf="alternativeObjects$ | async as alternativeObjects"
+    *ngIf="dropdownMenuObjects$ | async as alternativeObjects"
     [options]="alternativeObjects"
     [formControl]="newItemControl"
     optionLabel="_label_"

@@ -94,12 +94,12 @@
                             [resource]="resource"
                             [interfaceComponent]="this"
                             [property]="resource.Current_32_PL"
+                            [getPath]="'resource/SESSION/1/People'"
                             propertyName="Current_32_PL"
                             placeholder="Add Person"
                             isUni
                             isTot
                             crud="cRUd"
-                            [itemsMethod]="service.getPeople"
                         ></app-atomic-object>
                     </div>
                 </div>
@@ -110,11 +110,11 @@
                             [resource]="resource"
                             [interfaceComponent]="this"
                             [property]="resource.Project_32_members"
+                            [getPath]="'resource/SESSION/1/People'"
                             propertyName="Project_32_members"
                             placeholder="Add Person"
                             isTot
                             crud="cRUD"
-                            [itemsMethod]="service.getPeople"
                         ></app-atomic-object>
                     </div>
                 </div>
