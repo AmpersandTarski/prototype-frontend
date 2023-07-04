@@ -1,4 +1,22 @@
 <!-- Box-TABS.html -->
-<div>
-    <!-- Not yet implemented -->
-</div>
+<div $if(isRoot)$*ngIf="data\$ | async as data; else loading"$endif$>
+    <app-box-tab
+      crud="$crud$"
+      [interfaceComponent]="this"
+      $if(!isRoot)$[resource]="resource" propertyName="$name$"$endif$
+      [data]="$if(isRoot)$$if(exprIsUni)$[data]$else$data$endif$$else$$if(exprIsUni)$[resource.$name$]$else$resource.$name$$endif$$endif$"
+      placeholder="Add $target$"
+    >
+    $subObjects:{subObj|
+        <ng-template tabName="$subObj.subObjLabel$" tab="$subObj.subObjName$" let-resource>
+            $subObj.subObjContents$
+        </ng-template>}$
+    </app-box-tab>
+</div>$if(isRoot)$
+
+<!-- TODO, make a tab loading placeholder -->
+<!-- <ng-template #loading>
+    <app-box-tab-loading [nrOfRows]="10"></app-box-tab-loading>
+</ng-template> -->
+
+$endif$
