@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, share } from 'rxjs';
 import { ObjectBase } from '../objectBase.interface';
 import { Patch, PatchValue } from './patch.interface';
 import { PatchResponse } from './patch-response.interface';
@@ -8,11 +8,17 @@ import { CreateResponse } from './create-response.interface';
 
 export class AmpersandInterface<T> {
   public data$!: Observable<T>;
+  public typeAheadData: { [path: string]: Observable<Array<ObjectBase>> } = {};
 
   constructor(protected http: HttpClient) {}
 
-  public get(path: string): Observable<ObjectBase[]> {
-    return this.http.get<ObjectBase[]>(path);
+  public fetchDropdownMenuData(path: string): Observable<Array<ObjectBase>> {
+    if (!(path in this.typeAheadData)) {
+      const source = this.http.get<Array<ObjectBase>>(path);
+      const sharedObservable = source.pipe(share());
+      this.typeAheadData[path] = sharedObservable;
+    }
+    return this.typeAheadData[path];
   }
 
   public post(path: string): Observable<CreateResponse> {
