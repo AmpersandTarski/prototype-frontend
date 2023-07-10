@@ -1,3 +1,5 @@
+This repo has been merged to AmpersandTarski/prototype and should no longer be updated.
+
 # Ampersand Prototyping Frontend
 
 Frontend framework for prototyping Ampersand applications; implemented in Angular
